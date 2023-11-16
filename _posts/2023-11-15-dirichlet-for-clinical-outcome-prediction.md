@@ -19,19 +19,19 @@ comments: true
 
 ## Introduction
 
-Clustering is an effective way of making predictions. Clustering works by grouping data points together bases on their features. In the reverse of this, if we know the cluster a data point belongs to, we can make predictions about the data point. In the case of medicine this can be helpful for clinical outcome predicitons since by knowing the cluster a patient belongs to, we can make predictions about their diagnosis.
+Clustering is an effective way of making predictions. It works by grouping data points together based on their features. Conversely, if we know the cluster a data point belongs to, we can make predictions about it. In medicine, this can be particularly helpful for clinical outcome predictions since, by knowing the cluster a patient belongs to, we can make informed predictions about their diagnosis.
 
-A clustering tool for diagnosis would work as follows: we take a patient, measure various features about them, find out which cluster they most likely belong to, and then make a prediction about their diagnosis based on the cluster they belong to. This is a simple and effective way of making predictions about a patient's diagnosis.
+A clustering tool for diagnosis would function as follows: we take a patient, measure various features about them, determine which cluster they most likely belong to, and then make a prediction about their diagnosis based on this cluster. This is a simple yet effective method for predicting a patient's diagnosis.
 
-However, we cannot deploy this model until we have learned the features of each cluster. Since the cluster that a patient belongs to is often not directly measureable, we must infer the cluster assignments from the data. This is where Bayesian inference comes in. Bayesian inference is a method of inferring unknown variables from data.
+However, we cannot deploy this model until we have identified the characteristics of each cluster. Since the cluster that a patient belongs to is often not directly measurable, we must infer the cluster assignments from the data. This is where Bayesian inference comes into play. Bayesian inference is a method of inferring unknown variables from observed data.
 
-In this article we show how to build a clustering model using Dirichlet Clustering in a Bayesian framework. We then apply our model to a dataset to predict the diagnosis of patents. We will provide a high level overview of how the math and the code works, but we wont dive deep. If you want to learn more about the math behind Dirichlet Clustering, I encourage you to leave a comment below check out this [textbook](https://books.google.com/books?hl=en&lr=&id=LkPGEAAAQBAJ&oi=fnd&pg=PR11&dq=steve+presse+ioannis+sgouralis+data+modeling&ots=uA42nAUM_f&sig=ll9bYjfOmGnMgeJn5QqR-7IM54Q#v=onepage&q=steve%20presse%20ioannis%20sgouralis%20data%20modeling&f=false).
+In this article, we demonstrate how to build a clustering model using Dirichlet Clustering within a Bayesian framework. We then apply our model to a dataset to predict the diagnoses of patients. We will provide a high-level overview of how the math and the code work, but we won't dive deep. If you want to delve more into the mathematics behind Dirichlet Clustering, I encourage you to leave a comment below and check out this[textbook](https://books.google.com/books?hl=en&lr=&id=LkPGEAAAQBAJ&oi=fnd&pg=PR11&dq=steve+presse+ioannis+sgouralis+data+modeling&ots=uA42nAUM_f&sig=ll9bYjfOmGnMgeJn5QqR-7IM54Q#v=onepage&q=steve%20presse%20ioannis%20sgouralis%20data%20modeling&f=false).
 
 ## Data
 
-For this project we are looking at the [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database) from Kaggle. The data tracks the medical history of Pima Indians and whether or not they have diabetes.
+For this project, we are examining the [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database) from Kaggle. This dataset tracks the medical histories of Pima Indians and their diabetes status.
 
-For each patient we have 8 measured features (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI,DiabetesPedigreeFunction, and Age) as well as their diabetes diagnosis in the last column(Outcome). We print the first few lines here:
+For each patient, we have eight measured features: Pregnancies, Glucose, Blood Pressure, Skin Thickness, Insulin, BMI (Body Mass Index), Diabetes Pedigree Function, and Age. Additionally, their diabetes diagnosis is indicated in the last column (Outcome). We print the first few lines here:
 
 |   Pregnancies |   Glucose |   BloodPressure |   SkinThickness |   Insulin |   BMI |   DiabetesPedigreeFunction |   Age |   Outcome |
 |---------------|-----------|-----------------|-----------------|-----------|-------|----------------------------|-------|-----------|
@@ -41,10 +41,11 @@ For each patient we have 8 measured features (Pregnancies, Glucose, BloodPressur
 |             1 |        89 |              66 |              23 |        94 |  28.1 |                      0.167 |    21 |         0 |
 |             0 |       137 |              40 |              35 |       168 |  43.1 |                      2.288 |    33 |         1 |
 
-For simplicity we will exclude the Pregnancies column as well as any row that has missing information.
+For simplicity, we will exclude the Pregnancies column, as its distribution is not well-modeled by a Gaussian. While it could be included in future work using a different distribution, the other features are currently sufficient for our analysis. Additionally, we exclude all rows with missing values, as the treatment of missing data is beyond the scope of this article.
 
-In the `main.py` file of our GitHub project we load the data and split it into a training and testing set as follows:
-```pyton
+In the main.py file of our GitHub project, we load the data and split it into an 80/20 training and testing set as follows:
+
+```python
 # Load data
 data = np.genfromtxt('data/diabetes.csv', delimiter=',', skip_header=True)
 data = data[:, 1:]                               # Ignore first column (# pregnancies)
@@ -63,40 +64,43 @@ Now that we have our data we can begin building our model.
 
 ### Equations
 
-The foundation of any Bayesian model is the mathematical model that supports it. In this section we will derive the equations that support our model. There are two main parts to the model: the equations that give rise to the cluster assignments and the equations that give rise to the measurements.
+The foundation of any Bayesian model is the mathematical model that supports it. There are two main parts to the model: the equations that give rise to the cluster assignments and the equations that give rise to the measurements. In this section we will derive the equations that support our model.
 
 #### Cluster Assignments
 
-First we must choose how many clusters there are. Let $K$ be the number of total clusters, indexed from $k=1,...,K$. Now let $N$ be the number of patients, indexed from $n=1,...,N$. Each patient has a cluster assignment $s_n$ where $s_n$ is the cluster that patient $n$ is assigned to. We can represent this as a vector $\mathbf{s} = (s_1, ..., s_N)$.
+The foundation of our Bayesian model lies in determining the clustering distributions. To start, we must decide the total number of clusters. Let $K$ be this number, with clusters indexed from $k = 1, ..., K$. Now, let $N$ represent the number of patients, indexed from $n = 1, ..., N$. Each patient has a cluster assignment $s_n$, where $s_n$ is the cluster that patient $n$ is assigned to, assuming each patient belongs to exactly one cluster. We can represent these assignments as a vector $\mathbf{s} = (s_1, ..., s_N)$.
 
-If we randomly choose a patient they must be assigned to one of the $K$ clusters. Let's define $\pi_k$ as the probability that a randomly chosen patient is assigned to cluster $k$. In other words, $\pi_k$ represents the portion of the patient population that are in cluster $k$. Since the patient must be assigned to one of the $K$ clusters, we have the constraint that $\sum_{k=1}^{K} \pi_k = 1$. We can represent this as a vector $\boldsymbol{\pi} = (\pi_1, ..., \pi_K)$.
+When randomly selecting a patient, they must be assigned to one of the $K$ clusters. Let’s define $\pi_k$ as the probability that a randomly chosen patient is assigned to cluster $k$. In other words, $\pi_k$ represents the proportion of the patient population in cluster $k$. Given that each patient is assigned to one and only one cluster, it follows that the sum of these probabilities must equal one, expressed as $\sum_{k=1}^{K} \pi_k = 1$. This distribution can be represented as a vector $\boldsymbol{\pi} = (\pi_1, ..., \pi_K)$.
 
 #### Measurements
 
-The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,...,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma_{kf}^{2}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
-We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x_{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}_{nf} = x_{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
+The next part of our model involves defining the feature measurements. Let $F$ be the number of features, indexed with $f=1,...,F$. For each feature, $f$, within each class, $k$, there will be a mean $\mu_{kf}$ and a variance $\sigma_{kf}^{2}$. We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances, respectively.
+
+We differentiate between classes based on their feature variations. Each patient, denoted as $n$, will have one measurement per feature, $f$, which we denote as $x_{nf}$. All of these measurements can be represented as a matrix $\mathbf{X}$, where $\mathbf{X}{nf} = x{nf}$. The probability of a patient having a certain measurement is given by the normal distribution:
 $$
 p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma_{s_nf}^{2})
 $$
 
-In additions to measuring the patients features, we also have measure their diagnosis. Let $y_n$ be the diagnosis of patient $n$. The probability that patient $n$ has diabetes is conditioned on their class, $s_n$. Each class has a different probability of having diabetes. Let $\phi_k$ be the probability that a patient in class $k$ has diabetes. We can write this as a vector $\boldsymbol{\phi} = (\phi_1, ..., \phi_K)$. All together the probability that a patient has diabetes given their class is:
+In addition to measuring the patients' features, we also measure their diagnoses. Let $y_n$ represent the diagnosis of patient $n$. The likelihood of patient $n$ having diabetes is conditioned on their class, $s_n$. Each class carries a different diabetes probability. Let $\phi_k$ denote the probability of a patient in class $k$ having diabetes. This can be expressed as a vector $\boldsymbol{\phi} = (\phi_1, ..., \phi_K)$. Thus, the probability that a patient has diabetes given their class is:
 $$
 p(y_n | s_n, \boldsymbol{\phi}) = \phi_{s_n}^{y_n} (1 - \phi_{s_n})^{1 - y_n}
 $$
 
 #### Priors
 
-Since we are working in the Bayesian paradigm we must assign a prior distribution over all variables we wish to infer, $\boldsymbol{\pi}$, $\boldsymbol{\mu}$, $\boldsymbol{\sigma}$, and $\boldsymbol{\phi}$.
+In the Bayesian paradigm, it's essential to assign prior distributions to all variables we wish to infer, namely $\boldsymbol{\pi}$, $\boldsymbol{\mu}$, $\boldsymbol{\sigma}$, and $\boldsymbol{\phi}$.
 
-Starting with $\boldsymbol{\pi}$, the most suitable choice for this distribution is the Dirichlet distribution. The Dirichlet distribution is a distribution over vectors that are constrained to sum to 1. The Dirichlet distribution is parameterized by a vector $\boldsymbol{\alpha} = (\alpha_1, ..., \alpha_K)$ where $\alpha_k$ is the concentration of cluster $k$. This Dirichlet distribution is why we call this method Dirichlet Clustering.
+Starting with $\boldsymbol{\pi}$, the Dirichlet distribution is the most appropriate choice. This distribution is ideal for vectors constrained to sum to 1, aligning perfectly with our requirement for $\boldsymbol{\pi}$, where each element represents the proportion of the population in a given cluster. The Dirichlet distribution is parameterized by a vector $\boldsymbol{\alpha} = (\alpha_1, ..., \alpha_K)$, with each $\alpha_k$ representing the concentration parameter for cluster $k$. This choice of the Dirichlet distribution for $\boldsymbol{\pi}$ is the reason behind the naming of this method as Dirichlet Clustering.
 
-For the remaining variables we set priors as follows: $\boldsymbol{\mu}$ is given a gaussian prior, $\boldsymbol{\sigma}$ is given an inverse gamma prior, and $\boldsymbol{\phi}$ is given a beta prior.
+For the remaining variables, we assign priors as follows: $\boldsymbol{\mu}$ is given a Gaussian prior to reflect our assumption about the distribution of feature means; $\boldsymbol{\sigma}$ is given an inverse gamma prior, a common choice for variance parameters due to its flexibility and conjugacy with the Gaussian distribution; and $\boldsymbol{\phi}$ is given a beta prior, which is a natural choice for modeling probabilities and rates, such as the likelihood of diabetes in each cluster.
+
+Assigning these priors is a crucial step in a Bayesian framework. Priors allow us to integrate prior knowledge or assumptions into our model and, importantly, enable the model to update these beliefs in light of observed data.
 
 ### Code
 
-Now that we have a mathematical model we can deploying this into code. In `model.py` we create a class called `DirichletClustering` that contains all of the code for our model. The class has two main methods: `train` and `predict`. The `train` method takes in the training data and learns the parameters of the model. The `predict` method takes in the testing data and uses the learned parameters to make predictions.
+Now that we have a mathematical model, we can begin deploying this into code. In `model.py`, we create a class called `DirichletClustering` that contains all the code for our model. The class has two main methods: train and predict. The train method takes in the training data and learns the parameters of the model, while the predict method uses the learned parameters to make predictions on the testing data.
 
-One of the biggest parts to pay attention to is how we store the variables from our method. We choose to save these as a python dictionary object where each key is the variable name and each value is the assignment.
+One key aspect to pay attention to is how we store the variables from our method. We choose to save these as a Python dictionary object, where each key is the variable name, and each value is its assignment.
 
 ```python
   VARIABLES = {
@@ -122,13 +126,13 @@ One of the biggest parts to pay attention to is how we store the variables from 
   }
 ```
 
-We start the variables that can be calibrated with `None` values. For example, `mu_prior_mean` is the mean of the prior distribution for the feature means, which is different for each feature. Our class has a function `initialize_variables` which takes in data and then outputs a variables dictionary with the variables initialized (technically we use a `SimpleNamespace` object which is similar to but different from a dictionary).
+Notice that we initialize the variables that can be calibrated with `None` values. For instance, `mu_prior_mean` represents the mean of the prior distribution for the feature means, which varies for each feature. Our class includes a function `initialize_variables` that takes in data and then outputs a SimpleNamespace object (similar to but distinct from a dictionary) with initialized variables.
 
 #### Training and Prediciton
 
-The `train` method takes in the training data and learns the parameters of the model. Training works by running a gibbs sampler algorithms over the data and learning the most probable value for each parameter.
+The `train` method ingests the training data and learns the model's parameters. This training is accomplished by running a Gibbs sampling algorithm over the data, which iteratively learns the most probable value for each parameter.
 
-In `main.py` we start by initializing our model with the desired number of clusters, then running the training method:
+In `main.py`, we start by initializing our model with the desired number of clusters and then executing the training method:
 
 ```python
 n_classes = 3
@@ -136,9 +140,9 @@ model = DirichletClustering(n_classes)
 variables, samples = model.train(data_train)
 ```
 
-The model learns all the variables of the model including the state assignments, feature variables, and outcome probability.
+The model learns all the variables, including the state assignments, feature variables, and the probability of outcomes.
 
-The `predict` function then takes in a new dataset and predicts the cluster assignments based on the learned parameters. The model is set up to ignore featues masked with NaN values. In our case we want to predict the diagnosis of the patients, so we mask the last column of the data. We then run the predict function and print the results:
+The `predict` function takes in a new dataset and predicts the cluster assignments based on the learned parameters. Our model is designed to ignore features masked with NaN values. For our purpose, which is to predict the diagnosis of the patients, we mask the last column of the data. We then execute the predict function and display the results:
 
 ```python
 data_test_masked = data_test.copy()
@@ -148,16 +152,32 @@ s_pred = model.predict(data_test_masked, variables)
 
 ## Results
 
-Our method does not directly predict the diagnosis of the patients. Instead it predicts the cluster that the patient belongs to. We can then use the cluster assignments to make predictions about the diagnosis. For example, if we know that a patient belongs to cluster 1, we can predict that they have diabetes with a probability of $\pi_k$.
+We applied our model to analyze data from the Pima Indians Diabetes Database. Our model was trained on 80% of the data, with the remaining 20% used for testing. We then compared the model's predicted cluster assignments to the actual cluster assignments.
 
-In order to evaluate the effectiveness of our model is to compare the predicted probability of diabetes of each cluster, $\phi_k$ to the actual proportion of diabetes diagnosises per cluster.
-We do that below
+Our method doesn’t directly predict the patients’ diagnoses. Instead, it predicts the cluster a patient belongs to, and we use these cluster assignments to infer diagnoses. For instance, if a patient is assigned to cluster 1, we predict that they have diabetes with a probability of $\pi_k$.
+
+To evaluate our model's effectiveness, we compare the predicted probability of diabetes for each cluster, $\phi_k$, with the actual proportion of diabetes diagnoses per cluster. The comparison is illustrated below:
 <a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53336518169/in/dateposted-public/" title="Figure_1"><img src="https://live.staticflickr.com/65535/53336518169_88d3d3ae41_z.jpg" width="640" height="480" alt="Figure_1"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
 
-As you can see our model does a reasonable job of predicting the probability of diabetes for each cluster. This means that our model is effective at predicting the diagnosis of patients.
+As shown, our model reasonably predicts the probability of diabetes for each cluster, indicating its effectiveness in predicting patient diagnoses.
 
 ## Discussion
 
-This model is just for demonstration and would need to be improved in several ways before it could be deployed in a real world setting. For example we would need to include: predicting the number of clusters, covariance between features, non-gaussian distribution over clusters, distributions over learned values rather than point measurements, just to name a few. The goal of this article was just to shed light on the potential that Dirichlet clustering has for clinical outcome prediction.
+While this model serves as a robust demonstration, several enhancements would be necessary for real-world deployment. The current iteration provides a foundational understanding, but the complexity of clinical data requires a more nuanced approach. Key areas for improvement include:
 
-Please feel free to dive deeper into the code on your own, build upon it, or copy it for your own applications. If you have any questions or comments please leave them below.
+* Dynamic Cluster Number Prediction: Implementing a mechanism to predict the optimal number of clusters based on the data, rather than setting it arbitrarily, would significantly enhance the model's adaptability and accuracy.
+
+* Feature Covariance: Incorporating covariance between features can provide a more realistic representation of patient data, as clinical measurements are often interdependent.
+
+* Non-Gaussian Distributions: Clinical data might not always conform to Gaussian distributions. Exploring non-Gaussian distributions for clusters could allow for more accurate modeling of diverse patient data.
+
+* Distributions Over Learned Values: Instead of relying on point measurements for learned values, employing distributions offers a more comprehensive view that accounts for uncertainty and variability in the data.
+
+* Inclusion of Additional Clinical Variables: Incorporating more clinical variables and demographic information could provide a more detailed and accurate clustering.
+
+* Validation with Larger and Diverse Datasets: To ensure the model's generalizability and reliability, it should be validated using larger and more diverse datasets from various patient populations.
+
+The primary objective of this article was to highlight the potential of Dirichlet clustering for clinical outcome prediction. It serves as a starting point, offering a glimpse into how Bayesian methods can be applied in a biostatistical context.
+
+Please feel free to dive deeper into the code, build upon it, or adapt it for your own applications. Should you have any questions, insights, or suggestions, please leave me a comment or message. Your feedback is incredibly helpful!
+
