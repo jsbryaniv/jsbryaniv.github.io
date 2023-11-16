@@ -184,7 +184,7 @@ November 15, 2023
                 <!-- Add your table of contents here -->
 
 
-                <h1 id="introduction">Introduction</h1>
+                <h2 id="introduction">Introduction</h2>
 
 <p>Clustering is an effective way of making predictions. Clustering works by grouping data points together bases on their features. In the reverse of this, if we know the cluster a data point belongs to, we can make predictions about the data point. In the case of medicine this can be helpful for clinical outcome predicitons since by knowing the cluster a patient belongs to, we can make predictions about their diagnosis.</p>
 
@@ -194,7 +194,7 @@ November 15, 2023
 
 <p>In this article we show how to build a clustering model using Dirichlet Clustering in a Bayesian framework. We then apply our model to a dataset to predict the diagnosis of patents. We will provide a high level overview of how the math and the code works, but we wont dive deep. If you want to learn more about the math behind Dirichlet Clustering, I encourage you to leave a comment below check out this <a href="https://books.google.com/books?hl=en&amp;lr=&amp;id=LkPGEAAAQBAJ&amp;oi=fnd&amp;pg=PR11&amp;dq=steve+presse+ioannis+sgouralis+data+modeling&amp;ots=uA42nAUM_f&amp;sig=ll9bYjfOmGnMgeJn5QqR-7IM54Q#v=onepage&amp;q=steve%20presse%20ioannis%20sgouralis%20data%20modeling&amp;f=false">textbook</a>.</p>
 
-<h1 id="data">Data</h1>
+<h2 id="data">Data</h2>
 
 <p>For this project we are looking at the <a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database">Pima Indians Diabetes Database</a> from Kaggle. The data tracks the medical history of Pima Indians and whether or not they have diabetes.</p>
 
@@ -290,27 +290,27 @@ data_test ~|=| data[split:, :]
 
 <p>Now that we have our data we can begin building our model.</p>
 
-<h1 id="model">Model</h1>
-<h2 id="equations">Equations</h2>
+<h2 id="model">Model</h2>
+<h3 id="equations">Equations</h3>
 
 <p>The foundation of any Bayesian model is the mathematical model that supports it. In this section we will derive the equations that support our model. There are two main parts to the model: the equations that give rise to the cluster assignments and the equations that give rise to the measurements.</p>
 
-<h3 id="cluster-assignments">Cluster Assignments</h3>
+<h4 id="cluster-assignments">Cluster Assignments</h4>
 
 <p>First we must choose how many clusters there are. Let $K$ be the number of total clusters, indexed from $k=1,…,K$. Now let $N$ be the number of patients, indexed from $n=1,…,N$. Each patient has a cluster assignment $s_n$ where $s_n$ is the cluster that patient $n$ is assigned to. We can represent this as a vector $\mathbf{s} = (s_1, …, s_N)$.</p>
 
-<p>If we randomly choose a patient they must be assigned to one of the $K$ clusters. Let’s define $\pi_k$ as the probability that a randomly chosen patient is assigned to cluster $k$. In other words, $\pi_k$ represents the portion of the patient population that are in cluster $k$. Since the patient must be assigned to one of the $K$ clusters, we have the constraint that $\sum_{k=1}^K \pi_k = 1$. We can represent this as a vector $\boldsymbol{\pi} = (\pi_1, …, \pi_K)$.</p>
+<p>If we randomly choose a patient they must be assigned to one of the $K$ clusters. Let’s define $\pi_k$ as the probability that a randomly chosen patient is assigned to cluster $k$. In other words, $\pi_k$ represents the portion of the patient population that are in cluster $k$. Since the patient must be assigned to one of the $K$ clusters, we have the constraint that $\sum_{k=1}^{K} \pi_k = 1$. We can represent this as a vector $\boldsymbol{\pi} = (\pi_1, …, \pi_K)$.</p>
 
-<h3 id="measurements">Measurements</h3>
+<h4 id="measurements">Measurements</h4>
 
-<p>The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2<em>{kf}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
-We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x</em>{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}<em>{nf} = x</em>{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
-\(p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma^2_{s_nf})\)</p>
+<p>The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma_{kf}^{2}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
+We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x_{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}<em>{nf} = x</em>{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
+\(p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma_{s_nf}^{2})\)</p>
 
 <p>In additions to measuring the patients features, we also have measure their diagnosis. Let $y_n$ be the diagnosis of patient $n$. The probability that patient $n$ has diabetes is conditioned on their class, $s_n$. Each class has a different probability of having diabetes. Let $\phi_k$ be the probability that a patient in class $k$ has diabetes. We can write this as a vector $\boldsymbol{\phi} = (\phi_1, …, \phi_K)$. All together the probability that a patient has diabetes given their class is:
 \(p(y_n | s_n, \boldsymbol{\phi}) = \phi_{s_n}^{y_n} (1 - \phi_{s_n})^{1 - y_n}\)</p>
 
-<h3 id="priors">Priors</h3>
+<h4 id="priors">Priors</h4>
 
 <p>Since we are working in the Bayesian paradigm we must assign a prior distribution over all variables we wish to infer, $\boldsymbol{\pi}$, $\boldsymbol{\mu}$, $\boldsymbol{\sigma}$, and $\boldsymbol{\phi}$.</p>
 
@@ -318,18 +318,17 @@ We can tell different classes apart based on their differences in features. Each
 
 <p>For the remaining variables we set priors as follows: $\boldsymbol{\mu}$ is given a gaussian prior, $\boldsymbol{\sigma}$ is given an inverse gamma prior, and $\boldsymbol{\phi}$ is given a beta prior.</p>
 
-<h2 id="code">Code</h2>
+<h3 id="code">Code</h3>
 
 <p>Now that we have a mathematical model we can deploying this into code. In <code class="language-plaintext highlighter-rouge">model.py</code> we create a class called <code class="language-plaintext highlighter-rouge">DirichletClustering</code> that contains all of the code for our model. The class has two main methods: <code class="language-plaintext highlighter-rouge">train</code> and <code class="language-plaintext highlighter-rouge">predict</code>. The <code class="language-plaintext highlighter-rouge">train</code> method takes in the training data and learns the parameters of the model. The <code class="language-plaintext highlighter-rouge">predict</code> method takes in the testing data and uses the learned parameters to make predictions.</p>
 
 <p>One of the biggest parts to pay attention to is how we store the variables from our method. We choose to save these as a python dictionary object where each key is the variable name and each value is the assignment.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-  <span class="n">VARIABLES</span> <span class="o">~|=|</span> <span class="p">{</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">VARIABLES</span> <span class="o">~|=|</span> <span class="p">{</span>
       <span class="o">~|</span><span class="c1">#| Constants
 </span>      <span class="s">'n_data'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>             <span class="o">~|</span><span class="c1">#| The number of data entries
 </span>      <span class="s">'n_features'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>         <span class="o">~|</span><span class="c1">#| The number of features
-</span>      <span class="s">'n_classes'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>            <span class="o">~|</span><span class="c1">#| The maximum number of classes considered
+</span>      <span class="s">'n_classes'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>             <span class="o">~|</span><span class="c1">#| The maximum number of classes considered
 </span>      <span class="o">~|</span><span class="c1">#| Variables
 </span>      <span class="s">'P'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>                  <span class="o">~|</span><span class="c1">#| The probability of the variables
 </span>      <span class="s">'s'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>                  <span class="o">~|</span><span class="c1">#| The class assignments
@@ -346,30 +345,31 @@ We can tell different classes apart based on their differences in features. Each
 </span>      <span class="s">'sigma_prior_scale'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>  <span class="o">~|</span><span class="c1">#| The sigma prior scale
 </span>      <span class="s">'pi_prior_conc'</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>    <span class="o">~|</span><span class="c1">#| The beta prior concentration
 </span>  <span class="p">}</span>
-
 </code></pre></div></div>
 
 <p>We start the variables that can be calibrated with <code class="language-plaintext highlighter-rouge">None</code> values. For example, <code class="language-plaintext highlighter-rouge">mu_prior_mean</code> is the mean of the prior distribution for the feature means, which is different for each feature. Our class has a function <code class="language-plaintext highlighter-rouge">initialize_variables</code> which takes in data and then outputs a variables dictionary with the variables initialized (technically we use a <code class="language-plaintext highlighter-rouge">SimpleNamespace</code> object which is similar to but different from a dictionary).</p>
 
-<h3 id="training-and-prediciton">Training and Prediciton</h3>
+<h4 id="training-and-prediciton">Training and Prediciton</h4>
 
 <p>The <code class="language-plaintext highlighter-rouge">train</code> method takes in the training data and learns the parameters of the model. Training works by running a gibbs sampler algorithms over the data and learning the most probable value for each parameter.</p>
 
 <p>In <code class="language-plaintext highlighter-rouge">main.py</code> we start by initializing our model with the desired number of clusters, then running the training method:</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_classes</span> <span class="o">~|=|</span> <span class="mi">3</span>
 <span class="n">model</span> <span class="o">~|=|</span> <span class="n">DirichletClustering</span><span class="p">(</span><span class="n">n_classes</span><span class="p">)</span>
 <span class="n">variables</span><span class="p">,</span> <span class="n">samples</span> <span class="o">~|=|</span> <span class="n">model</span><span class="p">.</span><span class="n">train</span><span class="p">(</span><span class="n">data_train</span><span class="p">)</span>
 </code></pre></div></div>
+
 <p>The model learns all the variables of the model including the state assignments, feature variables, and outcome probability.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">predict</code> function then takes in a new dataset and predicts the cluster assignments based on the learned parameters. The model is set up to ignore featues masked with NaN values. In our case we want to predict the diagnosis of the patients, so we mask the last column of the data. We then run the predict function and print the results:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="n">data_test_masked</span> <span class="o">~|=|</span> <span class="n">data_test</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data_test_masked</span> <span class="o">~|=|</span> <span class="n">data_test</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">data_test_masked</span><span class="p">[:,</span> <span class="o">~|-|</span><span class="mi">1</span><span class="p">]</span> <span class="o">~|=|</span> <span class="n">np</span><span class="p">.</span><span class="n">nan</span>
 <span class="n">s_pred</span> <span class="o">~|=|</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test_masked</span><span class="p">,</span> <span class="n">variables</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h1 id="results">Results</h1>
+<h2 id="results">Results</h2>
 
 <p>Our method does not directly predict the diagnosis of the patients. Instead it predicts the cluster that the patient belongs to. We can then use the cluster assignments to make predictions about the diagnosis. For example, if we know that a patient belongs to cluster 1, we can predict that they have diabetes with a probability of $\pi_k$.</p>
 
@@ -379,7 +379,7 @@ We do that below
 
 <p>As you can see our model does a reasonable job of predicting the probability of diabetes for each cluster. This means that our model is effective at predicting the diagnosis of patients.</p>
 
-<h1 id="discussion">Discussion</h1>
+<h2 id="discussion">Discussion</h2>
 
 <p>This model is just for demonstration and would need to be improved in several ways before it could be deployed in a real world setting. For example we would need to include: predicting the number of clusters, covariance between features, non-gaussian distribution over clusters, distributions over learned values rather than point measurements, just to name a few. The goal of this article was just to shed light on the potential that Dirichlet clustering has for clinical outcome prediction.</p>
 
@@ -797,13 +797,13 @@ Cluster Assignments
 
 First we must choose how many clusters there are. Let $K$ be the number of total clusters, indexed from $k=1,…,K$. Now let $N$ be the number of patients, indexed from $n=1,…,N$. Each patient has a cluster assignment $s_n$ where $s_n$ is the cluster that patient $n$ is assigned to. We can represent this as a vector $\mathbf{s} = (s_1, …, s_N)$.
 
-If we randomly choose a patient they must be assigned to one of the $K$ clusters. Let’s define $\pi_k$ as the probability that a randomly chosen patient is assigned to cluster $k$. In other words, $\pi_k$ represents the portion of the patient population that are in cluster $k$. Since the patient must be assigned to one of the $K$ clusters, we have the constraint that $\sum_{k=1}^K \pi_k = 1$. We can represent this as a vector $\boldsymbol{\pi} = (\pi_1, …, \pi_K)$.
+If we randomly choose a patient they must be assigned to one of the $K$ clusters. Let’s define $\pi_k$ as the probability that a randomly chosen patient is assigned to cluster $k$. In other words, $\pi_k$ represents the portion of the patient population that are in cluster $k$. Since the patient must be assigned to one of the $K$ clusters, we have the constraint that $\sum_{k=1}^{K} \pi_k = 1$. We can represent this as a vector $\boldsymbol{\pi} = (\pi_1, …, \pi_K)$.
 
 Measurements
 
-The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2{kf}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
-We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}{nf} = x{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
-\(p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma^2_{s_nf})\)
+The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma_{kf}^{2}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
+We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x_{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}{nf} = x{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
+\(p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma_{s_nf}^{2})\)
 
 In additions to measuring the patients features, we also have measure their diagnosis. Let $y_n$ be the diagnosis of patient $n$. The probability that patient $n$ has diabetes is conditioned on their class, $s_n$. Each class has a different probability of having diabetes. Let $\phi_k$ be the probability that a patient in class $k$ has diabetes. We can write this as a vector $\boldsymbol{\phi} = (\phi_1, …, \phi_K)$. All together the probability that a patient has diabetes given their class is:
 \(p(y_n | s_n, \boldsymbol{\phi}) = \phi_{s_n}^{y_n} (1 - \phi_{s_n})^{1 - y_n}\)
@@ -822,12 +822,11 @@ Now that we have a mathematical model we can deploying this into code. In model.
 
 One of the biggest parts to pay attention to is how we store the variables from our method. We choose to save these as a python dictionary object where each key is the variable name and each value is the assignment.
 
-
   VARIABLES ~|=| {
       ~|#| Constants
       &apos;n_data&apos;: None,             ~|#| The number of data entries
       &apos;n_features&apos;: None,         ~|#| The number of features
-      &apos;n_classes&apos;: 2,            ~|#| The maximum number of classes considered
+      &apos;n_classes&apos;: 2,             ~|#| The maximum number of classes considered
       ~|#| Variables
       &apos;P&apos;: None,                  ~|#| The probability of the variables
       &apos;s&apos;: None,                  ~|#| The class assignments
@@ -846,7 +845,6 @@ One of the biggest parts to pay attention to is how we store the variables from 
   }
 
 
-
 We start the variables that can be calibrated with None values. For example, mu_prior_mean is the mean of the prior distribution for the feature means, which is different for each feature. Our class has a function initialize_variables which takes in data and then outputs a variables dictionary with the variables initialized (technically we use a SimpleNamespace object which is similar to but different from a dictionary).
 
 Training and Prediciton
@@ -854,9 +852,11 @@ Training and Prediciton
 The train method takes in the training data and learns the parameters of the model. Training works by running a gibbs sampler algorithms over the data and learning the most probable value for each parameter.
 
 In main.py we start by initializing our model with the desired number of clusters, then running the training method:
+
 n_classes ~|=| 3
 model ~|=| DirichletClustering(n_classes)
 variables, samples ~|=| model.train(data_train)
+
 
 The model learns all the variables of the model including the state assignments, feature variables, and outcome probability.
 
@@ -883,7 +883,7 @@ This model is just for demonstration and would need to be improved in several wa
 
 Please feel free to dive deeper into the code on your own, build upon it, or copy it for your own applications. If you have any questions or comments please leave them below.
 ",
-            "wordcount": "1970",
+            "wordcount": "1969",
             "inLanguage": "en",
             "dateCreated": "2023-11-15/",
             "datePublished": "2023-11-15/",
