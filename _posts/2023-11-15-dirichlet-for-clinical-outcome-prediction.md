@@ -31,13 +31,14 @@ In this article we show how to build a clustering model using Dirichlet Clusteri
 For this project we are looking at the [Pima Indians Diabetes Database](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database) from Kaggle. The data tracks the medical history of Pima Indians and whether or not they have diabetes.
 
 For each patient we have 8 measured features (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI,DiabetesPedigreeFunction, and Age) as well as their diabetes diagnosis in the last column(Outcome). We print the first few lines here:
-|    |   Pregnancies |   Glucose |   BloodPressure |   SkinThickness |   Insulin |   BMI |   DiabetesPedigreeFunction |   Age |   Outcome |
-|---:|--------------:|----------:|----------------:|----------------:|----------:|------:|---------------------------:|------:|----------:|
-|  0 |             6 |       148 |              72 |              35 |         0 |  33.6 |                      0.627 |    50 |         1 |
-|  1 |             1 |        85 |              66 |              29 |         0 |  26.6 |                      0.351 |    31 |         0 |
-|  2 |             8 |       183 |              64 |               0 |         0 |  23.3 |                      0.672 |    32 |         1 |
-|  3 |             1 |        89 |              66 |              23 |        94 |  28.1 |                      0.167 |    21 |         0 |
-|  4 |             0 |       137 |              40 |              35 |       168 |  43.1 |                      2.288 |    33 |         1 |
+
+|   Pregnancies |   Glucose |   BloodPressure |   SkinThickness |   Insulin |   BMI |   DiabetesPedigreeFunction |   Age |   Outcome |
+|---------------|-----------|-----------------|-----------------|-----------|-------|----------------------------|-------|-----------|
+|             6 |       148 |              72 |              35 |         0 |  33.6 |                      0.627 |    50 |         1 |
+|             1 |        85 |              66 |              29 |         0 |  26.6 |                      0.351 |    31 |         0 |
+|             8 |       183 |              64 |               0 |         0 |  23.3 |                      0.672 |    32 |         1 |
+|             1 |        89 |              66 |              23 |        94 |  28.1 |                      0.167 |    21 |         0 |
+|             0 |       137 |              40 |              35 |       168 |  43.1 |                      2.288 |    33 |         1 |
 
 For simplicity we will exclude the Pregnancies column as well as any row that has missing information.
 
@@ -71,7 +72,7 @@ If we randomly choose a patient they must be assigned to one of the $K$ clusters
 
 ### Measurements
 
-The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,...,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2_{kf}$. We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
+The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,...,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2_{kf}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
 We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x_{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}_{nf} = x_{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
 $$
 p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma^2_{s_nf})

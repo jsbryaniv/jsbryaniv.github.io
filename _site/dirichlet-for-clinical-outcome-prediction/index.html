@@ -168,7 +168,7 @@ November 15, 2023
                         </time>
                     
                     <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>11 min to read</span>
+                    <span>10 min to read</span>
                 </p>
                 <h1 class="post-title">Dirichlet Clustring for Clinical Outcome Prediction</h1>
                 <p class="post-subtitle">A simple example</p>
@@ -198,14 +198,80 @@ November 15, 2023
 
 <p>For this project we are looking at the <a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database">Pima Indians Diabetes Database</a> from Kaggle. The data tracks the medical history of Pima Indians and whether or not they have diabetes.</p>
 
-<p>For each patient we have 8 measured features (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI,DiabetesPedigreeFunction, and Age) as well as their diabetes diagnosis in the last column(Outcome). We print the first few lines here:
-|    |   Pregnancies |   Glucose |   BloodPressure |   SkinThickness |   Insulin |   BMI |   DiabetesPedigreeFunction |   Age |   Outcome |
-|—:|————–:|———-:|—————-:|—————-:|———-:|——:|—————————:|——:|———-:|
-|  0 |             6 |       148 |              72 |              35 |         0 |  33.6 |                      0.627 |    50 |         1 |
-|  1 |             1 |        85 |              66 |              29 |         0 |  26.6 |                      0.351 |    31 |         0 |
-|  2 |             8 |       183 |              64 |               0 |         0 |  23.3 |                      0.672 |    32 |         1 |
-|  3 |             1 |        89 |              66 |              23 |        94 |  28.1 |                      0.167 |    21 |         0 |
-|  4 |             0 |       137 |              40 |              35 |       168 |  43.1 |                      2.288 |    33 |         1 |</p>
+<p>For each patient we have 8 measured features (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI,DiabetesPedigreeFunction, and Age) as well as their diabetes diagnosis in the last column(Outcome). We print the first few lines here:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pregnancies</th>
+      <th>Glucose</th>
+      <th>BloodPressure</th>
+      <th>SkinThickness</th>
+      <th>Insulin</th>
+      <th>BMI</th>
+      <th>DiabetesPedigreeFunction</th>
+      <th>Age</th>
+      <th>Outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>6</td>
+      <td>148</td>
+      <td>72</td>
+      <td>35</td>
+      <td>0</td>
+      <td>33.6</td>
+      <td>0.627</td>
+      <td>50</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>85</td>
+      <td>66</td>
+      <td>29</td>
+      <td>0</td>
+      <td>26.6</td>
+      <td>0.351</td>
+      <td>31</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>183</td>
+      <td>64</td>
+      <td>0</td>
+      <td>0</td>
+      <td>23.3</td>
+      <td>0.672</td>
+      <td>32</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>89</td>
+      <td>66</td>
+      <td>23</td>
+      <td>94</td>
+      <td>28.1</td>
+      <td>0.167</td>
+      <td>21</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>137</td>
+      <td>40</td>
+      <td>35</td>
+      <td>168</td>
+      <td>43.1</td>
+      <td>2.288</td>
+      <td>33</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
 
 <p>For simplicity we will exclude the Pregnancies column as well as any row that has missing information.</p>
 
@@ -237,7 +303,7 @@ data_test ~|=| data[split:, :]
 
 <h3 id="measurements">Measurements</h3>
 
-<p>The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2<em>{kf}$. We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
+<p>The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2<em>{kf}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
 We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x</em>{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}<em>{nf} = x</em>{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
 \(p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma^2_{s_nf})\)</p>
 
@@ -340,7 +406,7 @@ We do that below
 
         <!-- Add time bar only for pages without pagination -->
         
-            <div class="time-bar" data-minutes="11">
+            <div class="time-bar" data-minutes="10">
     <span class="time-completed"></span>
     <span class="time-remaining"></span>
     <div class="bar">
@@ -631,13 +697,79 @@ Data
 For this project we are looking at the Pima Indians Diabetes Database from Kaggle. The data tracks the medical history of Pima Indians and whether or not they have diabetes.
 
 For each patient we have 8 measured features (Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI,DiabetesPedigreeFunction, and Age) as well as their diabetes diagnosis in the last column(Outcome). We print the first few lines here:
-|    |   Pregnancies |   Glucose |   BloodPressure |   SkinThickness |   Insulin |   BMI |   DiabetesPedigreeFunction |   Age |   Outcome |
-|—:|————–:|———-:|—————-:|—————-:|———-:|——:|—————————:|——:|———-:|
-|  0 |             6 |       148 |              72 |              35 |         0 |  33.6 |                      0.627 |    50 |         1 |
-|  1 |             1 |        85 |              66 |              29 |         0 |  26.6 |                      0.351 |    31 |         0 |
-|  2 |             8 |       183 |              64 |               0 |         0 |  23.3 |                      0.672 |    32 |         1 |
-|  3 |             1 |        89 |              66 |              23 |        94 |  28.1 |                      0.167 |    21 |         0 |
-|  4 |             0 |       137 |              40 |              35 |       168 |  43.1 |                      2.288 |    33 |         1 |
+
+
+  
+    
+      Pregnancies
+      Glucose
+      BloodPressure
+      SkinThickness
+      Insulin
+      BMI
+      DiabetesPedigreeFunction
+      Age
+      Outcome
+    
+  
+  
+    
+      6
+      148
+      72
+      35
+      0
+      33.6
+      0.627
+      50
+      1
+    
+    
+      1
+      85
+      66
+      29
+      0
+      26.6
+      0.351
+      31
+      0
+    
+    
+      8
+      183
+      64
+      0
+      0
+      23.3
+      0.672
+      32
+      1
+    
+    
+      1
+      89
+      66
+      23
+      94
+      28.1
+      0.167
+      21
+      0
+    
+    
+      0
+      137
+      40
+      35
+      168
+      43.1
+      2.288
+      33
+      1
+    
+  
+
 
 For simplicity we will exclude the Pregnancies column as well as any row that has missing information.
 
@@ -669,7 +801,7 @@ If we randomly choose a patient they must be assigned to one of the $K$ clusters
 
 Measurements
 
-The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2{kf}$. We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
+The next part of our model is to define the feature measurements. Let $F$ be the number of features indexed with $f=1,…,F$. Each feature, $f$, of each class, $k$, will have a mean $\mu_{kf}$ and a variance $\sigma^2{kf}$ . We can define vectors $\boldsymbol{\mu}$ and $\boldsymbol{\sigma}$ that contain all of the means and variances respectively.
 We can tell different classes apart based on their differences in features. Each patient, $n$, will have one measurement per feature, $f$, which we will call $x{nf}$. We can represent all of the measurements as a matrix $\mathbf{X}$ where $\mathbf{X}{nf} = x{nf}$. The probability that a patient has a certain measurement is given by the normal distribution:
 \(p(x_{nf} | s_n, \boldsymbol{\mu}, \boldsymbol{\sigma}) = \mathcal{N}(x_{nf} | \mu_{s_nf}, \sigma^2_{s_nf})\)
 
@@ -751,7 +883,7 @@ This model is just for demonstration and would need to be improved in several wa
 
 Please feel free to dive deeper into the code on your own, build upon it, or copy it for your own applications. If you have any questions or comments please leave them below.
 ",
-            "wordcount": "2023",
+            "wordcount": "1970",
             "inLanguage": "en",
             "dateCreated": "2023-11-15/",
             "datePublished": "2023-11-15/",
