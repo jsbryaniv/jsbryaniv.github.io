@@ -161,7 +161,7 @@ To evaluate our model's effectiveness, we compare the predicted probability of d
 
 As shown, our model reasonably predicts the probability of diabetes for each cluster, indicating its effectiveness in predicting patient diagnoses.
 
-I would like to add a disclaimer here that in the provided code we cut a lot of corners to make it more readable and easier to run on a typical laptop. You may find that you have to run the script multiple times to obtain the same results as those presented here. There are many reasons for this: the lack of a burn-in period, use of a point estimate rather than an ensemble average, and the use of a fixed number of clusters, to name a few. However, these are all areas that could in principle be improved upon in future work. The goal of this article is simply to provide a simple demonstration of the potential of Dirichlet Clustering for clinical outcome prediction.
+I would like to add a disclaimer here that we took some shortcuts in the code to make it more readable and easier to run on a typical laptop. You may find that you have to run the script a couple times to obtain the same results as those presented here. This does not mean that the results are random, it just means that the training process is not reaching the same local maximum every time. There are many ways to avoid this issue such as sampling for more iterations or taking ensemble averages instead of point estimates, but we leave this for future work.
 
 ## Discussion
 
