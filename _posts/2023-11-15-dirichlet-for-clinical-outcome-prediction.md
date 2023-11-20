@@ -17,6 +17,8 @@ math: true
 comments: true
 ---
 
+This article is a companion to the [GitHub project](https://github.com/jsbryaniv/DirichletClustering) of the same name. The project contains all the code necessary to run the model described in this article. The code is written in Python and is designed to be easy to read and understand. If you have any questions, please leave a comment below or message me directly.
+
 ## Introduction
 
 Clustering is an effective way of making predictions. It works by grouping data points together based on their features. Conversely, if we know the cluster a data point belongs to, we can make predictions about it. In medicine, this can be particularly helpful for clinical outcome predictions since, by knowing the cluster a patient belongs to, we can make informed predictions about their diagnosis.
@@ -97,6 +99,8 @@ For the remaining variables, we assign priors as follows: $\boldsymbol{\mu}$ is 
 Assigning these priors is a crucial step in a Bayesian framework. Priors allow us to integrate prior knowledge or assumptions into our model and, importantly, enable the model to update these beliefs in light of observed data.
 
 ### Code
+
+The code for this model is available [here](https://github.com/jsbryaniv/DirichletClustering). I have written the code to be as easy to read and understand as possible. I will provide a high-level overview of the code here, but I encourage you to check out the code for yourself.
 
 Now that we have a mathematical model, we can begin deploying this into code. In `model.py`, we create a class called `DirichletClustering` that contains all the code for our model. The class has two main methods: train and predict. The train method takes in the training data and learns the parameters of the model, while the predict method uses the learned parameters to make predictions on the testing data.
 
@@ -181,5 +185,5 @@ While this model serves as a robust demonstration, several enhancements would be
 
 The primary objective of this article was to highlight the potential of Dirichlet clustering for clinical outcome prediction. It serves as a starting point, offering a glimpse into how Bayesian methods can be applied in a biostatistical context.
 
-Please feel free to dive deeper into the code, build upon it, or adapt it for your own applications. Should you have any questions, insights, or suggestions, please leave me a comment or message. Your feedback is incredibly helpful!
+Please feel free to dive deeper into the [code](https://github.com/jsbryaniv/DirichletClustering), build upon it, or adapt it for your own applications. Should you have any questions, insights, or suggestions, please leave me a comment or message. Your feedback is incredibly helpful!
 
