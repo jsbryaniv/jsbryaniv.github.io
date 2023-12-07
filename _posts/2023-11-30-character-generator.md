@@ -8,9 +8,9 @@ image: https://live.staticflickr.com/65535/53380463416_d0653321c7_z.jpg
 optimized_image: https://live.staticflickr.com/65535/53380463416_d0653321c7_z.jpg
 category: math
 tags:
-  - bayesian
+  - deep learning
   - coding
-  - prediction
+  - generative ai
 author: jsbryaniv
 paginate: true
 math: true
