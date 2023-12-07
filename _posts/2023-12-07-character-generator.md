@@ -1,5 +1,5 @@
 ---
-date: 2023-11-30 12:00:01
+date: 2023-12-07 12:00:01
 layout: post
 title: Chinese Character Generator
 subtitle: A simplified model for generative AI
