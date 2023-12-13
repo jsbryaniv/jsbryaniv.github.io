@@ -1,17 +1,20 @@
 ---
-date: 2018-10-09 12:26:40
+date: 2023-12-5 12:00:01
 layout: post
-title: The quick brown fox jumps over a lazy dog
-subtitle: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_760/v1506079212/jekflix-capa_vfhuzh.png
-optimized_image: https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1506079212/jekflix-capa_vfhuzh.png
-category: css
+title: Update December 2023
+subtitle: How we got here and where we are going
+description: My life status update for December 2023.
+image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
+optimized_image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
+category: update
 tags:
-  - css
-  - tips
-author: mranderson
+  - update
+author: jsbryaniv
+paginate: true
+math: true
+comments: true
 ---
+
 
 Cas sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 
