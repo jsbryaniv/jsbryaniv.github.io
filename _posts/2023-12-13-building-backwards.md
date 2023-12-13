@@ -13,7 +13,7 @@ tags:
   - biotech
 author: jsbryaniv
 paginate: true
-math: true
+math: false
 comments: true
 ---
 
