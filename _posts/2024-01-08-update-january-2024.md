@@ -1,5 +1,5 @@
 ---
-date: 2023-12-5 12:00:01
+date: 2024-01-08 12:00:01
 layout: post
 title: Update January 2024
 subtitle: Looking back on 2023 and looking forward to 2024
@@ -11,7 +11,7 @@ tags:
   - update
 author: jsbryaniv
 paginate: true
-math: true
+math: false
 comments: true
 ---
 
