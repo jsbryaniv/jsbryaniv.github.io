@@ -1,7 +1,6 @@
-name: Jekflix
-title: Jekflix | A blog theme for Jekyll
-description: Jekflix is a template for Jekyll inspired by Netflix and made by
-  Thiago Rossener.
+name: ShepsBlog
+title: The blog of J. Shepard Bryan IV.
+description: The blog for J. Shepard Bryan IV.
 tags:
   - blog
   - template
@@ -18,9 +17,9 @@ menu:
     url: /contact
   - title: Feed
     url: /feed.xml
-email: youremail@test.com
+email: shepperoni.pizza@gmail.com
 # See: https://disqus.com/
-disqus_username: disqus_username
+disqus_username: jsbryaniv
 # Contact Form Setting
 # See: https://formspree.io/
-formspree_form_id: formspree_form_id
+formspree_form_id: shepperoni.pizza@gmail.com
