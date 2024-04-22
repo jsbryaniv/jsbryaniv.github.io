@@ -6,7 +6,7 @@ subtitle: A simple example
 description: Here we show how to use Dirichlet Clustering to predict clinical outcomes.
 image: https://live.staticflickr.com/65535/53334792868_86038b3779_b.jpg
 optimized_image: https://live.staticflickr.com/65535/53334792868_86038b3779_b.jpg
-category: math
+category: science
 tags:
   - bayesian
   - coding

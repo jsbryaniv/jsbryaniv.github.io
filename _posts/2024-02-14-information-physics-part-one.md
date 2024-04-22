@@ -6,7 +6,7 @@ subtitle: Creating the physics of learning
 description: Here I post preliminary work on deriving physics of information.
 image: https://live.staticflickr.com/65535/53529131181_5566fe27c5_c.jpg
 optimized_image: https://live.staticflickr.com/65535/53529131181_5566fe27c5_c.jpg
-category: update
+category: science
 tags:
   - physics
   - ai
