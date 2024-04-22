@@ -4,8 +4,8 @@ layout: post
 title: Comparing different models on biophysics data
 subtitle: A sneak peek into a current project
 description: Here we compare different deep learning models on a few biophysics datasets.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_graphic.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_graphic.png
+image: https://jsbryaniv.github.io/assets/img/blog/blog_testing_models_graphic.png
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_testing_models_graphic.png
 category: science
 tags:
   - deep learning
@@ -57,13 +57,13 @@ One file in the project, `runslurm.sh`, is a script that can only be used by our
 
 I want to show some preliminary results for our method here. Just keep in mind that as we test more and more models and hyperparameters, the results may change. In the figure below, we show the segmentation results for each model on the Retina Vessel dataset. The top row shows the input image, the second row shows the ground truth target, and the rest of the rows show the segmentation results for each model.
 
-![Retina Vessel Segmentation](https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_fig1.png)
+![Retina Vessel Segmentation](https://jsbryaniv.github.io/assets/img/blog/blog_testing_models_fig1.png)
 
 From the figure, we can see that the U-Net model qualitatively performs the best at this segmentation task. The other models have pros and cons, for example the convolutional and resnet capture most of the detail, but have many patches of false positives. The Vision Transformer model has few false positives, but also misses some of the detail.
 
 We can also look at the loss function over time for each model. In the figure below, we show the loss function for each model on the Fluorescent Neuron dataset. We plot the training loss and validation loss in separate panels. For each model, we plot all five folds of the cross validation so we can see how the model performs on different splits of the data.
 
-![Fluorescent Neuron Loss](https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_fig2.png)
+![Fluorescent Neuron Loss](https://jsbryaniv.github.io/assets/img/blog/blog_testing_models_fig2.png)
 
 In this figure, you can see that the vision transformer converges to the lowest loss the quickest. The slowest to converge is the convolutional network.
 
