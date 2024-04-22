@@ -4,8 +4,8 @@ layout: post
 title: Comparing different models on biophysics data
 subtitle: A sneak peek into a current project
 description: Here we compare different deep learning models on a few biophysics datasets.
-image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
-optimized_image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_graphic.png
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_graphic.png
 category: science
 tags:
   - deep learning
@@ -17,124 +17,58 @@ comments: true
 ---
 
 
-Cas sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+Here I want to give a sneak peek into a project that my lab is working on. The goal of this project is to compare the results and performance of different deep learning models on a few biophysics datasets. We hope that this will be helpful, giving the community a better understanding of the strengths and weaknesses of different models on biophysics data, so we are structuring the code to be clean and easy to run. You can follow along with the project on [GitHub](https://github.com/LabPresse/BioModelComparison), just please keep in mind that this is a work in progress.
 
-> Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+## Background
 
-Etiam porta **sem malesuada magna** mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+We are looking at three different sets of biophysics data: Bdellovibrio, Retina Vessels, and Fluorescent Neuron Cells. The goal of each dataset is to segment areas of interest.
 
-## Inline HTML elements
+The first dataset, [Bdlellovibrio](https://www.kaggle.com/datasets/shepbryan/phase-contrast-bdellovibrio), is a dataset of phase contrast images of predatory bacteria called Bdellovibrio. These images were captured by our lab and hand annotated (by me, which was an excruciatingly boring process). The goal is to segment the bacteria from the background.
 
-HTML defines a long list of available inline tags, a complete list of which can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
+The second dataset, [Retina Vessels](https://figshare.com/articles/figure/FIVES_A_Fundus_Image_Dataset_for_AI-based_Vessel_Segmentation/19688169), is a dataset of retinal images. The goal is to segment the blood vessels from the background.
 
-- **To bold text**, use `<strong>`.
-- *To italicize text*, use `<em>`.
-- Abbreviations, like <abbr title="HyperText Markup Langage">HTML</abbr> should use `<abbr>`, with an optional `title` attribute for the full phrase.
-- Citations, like <cite>&mdash; Thiago Rossener</cite>, should use `<cite>`.
-- <del>Deleted</del> text should use `<del>` and <ins>inserted</ins> text should use `<ins>`.
-- Superscript <sup>text</sup> uses `<sup>` and subscript <sub>text</sub> uses `<sub>`.
+The third dataset, [Fluorescent Neuron Cells](https://www.kaggle.com/datasets/nbroad/fluorescent-neuronal-cells), is a dataset of fluorescent images of neuron cells. The goal is to segment the cells from the background.
 
-Most of these elements are styled by browsers with few modifications on our part.
+In the code, we made a simple script, `download_data.py`, which will automatically download the datasets, clean them, and organize them in the project directory. This way, you can easily run the code on your own machine, knowing that the data you see is the same data we used in the project.
 
-# Heading 1
+## Models
 
-## Heading 2
+We are comparing four different model architectures: basic Convolutional Network, U-Net, ResNet, and Vision Transformers. While it is common to download pre-built and pre-trained models from the internet, for this project we are building the models from scratch. This also allows the user to see the code for each model and understand how they work. However, keep in mind that because we are applying these models to a specific application, we make choices about model architectures that may be different from standard.
 
-### Heading 3
+Each model is can be found in the `models` directory. Each model has the two standard PyTorch Module methods, `__init__` and `forward`, and one nonstandard method called `set_output_layer`. The `set_output_layer` method is used to set the number of channels in the output layer of the model. The reason that we do this is so that we can easily experiment with pre-training models as autoencoders and then fine-tuning them for segmentation.
 
-#### Heading 4
+The input to the model is the image and the output is either an image, or class logits, depending on which part of the training we are in. We start by training the model as an autoencoder, then we fine-tune the model for segmentation. 
 
-Vivamus sagittis lacus vel augue rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Note that each model has its own parameters that are set during initialization. In addition to comparing models against each other, we will also be comparing the performance of each model with different hyperparameters.
 
-## Code
+## Training and Testing
 
-Cum sociis natoque penatibus et magnis dis `code element` montes, nascetur ridiculus mus.
+To ensure that we are robust in our analysis, we use five-fold cross validation for each model we test. That means that for each dataset we look at, we split the data into 5 parts, then run 5 different training and testing sessions, each time using a different part as the validation and test sets. This way, we can be sure that the results we get are not due to random chance.
 
-```js
-// Example can be run directly in your JavaScript console
+The functions we use to train and evaluate the model are found in `training.py` and `testing.py`. The `train_model` function takes in a model and a split dataset (split into test, train and validation) then trains the model on the dataset, validating on the validation set, outputting the trained model and the training statistics.
 
-// Create a function that takes two arguments and returns the sum of those arguments
-var adder = new Function("a", "b", "return a + b");
+The `test_model` function takes in a trained model and a test dataset, then evaluates the model on the test dataset, outputting the test statistics. We evaluate the model by looking at the accuracy, sensitivity, specificity, and area under the ROC curve. The ROC curve, which stands for [Receiver Operating Characteristic](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) curve, is a plot of the true positive rate against the false positive rate for different thresholds of the class probability. To generate a ROC curve, you calculate logits of each class, convert the logits to probabilities, then vary the threshold of the probability to see how the true positive rate and false positive rate change. You then do that for different values of the threshold from 0 to 1.
 
-// Call the function
-adder(2, 6);
-// > 8
-```
+## Running on HPC
 
-Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+One file in the project, `runslurm.sh`, is a script that can only be used by our lab. We are keeping the file in the repo in case anyone is curious about how we run our experiments on the ASU High Performance Computing (HPC) cluster.
 
-## Lists
+## Results
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+I want to show some preliminary results for our method here. Just keep in mind that as we test more and more models and hyperparameters, the results may change. In the figure below, we show the segmentation results for each model on the Retina Vessel dataset. The top row shows the input image, the second row shows the ground truth target, and the rest of the rows show the segmentation results for each model.
 
-* Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-* Donec id elit non mi porta gravida at eget metus.
-* Nulla vitae elit libero, a pharetra augue.
+![Retina Vessel Segmentation](https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_fig1.png)
 
-Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+From the figure, we can see that the U-Net model qualitatively performs the best at this segmentation task. The other models have pros and cons, for example the convolutional and resnet capture most of the detail, but have many patches of false positives. The Vision Transformer model has few false positives, but also misses some of the detail.
 
-1. Vestibulum id ligula porta felis euismod semper.
-2. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-3. Maecenas sed diam eget risus varius blandit sit amet non magna.
+We can also look at the loss function over time for each model. In the figure below, we show the loss function for each model on the Fluorescent Neuron dataset. We plot the training loss and validation loss in separate panels. For each model, we plot all five folds of the cross validation so we can see how the model performs on different splits of the data.
 
-Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
+![Fluorescent Neuron Loss](https://jsbryaniv.github.io/assets/img/blog/blog_comparing_models_fig2.png)
 
-Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam quis risus eget urna mollis ornare vel eu leo.
+In this figure, you can see that the vision transformer converges to the lowest loss the quickest. The slowest to converge is the convolutional network.
 
-## Images
+It's important to note that as we modify the hyperparameters of each model, the results may change.
 
-Quisque consequat sapien eget quam rhoncus, sit amet laoreet diam tempus. Aliquam aliquam metus erat, a pulvinar turpis suscipit at.
+## Conclusion
 
-![placeholder](https://placehold.it/800x400 "Large example image")
-![placeholder](https://placehold.it/400x200 "Medium example image")
-![placeholder](https://placehold.it/200x200 "Small example image")
-
-## Tables
-
-Aenean lacinia bibendum nulla sed consectetur. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <td>Totals</td>
-      <td>21</td>
-      <td>23</td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Alice</td>
-      <td>10</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Bob</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>Charlie</td>
-      <td>7</td>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table>
-
-Nullam id dolor id nibh ultricies vehicula ut id elit. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo.
-
-
-
-
-
-
-
-
-
-
+I hope that you found this sneak peek into our project interesting. I'm excited to see how results change as we compare against different hyperparameters. If you have any questions or comments, please feel free to reach out to me. I'm always happy to talk about my work.
