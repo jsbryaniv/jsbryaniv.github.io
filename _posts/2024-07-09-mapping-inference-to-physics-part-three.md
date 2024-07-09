@@ -1,5 +1,5 @@
 ---
-date: 2024-4-26 12:00:01
+date: 2024-7-9 12:00:01
 layout: post
 title: Mapping inference to physics - Part 3
 subtitle: Update on a work in progress
