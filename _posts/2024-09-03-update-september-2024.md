@@ -19,7 +19,7 @@ It's been a while since I've written a life update, and a lot has changed since 
 
 ## Moving
 
-This summer my family and I moved cross-country back to Phoenix. It more or less took a month to pack, a month to move, a month to unpack, and a month to settle in. We are living with my parents for a bit, while we sell our condo and look for a new place. Moving across the country is always a hassle, and I really don't want to do it again. We've decided that we are going to stay in Phoenix for as long as possible. I love this place, and it has everything I need.
+This summer my family and I moved cross-country back to Phoenix. It more or less took a month to pack, a month to move, a month to unpack, and a month to settle in. We are living with my parents for a bit, while we sell our condo and look for a new place. But there are a lot of benefits to living at home, so we might stay for a while!
 
 ## Startup
 
