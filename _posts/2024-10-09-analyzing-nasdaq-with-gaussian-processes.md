@@ -52,7 +52,7 @@ $$
 
 where $y_n$ is the stock price at time $t_n$, and $\sigma^2$ is the variance of the stock price.
 
-Without getting into the details, which are beyond the scope of this write-up, we can use the stock prices at different times to infer the value of the stock at different times, $t^{*}_1, t^{*}_2, ..., t^{*}_m$. The equation for this is
+Without getting into the details, which are beyond the scope of this write-up, we can use the stock prices at different times to infer the value of the stock at different times ($t^*_1$, $t^*_2$, ..., $t^*_m$). The equation for this is
 
 $$
     \boldsymbol{f}^* = \boldsymbol{K}^* (\boldsymbol{K} + \sigma^2\boldsymbol{I})^{-1}\boldsymbol{y}
@@ -79,11 +79,11 @@ Just a note: in the code we provide, the equations won't match up exactly with w
 We run our model on the NASDAQ stock index from 2019 to 2024. The results are shown in the figures below. We apply our model using two different length scales, $l=30$ days and $l=180$ days.
 
 We first apply our model with $l=30$ days.
-![GP_l=month](https://github.com/jsbryaniv/GaussianProccessRegression/blob/main/pics/GP_l=month.png)
+![GP_l=month](https://jsbryaniv.github.io/assets/img/blog/blog_nasdaq_gp1.png)
 As you can see, there are clear spikes of acceleration at major turns in the market. At this resolution, however, we see more rapid shifts in the market, so it may be better to choose a length scale that is longer than 30 days.
 
 We then apply our model with $l=180$ days.
-![GP](https://github.com/jsbryaniv/GaussianProccessRegression/blob/main/pics/GP.png)
+![GP](https://jsbryaniv.github.io/assets/img/blog/blog_nasdaq_gp2.png)
 We again see large spikes of acceleration at major turns in the market. However, we see fewer spikes, and the spikes are more pronounced. We will use our results from this model to identify significant macroeconomic events.
 
 ## Interpretation
