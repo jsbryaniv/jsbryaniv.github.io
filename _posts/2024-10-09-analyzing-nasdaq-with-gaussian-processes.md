@@ -4,8 +4,8 @@ layout: post
 title: Analyzing the NASDAQ with Gaussian Processes
 subtitle: A simple demonstration of a powerful tool.
 description: Here we demonstrate how to use Gaussian Processes to analyze the NASDAQ.
-image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
-optimized_image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_analyzing_nasdaq_with_gp.png
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_analyzing_nasdaq_with_gp.png
 category: update
 tags:
   - update
@@ -16,7 +16,7 @@ comments: true
 ---
 
 
-# Analyzing the NASDAQ with Gaussian Processes
+A while back I worked on a fun project using some of the analysis tools from my PhD to analyze stock prices. Originally we just posted it as a GitHub repo, but I thought it would be fun to also post it here. So here it is! You can find the original repo [here](https://github.com/jsbryaniv/GaussianProccessRegression).
 
 ## Introduction
 
@@ -28,7 +28,7 @@ By demonstrating how Gaussian processes can be used to identify economic trends,
 
 ## Methodology
 
-Our goal is to demonstrate how to use the Guassian process to infer second derivitives of time seires data, not necesarily to derive the equations. As such we will not go into the details of the derivation of the Gaussian process. However, we will provide a brief overview of the model.
+Our goal is to demonstrate how to use the Guassian process to infer second derivatives of time series data, not necessarily to derive the equations. As such we will not go into the details of the derivation of the Gaussian process. However, we will provide a brief overview of the model.
 
 The main assumption of a Gaussian process model is that if we evaluate a function, $F(t)$, at a collection of points, $t_1, t_2, \ldots, t_n$, then the values of the function at these points will be Gaussian distributed
 $$
@@ -50,7 +50,7 @@ Without getting into the details, which are beyond the scope of this write-up, w
 $$
     \bm{f}^* = \bm{K}^* (\bm{K} + \sigma^2\bm{I})^{-1}\bm{y}
 $$
-but this just gives the value of the stock, it doesnt tell us how much it is changing. To get the acceleration, we need to take the second derivative of the function. The useful part of the Gaussian process is that we can take the second derivative of the function by taking the second derivative of the covariance matrix
+but this just gives the value of the stock, it doesn't tell us how much it is changing. To get the acceleration, we need to take the second derivative of the function. The useful part of the Gaussian process is that we can take the second derivative of the function by taking the second derivative of the covariance matrix
 $$
     \bm{f}^* = (\dfrac{d}{dt}\bm{K}^*) (\bm{K} + \sigma^2\bm{I})^{-1}\bm{y}
 $$
@@ -65,47 +65,50 @@ Just a note: in the code we provide, the equations won't match up exactly with w
 
 ## Results
 
-We run our model on the NASDAQ stock index from 2019 to 2024. The results are shown in the figures below. We apply our model using two different lenght scales, $l=30$ days and $l=180$ days.
+We run our model on the NASDAQ stock index from 2019 to 2024. The results are shown in the figures below. We apply our model using two different length scales, $l=30$ days and $l=180$ days.
 
-We first show that 
 We first apply our model with $l=30$ days.
-![GP_l=month](pics/GP_l=month.png)
-As you can see, there are clear spikes of acceleration at major turns in the market. At this resolution, however, we see more rapid shifts in the market, so it may be better to choose a lenght scale that is longer than 30 days.
+![GP_l=month](https://github.com/jsbryaniv/GaussianProccessRegression/blob/main/pics/GP_l=month.png)
+As you can see, there are clear spikes of acceleration at major turns in the market. At this resolution, however, we see more rapid shifts in the market, so it may be better to choose a length scale that is longer than 30 days.
 
 We then apply our model with $l=180$ days.
-![GP](pics/GP.png)
+![GP](https://github.com/jsbryaniv/GaussianProccessRegression/blob/main/pics/GP.png)
 We again see large spikes of acceleration at major turns in the market. However, we see fewer spikes, and the spikes are more pronounced. We will use our results from this model to identify significant macroeconomic events.
 
 ## Interpretation
 
 We observe the highest accelerations in the NASDAQ's growth rate around the dates of April 17, 2020, May 5, 2021, and July 25, 2022. Typically, such accelerations follow a period of decline, indicating a local trough in stock prices. These dates coincide with significant macroeconomic events, which are outlined below:
 
-### April 17, 2020:
+### April 17, 2020
+
 - **Pandemic Response**: The early phase of the COVID-19 pandemic led to global economic disruptions. Markets faced volatility amidst the uncertainty caused by the pandemic.
 - **Monetary Stimulus**: The US Federal Reserve announced a substantial quantitative easing program to inject liquidity into the economy, aiming to mitigate financial stress.
 - **Fiscal Stimulus**: The US Congress passed the CARES Act, providing emergency economic relief to individuals and businesses, which likely had a positive effect on market sentiment.
 
-### May 5, 2021:
+### May 5, 2021
+
 - **Economic Recovery**: With the progress of covid response campaigns and the lifting of restrictions, economic activities resumed, potentially bolstering technology sectors.
 - **Accommodative Monetary Policy**: The Federal Reserve sustained its low-interest-rate policy and quantitative easing, further supporting the financial markets.
 - **Corporate Performance**: Robust earnings reports from key technology firms, which have a substantial influence on the NASDAQ, likely drove the index higher.
 
-### July 25, 2022:
+### July 25, 2022
+
 - **Inflation and Interest Rates**: As the Federal Reserve addressed rising inflation through increased interest rates, this led to market adjustments that may have affected growth rates.
 - **Tech Sector Resilience**: Notwithstanding macroeconomic headwinds, the persistent strong performance of technology companies could have buoyed the index.
 - **Geopolitical Factors**: Events such as the conflict in Ukraine introduced additional variables into market dynamics, the implications of which would require specific analysis to understand their impact on the NASDAQ.
 
 In contrast, the highest deceleration in growth rate observed around these dates, August 20th, 2019, November 18th, 2021, and July 7, 2023, do not align with significant socio-economic events as distinctly as the acceleration dates, except for November 29th, 2020 and November 18th, 2021.
 
-### November 29, 2020:
+### November 29, 2020
+
 **Market defusing**: The NASDAQ at this point was decelerating, possibly as a correction from the rapid growth in the preceding months, as the market adjusted to the new normal of the pandemic.
 ***Election**: The US presidential election market a transition of power, which could have introduced uncertainty into the market, leading to a deceleration in growth rates.
 
-### November 18, 2021:
+### November 18, 2021
+
 **Inflation Surge**: Marking the fastest inflation rate since 1982, energy and food prices saw significant increases, while shelter costs had their highest rise since 2007.
 **Job Growth Disappointment**: Despite the sharp fall in the unemployment rate, the economy created far fewer jobs than expected, with notable declines in retail and government employment.
 **Wage Growth**: Worker wages continued their upward trend, rising both for the month and significantly over the year.
-
 
 ## Conclusion
 
