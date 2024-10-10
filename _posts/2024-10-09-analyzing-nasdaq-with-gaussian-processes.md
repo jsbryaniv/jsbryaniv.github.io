@@ -52,7 +52,7 @@ $$
 
 where $y_n$ is the stock price at time $t_n$, and $\sigma^2$ is the variance of the stock price.
 
-Without getting into the details, which are beyond the scope of this write-up, we can use the stock prices at different times to infer the value of the stock at different times ($t^*_1$, $t^*_2$, ..., $t^*_m$). The equation for this is
+Without getting into the details, which are beyond the scope of this write-up, we can use the stock prices at different times to infer the value of the stock at different times, ${t^*}_1, {t^*}_2, \ldots, {t^*}_n$. The equation for this is
 
 $$
     \boldsymbol{f}^* = \boldsymbol{K}^* (\boldsymbol{K} + \sigma^2\boldsymbol{I})^{-1}\boldsymbol{y}
