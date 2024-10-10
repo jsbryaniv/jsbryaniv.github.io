@@ -8,7 +8,9 @@ image: https://jsbryaniv.github.io/assets/img/blog/blog_analyzing_nasdaq_with_gp
 optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_analyzing_nasdaq_with_gp.png
 category: update
 tags:
-  - update
+  - data science
+  - math
+  - finance
 author: jsbryaniv
 paginate: true
 math: true
