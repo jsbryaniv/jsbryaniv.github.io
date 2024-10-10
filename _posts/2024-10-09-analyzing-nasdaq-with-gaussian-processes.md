@@ -1,5 +1,5 @@
 ---
-date: 2024-10-9 12:00:01
+date: 2024-10-9 12:00:02
 layout: post
 title: Analyzing the NASDAQ with Gaussian Processes
 subtitle: A simple demonstration of a powerful tool.
@@ -31,37 +31,48 @@ By demonstrating how Gaussian processes can be used to identify economic trends,
 Our goal is to demonstrate how to use the Guassian process to infer second derivatives of time series data, not necessarily to derive the equations. As such we will not go into the details of the derivation of the Gaussian process. However, we will provide a brief overview of the model.
 
 The main assumption of a Gaussian process model is that if we evaluate a function, $F(t)$, at a collection of points, $t_1, t_2, \ldots, t_n$, then the values of the function at these points will be Gaussian distributed
+
 $$
-    \bm{f} = \mathcal{N}(\bm{\mu}, \bm{K})
+    \boldsymbol{f} = \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{K})
 $$
-where $f_n=F(t_n)$, $\bm{\mu}$ is the mean vector (which we will set to 0), and $\bm{K}$ is the covariance matrix. The covariance matrix is defined as
+
+where $f_n=F(t_n)$, $\boldsymbol{\mu}$ is the mean vector (which we will set to 0), and $\boldsymbol{K}$ is the covariance matrix. The covariance matrix is defined as
+
 $$
     K_{ij} = a^2\exp\left(-\frac{(t_i-t_j)^2}{2\ell^2}\right)
 $$
+
 where $a$ is the amplitude of the function, and $\ell$ is the length scale. The amplitude determines the magnitude of the function. The length scale determines how quickly the function changes with respect to time.
 
 In our case our function $F(t)$ tracks the value of NASDAQ stock index at time over time. But, we say "value" we don't mean the actual stock price, but rather what it is intrinsically worth. We assume the stock price is randomly distributed around the value at each point in time
+
 $$
     P(y_n) = \mathcal{N}(F(t_n), \sigma^2)
 $$
+
 where $y_n$ is the stock price at time $t_n$, and $\sigma^2$ is the variance of the stock price.
 
 Without getting into the details, which are beyond the scope of this write-up, we can use the stock prices at different times to infer the value of the stock at different times, $t^*_1, t^*_2, \ldots, t^*_m$. The equation for this is
+
 $$
-    \bm{f}^* = \bm{K}^* (\bm{K} + \sigma^2\bm{I})^{-1}\bm{y}
+    \boldsymbol{f}^* = \boldsymbol{K}^* (\boldsymbol{K} + \sigma^2\boldsymbol{I})^{-1}\boldsymbol{y}
 $$
+
 but this just gives the value of the stock, it doesn't tell us how much it is changing. To get the acceleration, we need to take the second derivative of the function. The useful part of the Gaussian process is that we can take the second derivative of the function by taking the second derivative of the covariance matrix
+
 $$
-    \bm{f}^* = (\dfrac{d}{dt}\bm{K}^*) (\bm{K} + \sigma^2\bm{I})^{-1}\bm{y}
+    \boldsymbol{f}^* = (\dfrac{d}{dt}\boldsymbol{K}^*) (\boldsymbol{K} + \sigma^2\boldsymbol{I})^{-1}\boldsymbol{y}
 $$
+
 where
+
 $$
     \dfrac{d}{dt}K_{ij} = a^2\exp\left(-\frac{(t_i-t_j)^2}{2\ell^2}\right)\left(\frac{(t_i-t_j)}{\ell^2}\right).
 $$
+
 So all in all we have a very simple equation relating the stock prices to the acceleration of the stock prices.
 
 Just a note: in the code we provide, the equations won't match up exactly with what we have here since we use a slightly different model called a Structured Kernel Interpolation (SKI) model. If you want to know more feel free to check out our previous work on it [here](https://www.cell.com/iscience/pdf/S2589-0042(22)01003-3.pdf).
-
 
 ## Results
 
