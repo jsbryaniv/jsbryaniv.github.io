@@ -6,9 +6,9 @@ subtitle: It should be a holiday
 description: Reflections on the history of leap day
 image: https://live.staticflickr.com/65535/53560113309_507bf4b3a2_c.jpg
 optimized_image: https://live.staticflickr.com/65535/53560113309_507bf4b3a2_c.jpg
-category: funny
+category: fun
 tags:
-  - funny
+  - fun
 author: jsbryaniv
 paginate: true
 math: true
