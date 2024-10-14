@@ -1,5 +1,5 @@
 ---
-date: 2024-10-9 12:00:01
+date: 2024-10-15 12:00:01
 layout: post
 title: Physics, AI, and the Nobel Prize
 subtitle: Reflections on current enthusiasm for physics and AI.
