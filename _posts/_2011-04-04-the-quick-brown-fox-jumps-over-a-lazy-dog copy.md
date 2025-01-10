@@ -4,8 +4,8 @@ layout: post
 title: Update December 2023
 subtitle: How we got here and where we are going
 description: My life status update for December 2023.
-image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
-optimized_image: https://live.staticflickr.com/65535/53375458777_0837f468f8_z.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_new_year_resolutions_2025.png
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_new_year_resolutions_2025.png
 category: update
 tags:
   - update
