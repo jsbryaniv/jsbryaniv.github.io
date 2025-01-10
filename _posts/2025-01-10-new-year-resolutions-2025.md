@@ -26,11 +26,12 @@ Beyond that, I discovered that posting semi-regularly on LinkedIn with opinions 
 A little bit of posting went a long way, so this year I want to ramp up my posting in 2025 to see how far it takes me. In particular, I want to start posting more regularly, more widely, and fostering more engagement.
 
 Here is a concrete list of some of the goals I've made for 2025:
-Post 2 LinkedIn posts per week (I’m learning that more than that is actually bad for the algorithm).
-Engage with other people daily via comments, M-F.
-Write at least 2 blog posts per month, one tutorial, one opinion piece.
-Start using other platforms more regularly.
-Write about something every day.
+
+* Post 2 LinkedIn posts per week (I’m learning that more than that is actually bad for * the algorithm).
+* Engage with other people daily via comments, M-F.
+* Write at least 2 blog posts per month, one tutorial, one opinion piece.
+* Start using other platforms more regularly.
+* Write about something every day.
 
 I think that the last goal about writing everyday is key. I won’t post everything I write, but I will stick to the habit. Historically it takes me a while to make thoughtful posts, and I want to become more efficient. Since practice makes perfect, my hope is that by writing everyday it will become easier as the year progresses. Also, writing is an important part of every science career, so I already write a lot. The difference is that instead of focussing on technical manuscripts I want to write things that more people will read.
 
