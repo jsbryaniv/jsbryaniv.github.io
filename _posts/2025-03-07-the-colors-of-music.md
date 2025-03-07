@@ -4,8 +4,8 @@ layout: post
 title: The Colors of Music
 subtitle: A cool connection between music and color
 description: Here I show a cool mapping from music to color.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_color_of_music.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/bloc_color_of_music.png
+image: https://jsbryaniv.github.io/assets/img/blog/blog_colors_of_music.png
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/bloc_colors_of_music.png
 category: update
 tags:
   - essay
@@ -24,6 +24,7 @@ comments: true
 Every note on a piano is defined by its frequency, for example middle A is 440 Hz. If you double the frequency, you get back the same note one octave higher. So 880 Hz is an A one octave up and 1760 is an A 2 octaves up and so on. If you keep doubling the frequency, eventually you will get to a frequency that is in the range of the frequencies of visible light. It follows that if there is a frequency in visible light that corresponds to the note A, then the color of that light also corresponds to the note A. In other words, the note A on a piano has a color associated with it. I wanted to find this color.
 
 The first thing I needed to do was to find how many octaves up I need to go to take A 440 Hz into the visible light range. The range of visible light is about 400-800 terahertz (THz). To find the number of octaves, I wrote down an equation to find the number of doublings, $n$, it takes to get from 440 Hz to 440 THz, then worked backwards to find $n$
+
 $$
 \begin{align*}
     440 \times 2^n &= 440 \times 10^{12} \\
@@ -32,15 +33,19 @@ $$
     n &\approx 39.86
 \end{align*}
 $$
+
 which is about 40 octaves. Let's stop for a second and think about what 40 octaves looks like. A typical piano has about 88 keys, which is about 7 octaves. There are 12 keys in every octave so 40 octaves is 480 keys to the right of middle A, or about 5 pianos to the right of middle A, if we arranged them all side by side. Thats wierdly not has many as I thought it would be. It just goes to show the power of exponential growth, it only takes 40 doublings to go from 440 Hz to 440 THz!
 
 Next I calculated the frequency of the note A 40 octaves up from 440 Hz.
+
 $$
 \begin{align*}
     440 Hz \times 2^{40} &= 484 THz
 \end{align*}
 $$
+
 so the frequncy of light at 484 THz is the color of the note A. We can find the wavelength of this light by using the formula $c = \lambda f$ where $c$ is the speed of light, $f$ is the frequency, and $\lambda$ is the wavelength.
+
 $$
 \begin{align*}
     \lambda &= \frac{c}{f} \\
@@ -48,6 +53,7 @@ $$
     &= 620 nm
 \end{align*}
 $$
+
 which corresponds to the color orange. I found the exact shade of orange by using an online wavelength to color converter, [405nm.com](https://405nm.com/wavelength-to-color/). Try it for yourself, the Note A is beautiful!
 
 We can follow a similar process to find the colors of other notes. I made a quick python script to get all the wavelengths
@@ -98,4 +104,4 @@ Lastly, I used [405nm.com](https://405nm.com/wavelength-to-color/) to make a dia
 .png)
 Notice that F# is black. This is because the color spectrum doesnt span a full octave, so F# ends up outside the visible light range. Lined up next to each other I really think this looks nice!
 
-
+Overall, I really enjoyed working on this project and finding this cool connection between sound and sight. I'm already thinking of ways to use this mapping in future projects. I hope you enjoyed reading about it as much as I enjoyed working on it!
