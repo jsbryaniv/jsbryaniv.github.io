@@ -4,8 +4,8 @@ layout: post
 title: Dirichlet Clustering for Clinical Outcome Prediction
 subtitle: A simple example
 description: Here we show how to use Dirichlet Clustering to predict clinical outcomes.
-image: https://live.staticflickr.com/65535/53334792868_86038b3779_b.jpg
-optimized_image: https://live.staticflickr.com/65535/53334792868_86038b3779_b.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_for_clinical_predictions.jpg
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_for_clinical_predictions.jpg
 category: science
 tags:
   - bayesian
@@ -161,7 +161,7 @@ We applied our model to analyze data from the Pima Indians Diabetes Database. Ou
 Our method doesn’t directly predict the patients’ diagnoses. Instead, it predicts the cluster a patient belongs to, and we use these cluster assignments to infer diagnoses. For instance, if a patient is assigned to cluster 1, we predict that they have diabetes with a probability of $\pi_k$.
 
 To evaluate our model's effectiveness, we compare the predicted probability of diabetes for each cluster, $\phi_k$, with the actual proportion of diabetes diagnoses per cluster. The comparison is illustrated below:
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53336518169/in/dateposted-public/" title="Figure_1"><img src="https://live.staticflickr.com/65535/53336518169_88d3d3ae41_z.jpg" width="640" height="480" alt="Figure_1"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+![Figure_1](https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_for_clinical_prediction_results.png)
 
 As shown, our model reasonably predicts the probability of diabetes for each cluster, indicating its effectiveness in predicting patient diagnoses.
 
