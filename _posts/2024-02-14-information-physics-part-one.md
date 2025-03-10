@@ -4,8 +4,8 @@ layout: post
 title: Information Physics Part One
 subtitle: Creating the physics of learning
 description: Here I post preliminary work on deriving physics of information.
-image: https://live.staticflickr.com/65535/53529131181_5566fe27c5_c.jpg
-optimized_image: https://live.staticflickr.com/65535/53529131181_5566fe27c5_c.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
 category: science
 tags:
   - physics

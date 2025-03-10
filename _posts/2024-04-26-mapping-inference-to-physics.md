@@ -4,8 +4,8 @@ layout: post
 title: Mapping inference to physics - Part 2
 subtitle: Update on a work in progress
 description: Here I show updates to a project mapping general inference to physics.
-image: https://live.staticflickr.com/65535/53529131181_5566fe27c5_c.jpg
-optimized_image: https://live.staticflickr.com/65535/53529131181_5566fe27c5_c.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
 category: math
 tags:
   - math

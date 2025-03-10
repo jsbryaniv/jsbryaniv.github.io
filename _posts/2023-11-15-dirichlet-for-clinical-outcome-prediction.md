@@ -161,7 +161,7 @@ We applied our model to analyze data from the Pima Indians Diabetes Database. Ou
 Our method doesn’t directly predict the patients’ diagnoses. Instead, it predicts the cluster a patient belongs to, and we use these cluster assignments to infer diagnoses. For instance, if a patient is assigned to cluster 1, we predict that they have diabetes with a probability of $\pi_k$.
 
 To evaluate our model's effectiveness, we compare the predicted probability of diabetes for each cluster, $\phi_k$, with the actual proportion of diabetes diagnoses per cluster. The comparison is illustrated below:
-![Figure_1](https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_for_clinical_prediction_results.png)
+![Figure_1](https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_clinical_prediction_results.png)
 
 As shown, our model reasonably predicts the probability of diabetes for each cluster, indicating its effectiveness in predicting patient diagnoses.
 

@@ -4,8 +4,8 @@ layout: post
 title: An ode to leap day
 subtitle: It should be a holiday
 description: Reflections on the history of leap day
-image: https://live.staticflickr.com/65535/53560113309_507bf4b3a2_c.jpg
-optimized_image: https://live.staticflickr.com/65535/53560113309_507bf4b3a2_c.jpg
+image: https://jsbryaniv.github.io/assets/img/blog/blog_ode_to_leap_day.jpg
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_ode_to_leap_day.jpg
 category: fun
 tags:
   - fun
