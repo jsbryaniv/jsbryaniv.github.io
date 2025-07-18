@@ -8,6 +8,7 @@ image: https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_for
 optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_dirichlet_clustering_for_clinical_predictions.jpg
 category: science
 tags:
+  - math
   - bayesian
   - coding
   - prediction

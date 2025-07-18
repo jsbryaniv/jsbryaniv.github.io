@@ -10,6 +10,7 @@ category: science
 tags:
   - deep learning
   - biophysics
+  - ai
 author: jsbryaniv
 paginate: true
 math: true

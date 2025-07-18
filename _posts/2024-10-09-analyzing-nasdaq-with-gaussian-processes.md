@@ -6,7 +6,7 @@ subtitle: A simple demonstration of a powerful tool.
 description: Here we demonstrate how to use Gaussian Processes to analyze the NASDAQ.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_analyzing_nasdaq_with_gp.png
 optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_analyzing_nasdaq_with_gp.png
-category: update
+category: science
 tags:
   - data science
   - math

@@ -6,9 +6,12 @@ subtitle: Update on a work in progress
 description: Here I show updates to a project mapping general inference to physics.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
 optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
-category: math
+category: science
 tags:
   - math
+  - science
+  - physics
+  - project
   - ai
 author: jsbryaniv
 paginate: true

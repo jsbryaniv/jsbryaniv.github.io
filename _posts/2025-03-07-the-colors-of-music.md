@@ -6,7 +6,7 @@ subtitle: A cool connection between music and color
 description: Here I show a cool mapping from music to color.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_colors_of_music.png
 optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_colors_of_music.png
-category: update
+category: science
 tags:
   - essay
   - physics
