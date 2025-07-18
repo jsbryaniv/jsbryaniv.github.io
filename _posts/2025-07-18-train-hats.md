@@ -4,8 +4,8 @@ layout: post
 title: Building Train Hats
 subtitle: Integrating new tools into old frameworks.
 description: Sometimes to make a train, you need to make a hat. 
-image: https://jsbryaniv.github.io/assets/img/blog/blog_train_hats.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_train_hats.png
+image: https://jsbryaniv.github.io/assets/img/blog/blog_train_hat.png
+optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_train_hat.png
 category: essay
 tags:
   - essay
