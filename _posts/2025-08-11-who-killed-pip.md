@@ -53,13 +53,13 @@ A serial pip killer was still on the loose. `litellm` was not the murderer after
 
 I began my investigation.
 
-I checked the "interpreter paths" — the Python program my commands were using — to make sure they pointed to the .venv environment. They did.
+I checked the "interpreter paths" — the Python program my commands were using — to make sure they pointed to the `.venv` environment. They did.
 
-I looked at the pip launcher script — the little file in .venv/bin that actually starts pip. Nothing unusual.
+I looked at the pip launcher script — the little file in `.venv/bin` that actually starts pip. Nothing unusual.
 
 I checked Python’s own environment settings to see if the virtual environment had somehow been switched. Nope. It was still the right one.
 
-Finally, I looked inside .venv and saw the evidence: the entire lib folder — where Python keeps all its packages — had been deleted.
+Finally, I looked inside .venv and saw the evidence: the entire `.venv/lib` folder — where Python keeps all its packages — had been deleted!
 
 The killer was clean. No fingerprints.
 
@@ -84,7 +84,7 @@ With the killer identified, I could strategize about how to protect pip from fut
 I identified three ways to protect pip:
 
 1. Turn off iCloud storage optimization. This protects pip, but leaves the cloud drive vulnerable to storage issues.
-2. Rename the virtual environment folder from `.venv` to `.venv.nosync`. The `.nosync` suffix tells iCloud to ignore the contents of the directory during cloud storage. This is safe, but cumbersome to work with.
+2. Rename the virtual environment folder from `.venv` to `.venv.nosync`. The ".nosync" suffix tells iCloud to ignore the contents of the directory during cloud storage. This is safe, but cumbersome to work with.
 3. Move the entire project folder off of my desktop and onto a non-synced location, such as `~/Code` or `~/Projects`. This is the safest long term fix, leaving python safe and iCloud storage optimized. And you can even keep a shortcut to the projects directory on my desktop, leaving your workflows intact as well.
 
 I decided to go with option 3, moving all my projects off of the Desktop and into `~/Projects` From that moment on, pip lived in peace.
