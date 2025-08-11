@@ -65,7 +65,7 @@ The killer was clean. No fingerprints.
 
 ## Chapter 4 — The Breakthrough
 
-The big clue came when I realized something chilling: pip would disappear even if I did nothing. I could walk away from my computer and come back to find the body gone. How could pip disappear if I wasn't running any python commands? In order for something within python to kill pip, it would still need me to execute a script.
+The big clue came when I realized something chilling: pip would disappear even if I did nothing. I could walk away from my computer and come back to find the pip gone. How could pip disappear if I wasn't running any python commands? In order for something within python to kill pip, it would still need me to execute a script.
 
 This meant the killer wasn’t inside Python at all. It was somewhere outside, lurking in the operating system.
 
@@ -73,7 +73,7 @@ This meant the killer wasn’t inside Python at all. It was somewhere outside, l
 
 I did some digging. It was then that I realized that my project was located on my Desktop. On Mac, the Desktop is automatically synced to iCloud Drive — Apple’s cloud storage service. And evidently, iCloud was getting a little too aggressive with its optimizations. In order to optimize storage, iCloud would remove local copies of large or "inactive" files, leaving only a cloud placeholder.
 
-To iCloud, .venv/lib looked like a giant, strange folder that could be safely offloaded. So, iCloud quietly deleted the local lib folder, leaving pip and my packages to vanish in the middle of my work.
+To iCloud, `.venv/lib` looked like a giant, strange folder that could be safely offloaded. So, iCloud quietly deleted the local lib folder, leaving pip and my packages to vanish in the middle of my work.
 
 The killer was iCloud!
 
@@ -93,7 +93,7 @@ I decided to go with option 3, moving all my projects off of the Desktop and int
 
 If you keep your projects in Desktop or Documents and use iCloud sync:
 
-Move them to a non-synced folder like ~/Code or ~/Developer.
+Move them to a non-synced folder like `~/Code` or `~/Developer`.
 
 Or add .nosync to the environment’s folder name.
 
