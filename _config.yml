@@ -60,7 +60,6 @@ collections:
   authors:
     output: true
 paginate_path: "/page/:num/"
-show_get_theme_btn: true
 use_logo: false
 
 # Content paginator
@@ -90,9 +89,8 @@ plugins:
   - jekyll-paginate
   - jekyll-paginate-content
 
-# Exclude my node related stuff
+# Exclude local-only files
 exclude: [
-  'initpost.sh',
   'Gemfile',
   'Gemfile.lock',
   'README.md'
