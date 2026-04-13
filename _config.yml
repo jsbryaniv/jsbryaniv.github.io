@@ -92,14 +92,9 @@ plugins:
 
 # Exclude my node related stuff
 exclude: [
-  'package.json',
-  'package-lock.json',
-  'src',
-  'node_modules',
   'initpost.sh',
   'Gemfile',
   'Gemfile.lock',
-  'gulpfile.js',
   'README.md'
 ]
 
