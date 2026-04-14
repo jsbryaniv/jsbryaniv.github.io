@@ -1,5 +1,5 @@
 ---
-layout: J. Shepard Bryan IV
+layout: author
 photo: /assets/img/uploads/profile.png
 name: jsbryaniv
 display_name: Shep Bryan IV
