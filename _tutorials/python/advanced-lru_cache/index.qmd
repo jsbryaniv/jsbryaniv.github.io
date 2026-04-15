@@ -7,6 +7,13 @@ date: 2026-04-14
 categories: [python, tutorial]
 tags: [python, performance, caching, functools, lru_cache]
 format:
+  html:
+    toc: true
+    code-copy: true
+    css: /assets/code-animation/code-animation.css
+    include-after-body:
+      text: |
+        <script src="/assets/code-animation/code-animation.js"></script>
   gfm: default
 execute:
   echo: true
@@ -63,38 +70,6 @@ You can clear the cache manually and inspect cache stats like hits, misses, and 
 ```{python}
 fast_fibonacci.cache_clear()  # Clears the cache
 print(fast_fibonacci.cache_info())
-```
-
-## Animation Smoke Test
-
-If this box pulses and the label changes to "JS loaded", then animation and inline JavaScript are working in your preview.
-
-```{=html}
-<div id="anim-smoke" class="anim-smoke">Waiting for JS...</div>
-<style>
-  .anim-smoke {
-    display: inline-block;
-    padding: 0.6rem 1rem;
-    border-radius: 0.5rem;
-    color: #fff;
-    background: #2b6cb0;
-    animation: anim-smoke-pulse 0.8s ease-in-out infinite alternate;
-    font-weight: 600;
-  }
-
-  @keyframes anim-smoke-pulse {
-    from { transform: scale(1); opacity: 0.7; }
-    to   { transform: scale(1.06); opacity: 1; }
-  }
-</style>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var el = document.getElementById("anim-smoke");
-    if (el) {
-      el.textContent = "JS loaded";
-    }
-  });
-</script>
 ```
 
 ## Wrap-Up

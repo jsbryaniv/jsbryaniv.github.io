@@ -1,48 +1,39 @@
-/* Code animation styles for Quarto demo blocks */
+/* ============================================================
+   code-animation.css — live-coding animation for Quarto HTML
+   ============================================================
 
-/* Outer wrapper for any animated example */
+   JS hides/shows individual <span id="cbN-M"> line spans via
+   inline visibility. This file handles:
+     - hiding the output block until JS reveals it
+     - blinking cursor shown while typing is in progress
+*/
+
 .code-animation {
   margin: 1.5rem 0;
 }
 
-/* Keep code and output from flashing before JS runs */
-.code-animation pre code,
+/* Output hidden until JS sets visibility/opacity directly */
 .code-animation .cell-output {
+  visibility: hidden;
   opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-/* Reveal code once animation starts */
-.code-animation.show-code pre code {
-  opacity: 1;
+/* Blinking block cursor — only while .typing is set by JS */
+.code-animation.typing pre code.sourceCode::after {
+  content: "\25AE"; /* ▮ */
+  display: inline;
+  margin-left: 0.1em;
+  color: currentColor;
+  animation: ca-blink 0.8s step-end infinite;
 }
 
-/* Reveal output after code animation finishes */
-.code-animation.show-output .cell-output {
-  opacity: 1;
+/* No cursor once animation is done */
+.code-animation.done pre code.sourceCode::after {
+  content: none;
 }
 
-/* Optional typing cursor */
-.code-animation pre code::after {
-  content: "|";
-  display: inline-block;
-  margin-left: 0.15em;
-  animation: code-animation-blink 1s step-end infinite;
-}
-
-/* Hide cursor once output starts, if desired */
-.code-animation.show-output pre code::after {
-  opacity: 0;
-}
-
-/* Cursor blink animation */
-@keyframes code-animation-blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+@keyframes ca-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
