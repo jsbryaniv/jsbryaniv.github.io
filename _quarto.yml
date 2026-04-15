@@ -14,8 +14,9 @@ format:
     include-after-body:
       text: |
         <script src="/assets/code-animation/code-animation.js"></script>
-        
+
 execute:
+  echo: true
   warning: false
   message: false
   
