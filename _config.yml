@@ -93,7 +93,8 @@ plugins:
 exclude: [
   'Gemfile',
   'Gemfile.lock',
-  'README.md'
+  'README.md',
+  '_quarto.yml'
 ]
 
 # Theme

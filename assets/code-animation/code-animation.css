@@ -1,0 +1,48 @@
+/* Code animation styles for Quarto demo blocks */
+
+/* Outer wrapper for any animated example */
+.code-animation {
+  margin: 1.5rem 0;
+}
+
+/* Keep code and output from flashing before JS runs */
+.code-animation pre code,
+.code-animation .cell-output {
+  opacity: 0;
+}
+
+/* Reveal code once animation starts */
+.code-animation.show-code pre code {
+  opacity: 1;
+}
+
+/* Reveal output after code animation finishes */
+.code-animation.show-output .cell-output {
+  opacity: 1;
+}
+
+/* Optional typing cursor */
+.code-animation pre code::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 0.15em;
+  animation: code-animation-blink 1s step-end infinite;
+}
+
+/* Hide cursor once output starts, if desired */
+.code-animation.show-output pre code::after {
+  opacity: 0;
+}
+
+/* Cursor blink animation */
+@keyframes code-animation-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

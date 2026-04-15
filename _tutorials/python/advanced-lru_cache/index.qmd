@@ -1,0 +1,105 @@
+---
+title: "Python Tip: lru_cache"
+subtitle: "Speed up expensive function calls with caching"
+description: "A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management."
+author: "Shep Bryan IV"
+date: 2026-04-14
+categories: [python, tutorial]
+tags: [python, performance, caching, functools, lru_cache]
+format:
+  gfm: default
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Python Tip: `lru_cache`
+
+Want to speed up your code by caching function results?
+Use `functools.lru_cache` to store results of expensive function calls and reuse them.
+
+## Basic Example of a Slow Function
+
+Here is a slow recursive function for Fibonacci numbers. Without caching, it recalculates the same values many times.
+
+:::{.code-animation}
+```{python}
+def slow_fibonacci(n):
+    print(f"- Calculating Fibonacci({n})")
+    if n <= 1:
+        return n
+    return slow_fibonacci(n - 1) + slow_fibonacci(n - 2)
+
+x = slow_fibonacci(4)
+print(f"Final result = {x}")
+```
+:::
+
+## Using `lru_cache`
+
+You can speed this up by adding the `@lru_cache` decorator. It caches results and returns them instantly when the function is called with the same arguments.
+
+```{python}
+from functools import lru_cache
+
+@lru_cache(maxsize=None)  # No limit on cache size
+def fast_fibonacci(n):
+    print(f"- Calculating Fibonacci({n})")
+    if n <= 1:
+        return n
+    return fast_fibonacci(n - 1) + fast_fibonacci(n - 2)
+
+x = fast_fibonacci(4)
+print(f"Final result = {x}")
+```
+
+## Cache Management
+
+`lru_cache` stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.
+
+You can clear the cache manually and inspect cache stats like hits, misses, and current size.
+
+```{python}
+fast_fibonacci.cache_clear()  # Clears the cache
+print(fast_fibonacci.cache_info())
+```
+
+## Animation Smoke Test
+
+If this box pulses and the label changes to "JS loaded", then animation and inline JavaScript are working in your preview.
+
+```{=html}
+<div id="anim-smoke" class="anim-smoke">Waiting for JS...</div>
+<style>
+  .anim-smoke {
+    display: inline-block;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    background: #2b6cb0;
+    animation: anim-smoke-pulse 0.8s ease-in-out infinite alternate;
+    font-weight: 600;
+  }
+
+  @keyframes anim-smoke-pulse {
+    from { transform: scale(1); opacity: 0.7; }
+    to   { transform: scale(1.06); opacity: 1; }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var el = document.getElementById("anim-smoke");
+    if (el) {
+      el.textContent = "JS loaded";
+    }
+  });
+</script>
+```
+
+## Wrap-Up
+
+Now you can use `lru_cache` to speed up expensive function calls by reducing redundant computations.
+
+Follow me for more tips.  
+Shep Bryan IV

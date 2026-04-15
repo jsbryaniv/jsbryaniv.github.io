@@ -1,0 +1,19 @@
+
+project:
+  type: default
+
+jupyter: .python/venv/bin/python
+
+format:
+  html:
+    toc: true
+    code-copy: true
+    css: /assets/code-animation/code-animation.css
+    include-after-body:
+      text: |
+        <script src="/assets/code-animation/code-animation.js"></script>
+
+execute:
+  warning: false
+  message: false
+  
