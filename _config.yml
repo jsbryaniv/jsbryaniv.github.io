@@ -80,8 +80,14 @@ paginate_content:
     single:
       is_generated: true
 
+# Jekyll directories
+layouts_dir: jekyll/_layouts
+includes_dir: jekyll/_includes
+plugins_dir: jekyll/_plugins
+
 # SASS
 sass:
+  sass_dir: jekyll/_sass
   style: compressed
 
 # Plugins
