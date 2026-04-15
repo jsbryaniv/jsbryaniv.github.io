@@ -1,3 +1,4 @@
+
 # Site Settings
 name: J. Shepard Bryan IV
 title: Shep's Spot
@@ -16,8 +17,14 @@ menu:
     url: /about
   - title: Contact
     url: /contact
-  # - title: Feed
-  #   url: /feed.xml
+  - title: Feed
+    url: /feed.xml
+  - title: Projects
+    url: /projects
+  - title: Store
+    url: /store
+  - title: Tutorials
+    url: /tutorials
 email: shepperoni.pizza@gmail.com
 # See: https://disqus.com/
 disqus_username: jsbryaniv
@@ -27,7 +34,6 @@ formspree_form_id: xdorvdlp
 
 
 # Social Media Settings
-# Remove the item if you don't need it
 github_username: jsbryaniv
 # facebook_username: facebook_username
 twitter_username: shep_iv
@@ -35,13 +41,11 @@ twitter_username: shep_iv
 linkedin_username: shep-bryan-iv
 # medium_username: medium_username
 
-
 # Posts Settings
 show_time_bar: true
 show_modal_on_exit: false
 show_modal_on_finish_post: true
 two_columns_layout: true
-
 
 # Advanced Settings
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -50,7 +54,6 @@ google_analytics: "UA-XXXXXXXX-X"
 language: "en"
 categories_folder: category
 sent_message_url: "/contact/message-sent/"
-
 
 # Build settings
 markdown: kramdown
@@ -84,8 +87,6 @@ paginate_content:
 layouts_dir: jekyll/_layouts
 includes_dir: jekyll/_includes
 plugins_dir: jekyll/_plugins
-
-# SASS
 sass:
   sass_dir: jekyll/_sass
   style: compressed
@@ -96,12 +97,12 @@ plugins:
   - jekyll-paginate-content
 
 # Exclude local-only files
-exclude: [
-  'Gemfile',
-  'Gemfile.lock',
-  'README.md',
-  '_quarto.yml'
-]
+exclude:
+  - _quarto.yml
+  - README.md
+  - TODO.md
+  - Gemfile
+  - Gemfile.lock
 
 # Theme
 version: v3.1.2

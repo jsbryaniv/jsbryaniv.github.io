@@ -1,6 +1,8 @@
 
 project:
   type: default
+  render:
+    - "_tutorials/**/*.qmd"
 
 jupyter: .python/venv/bin/python
 
@@ -12,6 +14,7 @@ format:
     include-after-body:
       text: |
         <script src="/assets/code-animation/code-animation.js"></script>
+        
 execute:
   warning: false
   message: false
