@@ -11,8 +11,8 @@ Needed pages:
 
 ## General tasks
 
-- Update favicon
 - Update information
+  - Update logo (blog-image.png)
   - Update about
   - Update contact
   - Update bio in authors + about
@@ -37,9 +37,6 @@ Needed pages:
   - Clean up assets
     - Rename assets/css and assets/js to assets/utils or something like that
 - Set up services:
-  - Ensure disqus is still set up
-  - Set up google analytics
-  - Set up domain and hosting
   - Set up shopify/stripe store
   
 
@@ -80,3 +77,6 @@ Needed pages:
     - Error (red and flashy)
 
 
+## Low Priority
+
+- Change the way disqus looks

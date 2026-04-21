@@ -1,8 +1,7 @@
-
 project:
   type: default
   render:
-    - "_tutorials/**/*.qmd"
+    - "_tutorials"
 
 jupyter: .python/venv/bin/python
 
@@ -19,4 +18,3 @@ execute:
   echo: true
   warning: false
   message: false
-  
