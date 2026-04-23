@@ -4,13 +4,46 @@
 Needed pages:
 - Home
 - About
+- Blog
 - Contact
+- Feed
 - Projects
 - Store
 - Tutorials
 
 ## General tasks
 
+- Move cache and build stuff to .cache and .build folders (or .dev ?)
+```
+# Tree structure
+.dev/
+  build/
+  cache/
+  venv/
+  notes/
+    TODO.md
+```
+```
+# _config.yml
+destination: .dev/build/jekyll
+disable_disk_cache: true
+incremental: false
+exclude:
+  - .dev
+```
+```
+# _quarto.yml
+project:
+  output-dir: .dev/build/quarto
+```
+- Reorganize landing page
+  - Hero blog posts
+  - Recent blog posts
+  - Projects
+  - Store
+  - Tutorials
+- Clean up header
+- Clean up footer
 - Update information
   - Update logo (blog-image.png)
   - Update about
@@ -45,7 +78,7 @@ Needed pages:
 - Refactor all posts to be folders:
   - Use index.md for the post content
   - Put all assets for the post in the same folder
-  - Rename coverart to coverart
+  - Rename all cover art to coverart in colocated folder
     - Maybe remove optimized image?
   - Fix links in posts
 
@@ -58,8 +91,6 @@ Needed pages:
 
 ## Tutorials
 
-- Get quarto working
-  - Find a way to have global config
 - Copy over old tutorials
 - Make list of new tutorials
 - Styling:
@@ -80,3 +111,4 @@ Needed pages:
 ## Low Priority
 
 - Change the way disqus looks
+- Footer gets covered by "read this next". Fix that.
