@@ -66,10 +66,9 @@ def convert_posts_to_bundles(posts_dir: str = "_posts", dry_run: bool = True) ->
 
 
 if __name__ == "__main__":
-    # Run once in dry-run mode first
-    convert_posts_to_bundles(posts_dir="_posts", dry_run=True)
+    # # Run once in dry-run mode first
+    # convert_posts_to_bundles(posts_dir="_posts", dry_run=True)
 
     # Then switch to False when ready
-    # convert_posts_to_bundles(posts_dir="_posts", dry_run=False)
+    convert_posts_to_bundles(posts_dir="_posts", dry_run=False)
 
-    
