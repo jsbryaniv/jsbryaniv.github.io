@@ -13,29 +13,6 @@ Needed pages:
 
 ## General tasks
 
-- Move cache and build stuff to .cache and .build folders (or .dev ?)
-```
-# Tree structure
-.dev/
-  build/
-  cache/
-  venv/
-  notes/
-    TODO.md
-```
-```
-# _config.yml
-destination: .dev/build/jekyll
-disable_disk_cache: true
-incremental: false
-exclude:
-  - .dev
-```
-```
-# _quarto.yml
-project:
-  output-dir: .dev/build/quarto
-```
 - Reorganize landing page
   - Hero blog posts
   - Recent blog posts
@@ -112,3 +89,5 @@ project:
 
 - Change the way disqus looks
 - Footer gets covered by "read this next". Fix that.
+- Unlink to old saguaro solutions website
+- Bring over images from image sharing website here

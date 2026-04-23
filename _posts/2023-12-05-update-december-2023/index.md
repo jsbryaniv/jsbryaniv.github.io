@@ -4,8 +4,7 @@ layout: post
 title: Update December 2023
 subtitle: How we got here and where we are going
 description: My life status update for December 2023.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_update_december2023.jpg
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_update_december2023.jpg
+image: assets/blog_update_december2023.jpg
 category: update
 tags:
   - update
@@ -27,7 +26,7 @@ For those who do not know, fluorescence microscopy is a type of microscope imagi
 
 We filled a much needed niche in academia by creating fluorescence microscopy data analysis tools for labs who would then use our tools to make impactful discoveries in biology. We worked with labs from all over the world on a diverse set of experiments. Our work was published in many top journals such as the BioPhysical Journal, PNAS, and Nature. We have several patents. And our lab has been given millions of dollars in grant money from the NIH and NSF. I would say that by all accounts we are a very successful lab.
 
-At the end of my PhD, Steve and I decided that we wanted to take our success out of accademia and into the real world with the hopes that we can continue working on cool science, but have a more direct impact on the world. So we started a company called [Saguaro Solutions](saguarosolutions.com). The idea seemed simple: we just need to translate our academic success into industry success then we will have a successful company.
+At the end of my PhD, Steve and I decided that we wanted to take our success out of accademia and into the real world with the hopes that we can continue working on cool science, but have a more direct impact on the world. So we started a company called Saguaro Solutions. The idea seemed simple: we just need to translate our academic success into industry success then we will have a successful company.
 
 The first part of undertaking any project is to learn as much as possible about the problem. We did this by reading startup classics such as Lean Startup, joining ASU startup communities such as Venture Devils, and attending training programs such as NSF I-Corps. Following the advice we got from these sources, we underwent a customer discovery process where we talked to potential customers to learn about their needs and how we could help them.
 

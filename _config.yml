@@ -1,4 +1,5 @@
 
+
 # Site Settings
 name: J. Shepard Bryan IV
 title: Shep's Spot
@@ -14,24 +15,24 @@ menu:
   - title: Home
     url: /
   - title: About
-    url: /about
+    url: /pages/about
   - title: Contact
-    url: /contact
+    url: /pages/contact
   - title: Feed
     url: /feed.xml
   - title: Projects
     url: /projects
   - title: Store
-    url: /store
+    url: /pages/store
   - title: Tutorials
     url: /tutorials
 email: shepperoni.pizza@gmail.com
-# See: https://disqus.com/
-disqus_username: jsbryaniv
-# Contact Form Setting
-# See: https://formspree.io/
-formspree_form_id: xdorvdlp
 
+# Disqus Setting (https://disqus.com/)
+disqus_username: jsbryaniv
+
+# Contact Form Setting (https://formspree.io/)
+formspree_form_id: xdorvdlp
 
 # Social Media Settings
 github_username: jsbryaniv
@@ -49,13 +50,16 @@ two_columns_layout: true
 
 # Advanced Settings
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://jsbryaniv.github.io/" # the base hostname & protocol for your site
+url: "https://jsbryaniv.com/"
 google_analytics: "G-5QC1QFQJSK"
 language: "en"
 categories_folder: category
 sent_message_url: "/contact/message-sent/"
 
 # Build settings
+destination: .dev/build/_site
+disable_disk_cache: true
+incremental: false
 markdown: kramdown
 highlighter: rouge
 permalink: /:title/
@@ -103,6 +107,7 @@ exclude:
   - TODO.md
   - Gemfile
   - Gemfile.lock
+  - .dev
 
 # Theme
 version: v3.1.2

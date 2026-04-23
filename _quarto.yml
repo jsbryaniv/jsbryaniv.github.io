@@ -1,9 +1,13 @@
+
 project:
   type: default
   render:
     - "_tutorials"
 
-jupyter: .python/venv/bin/python
+project:
+  output-dir: .dev/build/.quarto
+
+jupyter: .dev/.python/venv/bin/python
 
 format:
   html:
