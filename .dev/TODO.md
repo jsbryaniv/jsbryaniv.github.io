@@ -52,12 +52,11 @@ Needed pages:
 
 ## Colocation Refactor
 
-- Refactor all posts to be folders:
-  - Use index.md for the post content
-  - Put all assets for the post in the same folder
-  - Rename all cover art to coverart in colocated folder
-    - Maybe remove optimized image?
-  - Fix links in posts
+- Point github to new actions built site
+- Migrate images
+  - Move images to _posts folders
+  - Update links in posts
+  - Remove optimized image
 
 
 ## Projects

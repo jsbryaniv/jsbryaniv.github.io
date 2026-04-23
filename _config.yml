@@ -5,11 +5,12 @@ name: J. Shepard Bryan IV
 title: Shep's Spot
 description: A website to showcase the work done by Shep Bryan IV.
 tags:
+  - ai
   - blog
-  - template
-  - jekyll
-  - theme
-  - netlify
+  - physics
+  - science
+  - innovation
+  - entrepreneurship
 show_hero: true
 menu:
   - title: Home
