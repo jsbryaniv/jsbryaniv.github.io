@@ -1,9 +1,12 @@
 
+# --- Overview ---
 
-# Site Settings
+# Site Information
 name: J. Shepard Bryan IV
 title: Shep's Spot
 description: A website to showcase the work done by Shep Bryan IV.
+email: shepperoni.pizza@gmail.com
+language: "en"
 tags:
   - ai
   - blog
@@ -11,64 +14,42 @@ tags:
   - science
   - innovation
   - entrepreneurship
-show_hero: true
-menu:
-  - title: Home
-    url: /
-  - title: About
-    url: /pages/about
-  - title: Contact
-    url: /pages/contact
-  - title: Feed
-    url: /feed.xml
-  - title: Projects
-    url: /projects
-  - title: Store
-    url: /pages/store
-  - title: Tutorials
-    url: /tutorials
-email: shepperoni.pizza@gmail.com
-
-# Disqus Setting (https://disqus.com/)
-disqus_username: jsbryaniv
-
-# Contact Form Setting (https://formspree.io/)
-formspree_form_id: xdorvdlp
-
-# Social Media Settings
-github_username: jsbryaniv
-# facebook_username: facebook_username
-twitter_username: shep_iv
-# instagram_username: instagram_username
-linkedin_username: shep-bryan-iv
-# medium_username: medium_username
-
-# Posts Settings
-show_time_bar: true
-show_modal_on_exit: false
-show_modal_on_finish_post: true
-two_columns_layout: true
 
 # Advanced Settings
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: ""
 url: "https://jsbryaniv.com/"
 google_analytics: "G-5QC1QFQJSK"
-language: "en"
-categories_folder: category
-sent_message_url: "/contact/message-sent/"
 
-# Build settings
-destination: .dev/build/_site
-disable_disk_cache: true
-incremental: false
-markdown: kramdown
-highlighter: rouge
-permalink: /:title/
+# Theme
+version: v3.1.2
+
+
+# --- Linked Accounts ---
+
+# Github
+github_username: jsbryaniv
+# X / Twitter
+twitter_username: shep_iv
+# LinkedIn
+linkedin_username: shep-bryan-iv
+# Disqus Account
+disqus_username: jsbryaniv
+# Contact Form Account
+formspree_form_id: xdorvdlp
+# # Facebook
+# facebook_username: facebook_username
+# # Instagram
+# instagram_username: instagram_username
+# # Medium
+# medium_username: medium_username
+
+
+# --- Content & Display ---
+
+# Collections
 collections:
   authors:
     output: true
-paginate_path: "/page/:num/"
-use_logo: false
 
 # Content paginator
 paginate_content:
@@ -88,7 +69,60 @@ paginate_content:
     single:
       is_generated: true
 
-# Jekyll directories
+# Site Settings
+show_hero: true
+categories_folder: category
+sent_message_url: "/contact/message-sent/"
+
+# Menu
+menu:
+  - title: Home
+    url: /
+  - title: About
+    url: /pages/about
+  - title: Contact
+    url: /pages/contact
+  - title: Feed
+    url: /feed.xml
+  - title: Projects
+    url: /projects
+  - title: Store
+    url: /pages/store
+  - title: Tutorials
+    url: /tutorials
+
+# Posts Settings
+show_time_bar: true
+show_modal_on_exit: false
+show_modal_on_finish_post: true
+two_columns_layout: true
+
+# --- Build Settings ---
+
+# Build settings
+destination: .dev/build/_site
+disable_disk_cache: true
+incremental: false
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+paginate_path: "/page/:num/"
+use_logo: false
+
+# Default behaviors
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: /blog/:title/
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-paginate-content
+
+# Includes
 layouts_dir: jekyll/_layouts
 includes_dir: jekyll/_includes
 plugins_dir: jekyll/_plugins
@@ -96,12 +130,7 @@ sass:
   sass_dir: jekyll/_sass
   style: compressed
 
-# Plugins
-plugins:
-  - jekyll-paginate
-  - jekyll-paginate-content
-
-# Exclude local-only files
+# Excludes
 exclude:
   - _quarto.yml
   - README.md
@@ -109,6 +138,3 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - .dev
-
-# Theme
-version: v3.1.2

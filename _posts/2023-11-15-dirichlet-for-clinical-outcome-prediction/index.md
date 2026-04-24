@@ -1,6 +1,7 @@
 ---
 date: 2023-11-15 12:26:40
 layout: post
+slug: dirichlet-for-clinical-outcome-prediction
 title: Dirichlet Clustering for Clinical Outcome Prediction
 subtitle: A simple example
 description: Here we show how to use Dirichlet Clustering to predict clinical outcomes.

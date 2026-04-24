@@ -32,6 +32,7 @@ Needed pages:
     - Projects
     - Store
     - Tutorials
+    - Feed
   - Create landing pages for collections
   - Create layouts for collections
   - Add links on home page
