@@ -50,6 +50,12 @@ formspree_form_id: xdorvdlp
 collections:
   authors:
     output: true
+  projects:
+    output: true
+  store:
+    output: true
+  tutorials:
+    output: true
 
 # Content paginator
 paginate_content:

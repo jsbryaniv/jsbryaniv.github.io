@@ -91,3 +91,4 @@ Needed pages:
 - Footer gets covered by "read this next". Fix that.
 - Unlink to old saguaro solutions website
 - Bring over images from image sharing website here
+- Move pages to colocated index.md ??? 

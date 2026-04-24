@@ -1,9 +1,9 @@
 ---
 layout: page
 menu: false
-date: '2020-02-27 01:53:59'
+date: '2026-04-24 00:00:01'
 title: About
-description: Some description.
+description: About me and this website.
 permalink: /about/
 ---
 
