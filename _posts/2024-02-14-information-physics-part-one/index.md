@@ -5,7 +5,6 @@ title: Information Physics Part One
 subtitle: Creating the physics of learning
 description: Here I post preliminary work on deriving physics of information.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_mapping_physics_to_inference.jpg
 category: science
 tags:
   - math

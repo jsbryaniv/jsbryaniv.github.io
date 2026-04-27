@@ -5,7 +5,6 @@ title: Update December 2026
 subtitle: How we got here and where we are going
 description: My life status update for December 2023.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_new_year_resolutions_2025.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_new_year_resolutions_2025.png
 category: update
 tags:
   - update

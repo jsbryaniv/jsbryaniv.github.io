@@ -44,6 +44,8 @@ Needed pages:
   - Update links in posts
   - Remove optimized image
 
+- Migrate all staticflickr images
+
 
 ## Projects
 

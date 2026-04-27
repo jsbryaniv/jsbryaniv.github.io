@@ -5,7 +5,6 @@ title: Update January 2024
 subtitle: Looking back on 2023 and looking forward to 2024
 description: My life status update for January 2024.
 image: https://live.staticflickr.com/65535/53451656569_4c70139e4c_z.jpg
-optimized_image: https://live.staticflickr.com/65535/53451656569_4c70139e4c_z.jpg
 category: update
 tags:
   - update

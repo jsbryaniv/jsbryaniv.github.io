@@ -5,7 +5,6 @@ title: An ode to leap day
 subtitle: It should be a holiday
 description: Reflections on the history of leap day
 image: https://jsbryaniv.github.io/assets/img/blog/blog_ode_to_leap_day.jpg
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_ode_to_leap_day.jpg
 category: fun
 tags:
   - fun

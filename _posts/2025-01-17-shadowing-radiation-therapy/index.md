@@ -5,7 +5,6 @@ title: Shadowing Radiation Therapy
 subtitle: Reflection on my first week in a cool field.
 description: I describe my week shadowing radiation therapy treatments.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_shadowing_radiation_therapy.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_shadowing_radiation_therapy.png
 category: update
 tags:
   - update

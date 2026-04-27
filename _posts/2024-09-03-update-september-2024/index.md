@@ -5,7 +5,6 @@ title: Update September 2024
 subtitle: An eventful summer
 description: My life update for summer 2024.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_update_september24.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_update_september24.png
 category: update
 tags:
   - update

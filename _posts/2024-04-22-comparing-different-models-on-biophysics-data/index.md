@@ -5,7 +5,6 @@ title: Comparing different models on biophysics data
 subtitle: A sneak peek into a current project
 description: Here we compare different deep learning models on a few biophysics datasets.
 image: https://jsbryaniv.github.io/assets/img/blog/blog_testing_models_graphic.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_testing_models_graphic.png
 category: science
 tags:
   - deep learning

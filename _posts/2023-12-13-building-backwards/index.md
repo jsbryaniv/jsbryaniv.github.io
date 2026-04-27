@@ -5,7 +5,6 @@ title: Building Backwards
 subtitle: Building a biotech company solutions first.
 description: Here I explain concepts learned from the books Biodesign and Building Backwards to Biotech regarding how to start a biotech startup by working from the end goal backwards.
 image: https://live.staticflickr.com/65535/53395738388_dd525ecc43_z.jpg
-optimized_image: https://live.staticflickr.com/65535/53395738388_dd525ecc43_z.jpg
 category: business
 tags:
   - update
