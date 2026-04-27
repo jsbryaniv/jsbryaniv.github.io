@@ -4,7 +4,7 @@ layout: post
 title: Update February 2024
 subtitle: I am a dad now!
 description: My life status update for February 2024.
-image: https://live.staticflickr.com/65535/53513033573_35369799ca_c.jpg
+image: assets/blog_update_baby_stork.jpg
 category: update
 tags:
   - update

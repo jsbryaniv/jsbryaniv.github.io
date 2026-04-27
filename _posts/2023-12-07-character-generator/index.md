@@ -4,7 +4,7 @@ layout: post
 title: Chinese Character Generator
 subtitle: A simplified model for generative AI
 description: Here we show how to use diffusion based generative models to generate Chinese characters.
-image: https://live.staticflickr.com/65535/53380463416_d0653321c7_z.jpg
+image: assets/blog_chinese_character_landscape.jpg
 category: science
 tags:
   - deep learning
@@ -70,7 +70,8 @@ The denoiser, $f$, acts as a restoritive force that pushes images to lower energ
 Adding noise to an image is like giving it a thermal kick. For small displacements, the restoring force should take it back to the same minimum, but for larger kicks the image will be pushed to a new minimum. This new minima will be a new image. Thus, by iteratively applying the corruptor and denoiser, we are randomly walking around the energy landscape, sampling new images!
 
 I like to imagine the sampling process as a ball getting kicked around the hills and valleys of this potential energy landscape. I created a nice visual for this below.
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53380463416/in/dateposted-public/" title="CharacterHills"><img src="https://live.staticflickr.com/65535/53380463416_d0653321c7_z.jpg" width="640" height="640" alt="CharacterHills"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+![Energy landscape of Chinese characters](assets/blog_chinese_character_landscape.jpg)
 
 The training procedure is then to just train the denoiser to restore the original image after the corruptor has been applied.
 
@@ -269,11 +270,15 @@ Notice that we are not just training up to the maximum temperature each time. We
 ## Results
 
 I save the inputs and outputs of the last step in the training to see how the model distorts the image as it is diffused. You can see this below.
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53380705118/in/dateposted-public/" title="FinalEpoch"><img src="https://live.staticflickr.com/65535/53380705118_66905d2482_z.jpg" width="640" height="215" alt="FinalEpoch"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+![Chinese character diffusion process](assets/blog_character_generator_results.jpg)
+
 Notice that the first few iterations are very subtle and the image is well restored, but as the temperature is increased the image becomes more and more distorted. By the end, the image is completely unrecognizable.
 
 We can also see how the model performs by dreaming up new images. Below we show the output of a few iterations of the dreaming process.
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53380971770/in/dateposted-public/" title="NewCharacters"><img src="https://live.staticflickr.com/65535/53380971770_13ccb6f2e5_z.jpg" width="640" height="521" alt="NewCharacters"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+![Generated Chinese characters](assets/blog_character_generated.jpg)
+
 These images are crude, but they do capture some elements of the radicals that make up the Chinese writing system such as the the box (口, kǒu), the vertical line (丨, gǔn), and the dot (丶, zhǔ). In fact the top left one looks to me almost like a real character, 近 (jìn), which means "near". 
 
 ## Conclusion

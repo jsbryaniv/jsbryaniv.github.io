@@ -4,7 +4,7 @@ layout: post
 title: Building Backwards
 subtitle: Building a biotech company solutions first.
 description: Here I explain concepts learned from the books Biodesign and Building Backwards to Biotech regarding how to start a biotech startup by working from the end goal backwards.
-image: https://live.staticflickr.com/65535/53395738388_dd525ecc43_z.jpg
+image: assets/blog_building_backwards.jpg
 category: business
 tags:
   - update
@@ -31,7 +31,9 @@ So as we shift from from university lab to industry lab, our approach is to use 
 ## Tech is not Biotech
 
 One tried and true approach to picking good business ideas in the tech sector is the Lean Startup methodology. In the Lean Startup methodology you start with a guess about a problem that people have, then iterively go through cyles of Build, Measure, Learn. In the Build phase you create a minimum viable product, in the Measure phase you see how people respond to it, and in the Learn phase you evaluate how to improve the product. After completing a cycle you go back to the Build phase and repeat the process.
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53381569857/in/dateposted-public/" title="BuildMeasureLearn"><img src="https://live.staticflickr.com/65535/53381569857_37f53edfe8_z.jpg" width="602" height="420" alt="BuildMeasureLearn"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+![Build Measure Learn](assets/blog_build_measure_learn.jpg)
+
 The problem with this approach in biotech is that the product lifecycle is completely different than it is in tech. Building a drug or a diagnostic tool is expensive and time consuming. Often there is no such thing as a minimum viable product: either the drug works or it doesn't.
 
 In biotech, it is much harder to start with a guess then iterively diffuse towards a stable product idea. Instead, we really need to have a clear understanding of the product before we build it. This is where the concept of building backwards comes in.
@@ -41,7 +43,9 @@ In biotech, it is much harder to start with a guess then iterively diffuse towar
 The concept of bulding backwards is laid out in two great books [Biodesign: The Process of Innovating Medical Technologies](https://a.co/d/e35Bfk7) and [Building Backwards to Biotech](https://a.co/d/geAxhBs). The core idea is that the market need should be identified before the product is built.
 
 [Biodesign](https://a.co/d/e35Bfk7) lays out a mantra for building a biotech company: Identify, Invent, Implement. In the Identify phase you search for market needs, then filter out the ones that are impractical. Once a problem niche has been identified you move to the Invent phase where you propose and screen solutions. Once an appropriate solution has been identified you move to the Implement phase where you create market strategies and business plans.
-<a data-flickr-embed="true" href="https://www.flickr.com/photos/199612465@N08/53382839674/in/dateposted-public/" title="Biodesign Template"><img src="https://live.staticflickr.com/65535/53382839674_e58e6bde74_z.jpg" width="640" height="395" alt="Biodesign Template"/></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+
+![Identify Invent Implement](assets/blog_identify_invent_implement.jpg)
+
 The key difference between Build Measure Learn and Identify Invent Implement is that the Identify phase is done before the Invent phase. This is building backwards.
 
 Building backwards is a means of identifying a problem in the Identify phase. If we have a target number of patients we would like to treat, then we need to be working on a disease that affects at least that many people. If we have a target price point for our product, then we need to be working on a problem that people are willing to pay that much to solve. If we have a target time to market, then we need to be working on a problem that can be solved in that time frame.
