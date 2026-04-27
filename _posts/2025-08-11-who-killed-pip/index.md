@@ -4,8 +4,7 @@ layout: post
 title: Who killed Pip?
 subtitle: A Python murder mystery.
 description: Last weekend I played detective in a crazy debugging mystery thriller with an unexpected twist! 
-image: https://jsbryaniv.github.io/assets/img/blog/blog_who_killed_pip.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_who_killed_pip.png
+image: assets/blog_who_killed_pip.png
 category: essay
 tags:
   - funny
@@ -95,7 +94,7 @@ If you keep your projects in Desktop or Documents and use iCloud sync:
 
 Move them to a non-synced folder like `~/Code` or `~/Developer`.
 
-Or add .nosync to the environment’s folder name.
+Or add ".nosync" to the environment’s folder name.
 
 Or turn off "Optimize Mac Storage" in iCloud settings.
 

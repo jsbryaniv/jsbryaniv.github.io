@@ -5,7 +5,6 @@ title: Introducing CuentoGo
 subtitle: We vibe coded a Spanish app.
 description: CuentoGo lets you read Spanish stories. 
 image: https://jsbryaniv.github.io/assets/img/blog/blog_introducing_cuentogo.png
-optimized_image: https://jsbryaniv.github.io/assets/img/blog/blog_introducing_cuentogo.png
 category: project
 tags:
   - project
@@ -22,7 +21,7 @@ comments: true
 
 A couple weeks back, my friend [Julian Jacobs](https://github.com/j8jacobs) and I built CuentoGo, a Spanish learning app. Its a project I've been wanting to do for a while, but never had the time. That is until Julian introduced me to "Vibe Coding". The idea in vibe coding is you just plan high level concepts and lean very heavily on AI to do all the grunt work. We decided to test it out and honestly, the results are pretty cool!
 
-![CuentoGo Screenshot](https://jsbryaniv.github.io/assets/img/blog/blog_introducing_cuentogo_screenshot.jpeg)
+![CuentoGo Screenshot](assets/blog_introducing_cuentogo_screenshot.jpeg)
 
 The problem with vibe coding, or at least what people complain about on LinkedIn, is that if you don't know how to code, then you run a risk that the AI will build something that breaks or exposes privacy issues. But in our case, Julian and I both know how to build this, we just wanted to get results fast and lazy.
 
