@@ -27,23 +27,8 @@ Needed pages:
   - Update contact
   - Update bio in authors + about
   - Update README
-- Create pages
-  - Create collections for:
-    - Projects
-    - Store
-    - Tutorials
-    - Feed
-  - Create landing pages for collections
-  - Create layouts for collections
-  - Add links on home page
-- Understand project
-  - Understand the config
-  - Look into pagination (what is this?)
-  - Understand feed.xml
-  - Understand sitemap
-  - Understand robots.txt
 - Clean up website layout
-  - Clean up categories (what is this?)
+  - Clean up categories 
   - Clean up tags
   - Clean up assets
     - Rename assets/css and assets/js to assets/utils or something like that
@@ -62,9 +47,13 @@ Needed pages:
 
 ## Projects
 
-- Make list of projects
-- Make individual project pages
-  - Link to posts that mention the project
+- Make landing page for Blog
+- Make landing page for Projects
+- Make landing page for Store
+- Make landing page for Tutorials
+- Make layout for Projects
+- Make layout for Store
+- Make layout for Tutorials
 
 ## Tutorials
 
@@ -87,8 +76,10 @@ Needed pages:
 
 ## Low Priority
 
+- Get rid of sass cache
 - Change the way disqus looks
 - Footer gets covered by "read this next". Fix that.
 - Unlink to old saguaro solutions website
 - Bring over images from image sharing website here
 - Move pages to colocated index.md ??? 
+- Make plugin / build step that strips all non-md files from tutorials

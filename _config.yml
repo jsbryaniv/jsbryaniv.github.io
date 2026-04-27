@@ -85,15 +85,15 @@ menu:
   - title: Home
     url: /
   - title: About
-    url: /pages/about
+    url: /about
   - title: Contact
-    url: /pages/contact
+    url: /contact
   - title: Feed
     url: /feed.xml
   - title: Projects
     url: /projects
   - title: Store
-    url: /pages/store
+    url: /store
   - title: Tutorials
     url: /tutorials
 
@@ -135,6 +135,7 @@ plugins_dir: jekyll/_plugins
 sass:
   sass_dir: jekyll/_sass
   style: compressed
+  cache_location: .dev/build/.sass-cache
 
 # Excludes
 exclude:
