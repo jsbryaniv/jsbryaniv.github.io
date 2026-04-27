@@ -28,18 +28,25 @@ version: v3.1.2
 
 # Github
 github_username: jsbryaniv
+
 # X / Twitter
 twitter_username: shep_iv
+
 # LinkedIn
 linkedin_username: shep-bryan-iv
+
 # Disqus Account
 disqus_username: jsbryaniv
+
 # Contact Form Account
 formspree_form_id: xdorvdlp
+
 # # Facebook
 # facebook_username: facebook_username
+
 # # Instagram
 # instagram_username: instagram_username
+
 # # Medium
 # medium_username: medium_username
 
@@ -121,7 +128,8 @@ defaults:
       path: ""
       type: "posts"
     values:
-      permalink: /blog/:title/
+      permalink: /blog/:year/:month/:title/
+      paginate: false
 
 # Plugins
 plugins:
