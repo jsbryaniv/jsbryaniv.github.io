@@ -147,6 +147,7 @@ sass:
 
 # Excludes
 exclude:
+  - _posts/**/assets/**  # Post assets are copied via plugin, ignore originals
   - _quarto.yml
   - README.md
   - TODO.md
