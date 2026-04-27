@@ -1,6 +1,6 @@
 ---
 layout: author
-photo: /assets/img/uploads/profile.png
+photo: /assets/img/profiles/profile.png
 name: jsbryaniv
 display_name: Shep Bryan IV
 position: Co-Founder of Saguaro AI

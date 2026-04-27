@@ -13,27 +13,26 @@ Needed pages:
 
 ## General tasks
 
-- Move to new domain
-- Reorganize landing page
-  - Hero blog posts
-  - Recent blog posts
-  - Projects
-  - Store
-  - Tutorials
-- Clean up header
-- Clean up footer
 - Update information
   - Update logo (blog-image.png)
   - Update about
   - Update contact
   - Update bio in authors + about
   - Update README
-- Update favicons and icons
+- Clean up header
+- Clean up footer
+- Reorganize landing page
+  - Hero blog posts
+  - Recent blog posts
+  - Projects
+  - Store
+  - Tutorials
 - Clean up website layout
   - Clean up categories 
   - Clean up tags
-  - Clean up assets
-    - Rename assets/css and assets/js to assets/utils or something like that
+- Move to new domain
+
+
 - Set up services:
   - Set up shopify/stripe store
   

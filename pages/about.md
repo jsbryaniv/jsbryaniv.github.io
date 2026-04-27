@@ -7,7 +7,7 @@ description: About me and this website.
 permalink: /about/
 ---
 
-<img class="img-rounded" src="/assets/img/uploads/profile.png" alt="Shep Bryan" width="200">
+<img class="img-rounded" src="/assets/img/profiles/profile.png" alt="Shep Bryan" width="200">
 
 # About
 
