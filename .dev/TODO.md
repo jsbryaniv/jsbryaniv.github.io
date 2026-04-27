@@ -13,6 +13,7 @@ Needed pages:
 
 ## General tasks
 
+- Move to new domain
 - Reorganize landing page
   - Hero blog posts
   - Recent blog posts
@@ -27,6 +28,7 @@ Needed pages:
   - Update contact
   - Update bio in authors + about
   - Update README
+- Update favicons and icons
 - Clean up website layout
   - Clean up categories 
   - Clean up tags
