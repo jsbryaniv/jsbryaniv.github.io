@@ -4,7 +4,7 @@ layout: post
 title: Introducing CuentoGo
 subtitle: We vibe coded a Spanish app.
 description: CuentoGo lets you read Spanish stories. 
-image: https://jsbryaniv.github.io/assets/img/blog/blog_introducing_cuentogo.png
+image: assets/blog_introducing_cuentogo.png
 category: project
 tags:
   - project

@@ -39,8 +39,6 @@ Needed pages:
 ## Colocation Refactor
 
 - Point github to new actions built site
-- Migrate images
-  - Move images to _posts folders
 - Update links in posts
 
 ## Projects

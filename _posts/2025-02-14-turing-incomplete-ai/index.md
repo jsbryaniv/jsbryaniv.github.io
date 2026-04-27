@@ -4,7 +4,7 @@ layout: post
 title: Turing Incomplete AI
 subtitle: Reflection on the limitations of AI
 description: I describe the limitations of AI and the implications of Turing Incomplete AI.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_turing_incomplete_ai.png
+image: assets/blog_turing_incomplete_ai.png
 category: essay
 tags:
   - essay
