@@ -41,11 +41,7 @@ Needed pages:
 - Point github to new actions built site
 - Migrate images
   - Move images to _posts folders
-  - Update links in posts
-  - Remove optimized image
-
-- Migrate all staticflickr images
-
+- Update links in posts
 
 ## Projects
 
@@ -77,6 +73,8 @@ Needed pages:
 
 
 ## Low Priority
+
+- Fix icons in header and footer
 
 - Get rid of sass cache
 - Change the way disqus looks

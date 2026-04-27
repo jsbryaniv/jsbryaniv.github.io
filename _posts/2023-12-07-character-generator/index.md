@@ -11,7 +11,6 @@ tags:
   - coding
   - generative ai
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

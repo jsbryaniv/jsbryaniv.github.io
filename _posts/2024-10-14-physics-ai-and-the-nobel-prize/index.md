@@ -4,14 +4,13 @@ layout: post
 title: Physics, AI, and the Nobel Prize
 subtitle: Reflections on current enthusiasm for physics and AI.
 description: Here I write some thoughts reflecting on the recent Nobel Prize in physics.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_physics_ai_nobel_prize.png
+image: assets/blog_physics_ai_nobel_prize.png
 category: essay
 tags:
   - essay
   - physics
   - ai
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

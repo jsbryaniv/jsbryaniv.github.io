@@ -130,6 +130,8 @@ defaults:
     values:
       permalink: /blog/:year/:month/:title/
       paginate: false
+      math: true
+      comments: true
 
 # Plugins
 plugins:

@@ -4,12 +4,11 @@ layout: post
 title: Update April 2024
 subtitle: A lot can happen in a month.
 description: My life status update for April 2024.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_update_april24.png
+image: assets/blog_update_april24.png
 category: update
 tags:
   - update
 author: jsbryaniv
-paginate: true
 math: false
 comments: true
 ---

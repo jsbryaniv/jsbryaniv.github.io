@@ -4,14 +4,13 @@ layout: post
 title: The Special Sauce at the Fall Festival
 subtitle: Seriously speedy slides.
 description: A fun day at the fall festival.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_special_sauce_at_the_fall_festival.png
+image: assets/blog_special_sauce_at_the_fall_festival.png
 category: fun
 tags:
   - fun
   - funny
   - holiday
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

@@ -4,12 +4,11 @@ layout: post
 title: Update September 2024
 subtitle: An eventful summer
 description: My life update for summer 2024.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_update_september24.png
+image: assets/blog_update_september24.png
 category: update
 tags:
   - update
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

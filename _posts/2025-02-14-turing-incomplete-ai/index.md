@@ -10,7 +10,6 @@ tags:
   - essay
   - AI
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

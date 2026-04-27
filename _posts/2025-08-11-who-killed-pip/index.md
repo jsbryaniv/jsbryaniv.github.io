@@ -10,7 +10,6 @@ tags:
   - funny
   - python
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

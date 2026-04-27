@@ -9,7 +9,6 @@ category: update
 tags:
   - update
 author: jsbryaniv
-paginate: true
 math: false
 comments: true
 ---

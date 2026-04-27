@@ -13,7 +13,6 @@ tags:
   - coding
   - prediction
 author: jsbryaniv
-paginate: false
 math: true
 comments: true
 ---

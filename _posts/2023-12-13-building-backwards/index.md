@@ -11,7 +11,6 @@ tags:
   - business
   - biotech
 author: jsbryaniv
-paginate: true
 math: false
 comments: true
 ---

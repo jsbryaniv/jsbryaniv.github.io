@@ -13,7 +13,6 @@ tags:
   - music
   - project
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

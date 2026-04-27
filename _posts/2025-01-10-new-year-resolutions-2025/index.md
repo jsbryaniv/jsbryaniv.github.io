@@ -4,12 +4,11 @@ layout: post
 title: New Year Resolutions 2025
 subtitle: Setting up for success in the new year
 description: Publicly declaring my resolutions for 2025 so I can't back out.
-image: https://jsbryaniv.github.io/assets/img/blog/blog_new_year_resolutions_2025.png
+image: assets/blog_new_year_resolutions_2025.png
 category: update
 tags:
   - update
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---

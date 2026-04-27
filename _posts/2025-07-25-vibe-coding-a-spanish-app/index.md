@@ -11,7 +11,6 @@ tags:
   - AI
   - language
 author: jsbryaniv
-paginate: true
 math: true
 comments: true
 ---
