@@ -2,9 +2,9 @@
 # --- Overview ---
 
 # Site Information
-name: Shep 4
-title: Shep's Spot
-description: A website to showcase the work done by Shep Bryan IV.
+name: SHEP 4
+title: Shep Bryan IV | Physicist and Innovator
+description: Phoenix-based physicist and innovator turning first principles into practical systems.
 email: shepperoni.pizza@gmail.com
 language: "en"
 tags:
@@ -119,7 +119,7 @@ markdown: kramdown
 highlighter: rouge
 permalink: /:title/
 paginate_path: "/page/:num/"
-use_logo: true
+use_logo: false
 
 # Default behaviors
 defaults:
@@ -151,7 +151,6 @@ exclude:
   - _posts/**/assets/**  # Post assets are copied via plugin, ignore originals
   - _quarto.yml
   - README.md
-  - TODO.md
   - Gemfile
   - Gemfile.lock
   - .dev

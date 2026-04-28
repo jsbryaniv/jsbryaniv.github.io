@@ -7,20 +7,24 @@ permalink: /about/
 
 <img class="img-rounded" src="/assets/img/profiles/profile.png" alt="Shep Bryan" width="200">
 
+
 # About
 
-My name is J. Shepard Bryan IV, but I go by Shep. I’m a Phoenix-based physicist and innovator taking ideas from first principles to products.
+My name is J. Shepard Bryan IV, but I go by Shep. I’m a Phoenix-based physicist, AI dev, and innovator.
 
-I got my PhD in Physics from Arizona State University and now work in AI. Over the years, I’ve applied physics, AI, and machine learning across a wide range of industries including particle physics, biotech, radiation therapy, nuclear power, and now insurance. Across all of them, the process is the same: understand a system at a fundamental level, then turn that understanding into something practical.
+I earned my PhD in Physics from Arizona State University focussing on developing and implementing AI solutions for complex problems in biophysics. After graduating, I applied my training across a range of industries, including biotech, radiation therapy, nuclear power, and now insurance. Across all of these fields, the problem solving process is the same: understand a system at a fundamental level, then turn that understanding into something practical.
 
-Alongside my technical work, I’ve become increasingly interested in how ideas become products, how to take a simple insight and turn it into something people can actually use.
+But, I've learned that its not enough to simply solve a problem. The real impact comes from turning that solution into something that can be used by others. This is the philosophy I bring to all of my work, whether it's in my day job or in my personal ventures, which I share on this site.
 
-This site is where I build and test ideas in public, some as experiments, some as products.
+My approach follows a simple framework:
 
-My core philosophy is straightforward: find something interesting, understand it deeply, then build something useful from it. I start with a minimum viable version and minimal upfront investment, then iterate and scale once demand is proven.
+1. **Start from first principles**. Understand a problem deeply, starting from the most fundamental level. Understand the system, the constraints, and the underlying mechanics before trying to solve it.
 
-Here you’ll find a mix of project posts, technical tutorials, and things you can actually use or buy. The projects span whatever I find interesting, from AI to language learning to physical products and tools, but they all follow the same underlying approach.
+2. **Build something practical**. Focus on building something that can actually be used, not just understood. The goal is to create real value, not just theoretical insight.
 
-The goal isn’t just to build things. It’s to understand how to build things efficiently, starting with almost nothing and designing for scale from the beginning.
+3. **Start near zero**. Keep upfront investment minimal, both in terms of time and money. This allows for quick iteration and efficient testing of ideas. It’s about moving fast and learning quickly, not about perfecting something before it sees the light of day.
 
-If something here is useful, feel free to use it, build on it, or improve it.
+4. **Scale on demand**. If there’s real demand for what you’ve built, scale it. If not, move on to the next problem. The key is to be responsive to feedback and to focus resources where they can have the most impact.
+
+This site is where I build in public. It’s a collection of projects, experiments, and ideas taken from concept to implementation, with an emphasis on real-world use. The goal is simple: take what I learn, turn it into something useful, and share the process along the way.
+

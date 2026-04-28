@@ -12,18 +12,13 @@ Needed pages:
 
 ## General tasks
 
-- Update information
-  - Update about
-  - Update contact
-  - Update bio in authors + about
-  - Update README
 - Make landing page for Blog
 - Make landing page for Projects
 - Make landing page for Store
 - Make landing page for Tutorials
 - Clean up header
 - Clean up footer
-- Reorganize landing page
+- Reorganize home page
   - Hero blog posts
   - Recent blog posts
   - Projects
@@ -32,21 +27,20 @@ Needed pages:
 - Clean up website layout
   - Clean up categories 
   - Clean up tags
+- Update profile picture
 
+
+## Deployment
+
+- Point github to new actions built site
 - Move to new domain
 - Set up services:
   - Set up shopify/stripe store
   
 
-## Colocation Refactor
-
-- Point github to new actions built site
-
-
 ## Tutorials
 
-- Copy over old tutorials
-- Make list of new tutorials
+- Convert old tutorials to new format
 - Styling:
   - Fix code-animation:
     - Fix the cursor
@@ -64,6 +58,7 @@ Needed pages:
 
 ## Low Priority
 
+- Make new logo
 - Change the way disqus looks
 - Footer gets covered by "read this next". Fix that.
 - Unlink to old saguaro solutions website

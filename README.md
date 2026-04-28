@@ -1,8 +1,18 @@
 
-# Hello!
+# Personal Website
 
-I am Shep Bryan, I am a physicist with a focus at the intersection of physics, AI, and biology. This is the GitHub page for my blog where I showcase my work in machine learning and data science.
+This repository contains the code for my personal website and blog:
 
-Click [here](https://jsbryaniv.github.io/) to see the website.
+👉 https://jsbryaniv.github.io/
 
-This blog uses the [Jekflix](https://github.com/thiagorossener/jekflix-template) template created by [Thiago Rossener](https://rossener.com/).
+The site is built using Jekyll and hosted on GitHub Pages. It’s where I publish projects, tutorials, and experiments.
+
+## Tech Stack
+- Jekyll
+- GitHub Pages
+- Markdown
+- Quarto (for tutorials)
+
+## Template
+
+This site is based on the [Jekflix](https://github.com/thiagorossener/jekflix-template) template created by [Thiago Rossener](https://rossener.com/).

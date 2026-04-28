@@ -15,7 +15,13 @@ layout: page
     <h2 class="position">{{ page.position }}</h2>
   {% endif %}
 
-  <p>{{ page.bio }}</p>
+  <!-- <p>{{ page.bio }}</p> -->
+
+  {% if content and content != "" %}
+    <div class="author-content">
+      {{ content }}
+    </div>
+  {% endif %}
 
   <h2>Posts</h2>
 
