@@ -13,7 +13,8 @@
     border-top: none;
   }
 
-  svg {
+  svg,
+  .social-icon {
     margin: rem(15px);
     @include size(35, 35);
   }
@@ -23,8 +24,10 @@
     border: none;
   }
 
-  .icon {
+  .icon,
+  .social-icon {
     transition: all 0.3s;
+    filter: brightness(0) saturate(100%) invert(35%);
   }
 
   .icon-twitter:hover {
@@ -33,5 +36,11 @@
   
   .icon-facebook:hover {
     fill: #3b5998;
+  }
+
+  .social-icon-twitter:hover,
+  .social-icon-facebook:hover {
+    opacity: 0.8;
+    filter: brightness(0) saturate(100%) invert(25%);
   }
 }

@@ -19,9 +19,10 @@
     }
   }
 
-  svg {
+  .social-icon {
     @include size(25, 25);
     margin-right: rem(10px);
+    vertical-align: middle;
   }
 
   a {
@@ -30,12 +31,23 @@
     border: none;
     transition: all 0.3s;
 
+    .social-icon {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      filter: brightness(0) saturate(100%) invert(35%);
+    }
+
     &:hover {
       fill: $themeColor;
     }
+
+    &:hover .social-icon {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(18%);
+    }
   }
 
-  img {
+  .author-avatar {
     width: rem(150px);
     border-radius: 50%;
     display: block;

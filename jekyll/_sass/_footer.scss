@@ -32,7 +32,8 @@ footer {
     font-weight: 700;
   }
 
-  svg {
+  svg,
+  .social-icon {
     @include size(28, 28);
     display: inline-block;
     vertical-align: middle;
@@ -64,6 +65,17 @@ footer {
     
     &.creator:hover {
       text-decoration: underline;
+    }
+
+    .social-icon {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      filter: brightness(0) saturate(100%) invert(72%) sepia(0%) saturate(0%) hue-rotate(173deg) brightness(97%) contrast(89%);
+    }
+
+    &:hover .social-icon {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(100%);
     }
   }
 
