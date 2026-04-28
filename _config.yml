@@ -10,6 +10,7 @@ language: "en"
 tags:
   - ai
   - blog
+  - coding
   - physics
   - science
   - innovation
@@ -95,8 +96,6 @@ menu:
     url: /about
   - title: Contact
     url: /contact
-  - title: Feed
-    url: /feed.xml
   - title: Projects
     url: /projects
   - title: Store

@@ -6,7 +6,6 @@ Needed pages:
 - About
 - Blog
 - Contact
-- Feed
 - Projects
 - Store
 - Tutorials
