@@ -2,7 +2,7 @@
 # --- Overview ---
 
 # Site Information
-name: J. Shepard Bryan IV
+name: Shep 4
 title: Shep's Spot
 description: A website to showcase the work done by Shep Bryan IV.
 email: shepperoni.pizza@gmail.com
@@ -120,7 +120,7 @@ markdown: kramdown
 highlighter: rouge
 permalink: /:title/
 paginate_path: "/page/:num/"
-use_logo: false
+use_logo: true
 
 # Default behaviors
 defaults:

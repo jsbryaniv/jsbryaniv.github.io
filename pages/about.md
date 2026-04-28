@@ -1,7 +1,5 @@
 ---
 layout: page
-menu: false
-date: '2026-04-24 00:00:01'
 title: About
 description: About me and this website.
 permalink: /about/
@@ -11,12 +9,18 @@ permalink: /about/
 
 # About
 
-Hello! I am Shep Bryan IV, a physicist with a focus at the intersection of physics, AI, and biology.
+My name is J. Shepard Bryan IV, but I go by Shep. I’m a Phoenix-based physicist and innovator taking ideas from first principles to products.
 
-I did my graduate work in physics at Arizona State University, studying under my mentor, Steve Presse. In Presse Lab we built cutting edge machine learning algorithms to solve complex problems in biophysics.
+I got my PhD in Physics from Arizona State University and now work in AI. Over the years, I’ve applied physics, AI, and machine learning across a wide range of industries including particle physics, biotech, radiation therapy, nuclear power, and now insurance. Across all of them, the process is the same: understand a system at a fundamental level, then turn that understanding into something practical.
 
-Since graduation, my advisor and I have cofounded Saguaro Solutions, a company that builds custom machine learning software for biotech companies. Our long term goal is to completely automate data science for biotech companies. As we work towards this goal we are providing contract and consulting services to labs in the life sciences. Be sure to read my life updates for the latest news on our progress.
+Alongside my technical work, I’ve become increasingly interested in how ideas become products, how to take a simple insight and turn it into something people can actually use.
 
-I am starting this blog to showcase our skills and the problems that we have worked on. We have many academic papers, but I think that the blog format can reach a larger audience because of its informal nature and unrestricted perview.
+This site is where I build and test ideas in public, some as experiments, some as products.
 
-Please feel free to comment, ask questions, or suggest topics for future posts. I am always happy to talk about science and technology!
+My core philosophy is straightforward: find something interesting, understand it deeply, then build something useful from it. I start with a minimum viable version and minimal upfront investment, then iterate and scale once demand is proven.
+
+Here you’ll find a mix of project posts, technical tutorials, and things you can actually use or buy. The projects span whatever I find interesting, from AI to language learning to physical products and tools, but they all follow the same underlying approach.
+
+The goal isn’t just to build things. It’s to understand how to build things efficiently, starting with almost nothing and designing for scale from the beginning.
+
+If something here is useful, feel free to use it, build on it, or improve it.
