@@ -22,13 +22,12 @@
   </a>
   
   <div class="carousel-container">
-    <div class="carousel-track" id="carousel-{{ section_id }}">
+    <div class="carousel-track">
       {% for item in items limit:3 %}
         {% assign display_title = item.name | default: item.title | default: item.slug %}
-        
         {% include carousel-tile.html 
           item=item 
-          display_title=display_title 
+          display_title=display_title
           show_date=show_date
         %}
       {% endfor %}
