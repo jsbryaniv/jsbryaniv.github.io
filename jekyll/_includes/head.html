@@ -16,7 +16,7 @@
     {% if page.image %}
         {% assign image = page.image %}
     {% else %}
-        {% assign image = "/assets/img/blog-image.png" | prepend: site.baseurl | prepend: site.url %}
+        {% assign image = "/assets/img/blog-image.png" | absolute_url %}
     {% endif %}
 
     {% assign description = '' %}
@@ -28,9 +28,9 @@
 
     {% assign url = '' %}
     {% if paginator.page_trail %}
-        {% assign url = paginator.first_page_path | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
+        {% assign url = paginator.first_page_path | replace:'index.html','' | absolute_url %}
     {% else %}
-        {% assign url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
+        {% assign url = page.url | replace:'index.html','' | absolute_url %}
     {% endif %}
 
     <title>{{ title }}</title>
@@ -47,7 +47,7 @@
     {% if image contains '://' %}
         <meta property="twitter:image" content="{{ image }}">
     {% else %}
-        <meta property="twitter:image" content="{{ image | prepend: site.url }}">
+        <meta property="twitter:image" content="{{ image | absolute_url }}">
     {% endif %}
     
     {% if site.twitter_username %}
@@ -57,7 +57,11 @@
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="{{ url }}">
     <meta property="og:title" content="{{ title }}">
-    <meta property="og:image" content="{{ image }}">
+    {% if image contains '://' %}
+        <meta property="og:image" content="{{ image }}">
+    {% else %}
+        <meta property="og:image" content="{{ image | absolute_url }}">
+    {% endif %}
     <meta property="og:description" content="{{ description }}">
     <meta property="og:site_name" content="{{ site.title }}">
 
@@ -73,7 +77,21 @@
 
     <link rel="stylesheet" href="{{ '/assets/site/styles.css' | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ url }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}" />
+
+    {% if page.layout == 'home' %}
+        {% include seo/schema-home.html %}
+    {% elsif page.layout == 'post' %}
+        {% include seo/schema-post.html %}
+    {% elsif page.layout == 'author' %}
+        {% include seo/schema-author-page.html %}
+    {% endif %}
+    {% include seo/schema-organization.html %}
+    {% if page.extra_schema %}
+    <script type="application/ld+json">
+{{ page.extra_schema }}
+    </script>
+    {% endif %}
 
     <!-- Include extra styles -->
     {% include extra-css.html %}

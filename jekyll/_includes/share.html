@@ -1,10 +1,10 @@
 <section class="share">
     <h3>{{ site.translations.text.share | default: "Share" }}</h3>
-    <a aria-label="{{ site.translations.button.share_on_twitter | default: 'Share on X' }}" href="https://x.com/intent/tweet?text=&quot;{{ page.description }}&quot;%20{{ site.url }}{{ page.url }}%20via%20&#64;{{ site.twitter_username }}&hashtags={{ page.tags | join: ',' }}"
+    <a aria-label="{{ site.translations.button.share_on_twitter | default: 'Share on X' }}" href="https://x.com/intent/tweet?text=&quot;{{ page.description }}&quot;%20{{ page.url | absolute_url }}%20via%20&#64;{{ site.twitter_username }}&hashtags={{ page.tags | join: ',' }}"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="{{ site.translations.button.share_on_twitter | default: 'Share on X' }}">
         <img class="social-icon social-icon-twitter" src="{{ '/assets/icons/brands/x.svg' | prepend: site.baseurl }}" alt="Share on X">
     </a>
-    <a aria-label="{{ site.translations.button.share_on_facebook | default: 'Share on Facebook' }}" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}"
+    <a aria-label="{{ site.translations.button.share_on_facebook | default: 'Share on Facebook' }}" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="{{ site.translations.button.share_on_facebook | default: 'Share on Facebook' }}">
         <img class="social-icon social-icon-facebook" src="{{ '/assets/icons/brands/facebook.svg' | prepend: site.baseurl }}" alt="Share on Facebook">
     </a>
