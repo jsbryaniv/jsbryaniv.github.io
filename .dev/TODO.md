@@ -58,6 +58,7 @@ Needed pages:
 
 ## Low Priority
 
+- Back button for collections to collection landing page?
 - Make new logo
 - Change the way disqus looks
 - Footer gets covered by "read this next". Fix that.
