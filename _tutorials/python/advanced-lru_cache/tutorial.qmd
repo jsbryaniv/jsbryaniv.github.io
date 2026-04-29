@@ -1,20 +1,17 @@
 ---
 title: "Python Tip: lru_cache"
 subtitle: "Speed up expensive function calls with caching"
-description: "A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management."
 author: "Shep Bryan IV"
-category: python_tips
-tags:
-  - python
-  - advanced
-  - technical
-  - performance
+description: "A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management."
 ---
 
 ## Python Tip: `lru_cache`
 
 Want to speed up your code by caching function results?
 Use `functools.lru_cache` to store results of expensive function calls and reuse them.
+
+
+---
 
 ## Basic Example of a Slow Function
 
@@ -32,6 +29,9 @@ x = slow_fibonacci(4)
 print(f"Final result = {x}")
 ```
 :::
+
+
+---
 
 ## Using `lru_cache`
 
@@ -51,6 +51,9 @@ x = fast_fibonacci(4)
 print(f"Final result = {x}")
 ```
 
+
+---
+
 ## Cache Management
 
 `lru_cache` stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.
@@ -61,6 +64,9 @@ You can clear the cache manually and inspect cache stats like hits, misses, and 
 fast_fibonacci.cache_clear()  # Clears the cache
 print(fast_fibonacci.cache_info())
 ```
+
+
+---
 
 ## Wrap-Up
 

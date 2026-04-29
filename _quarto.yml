@@ -4,9 +4,6 @@ project:
   render:
     - "_tutorials"
 
-project:
-  output-dir: .dev/build/.quarto
-
 jupyter: .dev/python/venv/bin/python
 
 format:

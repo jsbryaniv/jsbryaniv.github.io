@@ -27,4 +27,8 @@ __pycache__/
 
 .quarto/
 index_files/
+tutorial_files/
 
+
+/.quarto/
+**/*.quarto_ipynb

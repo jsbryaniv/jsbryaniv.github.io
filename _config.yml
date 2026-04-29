@@ -137,6 +137,12 @@ defaults:
       paginate: false
       math: true
       comments: true
+  - scope:
+      path: ""
+      type: "tutorials"
+    values:
+      layout: tutorial
+      permalink: /tutorials/:path/
 
 # Plugins
 plugins:
@@ -155,6 +161,9 @@ sass:
 # Excludes
 exclude:
   - _posts/**/assets/**  # Post assets are copied via plugin, ignore originals
+  - _tutorials/**/*.qmd
+  - _tutorials/**/tutorial_index/
+  - _tutorials/**/social/
   - _quarto.yml
   - README.md
   - Gemfile

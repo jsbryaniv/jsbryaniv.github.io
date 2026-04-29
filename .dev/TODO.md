@@ -44,15 +44,15 @@ Needed pages:
 
 ## Low Priority
 
+- Hovering over footer icons makes them dissapear. Fix that.
 - Get rid of all references to optimized_image
 - Make new logo
 - Change the way disqus looks
 - Footer gets covered by "read this next". Fix that.
 - Unlink to old saguaro solutions website
-- Make plugin / build step that strips all non-md files from tutorials
 - Add Publications page linking to my papers
 - Make search bar search through all collections, not just blog posts
-- Update terms and privacy after domain shift
+- Update terms and privacy links after domain shift
 
 ## Future
 
