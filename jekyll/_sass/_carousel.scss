@@ -1,0 +1,135 @@
+// Horizontal carousel section styles
+
+.carousel-section {
+  margin: rem(60px) 0;
+  padding: 0 rem(23px);
+  
+  @include media(">=sm") {
+    margin: rem(80px) 0;
+  }
+}
+
+.carousel-title {
+  font-size: rem(32px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $accentDark;
+  margin: 0 0 rem(30px) 0;
+  font-weight: 800;
+  
+  @include media(">=sm") {
+    font-size: rem(40px);
+    margin: 0 0 rem(40px) 0;
+  }
+}
+
+.carousel-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.carousel-track {
+  display: flex;
+  gap: rem(30px);
+  padding-bottom: rem(20px);
+  
+  .box-item {
+    flex: 0 0 auto;
+    width: rem(300px);
+    margin: 0;
+    
+    @include media(">=sm") {
+      width: rem(350px);
+    }
+  }
+}
+
+// See More tile styling
+.see-more-tile {
+  .see-more-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 100%;
+    min-height: rem(350px);
+    background: linear-gradient(135deg, rgba(255, 10, 22, 0.1) 0%, rgba(255, 10, 22, 0.05) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    
+    @include media(">=sm") {
+      min-height: rem(400px);
+    }
+  }
+  
+  .see-more-link:hover {
+    background: linear-gradient(135deg, rgba(255, 10, 22, 0.2) 0%, rgba(255, 10, 22, 0.1) 100%);
+    border-color: $themeColor;
+    transform: scale(1.05);
+  }
+  
+  .see-more-content {
+    text-align: center;
+  }
+  
+  .see-more-text {
+    display: block;
+    font-size: rem(24px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $accentDark;
+    margin-bottom: rem(10px);
+    
+    @include media(">=sm") {
+      font-size: rem(28px);
+    }
+  }
+  
+  .see-more-arrow {
+    display: block;
+    font-size: rem(36px);
+    color: $themeColor;
+    transition: transform 0.3s ease;
+    
+    @include media(">=sm") {
+      font-size: rem(42px);
+    }
+  }
+  
+  .see-more-link:hover .see-more-arrow {
+    transform: translateX(10px);
+  }
+}
+
+// Remove extra spacing on home page
+.home-redesign {
+  .carousel-section:first-of-type {
+    margin-top: rem(40px);
+    
+    @include media(">=sm") {
+      margin-top: rem(60px);
+    }
+  }
+}

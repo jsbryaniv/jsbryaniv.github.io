@@ -58,6 +58,7 @@ Needed pages:
 
 ## Low Priority
 
+- Get rid of all references to optimized_image
 - Back button for collections to collection landing page?
 - Make new logo
 - Change the way disqus looks

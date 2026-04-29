@@ -1,0 +1,47 @@
+{% comment %}
+  Reusable horizontal carousel section for collections
+  Parameters:
+    - title: Section title (e.g., "BLOG", "PROJECTS")
+    - items: Collection items to display
+    - link_url: URL for "See more" tile
+    - show_category: Show category tag (for blog posts)
+    - show_date: Show date (for blog posts)
+    - section_id: Unique ID for this section (for lazy-loading)
+{% endcomment %}
+
+{% assign title = include.title %}
+{% assign items = include.items %}
+{% assign link_url = include.link_url %}
+{% assign show_category = include.show_category | default: false %}
+{% assign show_date = include.show_date | default: false %}
+{% assign section_id = include.section_id | downcase %}
+
+<section class="carousel-section">
+  <h2 class="carousel-title">{{ title }}</h2>
+  
+  <div class="carousel-container">
+    <div class="carousel-track" id="carousel-{{ section_id }}">
+      {% for item in items limit:3 %}
+        {% assign display_title = item.name | default: item.title | default: item.slug %}
+        
+        {% include carousel-tile.html 
+          item=item 
+          display_title=display_title 
+          show_date=show_date
+        %}
+      {% endfor %}
+      
+      <!-- See More Tile -->
+      <article class="box-item tile-card see-more-tile no-category">
+        <div class="box-body">
+          <a class="see-more-link" href="{{ link_url }}">
+            <div class="see-more-content">
+              <span class="see-more-text">See More</span>
+              <span class="see-more-arrow">→</span>
+            </div>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
