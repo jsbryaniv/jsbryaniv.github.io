@@ -12,14 +12,6 @@ Needed pages:
 
 ## General tasks
 
-- Clean up header
-- Clean up footer
-- Reorganize home page
-  - Hero blog posts
-  - Recent blog posts
-  - Projects
-  - Store
-  - Tutorials
 - Clean up website layout
   - Clean up categories 
   - Clean up tags
@@ -30,8 +22,6 @@ Needed pages:
 
 - Point github to new actions built site
 - Move to new domain
-- Set up services:
-  - Set up shopify/stripe store
   
 
 ## Tutorials
@@ -63,3 +53,16 @@ Needed pages:
 - Add Publications page linking to my papers
 - Make search bar search through all collections, not just blog posts
 - Update terms and privacy after domain shift
+
+## Future
+
+- Set up newsletter
+  - Figure out provider
+  - Make collection
+  - Add signup form to site
+  - Make landing page
+- Set up store
+  - Set up shopify/stripe account
+  - Add products
+  - Make landing page
+
