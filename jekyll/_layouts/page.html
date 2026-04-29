@@ -2,7 +2,65 @@
 layout: default
 ---
 
-<div class="post">
+<style>
+  .post.page-layout {
+    top: 0 !important;
+  }
+  
+  .page-back-nav {
+    padding: 80px 0 5px 23px;
+  }
+  
+  .back-to-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-home::before {
+    content: "←";
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .back-to-home:hover {
+    color: #ff0a16;
+  }
+  
+  .back-to-home:hover::before {
+    transform: translateX(-4px);
+  }
+  
+  .post.page-layout .post-content.fullwidth {
+    padding-top: 10px;
+  }
+  
+  @media (min-width: 37.5rem) {
+    .page-back-nav {
+      padding-top: 90px;
+    }
+    
+    .back-to-home {
+      font-size: 20px;
+    }
+    
+    .back-to-home::before {
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="post page-layout">
+  <nav class="page-back-nav">
+    <a href="/" class="back-to-home">Back to Home</a>
+  </nav>
 
   <article class="post-content fullwidth">
     {{ content }}

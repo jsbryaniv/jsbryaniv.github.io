@@ -6,6 +6,57 @@
         {% include svg-icons.html %}
         {% include header.html %}
 
+        <style>
+            .post-back-nav {
+                padding: 80px 0 5px 23px;
+            }
+
+            .back-to-blog {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                color: #999;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                transition: all 0.3s ease;
+            }
+
+            .back-to-blog::before {
+                content: "←";
+                font-size: 24px;
+                transition: transform 0.3s ease;
+            }
+
+            .back-to-blog:hover {
+                color: #ff0a16;
+            }
+
+            .back-to-blog:hover::before {
+                transform: translateX(-4px);
+            }
+
+            @media (min-width: 37.5rem) {
+                .post-back-nav {
+                    padding-top: 90px;
+                }
+
+                .back-to-blog {
+                    font-size: 20px;
+                }
+
+                .back-to-blog::before {
+                    font-size: 28px;
+                }
+            }
+        </style>
+
+        <nav class="post-back-nav">
+            <a href="/blog/" class="back-to-blog">Back to Blog</a>
+        </nav>
+
         <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}">
             <article role="article" class="post-content">
                 <p class="post-info">
