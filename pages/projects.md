@@ -5,8 +5,59 @@ description: My project portfolio.
 permalink: /projects/
 ---
 
+<style>
+  .collection-back-nav {
+    padding: 80px 0 5px 23px;
+  }
+  
+  .back-to-home-collection {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-home-collection::before {
+    content: "←";
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .back-to-home-collection:hover {
+    color: #ff0a16;
+  }
+  
+  .back-to-home-collection:hover::before {
+    transform: translateX(-4px);
+  }
+  
+  @media (min-width: 37.5rem) {
+    .collection-back-nav {
+      padding-top: 90px;
+    }
+    
+    .back-to-home-collection {
+      font-size: 20px;
+    }
+    
+    .back-to-home-collection::before {
+      font-size: 28px;
+    }
+  }
+</style>
+
 {% comment %} Project collection documents, sorted alphabetically for now. {% endcomment %}
 {% assign projects = site.projects | sort: "title" %}
+
+<nav class="collection-back-nav">
+  <a href="/" class="back-to-home-collection">Back to Home</a>
+</nav>
 
 <main class="home" role="main">
 
