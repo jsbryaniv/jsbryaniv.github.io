@@ -19,16 +19,11 @@
   transition: opacity 0.25s ease;
 }
 
-/* Blinking block cursor — only while .typing is set by JS */
+/* No cursor - removed for cleaner animation */
 .code-animation.typing pre code.sourceCode::after {
-  content: "\25AE"; /* ▮ */
-  display: inline;
-  margin-left: 0.1em;
-  color: currentColor;
-  animation: ca-blink 0.8s step-end infinite;
+  content: none;
 }
 
-/* No cursor once animation is done */
 .code-animation.done pre code.sourceCode::after {
   content: none;
 }

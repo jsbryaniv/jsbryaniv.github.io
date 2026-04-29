@@ -5,7 +5,7 @@ author: "Shep Bryan IV"
 description: "A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management."
 ---
 
-## Python Tip: `lru_cache`
+# Python Tip: `lru_cache`
 
 Want to speed up your code by caching function results?
 Use `functools.lru_cache` to store results of expensive function calls and reuse them.
@@ -37,6 +37,7 @@ print(f"Final result = {x}")
 
 You can speed this up by adding the `@lru_cache` decorator. It caches results and returns them instantly when the function is called with the same arguments.
 
+:::{.code-animation}
 ```{python}
 from functools import lru_cache
 
@@ -50,7 +51,7 @@ def fast_fibonacci(n):
 x = fast_fibonacci(4)
 print(f"Final result = {x}")
 ```
-
+:::
 
 ---
 
@@ -60,11 +61,12 @@ print(f"Final result = {x}")
 
 You can clear the cache manually and inspect cache stats like hits, misses, and current size.
 
+:::{.code-animation}
 ```{python}
 fast_fibonacci.cache_clear()  # Clears the cache
 print(fast_fibonacci.cache_info())
 ```
-
+:::
 
 ---
 

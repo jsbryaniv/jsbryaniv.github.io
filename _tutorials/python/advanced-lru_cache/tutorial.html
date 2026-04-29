@@ -63,38 +63,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="tutorial_files/libs/clipboard/clipboard.min.js"></script>
 <script src="tutorial_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="tutorial_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="tutorial_files/libs/quarto-html/popper.min.js"></script>
 <script src="tutorial_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="tutorial_files/libs/quarto-html/anchor.min.js"></script>
 <link href="tutorial_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="tutorial_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="tutorial_files/libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="tutorial_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="tutorial_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="tutorial_files/libs/bootstrap/bootstrap-cb6558daf035ca6ff986cccc73754e6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="tutorial_files/libs/bootstrap/bootstrap-9d06a772b9d4c3b2a2e7366e3fd2c8ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 
 
+<link rel="stylesheet" href="/assets/quarto/tutorial-style.css">
 <link rel="stylesheet" href="/assets/code-animation/code-animation.css">
 </head>
 
-<body class="quarto-light">
+<body class="fullcontent quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-  <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#python-tip-lru_cache" id="toc-python-tip-lru_cache" class="nav-link active" data-scroll-target="#python-tip-lru_cache">Python Tip: <code>lru_cache</code></a></li>
-  <li><a href="#basic-example-of-a-slow-function" id="toc-basic-example-of-a-slow-function" class="nav-link" data-scroll-target="#basic-example-of-a-slow-function">Basic Example of a Slow Function</a></li>
-  <li><a href="#using-lru_cache" id="toc-using-lru_cache" class="nav-link" data-scroll-target="#using-lru_cache">Using <code>lru_cache</code></a></li>
-  <li><a href="#cache-management" id="toc-cache-management" class="nav-link" data-scroll-target="#cache-management">Cache Management</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-Up</a></li>
-  </ul>
-</nav>
-</div>
+
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -128,24 +116,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="python-tip-lru_cache" class="level2">
-<h2 class="anchored" data-anchor-id="python-tip-lru_cache">Python Tip: <code>lru_cache</code></h2>
+<section id="python-tip-lru_cache" class="level1">
+<h1>Python Tip: <code>lru_cache</code></h1>
 <p>Want to speed up your code by caching function results? Use <code>functools.lru_cache</code> to store results of expensive function calls and reuse them.</p>
 <hr>
-</section>
 <section id="basic-example-of-a-slow-function" class="level2">
 <h2 class="anchored" data-anchor-id="basic-example-of-a-slow-function">Basic Example of a Slow Function</h2>
 <p>Here is a slow recursive function for Fibonacci numbers. Without caching, it recalculates the same values many times.</p>
 <div class="code-animation">
-<div id="65776fd6" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_fibonacci(n):</span>
+<div id="da84e533" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_fibonacci(n):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slow_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>- Calculating Fibonacci(4)
 - Calculating Fibonacci(3)
@@ -165,8 +152,9 @@ Final result = 3</code></pre>
 <section id="using-lru_cache" class="level2">
 <h2 class="anchored" data-anchor-id="using-lru_cache">Using <code>lru_cache</code></h2>
 <p>You can speed this up by adding the <code>@lru_cache</code> decorator. It caches results and returns them instantly when the function is called with the same arguments.</p>
-<div id="8a114b4c" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> lru_cache</span>
+<div class="code-animation">
+<div id="d5a2eaa4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> lru_cache</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@lru_cache</span>(maxsize<span class="op">=</span><span class="va">None</span>)  <span class="co"># No limit on cache size</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fast_fibonacci(n):</span>
@@ -176,7 +164,7 @@ Final result = 3</code></pre>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fast_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>- Calculating Fibonacci(4)
 - Calculating Fibonacci(3)
@@ -186,17 +174,20 @@ Final result = 3</code></pre>
 Final result = 3</code></pre>
 </div>
 </div>
+</div>
 <hr>
 </section>
 <section id="cache-management" class="level2">
 <h2 class="anchored" data-anchor-id="cache-management">Cache Management</h2>
 <p><code>lru_cache</code> stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.</p>
 <p>You can clear the cache manually and inspect cache stats like hits, misses, and current size.</p>
-<div id="b261ee5a" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fast_fibonacci.cache_clear()  <span class="co"># Clears the cache</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fast_fibonacci.cache_info())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-animation">
+<div id="65e23c84" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fast_fibonacci.cache_clear()  <span class="co"># Clears the cache</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fast_fibonacci.cache_info())</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>CacheInfo(hits=0, misses=0, maxsize=None, currsize=0)</code></pre>
+</div>
 </div>
 </div>
 <hr>
@@ -206,6 +197,7 @@ Final result = 3</code></pre>
 <p>Now you can use <code>lru_cache</code> to speed up expensive function calls by reducing redundant computations.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
+</section>
 </section>
 
 </main>
@@ -219,68 +211,6 @@ Shep Bryan IV</p>
       icon: icon
     };
     anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
-        }
-      }
-      return false;
-    }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
-    }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
-    });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
-    }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp('/' + window.location.host + '/');

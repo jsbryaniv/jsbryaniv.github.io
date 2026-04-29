@@ -1,5 +1,5 @@
 /**
- * code-animation.js
+ * code-animation.js v2.0
  *
  * Scroll-triggered live-coding animation for Quarto HTML output.
  *
@@ -88,6 +88,11 @@
       var fullText = codeOut.dataset.originalText || codeOut.textContent;
       var lines = fullText.split("\n");
 
+      // Pre-calculate and set fixed height to prevent page jumping
+      codeOut.textContent = fullText;
+      var fullHeight = pre.offsetHeight;
+      pre.style.minHeight = fullHeight + "px";
+      
       codeOut.textContent = "";
       outputEl.style.visibility = "visible";
       outputEl.style.opacity = "1";
@@ -185,33 +190,30 @@
       if (pre) {
         var codeOut = pre.querySelector("code") || pre;
         codeOut.dataset.originalText = codeOut.textContent;
+        // Pre-calculate height to prevent layout shift during animation
+        var fullHeight = pre.offsetHeight;
+        pre.style.minHeight = fullHeight + "px";
       }
       outputEl.style.visibility = "hidden";
       outputEl.style.opacity = "0";
     }
 
-    var loopTimer = null;
+    var hasPlayed = false;
     var running   = false;
 
-    function loop() {
-      if (running) return;
+    function playOnce() {
+      if (running || hasPlayed) return;
       running = true;
       runAnimation(demo).then(function () {
         running = false;
-        loopTimer = setTimeout(loop, LOOP_PAUSE_MS);
+        hasPlayed = true;
       });
-    }
-
-    function stopLoop() {
-      if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; }
     }
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          loop();
-        } else {
-          stopLoop();
+        if (entry.isIntersecting && !hasPlayed) {
+          playOnce();
         }
       });
     }, { threshold: INTERSECT_RATIO });
