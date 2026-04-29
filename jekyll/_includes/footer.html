@@ -1,5 +1,11 @@
 <footer>
-    <p class="footer-social" style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.75rem;margin:0 0 .875rem;">
+    <p class="footer-slogan"><em>"From first principles to first customer and beyond."</em></p>
+
+    <nav aria-label="Footer">
+      {% include links.html %}
+    </nav>
+
+    <p class="footer-social" style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.75rem;margin:.875rem 0 0;">
       {% if site.github_username %}
         <a href="https://github.com/{{ site.github_username }}" title="Github">
           <img class="social-icon" src="{{ '/assets/icons/brands/github.svg' | prepend: site.baseurl }}" alt="Github">
@@ -31,10 +37,6 @@
         </a>
       {% endif %}
     </p>
-
-    <nav aria-label="Footer">
-      {% include links.html %}
-    </nav>
 
 </footer>
 <!-- Include the website scripts -->

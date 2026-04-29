@@ -98,10 +98,14 @@ menu:
     url: /blog
   - title: Contact
     url: /contact
+  - title: Privacy
+    url: /privacy
   - title: Projects
     url: /projects
   - title: Store
     url: /store
+  - title: Terms
+    url: /terms
   - title: Tutorials
     url: /tutorials
 

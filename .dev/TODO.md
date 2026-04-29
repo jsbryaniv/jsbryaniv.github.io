@@ -62,4 +62,4 @@ Needed pages:
 - Make plugin / build step that strips all non-md files from tutorials
 - Add Publications page linking to my papers
 - Make search bar search through all collections, not just blog posts
-
+- Update terms and privacy after domain shift
