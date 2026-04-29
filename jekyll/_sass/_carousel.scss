@@ -9,6 +9,16 @@
   }
 }
 
+.carousel-title-link {
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateX(5px);
+  }
+}
+
 .carousel-title {
   font-size: rem(32px);
   letter-spacing: 0.08em;
@@ -16,10 +26,15 @@
   color: $accentDark;
   margin: 0 0 rem(30px) 0;
   font-weight: 800;
+  transition: color 0.3s ease;
   
   @include media(">=sm") {
     font-size: rem(40px);
     margin: 0 0 rem(40px) 0;
+  }
+  
+  .carousel-title-link:hover & {
+    color: $themeColor;
   }
 }
 

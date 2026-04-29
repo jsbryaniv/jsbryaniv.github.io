@@ -17,7 +17,9 @@
 {% assign section_id = include.section_id | downcase %}
 
 <section class="carousel-section">
-  <h2 class="carousel-title">{{ title }}</h2>
+  <a href="{{ link_url }}" class="carousel-title-link">
+    <h2 class="carousel-title">{{ title }}</h2>
+  </a>
   
   <div class="carousel-container">
     <div class="carousel-track" id="carousel-{{ section_id }}">
