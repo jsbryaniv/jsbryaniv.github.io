@@ -3,6 +3,7 @@ layout: project
 name: LangGo
 description: Training your brain to learn languages the same way we train AI.
 image: assets/langgo.png
+permalink: /projects/langgo/
 ---
 
 <div style="text-align: center;">

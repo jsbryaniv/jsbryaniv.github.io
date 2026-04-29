@@ -3,6 +3,7 @@ layout: project
 name: Colors of Music
 description: Exploring the relationship between music and color.
 image: assets/colors_of_music.png
+permalink: /projects/colors_of_music/
 ---
 
 <div style="text-align: center;">
