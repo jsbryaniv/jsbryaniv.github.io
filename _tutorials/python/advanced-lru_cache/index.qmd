@@ -3,26 +3,12 @@ title: "Python Tip: lru_cache"
 subtitle: "Speed up expensive function calls with caching"
 description: "A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management."
 author: "Shep Bryan IV"
-date: 2026-04-14
 category: python_tips
 tags:
   - python
   - advanced
   - technical
   - performance
-# format:
-#   html:
-#     toc: true
-#     code-copy: true
-#     css: /assets/code-animation/code-animation.css
-#     include-after-body:
-#       text: |
-#         <script src="/assets/code-animation/code-animation.js"></script>
-#   gfm: default
-# execute:
-#   echo: true
-#   warning: false
-#   message: false
 ---
 
 ## Python Tip: `lru_cache`
