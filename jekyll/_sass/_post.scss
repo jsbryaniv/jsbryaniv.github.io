@@ -435,6 +435,7 @@
   left: 0;
   right: 0;
   bottom: -100%;
+  z-index: 9;
   display: block;
   width: 100%;
   padding: rem(10px) rem(20px) rem(5px);
@@ -488,12 +489,17 @@
 
 /* Recommendation */
 
+.recommendation-spacer {
+  height: 0;
+}
+
 .recommendation {
   @include mainFont(400);
   position: fixed;
   left: 0;
   right: 0;
   bottom: -100%;
+  z-index: 9;
   display: block;
   width: 100%;
   padding: rem(10px);

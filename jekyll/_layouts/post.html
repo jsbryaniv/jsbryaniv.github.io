@@ -132,6 +132,9 @@
         {% include author.html %}
         {% include comments.html %}
         {% include footer.html %}
+        {% if paginator.activated == nil and site.show_time_bar == true %}
+        <div class="recommendation-spacer" aria-hidden="true"></div>
+        {% endif %}
 
         {% if page.math %}
         <script>
@@ -143,6 +146,26 @@
         </script>
         <script type="text/javascript" id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+        {% endif %}
+
+        {% if paginator.activated == nil and site.show_time_bar == true %}
+        <script>
+            (function () {
+                var recommendation = document.querySelector('.recommendation');
+                var spacer = document.querySelector('.recommendation-spacer');
+                if (!recommendation || !spacer) return;
+
+                function applyRecommendationPadding() {
+                    var recommendationHeight = recommendation.offsetHeight || 0;
+                    var buffer = 0;
+                    spacer.style.height = (recommendationHeight + buffer) + 'px';
+                }
+
+                applyRecommendationPadding();
+                window.addEventListener('resize', applyRecommendationPadding);
+                window.addEventListener('load', applyRecommendationPadding);
+            })();
         </script>
         {% endif %}
     </body>
