@@ -1,5 +1,5 @@
 <footer>
-    <p>
+    <p class="footer-social" style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.75rem;margin:0 0 .875rem;">
       {% if site.github_username %}
         <a href="https://github.com/{{ site.github_username }}" title="Github">
           <img class="social-icon" src="{{ '/assets/icons/brands/github.svg' | prepend: site.baseurl }}" alt="Github">
@@ -32,7 +32,9 @@
       {% endif %}
     </p>
 
-    {% include links.html %}
+    <nav aria-label="Footer">
+      {% include links.html %}
+    </nav>
 
 </footer>
 <!-- Include the website scripts -->
