@@ -11,13 +11,13 @@
 
 {% assign title = include.title %}
 {% assign items = include.items %}
-{% assign link_url = include.link_url %}
+{% assign collection_url = include.link_url %}
 {% assign show_category = include.show_category | default: false %}
 {% assign show_date = include.show_date | default: false %}
 {% assign section_id = include.section_id | downcase %}
 
 <section class="carousel-section">
-  <a href="{{ link_url }}" class="carousel-title-link">
+  <a href="{{ collection_url }}" class="carousel-title-link">
     <h2 class="carousel-title">{{ title }}</h2>
   </a>
   
@@ -33,15 +33,13 @@
       {% endfor %}
       
       <!-- See More Tile -->
-      <article class="box-item tile-card see-more-tile no-category">
-        <div class="box-body">
-          <a class="see-more-link" href="{{ link_url }}">
-            <div class="see-more-content">
-              <span class="see-more-text">See More</span>
-              <span class="see-more-arrow">→</span>
-            </div>
-          </a>
-        </div>
+      <article class="box-item see-more-tile">
+        <a class="see-more-link" href="{{ collection_url }}">
+          <div class="see-more-content">
+            <span class="see-more-text">See More</span>
+            <span class="see-more-arrow">→</span>
+          </div>
+        </a>
       </article>
     </div>
   </div>
