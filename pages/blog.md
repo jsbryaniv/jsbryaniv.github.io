@@ -7,7 +7,15 @@ permalink: /blog/
 
 <style>
   .collection-back-nav {
-    padding: 80px 0 5px 23px;
+    padding: 68px 0 5px 23px;
+  }
+
+  .blog-home {
+    padding-top: 0;
+  }
+
+  .blog-home .page-hero {
+    padding-top: 24px;
   }
   
   .back-to-home-collection {
@@ -39,7 +47,11 @@ permalink: /blog/
   
   @media (min-width: 37.5rem) {
     .collection-back-nav {
-      padding-top: 90px;
+      padding-top: 76px;
+    }
+
+    .blog-home .page-hero {
+      padding-top: 28px;
     }
     
     .back-to-home-collection {
@@ -59,7 +71,7 @@ permalink: /blog/
   <a href="/" class="back-to-home-collection">Back to Home</a>
 </nav>
 
-<main class="home" role="main">
+<main class="home no-padding blog-home" role="main">
   
   {% comment %} Reusable page hero: large page title + short description + divider. {% endcomment %}
   {% include page-hero.html title="BLOG" description=page.description %}

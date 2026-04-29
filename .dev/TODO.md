@@ -12,10 +12,6 @@ Needed pages:
 
 ## General tasks
 
-- Make landing page for Blog
-- Make landing page for Projects
-- Make landing page for Store
-- Make landing page for Tutorials
 - Clean up header
 - Clean up footer
 - Reorganize home page
@@ -65,3 +61,6 @@ Needed pages:
 - Footer gets covered by "read this next". Fix that.
 - Unlink to old saguaro solutions website
 - Make plugin / build step that strips all non-md files from tutorials
+- Add Publications page linking to my papers
+
+
