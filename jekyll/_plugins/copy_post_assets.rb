@@ -22,7 +22,7 @@ module Jekyll
         next if image.start_with?('/', 'http')
 
         # Rewrite relative image path to be absolute based on the post's URL
-        # e.g., "assets/image.jpg" -> "/post-slug/assets/image.jpg"
+        # e.g., "assets/image.jpg" -> "/blog/2025/08/who-killed-pip/assets/image.jpg"
         post.data['image'] = File.join(post.url, image)
       end
     end
@@ -42,7 +42,7 @@ module Jekyll
         next unless Dir.exist?(assets_dir)
 
         # Get the post's destination directory (based on permalink)
-        # post.url gives us something like "/dirichlet-for-clinical-outcome-prediction-index/"
+        # post.url gives us something like "/blog/2025/08/who-killed-pip/"
         # We want to copy assets to that same directory
         post_dest_dir = post.url.sub(%r{^/}, '').sub(%r{/$}, '')
 

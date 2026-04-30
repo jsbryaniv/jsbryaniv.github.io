@@ -34,11 +34,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build with Jekyll
-        run: |
-          echo "=== Checking plugins directory ==="
-          ls -la jekyll/_plugins/
-          echo "=== Building with verbose output ==="
-          bundle exec jekyll build --verbose
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
