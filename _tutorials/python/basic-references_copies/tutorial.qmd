@@ -1,0 +1,80 @@
+---
+title: "Python Tip: References vs Copies"
+subtitle: "Avoid unexpected bugs with proper data handling"
+author: "Shep Bryan IV"
+description: "Understand the difference between references and copies in Python to avoid unexpected bugs."
+---
+
+# Python Tip: References vs Copies
+
+When coding with arrays in Python (like lists, NumPy arrays, or PyTorch tensors), it's important to know when you're working with references vs copies.
+
+Understanding this concept helps avoid unexpected behavior and bugs.
+
+
+---
+
+## What is a Reference?
+
+In Python, when you assign `y = x`, you're creating a reference. This means both `y` and `x` point to the same object in memory.
+
+Modifying one will affect the other.
+
+:::{.code-animation}
+```{python}
+x = [1, 2, 3]
+y = x     # y is a reference to x
+y[0] = 9  # Modifying y will affect x
+
+print(x)  # [9, 2, 3] - x is modified
+print(y)  # [9, 2, 3] - y is also modified
+```
+:::
+
+
+---
+
+## Creating a Copy
+
+To avoid modifying the original data, you can create a copy. Using `x.copy()` (or `x.clone()` for PyTorch) will give you an independent copy.
+
+:::{.code-animation}
+```{python}
+x = [1, 2, 3]
+y = x.copy()  # Creating a new copy of x
+y[0] = 9      # Modifying y won't affect x
+
+print(x)  # [1, 2, 3] - x is unchanged
+print(y)  # [9, 2, 3] - y is a new list
+```
+:::
+
+
+---
+
+## Why It Matters
+
+Understanding whether you're working with a reference or a copy is crucial, especially when dealing with large data or complex operations.
+
+If you accidentally modify data via a reference, it can cause unexpected bugs.
+
+:::{.code-animation}
+```{python}
+# Example: Forgetting to copy a list and modifying it unexpectedly
+x = [1, 2, 3]
+y = x  # This is a reference, not a copy
+y.append(4)
+
+print(x)  # [1, 2, 3, 4] - x is modified too!
+```
+:::
+
+
+---
+
+## Wrap-Up
+
+Now you know how to manage references and copies in Python. Use `.copy()` or `.clone()` to create copies when you need independent data.
+
+Follow me for more tips.  
+Shep Bryan IV
