@@ -133,7 +133,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      permalink: /blog/:year/:month/:title/
+      permalink: /blog/:year/:month/:slug/
       paginate: false
       math: true
       comments: true
