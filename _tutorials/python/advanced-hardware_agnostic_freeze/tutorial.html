@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shep Bryan IV">
-<meta name="description" content="A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.">
+<meta name="description" content="Generate hardware-agnostic requirements.txt files without NVIDIA CUDA dependencies.">
 
-<title>Python Tip: lru_cache</title>
+<title>Python Tip: Hardware-Agnostic pip freeze</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,13 +87,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Python Tip: lru_cache</h1>
-<p class="subtitle lead">Speed up expensive function calls with caching</p>
+<h1 class="title">Python Tip: Hardware-Agnostic pip freeze</h1>
+<p class="subtitle lead">Avoid hardware-specific dependencies in requirements.txt</p>
 </div>
 
 <div>
   <div class="description">
-    A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.
+    Generate hardware-agnostic requirements.txt files without NVIDIA CUDA dependencies.
   </div>
 </div>
 
@@ -116,85 +116,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="python-tip-lru_cache" class="level1">
-<h1>Python Tip: <code>lru_cache</code></h1>
-<p>Want to speed up your code by caching function results? Use <code>functools.lru_cache</code> to store results of expensive function calls and reuse them.</p>
+<section id="python-tip-hardware-agnostic-pip-freeze" class="level1">
+<h1>Python Tip: Hardware-Agnostic <code>pip freeze</code></h1>
+<p>Working with PyTorch? Avoid hardware-specific dependencies like NVIDIA CUDA from your <code>requirements.txt</code>. Here’s a one-liner to make it hardware-agnostic.</p>
 <hr>
-<section id="basic-example-of-a-slow-function" class="level2">
-<h2 class="anchored" data-anchor-id="basic-example-of-a-slow-function">Basic Example of a Slow Function</h2>
-<p>Here is a slow recursive function for Fibonacci numbers. Without caching, it recalculates the same values many times.</p>
+<section id="the-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem">The Problem</h2>
+<p>We often use <code>pip freeze</code> to generate a <code>requirements.txt</code> file, but it includes all installed packages, including hardware-specific ones like NVIDIA CUDA libraries.</p>
+<p>This can cause compatibility issues for users without the same hardware setup.</p>
 <div class="code-animation">
-<div id="67b74b61" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_fibonacci(n):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slow_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
-</div>
+<div id="54c74ef4" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This includes hardware-specific packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div>
 </div>
 </div>
 <hr>
 </section>
-<section id="using-lru_cache" class="level2">
-<h2 class="anchored" data-anchor-id="using-lru_cache">Using <code>lru_cache</code></h2>
-<p>You can speed this up by adding the <code>@lru_cache</code> decorator. It caches results and returns them instantly when the function is called with the same arguments.</p>
+<section id="the-solution" class="level2">
+<h2 class="anchored" data-anchor-id="the-solution">The Solution</h2>
+<p>Use this command to generate a <code>requirements.txt</code> that includes PyTorch but excludes hardware-dependent packages:</p>
 <div class="code-animation">
-<div id="7dd6199b" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> lru_cache</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@lru_cache</span>(maxsize<span class="op">=</span><span class="va">None</span>)  <span class="co"># No limit on cache size</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fast_fibonacci(n):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fast_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
-</div>
-</div>
-</div>
-<hr>
-</section>
-<section id="cache-management" class="level2">
-<h2 class="anchored" data-anchor-id="cache-management">Cache Management</h2>
-<p><code>lru_cache</code> stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.</p>
-<p>You can clear the cache manually and inspect cache stats like hits, misses, and current size.</p>
-<div class="code-animation">
-<div id="c602417e" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fast_fibonacci.cache_clear()  <span class="co"># Clears the cache</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fast_fibonacci.cache_info())</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>CacheInfo(hits=0, misses=0, maxsize=None, currsize=0)</code></pre>
-</div>
+<div id="6e34b7cb" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This excludes hardware-specific dependencies</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip <span class="bu">list</span> <span class="op">--</span><span class="kw">not</span><span class="op">-</span>required <span class="op">--</span><span class="bu">format</span><span class="op">=</span>freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div>
 </div>
 </div>
 <hr>
 </section>
 <section id="wrap-up" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
-<p>Now you can use <code>lru_cache</code> to speed up expensive function calls by reducing redundant computations.</p>
+<p>Now you can share your requirements without worrying about hardware compatibility issues.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
 </section>

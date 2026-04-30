@@ -26,7 +26,6 @@ __pycache__/
 # --- Quarto Ignores ---
 
 .quarto/
-index_files/
 tutorial_files/
 
 

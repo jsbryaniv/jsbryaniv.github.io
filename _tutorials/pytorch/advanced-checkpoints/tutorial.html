@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shep Bryan IV">
-<meta name="description" content="A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.">
+<meta name="description" content="Learn how to use PyTorch checkpoints to trade time for memory when training heavy models.">
 
-<title>Python Tip: lru_cache</title>
+<title>PyTorch Tip: Checkpoints</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,13 +87,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Python Tip: lru_cache</h1>
-<p class="subtitle lead">Speed up expensive function calls with caching</p>
+<h1 class="title">PyTorch Tip: Checkpoints</h1>
+<p class="subtitle lead">Trade time for memory when training models</p>
 </div>
 
 <div>
   <div class="description">
-    A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.
+    Learn how to use PyTorch checkpoints to trade time for memory when training heavy models.
   </div>
 </div>
 
@@ -116,85 +116,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="python-tip-lru_cache" class="level1">
-<h1>Python Tip: <code>lru_cache</code></h1>
-<p>Want to speed up your code by caching function results? Use <code>functools.lru_cache</code> to store results of expensive function calls and reuse them.</p>
+<section id="pytorch-tip-checkpoints" class="level1">
+<h1>PyTorch Tip: Checkpoints</h1>
+<p>Are you running out of memory when training heavy PyTorch models? Do you not mind waiting for results?</p>
+<p>Use checkpoints to trade time for memory.</p>
 <hr>
-<section id="basic-example-of-a-slow-function" class="level2">
-<h2 class="anchored" data-anchor-id="basic-example-of-a-slow-function">Basic Example of a Slow Function</h2>
-<p>Here is a slow recursive function for Fibonacci numbers. Without caching, it recalculates the same values many times.</p>
+<section id="the-problem-memory-storage" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-memory-storage">The Problem: Memory Storage</h2>
+<p>Whenever you do an operation on a tensor, PyTorch stores a copy of it in memory.</p>
 <div class="code-animation">
-<div id="67b74b61" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_fibonacci(n):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slow_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
+<div id="4c8ae722" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># This is what we see...</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(<span class="fl">0.0</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">+</span> <span class="dv">1</span>   <span class="co"># x = 1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">*</span> <span class="dv">2</span>   <span class="co"># x = 2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span>  <span class="co"># x = 4</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x <span class="op">-</span> <span class="dv">1</span>   <span class="co"># x = 3</span></span></code></pre></div>
 </div>
+</div>
+<div class="code-animation">
+<div id="b8e3d84a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... but this is what PyTorch sees</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> torch.tensor(<span class="fl">0.0</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> x0 <span class="op">+</span> <span class="dv">1</span>   <span class="co"># x1 = 1 and x0 = 0</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> x1 <span class="op">*</span> <span class="dv">2</span>   <span class="co"># x2 = 2 and x1 = 1 and x0 = 0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> x2 <span class="op">**</span> <span class="dv">2</span>  <span class="co"># x3 = 4 and x2 = 2 and x1 = 1 and x0 = 0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> x3 <span class="op">-</span> <span class="dv">1</span>   <span class="co"># x4 = 3 and x3 = 4 and x2 = 2 and x1 = 1 and x0 = 0</span></span></code></pre></div>
 </div>
 </div>
 <hr>
 </section>
-<section id="using-lru_cache" class="level2">
-<h2 class="anchored" data-anchor-id="using-lru_cache">Using <code>lru_cache</code></h2>
-<p>You can speed this up by adding the <code>@lru_cache</code> decorator. It caches results and returns them instantly when the function is called with the same arguments.</p>
+<section id="the-problem-heavy-functions" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-heavy-functions">The Problem: Heavy Functions</h2>
+<p>This is a problem when you’re working with functions that have many operations.</p>
 <div class="code-animation">
-<div id="7dd6199b" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> lru_cache</span>
+<div id="e17ed0f3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@lru_cache</span>(maxsize<span class="op">=</span><span class="va">None</span>)  <span class="co"># No limit on cache size</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fast_fibonacci(n):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fast_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
-</div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heavy_function(x, a):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">+</span> a</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HeavyModel(torch.nn.Module):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(HeavyModel, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a <span class="op">=</span> torch.nn.Parameter(torch.tensor(<span class="fl">1.0</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> heavy_function(x, <span class="va">self</span>.a)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># This block will store 100,000 intermediate tensors</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> HeavyModel()</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(<span class="fl">0.0</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> model(x)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>y.backward()</span></code></pre></div>
 </div>
 </div>
 <hr>
 </section>
-<section id="cache-management" class="level2">
-<h2 class="anchored" data-anchor-id="cache-management">Cache Management</h2>
-<p><code>lru_cache</code> stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.</p>
-<p>You can clear the cache manually and inspect cache stats like hits, misses, and current size.</p>
+<section id="the-solution-use-checkpoints" class="level2">
+<h2 class="anchored" data-anchor-id="the-solution-use-checkpoints">The Solution: Use Checkpoints</h2>
+<p>Use checkpoints to trade time for memory!</p>
+<p>Functions inside a checkpoint wrapper will not store intermediate tensors. Instead, PyTorch will recompute the tensors when you call the <code>backward()</code> method.</p>
 <div class="code-animation">
-<div id="c602417e" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fast_fibonacci.cache_clear()  <span class="co"># Clears the cache</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fast_fibonacci.cache_info())</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>CacheInfo(hits=0, misses=0, maxsize=None, currsize=0)</code></pre>
+<div id="8a577abd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.checkpoint <span class="im">import</span> checkpoint</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Wrap the function inside a checkpoint</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> checkpoint(heavy_function, x, <span class="va">self</span>.a)</span></code></pre></div>
 </div>
+</div>
+<hr>
+</section>
+<section id="implementing-checkpoints" class="level2">
+<h2 class="anchored" data-anchor-id="implementing-checkpoints">Implementing Checkpoints</h2>
+<p>Checkpoints are simple to use. Just wrap the function and its arguments inside a checkpoint.</p>
+<div class="code-animation">
+<div id="50b27f87" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.checkpoint <span class="im">import</span> checkpoint</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> heavy_function(x, a):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> x <span class="op">+</span> a</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LightModel(torch.nn.Module):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>(LightModel, <span class="va">self</span>).<span class="fu">__init__</span>()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.a <span class="op">=</span> torch.nn.Parameter(torch.tensor(<span class="fl">1.0</span>))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> checkpoint(heavy_function, x, <span class="va">self</span>.a)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># This will store only about 100 intermediate tensors at a time</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LightModel()</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(<span class="fl">0.0</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> model(x)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>y.backward()</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># But it has to compute them twice: forward and backward pass</span></span></code></pre></div>
 </div>
 </div>
 <hr>
 </section>
 <section id="wrap-up" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
-<p>Now you can use <code>lru_cache</code> to speed up expensive function calls by reducing redundant computations.</p>
+<p>Now you can use checkpoints to trade time for memory when training models.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
 </section>

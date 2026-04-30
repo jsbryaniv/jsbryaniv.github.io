@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shep Bryan IV">
-<meta name="description" content="A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.">
+<meta name="description" content="Understand the difference between references and copies in Python to avoid unexpected bugs.">
 
-<title>Python Tip: lru_cache</title>
+<title>Python Tip: References vs Copies</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,13 +87,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Python Tip: lru_cache</h1>
-<p class="subtitle lead">Speed up expensive function calls with caching</p>
+<h1 class="title">Python Tip: References vs Copies</h1>
+<p class="subtitle lead">Avoid unexpected bugs with proper data handling</p>
 </div>
 
 <div>
   <div class="description">
-    A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.
+    Understand the difference between references and copies in Python to avoid unexpected bugs.
   </div>
 </div>
 
@@ -116,77 +116,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="python-tip-lru_cache" class="level1">
-<h1>Python Tip: <code>lru_cache</code></h1>
-<p>Want to speed up your code by caching function results? Use <code>functools.lru_cache</code> to store results of expensive function calls and reuse them.</p>
+<section id="python-tip-references-vs-copies" class="level1">
+<h1>Python Tip: References vs Copies</h1>
+<p>When coding with arrays in Python (like lists, NumPy arrays, or PyTorch tensors), it’s important to know when you’re working with references vs copies.</p>
+<p>Understanding this concept helps avoid unexpected behavior and bugs.</p>
 <hr>
-<section id="basic-example-of-a-slow-function" class="level2">
-<h2 class="anchored" data-anchor-id="basic-example-of-a-slow-function">Basic Example of a Slow Function</h2>
-<p>Here is a slow recursive function for Fibonacci numbers. Without caching, it recalculates the same values many times.</p>
+<section id="what-is-a-reference" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-reference">What is a Reference?</h2>
+<p>In Python, when you assign <code>y = x</code>, you’re creating a reference. This means both <code>y</code> and <code>x</code> point to the same object in memory.</p>
+<p>Modifying one will affect the other.</p>
 <div class="code-animation">
-<div id="67b74b61" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_fibonacci(n):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slow_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
+<div id="a4d0bb6c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x     <span class="co"># y is a reference to x</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">9</span>  <span class="co"># Modifying y will affect x</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)  <span class="co"># [9, 2, 3] - x is modified</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)  <span class="co"># [9, 2, 3] - y is also modified</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
+<pre><code>[9, 2, 3]
+[9, 2, 3]</code></pre>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="using-lru_cache" class="level2">
-<h2 class="anchored" data-anchor-id="using-lru_cache">Using <code>lru_cache</code></h2>
-<p>You can speed this up by adding the <code>@lru_cache</code> decorator. It caches results and returns them instantly when the function is called with the same arguments.</p>
+<section id="creating-a-copy" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-copy">Creating a Copy</h2>
+<p>To avoid modifying the original data, you can create a copy. Using <code>x.copy()</code> (or <code>x.clone()</code> for PyTorch) will give you an independent copy.</p>
 <div class="code-animation">
-<div id="7dd6199b" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> lru_cache</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@lru_cache</span>(maxsize<span class="op">=</span><span class="va">None</span>)  <span class="co"># No limit on cache size</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fast_fibonacci(n):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fast_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
+<div id="3dbc0284" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x.copy()  <span class="co"># Creating a new copy of x</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">9</span>      <span class="co"># Modifying y won't affect x</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)  <span class="co"># [1, 2, 3] - x is unchanged</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)  <span class="co"># [9, 2, 3] - y is a new list</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
+<pre><code>[1, 2, 3]
+[9, 2, 3]</code></pre>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="cache-management" class="level2">
-<h2 class="anchored" data-anchor-id="cache-management">Cache Management</h2>
-<p><code>lru_cache</code> stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.</p>
-<p>You can clear the cache manually and inspect cache stats like hits, misses, and current size.</p>
+<section id="why-it-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-it-matters">Why It Matters</h2>
+<p>Understanding whether you’re working with a reference or a copy is crucial, especially when dealing with large data or complex operations.</p>
+<p>If you accidentally modify data via a reference, it can cause unexpected bugs.</p>
 <div class="code-animation">
-<div id="c602417e" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fast_fibonacci.cache_clear()  <span class="co"># Clears the cache</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fast_fibonacci.cache_info())</span></code></pre></div>
+<div id="3ce7857d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Forgetting to copy a list and modifying it unexpectedly</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x  <span class="co"># This is a reference, not a copy</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>y.append(<span class="dv">4</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)  <span class="co"># [1, 2, 3, 4] - x is modified too!</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CacheInfo(hits=0, misses=0, maxsize=None, currsize=0)</code></pre>
+<pre><code>[1, 2, 3, 4]</code></pre>
 </div>
 </div>
 </div>
@@ -194,7 +181,7 @@ Final result = 3</code></pre>
 </section>
 <section id="wrap-up" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
-<p>Now you can use <code>lru_cache</code> to speed up expensive function calls by reducing redundant computations.</p>
+<p>Now you know how to manage references and copies in Python. Use <code>.copy()</code> or <code>.clone()</code> to create copies when you need independent data.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
 </section>

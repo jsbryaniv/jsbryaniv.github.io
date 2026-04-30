@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Shep Bryan IV">
-<meta name="description" content="A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.">
+<meta name="description" content="Learn how to use iterators instead of lists to save memory when working with large datasets.">
 
-<title>Python Tip: lru_cache</title>
+<title>Python Tip: Iterators</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -87,13 +87,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Python Tip: lru_cache</h1>
-<p class="subtitle lead">Speed up expensive function calls with caching</p>
+<h1 class="title">Python Tip: Iterators</h1>
+<p class="subtitle lead">Save memory with lazy evaluation</p>
 </div>
 
 <div>
   <div class="description">
-    A quick tutorial on using functools.lru_cache with Fibonacci examples and cache management.
+    Learn how to use iterators instead of lists to save memory when working with large datasets.
   </div>
 </div>
 
@@ -116,85 +116,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="python-tip-lru_cache" class="level1">
-<h1>Python Tip: <code>lru_cache</code></h1>
-<p>Want to speed up your code by caching function results? Use <code>functools.lru_cache</code> to store results of expensive function calls and reuse them.</p>
+<section id="python-tip-iterators" class="level1">
+<h1>Python Tip: Iterators</h1>
+<p>Having memory issues storing large datasets in lists? Instead of storing everything in memory, use iterators.</p>
 <hr>
-<section id="basic-example-of-a-slow-function" class="level2">
-<h2 class="anchored" data-anchor-id="basic-example-of-a-slow-function">Basic Example of a Slow Function</h2>
-<p>Here is a slow recursive function for Fibonacci numbers. Without caching, it recalculates the same values many times.</p>
+<section id="lists-vs-iterators" class="level2">
+<h2 class="anchored" data-anchor-id="lists-vs-iterators">Lists vs Iterators</h2>
+<p>Iterators work just like lists. You can create them using comprehensions, with parentheses instead of brackets.</p>
 <div class="code-animation">
-<div id="67b74b61" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_fibonacci(n):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> slow_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> slow_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
+<div id="6b5a0a8d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create lists and iterators using comprehensions</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]  <span class="co"># [] for list</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>myiter <span class="op">=</span> (x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>))  <span class="co"># () for iterator</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mylist)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myiter)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
+<pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&lt;generator object &lt;genexpr&gt; at 0x108d38dc0&gt;</code></pre>
 </div>
 </div>
 </div>
-<hr>
-</section>
-<section id="using-lru_cache" class="level2">
-<h2 class="anchored" data-anchor-id="using-lru_cache">Using <code>lru_cache</code></h2>
-<p>You can speed this up by adding the <code>@lru_cache</code> decorator. It caches results and returns them instantly when the function is called with the same arguments.</p>
 <div class="code-animation">
-<div id="7dd6199b" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> lru_cache</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@lru_cache</span>(maxsize<span class="op">=</span><span class="va">None</span>)  <span class="co"># No limit on cache size</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fast_fibonacci(n):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- Calculating Fibonacci(</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> n</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">1</span>) <span class="op">+</span> fast_fibonacci(n <span class="op">-</span> <span class="dv">2</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> fast_fibonacci(<span class="dv">4</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final result = </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
+<div id="04e8d1a4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over them the same way</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> mylist:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">" "</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> myiter:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">" "</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>- Calculating Fibonacci(4)
-- Calculating Fibonacci(3)
-- Calculating Fibonacci(2)
-- Calculating Fibonacci(1)
-- Calculating Fibonacci(0)
-Final result = 3</code></pre>
+<pre><code>0 1 2 3 4 5 6 7 8 9 
+0 1 2 3 4 5 6 7 8 9 </code></pre>
 </div>
 </div>
 </div>
 <hr>
 </section>
-<section id="cache-management" class="level2">
-<h2 class="anchored" data-anchor-id="cache-management">Cache Management</h2>
-<p><code>lru_cache</code> stores results in memory, not on disk. Be careful when caching values that consume a lot of memory.</p>
-<p>You can clear the cache manually and inspect cache stats like hits, misses, and current size.</p>
+<section id="memory-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="memory-efficiency">Memory Efficiency</h2>
+<p>Iterators are more memory-efficient than lists because they only store the current element in memory.</p>
 <div class="code-animation">
-<div id="c602417e" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fast_fibonacci.cache_clear()  <span class="co"># Clears the cache</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fast_fibonacci.cache_info())</span></code></pre></div>
+<div id="4e0a4053" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This stores 1,000,000 integers in memory</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1_000_000</span>)]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This stores only the current integer in memory</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>myiter <span class="op">=</span> (x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1_000_000</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"List created with </span><span class="sc">{</span><span class="bu">len</span>(mylist)<span class="sc">}</span><span class="ss"> elements"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Iterator created"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CacheInfo(hits=0, misses=0, maxsize=None, currsize=0)</code></pre>
+<pre><code>List created with 1000000 elements
+Iterator created</code></pre>
 </div>
+</div>
+</div>
+<hr>
+</section>
+<section id="using-next-with-iterators" class="level2">
+<h2 class="anchored" data-anchor-id="using-next-with-iterators">Using <code>next()</code> with Iterators</h2>
+<p>The catch is that iterators do not accept indexing. Use the <code>next()</code> function to get the next element.</p>
+<div class="code-animation">
+<div id="361f049e" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>myiter <span class="op">=</span> (x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># This works for lists</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> mylist[<span class="dv">2</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Third element of list: </span><span class="sc">{</span>x2<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># But myiter[2] would raise an error!</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Use next() instead</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="bu">next</span>(myiter)  <span class="co"># Get the first element</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> <span class="bu">next</span>(myiter)  <span class="co"># Get the second element</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> <span class="bu">next</span>(myiter)  <span class="co"># Get the third element</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Third element of iterator: </span><span class="sc">{</span>x2<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Third element of list: 2
+Third element of iterator: 2</code></pre>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="creating-custom-iterators" class="level2">
+<h2 class="anchored" data-anchor-id="creating-custom-iterators">Creating Custom Iterators</h2>
+<p>For complex iterators like image loading, make iterators using classes by defining <code>__init__</code>, <code>__iter__</code>, and <code>__next__</code>.</p>
+<p>Raise <code>StopIteration</code> to stop the iteration.</p>
+<div class="code-animation">
+<div id="2662d8a1" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyImages:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):  <span class="co"># Specify initial values</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">max</span> <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):  <span class="co"># Required for iteration</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__next__</span>(<span class="va">self</span>):  <span class="co"># Specify what to return</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.index <span class="op">&gt;=</span> <span class="va">self</span>.<span class="bu">max</span>:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">StopIteration</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="ss">f"image_</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>index<span class="sc">}</span><span class="ss">.png"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.index <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># This will load images one at a time</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> img <span class="kw">in</span> MyImages():</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    img.show()</span></code></pre></div>
 </div>
 </div>
 <hr>
 </section>
 <section id="wrap-up" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
-<p>Now you can use <code>lru_cache</code> to speed up expensive function calls by reducing redundant computations.</p>
+<p>Now you can use iterators to load large datasets one element at a time, saving memory.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
 </section>

@@ -160,12 +160,18 @@ sass:
 
 # Excludes
 exclude:
-  - _posts/**/assets/**  # Post assets are copied via plugin, ignore originals
-  - _tutorials/**/*.qmd
-  - _tutorials/**/tutorial_index/
-  - _tutorials/**/social/
-  - _quarto.yml
+  # Standard ignores
+  - .dev
   - README.md
   - Gemfile
   - Gemfile.lock
-  - .dev
+  # Post assets are copied via plugin, ignore originals
+  - _posts/**/assets/**
+  # Ignore tutorial material, aside from what gets displayed
+  - _tutorials/**/*.qmd          # Quarto source files
+  - _tutorials/_quarto.yml       # Quarto config
+  - _tutorials/.quarto/          # Quarto cache
+  - _tutorials/.quartoignore     # Quarto ignore file
+  - _tutorials/.venv/            # Python virtual environment
+  - _tutorials/requirements.txt  # Python dependencies
+  - _tutorials/**/social/        # Social media extras

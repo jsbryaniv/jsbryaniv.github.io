@@ -1,3 +1,5 @@
 jupyterlab
 ipykernel
 notebook
+numpy
+torch

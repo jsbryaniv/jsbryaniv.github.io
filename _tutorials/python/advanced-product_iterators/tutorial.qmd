@@ -19,6 +19,8 @@ Every time you make a for loop, it adds overhead to your computation.
 
 :::{.code-animation}
 ```{python}
+#| eval: false
+
 import numpy as np
 
 shape = (10, 10)
@@ -43,6 +45,8 @@ The `itertools.product()` function can replace nested loops. It generates all co
 
 :::{.code-animation}
 ```{python}
+#| eval: false
+
 from itertools import product
 import numpy as np
 
