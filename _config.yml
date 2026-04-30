@@ -165,6 +165,12 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - .bundle
+  - .jekyll-cache
+  - .sass-cache
+  - vendor
+  - vendor/bundle
+  - node_modules
   # Post assets are copied via plugin, ignore originals
   - _posts/**/assets/**
   # Ignore tutorial material, aside from what gets displayed
