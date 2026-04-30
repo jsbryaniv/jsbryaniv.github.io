@@ -7,7 +7,7 @@ This is the codebase for my personal website and blog:
 
 The site is built using Jekyll and hosted on GitHub Pages. It’s where I publish projects, tutorials, and experiments.
 
-The repository includes both published content and drafts of upcoming work. Feel free to explore.
+The repository includes both published content and drafts of upcoming work. Feel free to explore!
 
 
 ## Tech Stack
