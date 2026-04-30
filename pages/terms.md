@@ -9,7 +9,7 @@ permalink: /terms/
 
 **Last updated:** April 29, 2026
 
-These Terms of Use (“Terms”) govern your use of `https://jsbryaniv.com` (the “Site”). By accessing or using the Site, you agree to these Terms.
+These Terms of Use (“Terms”) govern your use of `https://shep4.com` (the “Site”). By accessing or using the Site, you agree to these Terms.
 
 ## 1. Use of the Site
 

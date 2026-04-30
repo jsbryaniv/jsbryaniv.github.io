@@ -9,7 +9,7 @@ permalink: /privacy/
 
 **Last updated:** April 29, 2026
 
-This Privacy Policy describes how information is collected, used, and shared when you visit `https://jsbryaniv.com` (the “Site”).
+This Privacy Policy describes how information is collected, used, and shared when you visit `https://shep4.com` (the “Site”).
 
 ## 1. Information Collected
 
