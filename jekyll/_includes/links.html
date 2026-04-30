@@ -1,0 +1,9 @@
+<ul>
+  {% for item in site.menu %}
+    {% if item.title and item.url %}
+      <li>
+        <a href="{{ item.url | absolute_url }}">{{ item.title }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

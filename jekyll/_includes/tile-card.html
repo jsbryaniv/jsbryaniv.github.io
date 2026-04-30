@@ -1,0 +1,80 @@
+{% assign item = include.item %}
+{% assign link_url = include.link_url | default: item.url %}
+{% assign display_title = include.display_title | default: item.title | default: item.name | default: item.slug %}
+{% assign description = include.description | default: item.description %}
+{% assign image_url = include.image_url %}
+
+{% if link_url contains "://" %}
+  {% assign resolved_link_url = link_url %}
+{% elsif link_url | slice: 0 == "/" %}
+  {% assign resolved_link_url = link_url | prepend: site.baseurl %}
+{% else %}
+  {% assign resolved_link_url = link_url | prepend: site.baseurl %}
+{% endif %}
+
+{% if image_url == nil or image_url == "" %}
+  {% if item.optimized_image %}
+    {% assign image_url = item.optimized_image %}
+  {% elsif item.image %}
+    {% assign image_url = item.image %}
+  {% else %}
+    {% assign image_url = "/assets/img/off.jpg" %}
+  {% endif %}
+{% endif %}
+
+{% if image_url contains "://" %}
+  {% assign resolved_image_url = image_url %}
+{% elsif image_url | slice: 0 == "/" %}
+  {% assign resolved_image_url = image_url | prepend: site.baseurl %}
+{% else %}
+  {% assign resolved_image_url = image_url %}
+{% endif %}
+
+<article class="box-item tile-card{% if include.no_category %} no-category{% endif %}">
+  {% if include.show_category and item.category %}
+    <span class="category">
+      <a href="{{ site.baseurl }}/{{ site.categories_folder | default: 'category' }}/{{ item.category }}">
+        <span>{{ item.category }}</span>
+      </a>
+    </span>
+  {% endif %}
+  <div class="box-body">
+    <a class="cover tile-cover" href="{{ resolved_link_url }}">
+      {% include loader.html %}
+      <img src="/assets/img/placeholder.png" width="100%" data-url="{{ resolved_image_url }}" class="preload">
+      <noscript>
+        <img src="{{ resolved_image_url }}" width="100%">
+      </noscript>
+      {% if include.show_new_tag %}
+        {% include new-post-tag.html date=item.date %}
+      {% endif %}
+      {% include read-icon.html %}
+    </a>
+    <div class="box-info">
+      {% if include.show_date and item.date %}
+        <time datetime="{{ item.date | date_to_xmlschema }}" class="date">
+          {% include date.html date=item.date %}
+        </time>
+      {% endif %}
+      <a class="post-link" href="{{ resolved_link_url }}">
+        <h2 class="post-title">
+          {{ display_title }}
+        </h2>
+      </a>
+      {% if description %}
+        <a class="post-link" href="{{ resolved_link_url }}">
+          <p class="description">{{ description }}</p>
+        </a>
+      {% endif %}
+      {% if include.show_tags %}
+        <div class="tags">
+          {% for tag in item.tags %}
+            {% if tag != "" %}
+              <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}">#{{ tag }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</article>

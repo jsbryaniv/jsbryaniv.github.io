@@ -1,0 +1,103 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% assign title = '' %}
+    {% if page.layout == 'author' %}
+        {% assign title = page.display_name %}
+    {% elsif page.title %}
+        {% assign title = page.title | append: " | " | append: site.name %}
+    {% else %}
+        {% assign title = site.title %}
+    {% endif %}
+
+    {% assign image = '' %}
+    {% if page.image %}
+        {% assign image = page.image %}
+    {% else %}
+        {% assign image = "/assets/img/blog-image.png" | absolute_url %}
+    {% endif %}
+
+    {% assign description = '' %}
+    {% if page.description %}
+        {% assign description = page.description | strip_html | strip_newlines | truncate: 160 %}
+    {% else %}
+        {% assign description = site.description %}
+    {% endif %}
+
+    {% assign url = '' %}
+    {% if paginator.page_trail %}
+        {% assign url = paginator.first_page_path | replace:'index.html','' | absolute_url %}
+    {% else %}
+        {% assign url = page.url | replace:'index.html','' | absolute_url %}
+    {% endif %}
+
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    {% if page.tags %}
+        <meta name="keywords" content="{{ page.tags | join: ', ' }}">
+    {% endif %}
+
+    <!-- Social: Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+
+    {% if image contains '://' %}
+        <meta property="twitter:image" content="{{ image }}">
+    {% else %}
+        <meta property="twitter:image" content="{{ image | absolute_url }}">
+    {% endif %}
+    
+    {% if site.twitter_username %}
+        <meta name="twitter:site" content="@{{ site.twitter_username }}">
+    {% endif %}
+
+    <!-- Social: Facebook / Open Graph -->
+    <meta property="og:url" content="{{ url }}">
+    <meta property="og:title" content="{{ title }}">
+    {% if image contains '://' %}
+        <meta property="og:image" content="{{ image }}">
+    {% else %}
+        <meta property="og:image" content="{{ image | absolute_url }}">
+    {% endif %}
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+
+    <!-- Single root icon setup -->
+    <link rel="icon" href="{{ site.baseurl }}/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{{ site.baseurl }}/favicon.ico" />
+    
+    <!-- Android Lolipop Theme Color -->
+    <meta name="theme-color" content="#141414">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ '/assets/site/styles.css' | prepend: site.baseurl }}">
+    <link rel="canonical" href="{{ url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}" />
+
+    {% if page.layout == 'home' %}
+        {% include seo/schema-home.html %}
+    {% elsif page.layout == 'post' %}
+        {% include seo/schema-post.html %}
+    {% elsif page.layout == 'author' %}
+        {% include seo/schema-author-page.html %}
+    {% endif %}
+    {% include seo/schema-organization.html %}
+    {% if page.extra_schema %}
+    <script type="application/ld+json">
+{{ page.extra_schema }}
+    </script>
+    {% endif %}
+
+    <!-- Include extra styles -->
+    {% include extra-css.html %}
+
+    <!-- JavaScript enabled/disabled -->
+    <script>
+        document.querySelector('html').classList.remove('no-js');
+    </script>
+</head>

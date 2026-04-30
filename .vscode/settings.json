@@ -1,0 +1,8 @@
+{
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.env.osx": {
+    "BUNDLE_APP_CONFIG": "${workspaceFolder}/.dev/build/.bundle"
+  },
+  "python.defaultInterpreterPath": "${workspaceFolder}/.dev/python/venv/bin/python",
+  "python.terminal.activateEnvironment": false
+}

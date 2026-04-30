@@ -1,0 +1,34 @@
+/* ============================================================
+   code-animation.css — live-coding animation for Quarto HTML
+   ============================================================
+
+   JS hides/shows individual <span id="cbN-M"> line spans via
+   inline visibility. This file handles:
+     - hiding the output block until JS reveals it
+     - blinking cursor shown while typing is in progress
+*/
+
+.code-animation {
+  margin: 1.5rem 0;
+}
+
+/* Output hidden until JS sets visibility/opacity directly */
+.code-animation .cell-output {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* No cursor - removed for cleaner animation */
+.code-animation.typing pre code.sourceCode::after {
+  content: none;
+}
+
+.code-animation.done pre code.sourceCode::after {
+  content: none;
+}
+
+@keyframes ca-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

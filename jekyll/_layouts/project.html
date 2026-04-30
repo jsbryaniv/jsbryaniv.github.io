@@ -1,0 +1,68 @@
+---
+layout: default
+---
+
+<style>
+  .post.project-page {
+    top: 0 !important;
+  }
+  
+  .project-nav {
+    padding: 80px 0 5px 23px;
+  }
+  
+  .back-to-projects {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-projects::before {
+    content: "←";
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .back-to-projects:hover {
+    color: #ff0a16;
+  }
+  
+  .back-to-projects:hover::before {
+    transform: translateX(-4px);
+  }
+  
+  .post.project-page .post-content.fullwidth {
+    padding-top: 10px;
+  }
+  
+  @media (min-width: 37.5rem) {
+    .project-nav {
+      padding-top: 90px;
+    }
+    
+    .back-to-projects {
+      font-size: 20px;
+    }
+    
+    .back-to-projects::before {
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="post project-page">
+  <nav class="project-nav">
+    <a href="/projects/" class="back-to-projects">Back to Projects</a>
+  </nav>
+  
+  <article class="post-content fullwidth">
+    {{ content }}
+  </article>
+</div>

@@ -1,0 +1,142 @@
+.comments {
+  @include center(rem(800px));
+  padding: 0 rem(20px);
+  
+  h3 {
+    margin: 0 0 rem(30px);
+    font-size: rem(30px);
+  }
+}
+
+footer {
+  @include center(rem(800px));
+  border-top: 1px solid darken($accentDark, 10%);
+  background: $accentDark;
+  padding: rem(20px) rem(25px);
+  margin-top: rem(50px);
+  margin-bottom: rem(120px);
+  @include mainFont(300);
+  text-align: center;
+
+  @include media(">=sm") {
+    margin-top: rem(100px);
+  }
+
+  p {
+    text-decoration: none;
+    color: $primaryDark;
+    font-size: rem(16px);
+    line-height: rem(25px);
+  }
+
+  .footer-slogan {
+    margin: 0 0 rem(10px);
+    font-size: rem(16px);
+    line-height: rem(24px);
+    opacity: 0.9;
+  }
+
+  .footer-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: rem(12px);
+    margin: 0 0 rem(14px);
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  svg,
+  .social-icon {
+    @include size(28, 28);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0;
+
+    @include media(">=sm") {
+      margin-right: 0;
+    }
+
+    &.love {
+      @include size(20, 20);
+      fill: $themeColor;
+      margin-top: rem(-2px);
+      margin-left: rem(3px);
+      margin-right: rem(3px);
+    }
+  }
+
+  a {
+    display: inline-block;
+    fill: #808080;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #808080;
+    
+    &:hover {
+      fill: $themeColor;
+    }
+    
+    &.creator:hover {
+      text-decoration: underline;
+    }
+
+    .social-icon {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      filter: brightness(0) saturate(100%) invert(72%) sepia(0%) saturate(0%) hue-rotate(173deg) brightness(97%) contrast(89%);
+    }
+
+    &:hover .social-icon {
+      opacity: 1;
+      filter: brightness(0) saturate(100%) invert(100%);
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: rem(8px) rem(16px);
+    margin: 0;
+    width: auto;
+
+    li {
+      margin: 0;
+      display: inline-flex;
+    }
+
+    a {
+      display: inline-block;
+      width: auto;
+      text-decoration: none;
+      font-size: rem(15px);
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.main-page {
+  footer {
+    background: $primaryDark;
+    border-top: 1px solid lighten($primaryDark, 10%);
+    
+    p {
+      color: $accentDark;
+    }
+  }
+}

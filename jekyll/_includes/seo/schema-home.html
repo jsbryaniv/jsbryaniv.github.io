@@ -1,0 +1,88 @@
+{% if site.paginate %}
+  {% assign schema_posts = paginator.posts | where_exp:"post","post.is_generated != true" %}
+{% else %}
+  {% assign schema_posts = site.posts | where_exp:"post","post.is_generated != true" %}
+{% endif %}
+{% assign social_urls = '' %}
+{% if site.github_username %}
+  {% assign social_urls = social_urls | append: '"https://github.com/' | append: site.github_username | append: '",' %}
+{% endif %}
+{% if site.facebook_username %}
+  {% assign social_urls = social_urls | append: '"https://www.facebook.com/' | append: site.facebook_username | append: '",' %}
+{% endif %}
+{% if site.twitter_username %}
+  {% assign social_urls = social_urls | append: '"https://x.com/' | append: site.twitter_username | append: '",' %}
+{% endif %}
+{% if site.medium_username %}
+  {% assign social_urls = social_urls | append: '"https://medium.com/@' | append: site.medium_username | append: '",' %}
+{% endif %}
+{% if site.instagram_username %}
+  {% assign social_urls = social_urls | append: '"https://www.instagram.com/' | append: site.instagram_username | append: '",' %}
+{% endif %}
+{% if site.linkedin_username %}
+  {% assign social_urls = social_urls | append: '"https://www.linkedin.com/in/' | append: site.linkedin_username | append: '",' %}
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebPage",
+  "mainEntity": {
+    "@type": "Blog",
+    "name": "{{ site.name }}",
+    "headline": "{{ site.title }}",
+    "description": "{{ site.description }}",
+    "url": "{{ '/' | absolute_url }}",
+    "inLanguage": "{{ site.language }}",
+    "isFamilyFriendly": "true",
+    "creator": {
+      "@type": "Organization",
+      "name": "{{ site.name }}",
+      "url": "{{ '/' | absolute_url }}",
+      "sameAs": [
+        {{ social_urls | split: "," | join: "," }}
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": [
+      {% assign limit = 8 %}
+      {% for post in schema_posts limit: limit %}
+        {% assign author = site.authors | where: "name", post.author | first %}
+        {
+          "@type": "BlogPosting",
+          "name": "{{ post.title }}",
+          "headline": "{{ post.subtitle }}",
+          "description": "{{ post.description }}",
+          "image": "{{ post.image }}",
+          "url": "{{ post.url | absolute_url }}",
+          "inLanguage": "{{ site.language }}",
+          "dateCreated": "{{ post.date | date: '%Y-%m-%d' }}",
+          "datePublished": "{{ post.date | date: '%Y-%m-%d' }}",
+          "dateModified": "{{ post.date | date: '%Y-%m-%d' }}",
+          "author": {
+            "@type": "Person",
+            "name": "{{ author.display_name }}",
+            "url": "{{ author.url | absolute_url }}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.name }}",
+            "url": "{{ '/' | absolute_url }}",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ '/assets/img/blog-image.png' | absolute_url }}",
+              "width": "600",
+              "height": "315"
+            }
+          },
+          "mainEntityOfPage": "{{ post.url | absolute_url }}",
+          "genre": "{{ post.category | capitalize }}",
+          "articleSection": "{{ post.category | capitalize }}",
+          "keywords": [{{ post.tags | join: '","' | append: '"' | prepend: '"' }}]
+        }{% if forloop.last == false  %},{% endif %}
+      {% endfor %}
+      ]
+    }
+  }
+}
+</script>

@@ -1,0 +1,9 @@
+{% assign hero_title = include.title | default: page.title | upcase %}
+{% assign hero_description = include.description | default: page.description %}
+
+<section class="page-hero">
+  <h1 class="page-hero__title">{{ hero_title }}</h1>
+  {% if hero_description and hero_description != "" %}
+    <p class="page-hero__description">{{ hero_description }}</p>
+  {% endif %}
+</section>

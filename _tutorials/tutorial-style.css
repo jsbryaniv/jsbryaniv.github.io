@@ -1,0 +1,209 @@
+/* VSCode Dark Mode Tutorial Style */
+
+:root {
+  --vscode-bg: #1e1e1e;
+  --vscode-text: #d4d4d4;
+  --vscode-header: #569cd6;
+  --vscode-string: #ce9178;
+  --vscode-function: #dcdcaa;
+  --vscode-keyword: #c586c0;
+  --vscode-comment: #6a9955;
+  --vscode-terminal-bg: #0d0d0d;
+  --vscode-output-bg: #252526;
+  --vscode-link: #4ec9b0;
+  --vscode-bullet: #c586c0;
+}
+
+body {
+  background-color: var(--vscode-bg);
+  color: var(--vscode-text);
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Headers with markdown syntax - ALL h1-h6 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--vscode-header);
+  border-bottom: none !important;
+  border: none !important;
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+h1::before { content: "# "; }
+h2::before { content: "## "; }
+h3::before { content: "### "; }
+h4::before { content: "#### "; }
+h5::before { content: "##### "; }
+h6::before { content: "###### "; }
+
+/* Horizontal rules with more spacing */
+hr {
+  border: none;
+  border-top: 1px solid #3e3e42;
+  margin: 5em 0;
+}
+
+/* Links styled like code */
+a {
+  color: var(--vscode-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* List bullets colored */
+ul {
+  list-style: none;
+  padding-left: 1.5em;
+}
+
+ul li::before {
+  content: "•";
+  color: var(--vscode-bullet);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+ol {
+  padding-left: 1.5em;
+}
+
+ol li::marker {
+  color: var(--vscode-function);
+  font-weight: bold;
+}
+
+/* Code blocks - inline code */
+code:not(.sourceCode) {
+  background-color: var(--vscode-output-bg);
+  color: var(--vscode-string);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+/* Code blocks - keep existing style for source code */
+pre.sourceCode {
+  background-color: #1e1e1e;
+  border: 1px solid #3e3e42;
+  border-radius: 4px;
+  padding: 1em;
+}
+
+/* Output blocks - terminal style */
+pre:not(.sourceCode) {
+  background-color: var(--vscode-terminal-bg) !important;
+  color: #00ff00;
+  border: 1px solid #3e3e42;
+  border-radius: 4px;
+  padding: 1em;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  margin: 1em 0;
+}
+
+.cell-output pre {
+  background-color: var(--vscode-terminal-bg) !important;
+  color: #00ff00;
+}
+
+/* Strong/bold text */
+strong, b {
+  color: var(--vscode-function);
+  font-weight: 600;
+}
+
+/* Emphasis/italic text */
+em, i {
+  color: var(--vscode-keyword);
+  font-style: italic;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid var(--vscode-comment);
+  padding-left: 1em;
+  color: var(--vscode-comment);
+  font-style: italic;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+th {
+  background-color: var(--vscode-output-bg);
+  color: var(--vscode-header);
+  font-weight: 600;
+}
+
+td, th {
+  border: 1px solid #3e3e42;
+  padding: 0.5em 1em;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Main content padding */
+#quarto-content {
+  padding: 2em;
+}
+
+/* Syntax highlighting - One Dark color scheme */
+.sourceCode .co {
+  color: #5c6370 !important;  /* comments - gray */
+  font-style: italic;
+}
+
+.sourceCode .kw,
+.sourceCode .cf {
+  color: #c678dd !important;  /* keywords, control flow - purple */
+  font-weight: normal;
+}
+
+.sourceCode .st,
+.sourceCode .ss,
+.sourceCode .vs {
+  color: #98c379 !important;  /* strings - green */
+}
+
+.sourceCode .sc {
+  color: #98c379 !important;  /* string interpolation - green */
+}
+
+.sourceCode .fu,
+.sourceCode .fn {
+  color: #61afef !important;  /* functions - blue */
+}
+
+.sourceCode .va,
+.sourceCode .at {
+  color: #e06c75 !important;  /* variables, attributes - red */
+}
+
+.sourceCode .dv,
+.sourceCode .fl,
+.sourceCode .bn {
+  color: #d19a66 !important;  /* numbers - orange */
+}
+
+.sourceCode .op {
+  color: #56b6c2 !important;  /* operators - cyan */
+}
+
+.sourceCode .im,
+.sourceCode .bu {
+  color: #e5c07b !important;  /* imports, built-ins - yellow */
+}
+
+.sourceCode .dt {
+  color: #e5c07b !important;  /* data types - yellow */
+}

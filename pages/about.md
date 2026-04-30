@@ -1,22 +1,30 @@
 ---
 layout: page
-menu: false
-date: '2020-02-27 01:53:59'
 title: About
-description: Some description.
+description: About me and this website.
 permalink: /about/
 ---
 
-<img class="img-rounded" src="/assets/img/uploads/profile.png" alt="Shep Bryan" width="200">
+<img class="img-rounded" src="/assets/img/profiles/profile.png" alt="Shep Bryan" width="200">
+
 
 # About
 
-Hello! I am Shep Bryan IV, a physicist with a focus at the intersection of physics, AI, and biology.
+My name is J. Shepard Bryan IV, but I go by Shep. I’m a Phoenix-based physicist, AI dev, and innovator.
 
-I did my graduate work in physics at Arizona State University, studying under my mentor, Steve Presse. In Presse Lab we built cutting edge machine learning algorithms to solve complex problems in biophysics.
+I earned my PhD in Physics from Arizona State University focussing on developing and implementing AI solutions for complex problems in biophysics. After graduating, I applied my training across a range of industries, including biotech, radiation therapy, nuclear power, and now insurance. Across all of these fields, the problem solving process is the same: understand a system at a fundamental level, then turn that understanding into something practical.
 
-Since graduation, my advisor and I have cofounded Saguaro Solutions, a company that builds custom machine learning software for biotech companies. Our long term goal is to completely automate data science for biotech companies. As we work towards this goal we are providing contract and consulting services to labs in the life sciences. Be sure to read my life updates for the latest news on our progress.
+But, I've learned that its not enough to simply solve a problem. The real impact comes from turning that solution into something that can be used by others. This is the philosophy I bring to all of my work, whether it's in my day job or in my personal ventures, which I share on this site.
 
-I am starting this blog to showcase our skills and the problems that we have worked on. We have many academic papers, but I think that the blog format can reach a larger audience because of its informal nature and unrestricted perview.
+My approach follows a simple framework:
 
-Please feel free to comment, ask questions, or suggest topics for future posts. I am always happy to talk about science and technology!
+1. **Start from first principles**. Understand a problem deeply, starting from the most fundamental level. Understand the system, the constraints, and the underlying mechanics before trying to solve it.
+
+2. **Build something practical**. Focus on building something that can actually be used, not just understood. The goal is to create real value, not just theoretical insight.
+
+3. **Start near zero**. Keep upfront investment minimal, both in terms of time and money. This allows for quick iteration and efficient testing of ideas. It’s about moving fast and learning quickly, not about perfecting something before it sees the light of day.
+
+4. **Scale on demand**. If there’s real demand for what you’ve built, scale it. If not, move on to the next problem. The key is to be responsive to feedback and to focus resources where they can have the most impact.
+
+This site is where I build in public. It’s a collection of projects, experiments, and ideas taken from concept to implementation, with an emphasis on real-world use. The goal is simple: take what I learn, turn it into something useful, and share the process along the way.
+
