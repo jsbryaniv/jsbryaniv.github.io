@@ -7,11 +7,12 @@
   {% for doc in posts %}
     {% unless first %},{% endunless %}
     {
-      "title"    : "{{ doc.title | escape }}",
-      "tags"     : "{{ doc.tags | array_to_sentence_string }}",
+      "title"    : {{ doc.title | jsonify }},
+      "tags"     : {{ doc.tags | array_to_sentence_string | jsonify }},
       "categories" : "posts",
-      "url"      : "{{ site.baseurl }}{{ doc.url }}",
-      "date"     : "{{ doc.date | date: date_format }}"
+      "url"      : {{ site.baseurl | append: doc.url | jsonify }},
+      "date"     : {{ doc.date | date: date_format | jsonify }},
+      "content"  : {{ doc.content | strip_html | normalize_whitespace | jsonify }}
     }
     {% assign first = false %}
   {% endfor %}
@@ -29,11 +30,12 @@
         {% endunless %}
         {% unless first %},{% endunless %}
         {
-          "title"    : "{{ search_title | escape }}",
-          "tags"     : "{{ doc.tags | array_to_sentence_string }}",
-          "categories" : "{{ collection.label }}",
-          "url"      : "{{ site.baseurl }}{{ doc.url }}",
-          "date"     : "{% if doc.date %}{{ doc.date | date: date_format }}{% endif %}"
+          "title"    : {{ search_title | jsonify }},
+          "tags"     : {{ doc.tags | array_to_sentence_string | jsonify }},
+          "categories" : {{ collection.label | jsonify }},
+          "url"      : {{ site.baseurl | append: doc.url | jsonify }},
+          "date"     : {% if doc.date %}{{ doc.date | date: date_format | jsonify }}{% else %}""{% endif %},
+          "content"  : {{ doc.content | strip_html | normalize_whitespace | jsonify }}
         }
         {% assign first = false %}
       {% endfor %}

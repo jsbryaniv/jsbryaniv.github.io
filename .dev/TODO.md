@@ -4,7 +4,6 @@
 ## High Priority
 
 - Update profile picture
-- Make search bar search through all collections, not just blog posts
 - Make Papers page
 - Set up newsletter
   - Figure out provider
