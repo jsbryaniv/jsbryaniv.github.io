@@ -19,7 +19,7 @@ Here we explore the business of biotech and how building backwards can help narr
 
 ## Background
 
-The first thing I learned when spinning out our university based research into a startup, [Saguaro Solutions](https://saguarosolutions.com/) is that things that make great projects in academia are not automatically great projects in industry. It's not that academic research is bad, it's just that the goals are completely different.
+The first thing I learned when spinning out our university based research into a startup, Saguaro Solutions is that things that make great projects in academia are not automatically great projects in industry. It's not that academic research is bad, it's just that the goals are completely different.
 
 In [Presse Lab](https://labpresse.com/), my PhD lab that specialized in building machine learning tools for biophysics applications, we were very diliberate about the projects we chose to work on because we knew that it can take years to get a project from concept to publication. Nothing feels worse than spending years working on something only to find out after the fact that nobody is interested in it. My advisor, Steve Presse, was very good at picking projects that the community cares about. He instilled in us a drive to do the same by talking to people and having high level conversations about what the community finds interesting. As a result our lab frequently publishes in high impact journals and wins large grants, two metrics which are important for academic success.
 

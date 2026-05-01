@@ -3,13 +3,40 @@
 [
   {% assign posts = site.posts | where_exp:"post","post.is_generated != true" %}
   {% assign date_format = site.date_format | default: "%m/%d/%Y" %}
-  {% for post in posts %}
+  {% assign first = true %}
+  {% for doc in posts %}
+    {% unless first %},{% endunless %}
     {
-      "title"    : "{{ post.title | escape }}",
-      "tags"     : "{{ post.tags | array_to_sentence_string }}",
-      "categories" : "{{ post.category }}",
-      "url"      : "{{ site.baseurl }}{{ post.url }}",
-      "date"     : "{{ post.date | date: date_format }}"
-    } {% unless forloop.last %},{% endunless %}
+      "title"    : "{{ doc.title | escape }}",
+      "tags"     : "{{ doc.tags | array_to_sentence_string }}",
+      "categories" : "posts",
+      "url"      : "{{ site.baseurl }}{{ doc.url }}",
+      "date"     : "{{ doc.date | date: date_format }}"
+    }
+    {% assign first = false %}
+  {% endfor %}
+  {% for collection in site.collections %}
+    {% unless collection.label == "posts" %}
+      {% assign docs = collection.docs | where_exp:"doc","doc.is_generated != true" %}
+      {% for doc in docs %}
+        {% assign search_title = doc.name %}
+        {% unless search_title %}
+          {% if doc.title and doc.title != "index" %}
+            {% assign search_title = doc.title %}
+          {% else %}
+            {% assign search_title = doc.slug %}
+          {% endif %}
+        {% endunless %}
+        {% unless first %},{% endunless %}
+        {
+          "title"    : "{{ search_title | escape }}",
+          "tags"     : "{{ doc.tags | array_to_sentence_string }}",
+          "categories" : "{{ collection.label }}",
+          "url"      : "{{ site.baseurl }}{{ doc.url }}",
+          "date"     : "{% if doc.date %}{{ doc.date | date: date_format }}{% endif %}"
+        }
+        {% assign first = false %}
+      {% endfor %}
+    {% endunless %}
   {% endfor %}
 ]
