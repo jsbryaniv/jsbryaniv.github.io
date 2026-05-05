@@ -4,7 +4,7 @@ module Jekyll
     priority :high
 
     def generate(site)
-      # Process all collections (projects, tutorials, store, etc.)
+      # Process all collections (projects, tutorials, shop, etc.)
       site.collections.each do |name, collection|
         collection.docs.each do |doc|
           image = doc.data['image']

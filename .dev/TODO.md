@@ -3,17 +3,17 @@
 
 ## High Priority
 
-- Update profile picture
+- Set up shop
+  - Set up shopify/stripe account
+  - Add products
+  - Make landing page
 - Make Papers page
 - Set up newsletter
   - Figure out provider
   - Make collection
   - Add signup form to site
   - Make landing page
-- Set up store
-  - Set up shopify/stripe account
-  - Add products
-  - Make landing page
+- Update profile picture
 
 
 ## Low Priority
