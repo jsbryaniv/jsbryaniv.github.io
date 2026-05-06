@@ -60,7 +60,7 @@ collections:
     output: true
   projects:
     output: true
-  store:
+  shop:
     output: true
   tutorials:
     output: true
@@ -102,8 +102,8 @@ menu:
     url: /privacy
   - title: Projects
     url: /projects
-  - title: Store
-    url: /store
+  - title: Shop
+    url: /shop
   - title: Terms
     url: /terms
   - title: Tutorials
@@ -143,6 +143,12 @@ defaults:
     values:
       layout: tutorial
       permalink: /tutorials/:path/
+  - scope:
+      path: ""
+      type: "shop"
+    values:
+      layout: shop_product
+      permalink: /shop/:slug/
 
 # Plugins
 plugins:

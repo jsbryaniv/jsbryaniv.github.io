@@ -50,6 +50,11 @@
           {{ display_title }}
         </h2>
       </a>
+      {% if item.price_display %}
+        <a class="post-link" href="{{ resolved_link_url }}">
+          <p class="carousel-price">{{ item.price_display }}</p>
+        </a>
+      {% endif %}
       {% if description %}
         <a class="post-link" href="{{ resolved_link_url }}">
           <p class="description">{{ description }}</p>

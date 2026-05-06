@@ -3,17 +3,17 @@
 
 ## High Priority
 
-- Update profile picture
+- Set up shop
+  - Set up shopify/stripe account
+  - Add products
+  - Make landing page
 - Make Papers page
 - Set up newsletter
   - Figure out provider
   - Make collection
   - Add signup form to site
   - Make landing page
-- Set up store
-  - Set up shopify/stripe account
-  - Add products
-  - Make landing page
+- Update profile picture
 
 
 ## Low Priority
@@ -23,4 +23,6 @@
 - Get rid of all references to optimized_image
 - Make new logo
 - Change the way disqus looks
+- Rename home-new to home
+- Why does index.md not get stripped to the base url?
 

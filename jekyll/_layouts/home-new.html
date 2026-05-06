@@ -3,6 +3,10 @@ layout: main
 ---
 
 {% assign posts = site.posts | where_exp:"post","post.is_generated != true" %}
+{% assign visible_products = site.shop | where_exp: "p", "p.shop_hidden != true" %}
+{% assign featured_products = visible_products | where_exp: "p", "p.shop_featured == true" | sort: "shop_order" %}
+{% assign regular_products = visible_products | where_exp: "p", "p.shop_featured != true" | sort: "shop_order" %}
+{% assign products = featured_products | concat: regular_products %}
 {% assign projects = site.projects | sort: "title" %}
 
 <main class="home home-redesign no-padding" role="main">
@@ -41,6 +45,14 @@ layout: main
     show_category=true 
     show_date=true
     section_id="blog"
+  %}
+
+  <!-- Shop Carousel -->
+  {% include carousel-section.html
+    title="SHOP"
+    items=products
+    link_url="/shop/"
+    section_id="shop"
   %}
 
   <!-- Projects Carousel -->

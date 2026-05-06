@@ -229,13 +229,16 @@
 .tile-card {
   .box-body {
     .tile-cover {
+      position: relative;
+      aspect-ratio: 1 / 1;
       height: 0;
       padding-bottom: 100%;
       overflow: hidden;
       margin-top: rem(36px);
 
       > img.preload,
-      > img {
+      > img,
+      > noscript > img {
         position: absolute;
         top: 0;
         left: 0;

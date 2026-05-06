@@ -94,6 +94,7 @@
                         {% for post in shuffled_array limit:3 %}
                             <li>
                                 <a href="{{ post.url | prepend: site.baseurl }}">
+                                    <h3>{{ post.title }}</h3>
                                     {% if post.optimized_image %}
                                         <img src="{{ post.optimized_image }}">
                                     {% elsif post.image %}
@@ -101,7 +102,6 @@
                                     {% else %}
                                         <img src="/assets/img/off.jpg">
                                     {% endif %}
-                                    <h3>{{ post.title }}</h3>
                                 </a>
                             </li>
                         {% endfor %}
