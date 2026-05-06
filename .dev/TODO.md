@@ -23,4 +23,5 @@
 - Get rid of all references to optimized_image
 - Make new logo
 - Change the way disqus looks
+- Rename home-new to home
 
