@@ -143,6 +143,12 @@ defaults:
     values:
       layout: tutorial
       permalink: /tutorials/:path/
+  - scope:
+      path: ""
+      type: "shop"
+    values:
+      layout: shop_product
+      permalink: /shop/:slug/
 
 # Plugins
 plugins:

@@ -24,4 +24,5 @@
 - Make new logo
 - Change the way disqus looks
 - Rename home-new to home
+- Why does index.md not get stripped to the base url?
 
