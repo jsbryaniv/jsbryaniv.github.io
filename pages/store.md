@@ -1,147 +1,102 @@
 ---
-layout: page
-title: Shep 4 Shop
+layout: main
+title: Shop
 description: Where ideas become products you can actually use.
 permalink: /shop/
 ---
 
-# Shep 4 Shop
+<style>
+  .collection-back-nav {
+    padding: 68px 0 5px 23px;
+  }
 
-Coming Summer 2026.
+  .shop-home {
+    padding-top: 0;
+  }
 
-<div id='product-component-1778020023625'></div>
-<script type="text/javascript">
-/*<![CDATA[*/
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
+  .shop-home .page-hero {
+    padding-top: 24px;
   }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-    script.onload = ShopifyBuyInit;
+
+  .back-to-home-collection {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
   }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'cwaxbf-cs.myshopify.com',
-      storefrontAccessToken: '0bab8c60d3962d8a7e205c93223a13ef',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: '9354924916956',
-        node: document.getElementById('product-component-1778020023625'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-  "product": {
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0",
-          "margin-bottom": "50px"
-        },
-        "text-align": "left"
-      },
-      "title": {
-        "font-size": "26px"
-      },
-      "price": {
-        "font-size": "18px"
-      },
-      "compareAt": {
-        "font-size": "15.299999999999999px"
-      },
-      "unitPrice": {
-        "font-size": "15.299999999999999px"
-      }
-    },
-    "buttonDestination": "checkout",
-    "layout": "horizontal",
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "description": true
-    },
-    "width": "100%",
-    "text": {
-      "button": "Buy now"
-    }
-  },
-  "productSet": {
-    "styles": {
-      "products": {
-        "@media (min-width: 601px)": {
-          "margin-left": "-20px"
-        }
-      }
-    }
-  },
-  "modalProduct": {
-    "contents": {
-      "img": false,
-      "imgWithCarousel": true,
-      "button": false,
-      "buttonWithQuantity": true
-    },
-    "styles": {
-      "product": {
-        "@media (min-width: 601px)": {
-          "max-width": "100%",
-          "margin-left": "0px",
-          "margin-bottom": "0px"
-        }
-      },
-      "title": {
-        "font-family": "Helvetica Neue, sans-serif",
-        "font-weight": "bold",
-        "font-size": "26px",
-        "color": "#4c4c4c"
-      },
-      "price": {
-        "font-family": "Helvetica Neue, sans-serif",
-        "font-weight": "normal",
-        "font-size": "18px",
-        "color": "#4c4c4c"
-      },
-      "compareAt": {
-        "font-family": "Helvetica Neue, sans-serif",
-        "font-weight": "normal",
-        "font-size": "15.299999999999999px",
-        "color": "#4c4c4c"
-      },
-      "unitPrice": {
-        "font-family": "Helvetica Neue, sans-serif",
-        "font-weight": "normal",
-        "font-size": "15.299999999999999px",
-        "color": "#4c4c4c"
-      }
-    },
-    "text": {
-      "button": "Add to cart"
-    }
-  },
-  "option": {},
-  "cart": {
-    "text": {
-      "total": "Subtotal",
-      "button": "Checkout"
-    },
-    "popup": false
-  },
-  "toggle": {}
-},
-      });
-    });
+
+  .back-to-home-collection::before {
+    content: "←";
+    font-size: 24px;
+    transition: transform 0.3s ease;
   }
-})();
-/*]]>*/
-</script>
+
+  .back-to-home-collection:hover {
+    color: #ff0a16;
+  }
+
+  .back-to-home-collection:hover::before {
+    transform: translateX(-4px);
+  }
+
+  @media (min-width: 37.5rem) {
+    .collection-back-nav {
+      padding-top: 76px;
+    }
+
+    .shop-home .page-hero {
+      padding-top: 28px;
+    }
+
+    .back-to-home-collection {
+      font-size: 20px;
+    }
+
+    .back-to-home-collection::before {
+      font-size: 28px;
+    }
+  }
+</style>
+
+{% assign visible_products = site.shop | where_exp: "p", "p.shop_hidden != true" %}
+{% assign featured_products = visible_products | where_exp: "p", "p.shop_featured == true" | sort: "shop_order" %}
+{% assign regular_products = visible_products | where_exp: "p", "p.shop_featured != true" | sort: "shop_order" %}
+{% assign products = featured_products | concat: regular_products %}
+
+<nav class="collection-back-nav">
+  <a href="/" class="back-to-home-collection">Back to Home</a>
+</nav>
+
+<main class="home no-padding shop-home" role="main">
+  {% include page-hero.html title="SHOP" description=page.description %}
+
+  <section id="grid" class="row flex-grid">
+    {% for product in products %}
+      {% assign product_title = product.title | default: product.slug %}
+      {% assign product_image = "" %}
+
+      {% if product.image %}
+        {% assign image_first_char = product.image | slice: 0 %}
+        {% if product.image contains "://" or image_first_char == "/" %}
+          {% assign product_image = product.image %}
+        {% else %}
+          {% assign product_image = "/shop/" | append: product.slug | append: "/" | append: product.image %}
+        {% endif %}
+      {% endif %}
+
+      {% if product_image != "" %}
+        {% assign product_image_url = product_image %}
+      {% else %}
+        {% assign product_image_url = "/assets/img/off.jpg" %}
+      {% endif %}
+
+      {% include tile-card.html item=product display_title=product_title description=product.subtitle image_url=product_image_url no_category=true %}
+    {% endfor %}
+  </section>
+</main>

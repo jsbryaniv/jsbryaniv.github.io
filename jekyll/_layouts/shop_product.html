@@ -1,0 +1,162 @@
+---
+layout: default
+---
+
+<style>
+  .shop-product {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 96px 24px 56px;
+  }
+
+  .shop-product-header {
+    margin-bottom: 24px;
+  }
+
+  .shop-product-title {
+    margin: 0 0 8px;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    line-height: 1.15;
+  }
+
+  .shop-product-subtitle {
+    margin: 0;
+    color: #666;
+    font-size: 1.05rem;
+  }
+
+  .shop-product-image {
+    margin: 24px 0;
+  }
+
+  .shop-product-image img {
+    display: block;
+    width: 100%;
+    max-width: 720px;
+    border-radius: 10px;
+  }
+
+  .shop-product-buy {
+    margin: 8px 0 30px;
+  }
+
+  .shop-product-price {
+    margin: 0 0 14px;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .shop-product-content {
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    .shop-product {
+      padding-top: 84px;
+    }
+  }
+</style>
+
+<article class="shop-product">
+  <header class="shop-product-header">
+    <h1 class="shop-product-title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+      <p class="shop-product-subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  {% if page.image %}
+    <figure class="shop-product-image">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </figure>
+  {% endif %}
+
+  <section class="shop-product-buy">
+    {% if page.price_display %}
+      <p class="shop-product-price">{{ page.price_display }}</p>
+    {% endif %}
+
+    {% if page.shopify_enabled and page.shopify_product_id %}
+      <div id="shopify-product-{{ page.shopify_product_id }}"></div>
+      <script>
+        (function() {
+          var productId = '{{ page.shopify_product_id }}';
+          var nodeId = 'shopify-product-' + productId;
+          var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+
+          function initShopifyButton() {
+            var client = ShopifyBuy.buildClient({
+              domain: 'cwaxbf-cs.myshopify.com',
+              storefrontAccessToken: '0bab8c60d3962d8a7e205c93223a13ef'
+            });
+
+            ShopifyBuy.UI.onReady(client).then(function(ui) {
+              ui.createComponent('product', {
+                id: productId,
+                node: document.getElementById(nodeId),
+                moneyFormat: '%24%7B%7Bamount%7D%7D',
+                options: {
+                  product: {
+                    styles: {
+                      product: {
+                        '@media (min-width: 601px)': {
+                          'max-width': '100%',
+                          'margin-left': '0',
+                          'margin-bottom': '0'
+                        },
+                        'text-align': 'left'
+                      }
+                    },
+                    buttonDestination: 'checkout',
+                    layout: 'horizontal',
+                    contents: {
+                      img: false,
+                      imgWithCarousel: false,
+                      title: false,
+                      description: false,
+                      price: true,
+                      button: true
+                    },
+                    width: '100%',
+                    text: {
+                      button: 'Buy now'
+                    }
+                  },
+                  cart: {
+                    popup: false,
+                    text: {
+                      total: 'Subtotal',
+                      button: 'Checkout'
+                    }
+                  }
+                }
+              });
+            });
+          }
+
+          function loadScriptAndInit() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = scriptURL;
+            script.onload = initShopifyButton;
+            (document.head || document.body).appendChild(script);
+          }
+
+          if (window.ShopifyBuy) {
+            if (window.ShopifyBuy.UI) {
+              initShopifyButton();
+            } else {
+              loadScriptAndInit();
+            }
+          } else {
+            loadScriptAndInit();
+          }
+        })();
+      </script>
+    {% endif %}
+  </section>
+
+  <section class="shop-product-content">
+    {{ content }}
+  </section>
+</article>
