@@ -11,6 +11,8 @@ shop_featured: false
 shop_hidden: false
 ---
 
+**This is a fake product for placeholder purposes. It is not real and cannot be purchased.**
+
 The Entropy Maximizer is a compact thermodynamic device designed to accelerate the natural progression toward equilibrium. By converting structured energy into heat and disorder, it ensures rapid entropy growth within a bounded region.
 
 ## Features

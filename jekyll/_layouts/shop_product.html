@@ -3,160 +3,211 @@ layout: default
 ---
 
 <style>
-  .shop-product {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 96px 24px 56px;
+  .shop-back-nav {
+    padding: 80px 0 5px 23px;
   }
 
-  .shop-product-header {
-    margin-bottom: 24px;
+  .back-to-shop {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
   }
 
-  .shop-product-title {
-    margin: 0 0 8px;
-    font-size: clamp(2rem, 3.2vw, 2.8rem);
-    line-height: 1.15;
+  .back-to-shop::before {
+    content: "←";
+    font-size: 24px;
+    transition: transform 0.3s ease;
   }
 
-  .shop-product-subtitle {
-    margin: 0;
-    color: #666;
-    font-size: 1.05rem;
+  .back-to-shop:hover {
+    color: #ff0a16;
+  }
+
+  .back-to-shop:hover::before {
+    transform: translateX(-4px);
+  }
+
+  .shop-post .post-content {
+    padding-bottom: 0;
+  }
+
+  .shop-post .post-content p.post-subtitle {
+    margin-bottom: 16px;
   }
 
   .shop-product-image {
-    margin: 24px 0;
+    margin-top: 18px;
+    margin-bottom: 18px;
   }
 
   .shop-product-image img {
+    max-width: 620px;
+    margin: 0 auto;
     display: block;
-    width: 100%;
-    max-width: 720px;
     border-radius: 10px;
   }
 
   .shop-product-buy {
-    margin: 8px 0 30px;
+    max-width: 460px;
+    margin: 0 auto 10px;
+    text-align: center;
   }
 
-  .shop-product-price {
-    margin: 0 0 14px;
-    font-size: 1.4rem;
-    font-weight: 600;
-  }
+  @media (min-width: 37.5rem) {
+    .shop-back-nav {
+      padding-top: 90px;
+    }
 
-  .shop-product-content {
-    line-height: 1.7;
-  }
+    .back-to-shop {
+      font-size: 20px;
+    }
 
-  @media (max-width: 640px) {
-    .shop-product {
-      padding-top: 84px;
+    .back-to-shop::before {
+      font-size: 28px;
     }
   }
 </style>
 
-<article class="shop-product">
-  <header class="shop-product-header">
-    <h1 class="shop-product-title">{{ page.title }}</h1>
+<nav class="shop-back-nav">
+  <a href="/shop/" class="back-to-shop">Back to Shop</a>
+</nav>
+
+<section class="post two-columns shop-post">
+  <article role="article" class="post-content">
+    <h1 class="post-title">{{ page.title }}</h1>
     {% if page.subtitle %}
-      <p class="shop-product-subtitle">{{ page.subtitle }}</p>
-    {% endif %}
-  </header>
-
-  {% if page.image %}
-    <figure class="shop-product-image">
-      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
-    </figure>
-  {% endif %}
-
-  <section class="shop-product-buy">
-    {% if page.price_display %}
-      <p class="shop-product-price">{{ page.price_display }}</p>
+      <p class="post-subtitle">{{ page.subtitle }}</p>
     {% endif %}
 
-    {% if page.shopify_enabled and page.shopify_product_id %}
-      <div id="shopify-product-{{ page.shopify_product_id }}"></div>
-      <script>
-        (function() {
-          var productId = '{{ page.shopify_product_id }}';
-          var nodeId = 'shopify-product-' + productId;
-          var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+    {% if page.image %}
+      <figure class="shop-product-image">
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+      </figure>
+    {% endif %}
 
-          function initShopifyButton() {
-            var client = ShopifyBuy.buildClient({
-              domain: 'cwaxbf-cs.myshopify.com',
-              storefrontAccessToken: '0bab8c60d3962d8a7e205c93223a13ef'
-            });
+    <section class="shop-product-buy">
+      {% if page.price_display and page.shopify_enabled != true %}
+        <p class="shop-product-price">{{ page.price_display }}</p>
+      {% endif %}
 
-            ShopifyBuy.UI.onReady(client).then(function(ui) {
-              ui.createComponent('product', {
-                id: productId,
-                node: document.getElementById(nodeId),
-                moneyFormat: '%24%7B%7Bamount%7D%7D',
-                options: {
-                  product: {
-                    styles: {
-                      product: {
-                        '@media (min-width: 601px)': {
-                          'max-width': '100%',
-                          'margin-left': '0',
-                          'margin-bottom': '0'
+      {% if page.shopify_enabled and page.shopify_product_id %}
+        <div id="shopify-product-{{ page.shopify_product_id }}"></div>
+        <script>
+          (function() {
+            var productId = '{{ page.shopify_product_id }}';
+            var nodeId = 'shopify-product-' + productId;
+            var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+
+            function initShopifyButton() {
+              var client = ShopifyBuy.buildClient({
+                domain: 'cwaxbf-cs.myshopify.com',
+                storefrontAccessToken: '0bab8c60d3962d8a7e205c93223a13ef'
+              });
+
+              ShopifyBuy.UI.onReady(client).then(function(ui) {
+                ui.createComponent('product', {
+                  id: productId,
+                  node: document.getElementById(nodeId),
+                  moneyFormat: '%24%7B%7Bamount%7D%7D',
+                  options: {
+                    product: {
+                      styles: {
+                        product: {
+                          '@media (min-width: 601px)': {
+                            'max-width': '100%',
+                            'margin-left': '0',
+                            'margin-bottom': '24px'
+                          },
+                          'text-align': 'center'
                         },
-                        'text-align': 'left'
+                        button: {
+                          'font-size': '19px',
+                          'padding-top': '16px',
+                          'padding-bottom': '16px',
+                          'padding-left': '30px',
+                          'padding-right': '30px'
+                        },
+                        price: {
+                          'font-size': '20px',
+                          'margin-bottom': '12px'
+                        }
+                      },
+                      buttonDestination: 'checkout',
+                      layout: 'horizontal',
+                      contents: {
+                        img: false,
+                        imgWithCarousel: false,
+                        title: false,
+                        description: false,
+                        price: true,
+                        button: true
+                      },
+                      width: '100%',
+                      text: {
+                        button: 'Buy now'
                       }
                     },
-                    buttonDestination: 'checkout',
-                    layout: 'horizontal',
-                    contents: {
-                      img: false,
-                      imgWithCarousel: false,
-                      title: false,
-                      description: false,
-                      price: true,
-                      button: true
-                    },
-                    width: '100%',
-                    text: {
-                      button: 'Buy now'
-                    }
-                  },
-                  cart: {
-                    popup: false,
-                    text: {
-                      total: 'Subtotal',
-                      button: 'Checkout'
+                    cart: {
+                      popup: false,
+                      text: {
+                        total: 'Subtotal',
+                        button: 'Checkout'
+                      }
                     }
                   }
-                }
+                });
               });
-            });
-          }
+            }
 
-          function loadScriptAndInit() {
-            var script = document.createElement('script');
-            script.async = true;
-            script.src = scriptURL;
-            script.onload = initShopifyButton;
-            (document.head || document.body).appendChild(script);
-          }
+            function loadScriptAndInit() {
+              var script = document.createElement('script');
+              script.async = true;
+              script.src = scriptURL;
+              script.onload = initShopifyButton;
+              (document.head || document.body).appendChild(script);
+            }
 
-          if (window.ShopifyBuy) {
-            if (window.ShopifyBuy.UI) {
-              initShopifyButton();
+            if (window.ShopifyBuy) {
+              if (window.ShopifyBuy.UI) {
+                initShopifyButton();
+              } else {
+                loadScriptAndInit();
+              }
             } else {
               loadScriptAndInit();
             }
-          } else {
-            loadScriptAndInit();
-          }
-        })();
-      </script>
-    {% endif %}
-  </section>
+          })();
+        </script>
+      {% endif %}
+    </section>
 
-  <section class="shop-product-content">
     {{ content }}
-  </section>
-</article>
+  </article>
+
+  <aside class="see-also">
+    <h2>See also</h2>
+    <ul>
+      {% assign related_products = site.shop | where_exp:"product","product.path != page.path" %}
+      {% assign shuffled_products = related_products | shuffle %}
+      {% for product in shuffled_products limit:3 %}
+        <li>
+          <a href="{{ product.url | prepend: site.baseurl }}">
+            {% if product.image %}
+              <img src="{{ product.image | relative_url }}" alt="{{ product.title }}">
+            {% else %}
+              <img src="/assets/img/off.jpg" alt="{{ product.title }}">
+            {% endif %}
+            <h3>{{ product.title }}</h3>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </aside>
+</section>

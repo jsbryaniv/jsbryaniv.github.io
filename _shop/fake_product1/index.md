@@ -11,6 +11,8 @@ shop_featured: true
 shop_hidden: false
 ---
 
+**This is a fake product for placeholder purposes. It is not real and cannot be purchased.**
+
 The Desktop Black Hole is a stabilized gravitational system designed to bring extreme curvature of spacetime to your workspace. Contained within a controlled field, it passively interacts with its surroundings while maintaining desktop-safe operation.
 
 ## Features

@@ -11,6 +11,8 @@ shop_featured: false
 shop_hidden: false
 ---
 
+**This is a fake product for placeholder purposes. It is not real and cannot be purchased.**
+
 Schrödinger’s Cat exists in a superposition of states, simultaneously alive and not alive, until observed. This sealed unit preserves the system in its natural probabilistic state, making it ideal for demonstrations, thought experiments, and casual existential reflection.
 
 ## Features
