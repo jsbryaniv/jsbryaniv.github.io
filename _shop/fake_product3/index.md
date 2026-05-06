@@ -1,7 +1,7 @@
 ---
 layout: shop_product
 title: Schrödinger’s Cat
-subtitle: A foundational experiment in quantum mechanics, now available for your desk.
+description: A foundational experiment in quantum mechanics, now available for your desk.
 price_display: "$99.99"
 image: assets/schrodingers_cat.png
 shopify_product_id: "9354927636700"

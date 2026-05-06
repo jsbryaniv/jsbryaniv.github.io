@@ -60,6 +60,17 @@ layout: default
     text-align: center;
   }
 
+  .shop-post .see-also ul li a {
+    display: block;
+  }
+
+  .shop-post .see-also ul li img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+  }
+
   @media (min-width: 37.5rem) {
     .shop-back-nav {
       padding-top: 90px;
@@ -199,12 +210,12 @@ layout: default
       {% for product in shuffled_products limit:3 %}
         <li>
           <a href="{{ product.url | prepend: site.baseurl }}">
+            <h3>{{ product.title }}</h3>
             {% if product.image %}
               <img src="{{ product.image | relative_url }}" alt="{{ product.title }}">
             {% else %}
               <img src="/assets/img/off.jpg" alt="{{ product.title }}">
             {% endif %}
-            <h3>{{ product.title }}</h3>
           </a>
         </li>
       {% endfor %}

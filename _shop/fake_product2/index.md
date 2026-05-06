@@ -1,7 +1,7 @@
 ---
 layout: shop_product
 title: Entropy Maximizer
-subtitle: A compact thermodynamic device for accelerating disorder.
+description: A compact thermodynamic device for accelerating disorder.
 price_display: "$19.99"
 image: assets/entropy_maximizer.png
 shopify_product_id: "9354930487516"

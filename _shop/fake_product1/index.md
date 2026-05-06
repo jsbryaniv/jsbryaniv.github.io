@@ -1,7 +1,7 @@
 ---
 layout: shop_product
 title: Desktop Black Hole
-subtitle: A compact singularity, engineered for everyday environments.
+description: A compact singularity, engineered for everyday environments.
 price_display: "$9.99"
 image: assets/desktop_black_hole.png
 shopify_product_id: "9354924916956"
