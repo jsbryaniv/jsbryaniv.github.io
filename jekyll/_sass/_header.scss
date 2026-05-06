@@ -42,6 +42,32 @@ body {
     }
   }
 
+  .header-links {
+    display: none;
+
+    @include media(">=sm") {
+      display: inline-flex;
+      align-items: center;
+      gap: rem(16px);
+      margin-left: rem(18px);
+      vertical-align: middle;
+    }
+
+    a {
+      color: $themeColor;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: rem(15px);
+      font-weight: 700;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: lighten($themeColor, 10%);
+      }
+    }
+  }
+
   .version {
     color: $accentDark;
     font-size: rem(10px);
@@ -125,6 +151,14 @@ body.light:not(.main-page) {
     .logo a,
     .version {
       color: $primaryDark;
+    }
+
+    .header-links a {
+      color: $themeColor;
+
+      &:hover {
+        color: darken($themeColor, 5%);
+      }
     }
   }
 }
