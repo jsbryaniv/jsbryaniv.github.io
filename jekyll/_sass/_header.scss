@@ -53,17 +53,25 @@ body {
       vertical-align: middle;
     }
 
-    a {
+    .header-link-btn {
+      display: inline-block;
       color: $themeColor;
       text-decoration: none;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       font-size: rem(15px);
       font-weight: 700;
-      transition: color 0.3s ease;
+      line-height: 1;
+      padding: rem(8px) rem(12px);
+      border: 1px solid rgba($themeColor, 0.8);
+      border-radius: rem(4px);
+      background: rgba($themeColor, 0.08);
+      transition: all 0.25s ease;
 
       &:hover {
-        color: lighten($themeColor, 10%);
+        color: #fff;
+        border-color: $themeColor;
+        background: $themeColor;
       }
     }
   }
@@ -153,11 +161,15 @@ body.light:not(.main-page) {
       color: $primaryDark;
     }
 
-    .header-links a {
+    .header-links .header-link-btn {
       color: $themeColor;
+      border-color: rgba($themeColor, 0.75);
+      background: rgba($themeColor, 0.06);
 
       &:hover {
-        color: darken($themeColor, 5%);
+        color: #fff;
+        border-color: $themeColor;
+        background: $themeColor;
       }
     }
   }
