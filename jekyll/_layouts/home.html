@@ -2,52 +2,142 @@
 layout: main
 ---
 
-{% if site.paginate %}
-    {% assign posts = paginator.posts | where_exp:"post","post.is_generated != true" %}
-{% else %}
-    {% assign posts = site.posts | where_exp:"post","post.is_generated != true" %}
-{% endif %}
+<style>
+  .home-redesign .newsletter-section {
+    margin: 0 auto 2rem;
+    padding: 0 23px;
+    max-width: 900px;
+  }
 
-{% if site.show_hero and paginator == nil or paginator.page == 1 %}
-    {% assign offset = 1 %}
-{% else %}
-    {% assign offset = 0 %}
-{% endif %}
+  .home-redesign .newsletter-panel {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+  }
 
-<main class="home {% if site.show_hero and paginator == nil or paginator.page == 1 %}no-padding{% endif %}" role="main">
-    {% if site.show_hero and paginator == nil or paginator.page == 1 %}
-        <!-- Hero -->
-        {% assign featured = posts.first %}
-        <section class="hero" style="background-image: url({{ featured.image }})">
-            <div class="pixels"></div>
-            <div class="gradient"></div>
-            <div class="content">
-                <time datetime="{{ featured.date | date_to_xmlschema }}" class="date">
-                    {% if site.date_format == nil %}
-                        {{ featured.date | date: "%m.%d.%Y" }}
-                    {% else %}
-                        {{ featured.date | date: site.date_format }}
-                    {% endif %}
-                </time>
-                <h1 class="title">{{ featured.title }}</h1>
-                <p class="description">{{ featured.subtitle }}</p>
-                <div class="buttons">
-                    <a href="{{ featured.url | prepend: site.baseurl }}" role="button" class="button">
-                        <svg><use xlink:href="#icon-read"></use></svg>
-                        <span>{{ site.translations.button.read_now | default: "Read Now" }}</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    {% endif %}
-    <!-- Posts -->
-    <section id="grid" class="row flex-grid">
-        {% for post in posts offset: offset %}
-            {% include tile-card.html item=post show_category=true show_date=true show_tags=true show_new_tag=true %}
-        {% endfor %}
+  .home-redesign .newsletter-panel h2,
+  .home-redesign .newsletter-panel p,
+  .home-redesign .newsletter-panel li {
+    color: inherit;
+  }
+
+  .home-redesign .newsletter-panel .contact-form {
+    padding: 0;
+  }
+
+  .home-redesign .newsletter-panel .contact-form fieldset {
+    padding: 0;
+    margin: 0;
+  }
+
+  .home-redesign .newsletter-panel .contact-form input[type="email"] {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.25);
+    margin: 0 0 0.75rem;
+  }
+
+  .home-redesign .newsletter-panel .contact-form button[type="submit"] {
+    border: 1px solid #ff0a16;
+    background: #ff0a16;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.7rem 1rem;
+  }
+
+  .home-redesign .newsletter-panel .contact-form button[type="submit"]:hover {
+    background: #d50812;
+    border-color: #d50812;
+  }
+
+  .home-redesign .newsletter-panel a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .home-redesign .newsletter-panel a:hover {
+    color: #ff0a16;
+  }
+</style>
+
+{% assign posts = site.posts | where_exp:"post","post.is_generated != true" %}
+{% assign visible_products = site.shop | where_exp: "p", "p.shop_hidden != true" %}
+{% assign featured_products = visible_products | where_exp: "p", "p.shop_featured == true" | sort: "shop_order" %}
+{% assign regular_products = visible_products | where_exp: "p", "p.shop_featured != true" | sort: "shop_order" %}
+{% assign products = featured_products | concat: regular_products %}
+{% assign projects = site.projects | sort: "title" %}
+
+<main class="home home-redesign no-padding" role="main">
+  <!-- Hero Blog Post -->
+  {% if site.show_hero %}
+    {% assign featured = posts.first %}
+    <section class="hero" style="background-image: url({{ featured.image }})">
+      <div class="pixels"></div>
+      <div class="gradient"></div>
+      <div class="content">
+        <time datetime="{{ featured.date | date_to_xmlschema }}" class="date">
+          {% if site.date_format == nil %}
+            {{ featured.date | date: "%m.%d.%Y" }}
+          {% else %}
+            {{ featured.date | date: site.date_format }}
+          {% endif %}
+        </time>
+        <h1 class="title">{{ featured.title }}</h1>
+        <p class="description">{{ featured.subtitle }}</p>
+        <div class="buttons">
+          <a href="{{ featured.url | prepend: site.baseurl }}" role="button" class="button">
+            <svg><use xlink:href="#icon-read"></use></svg>
+            <span>{{ site.translations.button.read_now | default: "Read Now" }}</span>
+          </a>
+        </div>
+      </div>
     </section>
-    <!-- Pagination -->
-    {% if site.paginate %}
-        {% include pagination-home.html %}
-    {% endif %}
+  {% endif %}
+
+  <!-- Blog Carousel -->
+  {% assign blog_posts = posts | offset: 1 %}
+  {% include carousel-section.html 
+    title="BLOG" 
+    items=blog_posts 
+    link_url="/blog/" 
+    show_category=true 
+    show_date=true
+    section_id="blog"
+  %}
+
+  <!-- Shop Carousel -->
+  {% include carousel-section.html
+    title="SHOP"
+    items=products
+    link_url="/shop/"
+    section_id="shop"
+  %}
+
+  <!-- Projects Carousel -->
+  {% include carousel-section.html 
+    title="PROJECTS" 
+    items=projects 
+    link_url="/projects/"
+    section_id="projects"
+  %}
+
+  <!-- Newsletter Signup -->
+  <section class="newsletter-section">
+    <div class="newsletter-panel">
+      <h2>Newsletter</h2>
+      <p>Get monthly updates on my projects, essays, and experiments.</p>
+      {% include buttondown-signup.html %}
+      <p><a href="{{ '/newsletter/archive/' | prepend: site.baseurl }}">Browse the full archive</a></p>
+    </div>
+  </section>
+
 </main>

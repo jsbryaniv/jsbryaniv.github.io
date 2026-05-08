@@ -16,6 +16,8 @@ body {
   
   @include media(">=sm") {
     padding: rem(15px) rem(0px);
+    display: flex;
+    align-items: center;
   }
 
   .logo {
@@ -45,14 +47,14 @@ body {
   }
 
   .header-links {
-    display: none;
+    display: inline-flex;
+    align-items: center;
+    margin: 0 rem(10px) 0 auto;
+    vertical-align: middle;
 
     @include media(">=sm") {
-      display: inline-flex;
-      align-items: center;
       gap: rem(16px);
-      margin-left: rem(18px);
-      vertical-align: middle;
+      margin: 0 rem(12px) 0 auto;
     }
 
     .header-link-btn {
@@ -99,6 +101,7 @@ body {
     fill: $accentDark;
 
     @include media(">=sm") {
+      float: none;
       margin: rem(5px) rem(20px) rem(5px) rem(25px);
     }
   }
@@ -109,6 +112,7 @@ body {
     cursor: pointer;
     margin: 0;
     @include media(">=sm") {
+      float: none;
       margin: 0 rem(20px) 0 0;
     }
   }

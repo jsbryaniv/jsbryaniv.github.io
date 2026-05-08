@@ -68,6 +68,8 @@ buttondown:
 collections:
   authors:
     output: true
+  newsletters:
+    output: true
   projects:
     output: true
   shop:
@@ -96,18 +98,22 @@ paginate_content:
 # Site Settings
 show_hero: true
 categories_folder: category
-sent_message_url: "/contact/message-sent/"
+sent_message_url: "/contact/contact-sent/"
 
 # Menu
 menu:
-  - title: Home
-    url: /
   - title: About
     url: /about
   - title: Blog
     url: /blog
   - title: Contact
     url: /contact
+  - title: Home
+    url: /
+  - title: Newsletter
+    url: /newsletter
+  - title: Papers
+    url: /papers
   - title: Privacy
     url: /privacy
   - title: Projects
@@ -147,6 +153,13 @@ defaults:
       paginate: false
       math: true
       comments: true
+  - scope:
+      path: ""
+      type: "newsletters"
+    values:
+      layout: post
+      permalink: /newsletter/:slug/
+      comments: false
   - scope:
       path: ""
       type: "tutorials"
