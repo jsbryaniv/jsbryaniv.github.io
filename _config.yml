@@ -98,7 +98,7 @@ paginate_content:
 # Site Settings
 show_hero: true
 categories_folder: category
-sent_message_url: "/contact/message-sent/"
+sent_message_url: "/contact/contact-sent/"
 
 # Menu
 menu:

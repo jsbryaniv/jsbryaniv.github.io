@@ -56,17 +56,25 @@ permalink: /newsletter/
     border-radius: 12px;
     padding: 1.25rem;
     background: rgba(255, 255, 255, 0.04);
+    color: #fff;
   }
 
-  .newsletter-signup-form label {
-    display: block;
-    margin: 0 0 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.8rem;
+  .newsletter-panel h2,
+  .newsletter-panel p,
+  .newsletter-panel li {
+    color: inherit;
   }
 
-  .newsletter-signup-form input[type="email"] {
+  .newsletter-panel .contact-form {
+    padding: 0;
+  }
+
+  .newsletter-panel .contact-form fieldset {
+    padding: 0;
+    margin: 0;
+  }
+
+  .newsletter-panel .contact-form input[type="email"] {
     width: 100%;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -76,7 +84,7 @@ permalink: /newsletter/
     margin: 0 0 0.75rem;
   }
 
-  .newsletter-signup-form button {
+  .newsletter-panel .contact-form button[type="submit"] {
     border: 1px solid #ff0a16;
     background: #ff0a16;
     color: #fff;
@@ -87,7 +95,7 @@ permalink: /newsletter/
     padding: 0.7rem 1rem;
   }
 
-  .newsletter-signup-form button:hover {
+  .newsletter-panel .contact-form button[type="submit"]:hover {
     background: #d50812;
     border-color: #d50812;
   }
@@ -106,6 +114,7 @@ permalink: /newsletter/
   .newsletter-archive-list li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     padding: 0.85rem 0;
+    color: #fff;
   }
 
   .newsletter-archive-list li:last-child {
@@ -124,7 +133,7 @@ permalink: /newsletter/
 
   .newsletter-archive-date {
     display: block;
-    color: #bcbcbc;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.9rem;
     margin-bottom: 0.25rem;
   }

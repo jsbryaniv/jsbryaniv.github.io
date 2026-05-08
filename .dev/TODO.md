@@ -28,6 +28,8 @@
 
 ## Low Priority
 
+- Reaname header "quick links" to "top subscribe button"
+- Move style defs out of blog, shop, and newsletter pages and into a shared file
 - Clean up categories 
 - Clean up tags
 - Get rid of all references to optimized_image

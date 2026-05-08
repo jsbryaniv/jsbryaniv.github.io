@@ -45,6 +45,40 @@ footer {
     margin: 0 0 rem(14px);
   }
 
+  .footer-subscribe {
+    margin: rem(14px) 0 rem(10px);
+  }
+
+  .footer-subscribe-copy {
+    margin: 0 0 rem(8px);
+    font-size: rem(15px);
+    line-height: rem(22px);
+    opacity: 0.9;
+  }
+
+  .footer-subscribe-btn {
+    display: inline-block;
+    color: $themeColor;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: rem(15px);
+    font-weight: 700;
+    line-height: 1;
+    padding: rem(8px) rem(12px);
+    border: 1px solid rgba($themeColor, 0.8);
+    border-radius: rem(4px);
+    background: rgba($themeColor, 0.08);
+    transition: all 0.25s ease;
+
+    &:hover {
+      color: #fff;
+      border-color: $themeColor;
+      background: $themeColor;
+      text-decoration: none;
+    }
+  }
+
   span {
     font-weight: 700;
   }
@@ -125,6 +159,22 @@ footer {
       
       &:hover {
         text-decoration: underline;
+      }
+    }
+  }
+}
+
+body.light:not(.main-page) {
+  footer {
+    .footer-subscribe-btn {
+      color: $themeColor;
+      border-color: rgba($themeColor, 0.75);
+      background: rgba($themeColor, 0.06);
+
+      &:hover {
+        color: #fff;
+        border-color: $themeColor;
+        background: $themeColor;
       }
     }
   }

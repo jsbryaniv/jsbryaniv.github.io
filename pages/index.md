@@ -1,4 +1,4 @@
 ---
-layout: home-new
+layout: home
 permalink: /
 ---
