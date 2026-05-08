@@ -1,0 +1,25 @@
+{% assign buttondown_username = site.buttondown.username | default: "" %}
+{% assign buttondown_success_path = site.buttondown.success_url | default: "/newsletter/thanks/" %}
+{% assign buttondown_success_url = site.url | append: buttondown_success_path %}
+
+{% if buttondown_username == "" %}
+  <p>
+    Set <code>buttondown.username</code> in <code>_config.yml</code> to enable the embedded signup form.
+  </p>
+{% else %}
+  <div class="contact-form">
+    <form
+      class="embeddable-buttondown-form"
+      action="https://buttondown.com/api/emails/embed-subscribe/{{ buttondown_username }}"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/{{ buttondown_username }}', 'popupwindow')"
+    >
+      <fieldset>
+        <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" required>
+        <input type="hidden" value="{{ buttondown_success_url }}" name="redirect_to">
+        <button type="submit">Subscribe</button>
+      </fieldset>
+    </form>
+  </div>
+{% endif %}

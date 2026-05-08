@@ -52,11 +52,23 @@ formspree_form_id: xdorvdlp
 # medium_username: medium_username
 
 
+# --- Newsletter Settings ---
+
+# Newsletter / Buttondown settings
+buttondown:
+  username: "shep4"
+  newsletter_url: "https://buttondown.com/"
+  archive_url: "/newsletter/archive/"
+  success_url: "/newsletter/thanks/"
+
+
 # --- Content & Display ---
 
 # Collections
 collections:
   authors:
+    output: true
+  newsletters:
     output: true
   projects:
     output: true
@@ -98,6 +110,8 @@ menu:
     url: /contact
   - title: Home
     url: /
+  - title: Newsletter
+    url: /newsletter
   - title: Papers
     url: /papers
   - title: Privacy
@@ -139,6 +153,13 @@ defaults:
       paginate: false
       math: true
       comments: true
+  - scope:
+      path: ""
+      type: "newsletters"
+    values:
+      layout: post
+      permalink: /newsletter/:slug/
+      comments: false
   - scope:
       path: ""
       type: "tutorials"

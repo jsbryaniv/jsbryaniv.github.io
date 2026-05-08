@@ -5,7 +5,6 @@
 
 
 - Update profile picture
-- Make Papers page
 - Set up newsletter
   - Make collection
   - Add signup form to site
@@ -21,8 +20,8 @@
 [ ] Hosted signup page description
 [ ] Confirmation email
 [ ] Welcome email
-[ ] Embedded signup form
-[ ] Success/thank-you page
+[x] Embedded signup form
+[x] Success/thank-you page
 [ ] Full signup test
 [ ] Remove archive from Buttondown, use my site instead
 
@@ -36,4 +35,4 @@
 - Change the way disqus looks
 - Rename home-new to home
 - Why does index.md not get stripped to the base url?
-
+- Last word in shop description falls to the next line, fix that
