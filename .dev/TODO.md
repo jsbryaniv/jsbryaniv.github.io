@@ -3,17 +3,28 @@
 
 ## High Priority
 
-- Set up shop
-  - Set up shopify/stripe account
-  - Add products
-  - Make landing page
+
+- Update profile picture
 - Make Papers page
 - Set up newsletter
-  - Figure out provider
   - Make collection
   - Add signup form to site
   - Make landing page
-- Update profile picture
+
+## Newsletter
+
+[x] Domain email
+[x] Buttondown sender auth
+[x] DNS records
+[x] Alias setup
+[ ] Newsletter metadata
+[ ] Hosted signup page description
+[ ] Confirmation email
+[ ] Welcome email
+[ ] Embedded signup form
+[ ] Success/thank-you page
+[ ] Full signup test
+[ ] Remove archive from Buttondown, use my site instead
 
 
 ## Low Priority
