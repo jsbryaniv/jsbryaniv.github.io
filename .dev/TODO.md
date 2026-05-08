@@ -38,3 +38,4 @@
 - Rename home-new to home
 - Why does index.md not get stripped to the base url?
 - Last word in shop description falls to the next line, fix that
+- Split newsletter Thanks and Confirmation into two pages, one for each email
