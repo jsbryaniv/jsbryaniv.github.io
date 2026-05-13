@@ -1,10 +1,10 @@
 ---
-date: 2026-12-5 12:00:01
+date: YYYY-MM-DD 12:00:01
 layout: post
-title: Update December 2026
-subtitle: How we got here and where we are going
-description: My life status update for December 2023.
-image: assets/blog_new_year_resolutions_2025.png
+title: ...
+subtitle: ...
+description: ...
+image: assets/coverart.png
 category: update
 tags:
   - update
