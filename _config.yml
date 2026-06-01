@@ -151,6 +151,7 @@ defaults:
     values:
       permalink: /blog/:year/:month/:slug/
       paginate: false
+      author: jsbryaniv
       math: true
       comments: true
   - scope:
