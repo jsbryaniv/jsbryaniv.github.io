@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-06-01 12:00:01
 layout: post
 title: "Back Online"
 subtitle: "Life updates, new directions, and what’s coming next."
