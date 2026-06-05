@@ -4,7 +4,7 @@ project:
   render:
     - "**/*.qmd"
 
-jupyter: .venv/bin/python
+jupyter: python3
 
 format:
   html:
@@ -12,11 +12,10 @@ format:
     toc: false
     code-copy: false
     css:
-      - tutorial-style.css
-      - ../assets/code-animation/code-animation.css
+      - .shared/tutorial-style/tutorial-style.css
+      - .shared/code-animation/code-animation.css
     include-after-body:
-      text: |
-        <script src="../assets/code-animation/code-animation.js"></script>
+      - .shared/code-animation/code-animation.html
 
 execute:
   echo: true

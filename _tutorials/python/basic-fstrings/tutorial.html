@@ -75,8 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="tutorial_files/libs/bootstrap/bootstrap-9d06a772b9d4c3b2a2e7366e3fd2c8ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 
 
-<link rel="stylesheet" href="../../tutorial-style.css">
-<link rel="stylesheet" href="../../../assets/code-animation/code-animation.css">
+<link rel="stylesheet" href="../../.shared/tutorial-style/tutorial-style.css">
+<link rel="stylesheet" href="../../.shared/code-animation/code-animation.css">
 </head>
 
 <body class="fullcontent quarto-light">
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="basic-f-strings">Basic f-strings</h2>
 <p>F-strings (formatted string literals) allow you to quickly insert variables into strings. Just put an <code>f</code> before the string and use curly braces to insert variables.</p>
 <div class="code-animation">
-<div id="8788d681" class="cell" data-execution_count="1">
+<div id="e1ffed00" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"Bob"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -147,8 +147,8 @@ Hello, Bob! You are 30 years old.</code></pre>
 <h2 class="anchored" data-anchor-id="formatting-with-precision">Formatting with Precision</h2>
 <p>You can format numbers with precision using f-strings. Simply add a colon, a number, and a letter to the variable.</p>
 <div class="code-animation">
-<div id="7d86bf7d" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format float to n decimal places</span></span>
+<div id="47383889" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format float decimal places with `f`</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> <span class="fl">3.141592653589793</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"π ≈ </span><span class="sc">{</span>pi<span class="sc">:.2f}</span><span class="ss">"</span>)  <span class="co"># 2 decimal places</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"π ≈ </span><span class="sc">{</span>pi<span class="sc">:.4f}</span><span class="ss">"</span>)  <span class="co"># 4 decimal places</span></span></code></pre></div>
@@ -159,8 +159,8 @@ Hello, Bob! You are 30 years old.</code></pre>
 </div>
 </div>
 <div class="code-animation">
-<div id="2743beff" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format with significant figures</span></span>
+<div id="551748c4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format significant figures with `g`</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mass_electron <span class="op">=</span> <span class="fl">9.10938356e-31</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"m ≈ </span><span class="sc">{</span>mass_electron<span class="sc">:.2g}</span><span class="ss">"</span>)  <span class="co"># 2 significant figures</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"m ≈ </span><span class="sc">{</span>mass_electron<span class="sc">:.4g}</span><span class="ss">"</span>)  <span class="co"># 4 significant figures</span></span></code></pre></div>
@@ -171,8 +171,8 @@ m ≈ 9.109e-31</code></pre>
 </div>
 </div>
 <div class="code-animation">
-<div id="8f947910" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format integer with padding</span></span>
+<div id="d0b75d8b" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format integer with padding with `d`</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Answer = </span><span class="sc">{</span><span class="dv">42</span><span class="sc">:02d}</span><span class="ss">"</span>)  <span class="co"># Pad to 2 digits</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Answer = </span><span class="sc">{</span><span class="dv">42</span><span class="sc">:04d}</span><span class="ss">"</span>)  <span class="co"># Pad to 4 digits</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -182,12 +182,12 @@ Answer = 0042</code></pre>
 </div>
 </div>
 <div class="code-animation">
-<div id="93b10b77" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format dates</span></span>
+<div id="7adf8d1a" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Format dates with `:format_spec`</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Today: </span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">:</span><span class="op">%</span>Y<span class="op">-%</span>m<span class="op">-%</span>d<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Today: 2026-04-30</code></pre>
+<pre><code>Today: 2026-06-04</code></pre>
 </div>
 </div>
 </div>
@@ -203,6 +203,237 @@ Shep Bryan IV</p>
 
 </main>
 <!-- /main column -->
+<script>
+/**
+ * code-animation.js v2.0
+ *
+ * Scroll-triggered live-coding animation for Quarto HTML output.
+ *
+ * Usage: wrap a Quarto code cell in a fenced div with class "code-animation":
+ *
+ *   :::{.code-animation}
+ *   ```{python}
+ *   your code here
+ *   ```
+ *   :::
+ *
+ * Quarto renders each source line as a <span id="cbN-M"> inside
+ * <code class="sourceCode">. Those spans carry syntax-highlighted child spans.
+ * This script hides all line spans, then types them out one character at a
+ * time — walking text nodes so the span/color structure is preserved.
+ * After the code is typed, it reveals the output block line by line.
+ * The animation is triggered by an IntersectionObserver so it plays when
+ * the block scrolls into view, and loops.
+ */
+(function () {
+  "use strict";
+
+  // ── tunables ──────────────────────────────────────────────────────────────
+  var CHAR_DELAY_MS   = 28;   // ms between characters while typing
+  var LINE_PAUSE_MS   = 60;   // extra pause after finishing each line
+  var OUTPUT_LINE_MS  = 200;  // ms between output lines appearing
+  var LOOP_PAUSE_MS   = 2500; // ms to wait before the animation loops
+  var INTERSECT_RATIO = 0.2;  // how much of the block must be on-screen
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Type out one <span id="cbN-M"> line span character by character.
+   * Preserves child <span> structure (syntax colours) by zeroing text nodes
+   * and drip-feeding characters back into them.
+   * Returns a Promise that resolves when the line is fully typed.
+   */
+  function typeLine(lineSpan) {
+    return new Promise(function (resolve) {
+      // Walk every text node, blank it, and record what it should contain.
+      var charQueue = [];
+      var walker = document.createTreeWalker(
+        lineSpan, NodeFilter.SHOW_TEXT, null
+      );
+      var node;
+      while ((node = walker.nextNode())) {
+        var original = node.nodeValue;
+        for (var i = 0; i < original.length; i++) {
+          charQueue.push({ node: node, char: original[i] });
+        }
+        node.nodeValue = "";
+      }
+
+      // Make the row visible now that its text is blank.
+      lineSpan.style.visibility = "visible";
+
+      if (charQueue.length === 0) {
+        setTimeout(resolve, LINE_PAUSE_MS);
+        return;
+      }
+
+      var ci = 0;
+      function typeChar() {
+        if (ci >= charQueue.length) {
+          setTimeout(resolve, LINE_PAUSE_MS);
+          return;
+        }
+        var item = charQueue[ci];
+        item.node.nodeValue += item.char;
+        ci++;
+        setTimeout(typeChar, CHAR_DELAY_MS);
+      }
+      typeChar();
+    });
+  }
+
+  /**
+   * Reveal output lines (from .cell-output pre code) one by one.
+   * Returns a Promise that resolves when the last line appears.
+   */
+  function animateOutput(outputEl) {
+    return new Promise(function (resolve) {
+      var pre = outputEl.querySelector("pre");
+      if (!pre) { resolve(); return; }
+
+      var codeOut = pre.querySelector("code") || pre;
+      var fullText = codeOut.dataset.originalText || codeOut.textContent;
+      var lines = fullText.split("\n");
+
+      // Pre-calculate and set fixed height to prevent page jumping
+      codeOut.textContent = fullText;
+      var fullHeight = pre.offsetHeight;
+      pre.style.minHeight = fullHeight + "px";
+      
+      codeOut.textContent = "";
+      outputEl.style.visibility = "visible";
+      outputEl.style.opacity = "1";
+
+      var li = 0;
+      function addLine() {
+        if (li >= lines.length) { resolve(); return; }
+        codeOut.textContent += (li === 0 ? "" : "\n") + lines[li];
+        li++;
+        setTimeout(addLine, OUTPUT_LINE_MS);
+      }
+      addLine();
+    });
+  }
+
+  /**
+   * Run one full animation pass for a .code-animation block.
+   * Returns a Promise that resolves when output has finished appearing.
+   */
+  function runAnimation(demo) {
+    var codeEl   = demo.querySelector("code.sourceCode");
+    var outputEl = demo.querySelector(".cell-output");
+
+    if (!codeEl) return Promise.resolve();
+
+    // Quarto line spans have ids like cb1-1, cb1-2, cb2-1, etc.
+    var lineSpans = Array.from(
+      codeEl.querySelectorAll("span[id]")
+    ).filter(function (s) { return /^cb\d+-\d+$/.test(s.id); });
+
+    if (lineSpans.length === 0) return Promise.resolve();
+
+    // Reset: restore original HTML into every line span and hide them.
+    lineSpans.forEach(function (span) {
+      span.innerHTML = span.dataset.originalHtml;
+      span.style.visibility = "hidden";
+    });
+
+    // Reset output.
+    if (outputEl) {
+      var pre = outputEl.querySelector("pre");
+      if (pre) {
+        var codeOut = pre.querySelector("code") || pre;
+        codeOut.textContent = codeOut.dataset.originalText;
+      }
+      outputEl.style.visibility = "hidden";
+      outputEl.style.opacity = "0";
+    }
+
+    // Show typing cursor.
+    demo.classList.add("typing");
+    demo.classList.remove("done");
+
+    // Chain: type each line, then animate output.
+    var chain = Promise.resolve();
+    lineSpans.forEach(function (span) {
+      chain = chain.then(function () { return typeLine(span); });
+    });
+    chain = chain.then(function () {
+      demo.classList.remove("typing");
+      if (outputEl) return animateOutput(outputEl);
+    });
+    chain = chain.then(function () {
+      demo.classList.add("done");
+    });
+
+    return chain;
+  }
+
+  /**
+   * First-time setup for a .code-animation block:
+   * stash originals, hide everything, wire up IntersectionObserver.
+   */
+  function setupBlock(demo) {
+    var codeEl   = demo.querySelector("code.sourceCode");
+    var outputEl = demo.querySelector(".cell-output");
+
+    if (!codeEl) return;
+
+    var lineSpans = Array.from(
+      codeEl.querySelectorAll("span[id]")
+    ).filter(function (s) { return /^cb\d+-\d+$/.test(s.id); });
+
+    if (lineSpans.length === 0) return;
+
+    // Stash original HTML and hide each line span.
+    lineSpans.forEach(function (span) {
+      span.dataset.originalHtml = span.innerHTML;
+      span.style.visibility = "hidden";
+    });
+
+    // Stash original output text and hide the output block.
+    if (outputEl) {
+      var pre = outputEl.querySelector("pre");
+      if (pre) {
+        var codeOut = pre.querySelector("code") || pre;
+        codeOut.dataset.originalText = codeOut.textContent;
+        // Pre-calculate height to prevent layout shift during animation
+        var fullHeight = pre.offsetHeight;
+        pre.style.minHeight = fullHeight + "px";
+      }
+      outputEl.style.visibility = "hidden";
+      outputEl.style.opacity = "0";
+    }
+
+    var hasPlayed = false;
+    var running   = false;
+
+    function playOnce() {
+      if (running || hasPlayed) return;
+      running = true;
+      runAnimation(demo).then(function () {
+        running = false;
+        hasPlayed = true;
+      });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !hasPlayed) {
+          playOnce();
+        }
+      });
+    }, { threshold: INTERSECT_RATIO });
+
+    observer.observe(demo);
+  }
+
+  // ── entry point ───────────────────────────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".code-animation").forEach(setupBlock);
+  });
+
+}());
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -542,7 +773,6 @@ Shep Bryan IV</p>
   });
   </script>
 </div> <!-- /content -->
-<script src="../assets/code-animation/code-animation.js"></script>
 
 
 

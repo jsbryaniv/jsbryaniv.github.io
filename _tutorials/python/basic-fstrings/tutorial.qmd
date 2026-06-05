@@ -42,7 +42,7 @@ You can format numbers with precision using f-strings. Simply add a colon, a num
 
 :::{.code-animation}
 ```{python}
-# Format float to n decimal places
+# Format float decimal places with `f`
 pi = 3.141592653589793
 print(f"π ≈ {pi:.2f}")  # 2 decimal places
 print(f"π ≈ {pi:.4f}")  # 4 decimal places
@@ -51,7 +51,7 @@ print(f"π ≈ {pi:.4f}")  # 4 decimal places
 
 :::{.code-animation}
 ```{python}
-# Format with significant figures
+# Format significant figures with `g`
 mass_electron = 9.10938356e-31
 print(f"m ≈ {mass_electron:.2g}")  # 2 significant figures
 print(f"m ≈ {mass_electron:.4g}")  # 4 significant figures
@@ -60,7 +60,7 @@ print(f"m ≈ {mass_electron:.4g}")  # 4 significant figures
 
 :::{.code-animation}
 ```{python}
-# Format integer with padding
+# Format integer with padding with `d`
 print(f"Answer = {42:02d}")  # Pad to 2 digits
 print(f"Answer = {42:04d}")  # Pad to 4 digits
 ```
@@ -68,7 +68,7 @@ print(f"Answer = {42:04d}")  # Pad to 4 digits
 
 :::{.code-animation}
 ```{python}
-# Format dates
+# Format dates with `:format_spec`
 from datetime import datetime
 print(f"Today: {datetime.now():%Y-%m-%d}")
 ```

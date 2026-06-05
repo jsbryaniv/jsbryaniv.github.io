@@ -75,8 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="tutorial_files/libs/bootstrap/bootstrap-9d06a772b9d4c3b2a2e7366e3fd2c8ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 
 
-<link rel="stylesheet" href="../../tutorial-style.css">
-<link rel="stylesheet" href="../../../assets/code-animation/code-animation.css">
+<link rel="stylesheet" href="../../.shared/tutorial-style/tutorial-style.css">
+<link rel="stylesheet" href="../../.shared/code-animation/code-animation.css">
 </head>
 
 <body class="fullcontent quarto-light">
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In Python, when you assign <code>y = x</code>, you’re creating a reference. This means both <code>y</code> and <code>x</code> point to the same object in memory.</p>
 <p>Modifying one will affect the other.</p>
 <div class="code-animation">
-<div id="a4d0bb6c" class="cell" data-execution_count="1">
+<div id="248a3a22" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x     <span class="co"># y is a reference to x</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">9</span>  <span class="co"># Modifying y will affect x</span></span>
@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="creating-a-copy">Creating a Copy</h2>
 <p>To avoid modifying the original data, you can create a copy. Using <code>x.copy()</code> (or <code>x.clone()</code> for PyTorch) will give you an independent copy.</p>
 <div class="code-animation">
-<div id="3dbc0284" class="cell" data-execution_count="2">
+<div id="3950209c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x.copy()  <span class="co"># Creating a new copy of x</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">9</span>      <span class="co"># Modifying y won't affect x</span></span>
@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Understanding whether you’re working with a reference or a copy is crucial, especially when dealing with large data or complex operations.</p>
 <p>If you accidentally modify data via a reference, it can cause unexpected bugs.</p>
 <div class="code-animation">
-<div id="3ce7857d" class="cell" data-execution_count="3">
+<div id="6bef0921" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Forgetting to copy a list and modifying it unexpectedly</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x  <span class="co"># This is a reference, not a copy</span></span>
@@ -189,6 +189,237 @@ Shep Bryan IV</p>
 
 </main>
 <!-- /main column -->
+<script>
+/**
+ * code-animation.js v2.0
+ *
+ * Scroll-triggered live-coding animation for Quarto HTML output.
+ *
+ * Usage: wrap a Quarto code cell in a fenced div with class "code-animation":
+ *
+ *   :::{.code-animation}
+ *   ```{python}
+ *   your code here
+ *   ```
+ *   :::
+ *
+ * Quarto renders each source line as a <span id="cbN-M"> inside
+ * <code class="sourceCode">. Those spans carry syntax-highlighted child spans.
+ * This script hides all line spans, then types them out one character at a
+ * time — walking text nodes so the span/color structure is preserved.
+ * After the code is typed, it reveals the output block line by line.
+ * The animation is triggered by an IntersectionObserver so it plays when
+ * the block scrolls into view, and loops.
+ */
+(function () {
+  "use strict";
+
+  // ── tunables ──────────────────────────────────────────────────────────────
+  var CHAR_DELAY_MS   = 28;   // ms between characters while typing
+  var LINE_PAUSE_MS   = 60;   // extra pause after finishing each line
+  var OUTPUT_LINE_MS  = 200;  // ms between output lines appearing
+  var LOOP_PAUSE_MS   = 2500; // ms to wait before the animation loops
+  var INTERSECT_RATIO = 0.2;  // how much of the block must be on-screen
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Type out one <span id="cbN-M"> line span character by character.
+   * Preserves child <span> structure (syntax colours) by zeroing text nodes
+   * and drip-feeding characters back into them.
+   * Returns a Promise that resolves when the line is fully typed.
+   */
+  function typeLine(lineSpan) {
+    return new Promise(function (resolve) {
+      // Walk every text node, blank it, and record what it should contain.
+      var charQueue = [];
+      var walker = document.createTreeWalker(
+        lineSpan, NodeFilter.SHOW_TEXT, null
+      );
+      var node;
+      while ((node = walker.nextNode())) {
+        var original = node.nodeValue;
+        for (var i = 0; i < original.length; i++) {
+          charQueue.push({ node: node, char: original[i] });
+        }
+        node.nodeValue = "";
+      }
+
+      // Make the row visible now that its text is blank.
+      lineSpan.style.visibility = "visible";
+
+      if (charQueue.length === 0) {
+        setTimeout(resolve, LINE_PAUSE_MS);
+        return;
+      }
+
+      var ci = 0;
+      function typeChar() {
+        if (ci >= charQueue.length) {
+          setTimeout(resolve, LINE_PAUSE_MS);
+          return;
+        }
+        var item = charQueue[ci];
+        item.node.nodeValue += item.char;
+        ci++;
+        setTimeout(typeChar, CHAR_DELAY_MS);
+      }
+      typeChar();
+    });
+  }
+
+  /**
+   * Reveal output lines (from .cell-output pre code) one by one.
+   * Returns a Promise that resolves when the last line appears.
+   */
+  function animateOutput(outputEl) {
+    return new Promise(function (resolve) {
+      var pre = outputEl.querySelector("pre");
+      if (!pre) { resolve(); return; }
+
+      var codeOut = pre.querySelector("code") || pre;
+      var fullText = codeOut.dataset.originalText || codeOut.textContent;
+      var lines = fullText.split("\n");
+
+      // Pre-calculate and set fixed height to prevent page jumping
+      codeOut.textContent = fullText;
+      var fullHeight = pre.offsetHeight;
+      pre.style.minHeight = fullHeight + "px";
+      
+      codeOut.textContent = "";
+      outputEl.style.visibility = "visible";
+      outputEl.style.opacity = "1";
+
+      var li = 0;
+      function addLine() {
+        if (li >= lines.length) { resolve(); return; }
+        codeOut.textContent += (li === 0 ? "" : "\n") + lines[li];
+        li++;
+        setTimeout(addLine, OUTPUT_LINE_MS);
+      }
+      addLine();
+    });
+  }
+
+  /**
+   * Run one full animation pass for a .code-animation block.
+   * Returns a Promise that resolves when output has finished appearing.
+   */
+  function runAnimation(demo) {
+    var codeEl   = demo.querySelector("code.sourceCode");
+    var outputEl = demo.querySelector(".cell-output");
+
+    if (!codeEl) return Promise.resolve();
+
+    // Quarto line spans have ids like cb1-1, cb1-2, cb2-1, etc.
+    var lineSpans = Array.from(
+      codeEl.querySelectorAll("span[id]")
+    ).filter(function (s) { return /^cb\d+-\d+$/.test(s.id); });
+
+    if (lineSpans.length === 0) return Promise.resolve();
+
+    // Reset: restore original HTML into every line span and hide them.
+    lineSpans.forEach(function (span) {
+      span.innerHTML = span.dataset.originalHtml;
+      span.style.visibility = "hidden";
+    });
+
+    // Reset output.
+    if (outputEl) {
+      var pre = outputEl.querySelector("pre");
+      if (pre) {
+        var codeOut = pre.querySelector("code") || pre;
+        codeOut.textContent = codeOut.dataset.originalText;
+      }
+      outputEl.style.visibility = "hidden";
+      outputEl.style.opacity = "0";
+    }
+
+    // Show typing cursor.
+    demo.classList.add("typing");
+    demo.classList.remove("done");
+
+    // Chain: type each line, then animate output.
+    var chain = Promise.resolve();
+    lineSpans.forEach(function (span) {
+      chain = chain.then(function () { return typeLine(span); });
+    });
+    chain = chain.then(function () {
+      demo.classList.remove("typing");
+      if (outputEl) return animateOutput(outputEl);
+    });
+    chain = chain.then(function () {
+      demo.classList.add("done");
+    });
+
+    return chain;
+  }
+
+  /**
+   * First-time setup for a .code-animation block:
+   * stash originals, hide everything, wire up IntersectionObserver.
+   */
+  function setupBlock(demo) {
+    var codeEl   = demo.querySelector("code.sourceCode");
+    var outputEl = demo.querySelector(".cell-output");
+
+    if (!codeEl) return;
+
+    var lineSpans = Array.from(
+      codeEl.querySelectorAll("span[id]")
+    ).filter(function (s) { return /^cb\d+-\d+$/.test(s.id); });
+
+    if (lineSpans.length === 0) return;
+
+    // Stash original HTML and hide each line span.
+    lineSpans.forEach(function (span) {
+      span.dataset.originalHtml = span.innerHTML;
+      span.style.visibility = "hidden";
+    });
+
+    // Stash original output text and hide the output block.
+    if (outputEl) {
+      var pre = outputEl.querySelector("pre");
+      if (pre) {
+        var codeOut = pre.querySelector("code") || pre;
+        codeOut.dataset.originalText = codeOut.textContent;
+        // Pre-calculate height to prevent layout shift during animation
+        var fullHeight = pre.offsetHeight;
+        pre.style.minHeight = fullHeight + "px";
+      }
+      outputEl.style.visibility = "hidden";
+      outputEl.style.opacity = "0";
+    }
+
+    var hasPlayed = false;
+    var running   = false;
+
+    function playOnce() {
+      if (running || hasPlayed) return;
+      running = true;
+      runAnimation(demo).then(function () {
+        running = false;
+        hasPlayed = true;
+      });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !hasPlayed) {
+          playOnce();
+        }
+      });
+    }, { threshold: INTERSECT_RATIO });
+
+    observer.observe(demo);
+  }
+
+  // ── entry point ───────────────────────────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".code-animation").forEach(setupBlock);
+  });
+
+}());
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -528,7 +759,6 @@ Shep Bryan IV</p>
   });
   </script>
 </div> <!-- /content -->
-<script src="../assets/code-animation/code-animation.js"></script>
 
 
 

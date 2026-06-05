@@ -75,8 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="tutorial_files/libs/bootstrap/bootstrap-9d06a772b9d4c3b2a2e7366e3fd2c8ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 
 
-<link rel="stylesheet" href="../../tutorial-style.css">
-<link rel="stylesheet" href="../../../assets/code-animation/code-animation.css">
+<link rel="stylesheet" href="../../.shared/tutorial-style/tutorial-style.css">
+<link rel="stylesheet" href="../../.shared/code-animation/code-animation.css">
 </head>
 
 <body class="fullcontent quarto-light">
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="using-map">Using <code>map()</code></h2>
 <p>The <code>map()</code> function applies a function to all items in a list. It returns a map object, which is an iterator that can be converted into a list.</p>
 <div class="code-animation">
-<div id="f8ae101d" class="cell" data-execution_count="1">
+<div id="9a0015f8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myfunc(x):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="using-filter">Using <code>filter()</code></h2>
 <p>The <code>filter()</code> function filters elements from an iterable based on a condition. It returns an iterator with elements that satisfy the condition.</p>
 <div class="code-animation">
-<div id="c8cc75bc" class="cell" data-execution_count="2">
+<div id="13432246" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_even(x):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -165,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Both <code>map()</code> and <code>filter()</code> use lazy evaluation, meaning they only process elements when called downstream.</p>
 <p>By contrast, a loop will process and store all elements immediately.</p>
 <div class="code-animation">
-<div id="42386e24" class="cell" data-execution_count="3">
+<div id="a36047fd" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myfunc(x):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -195,6 +195,237 @@ Shep Bryan IV</p>
 
 </main>
 <!-- /main column -->
+<script>
+/**
+ * code-animation.js v2.0
+ *
+ * Scroll-triggered live-coding animation for Quarto HTML output.
+ *
+ * Usage: wrap a Quarto code cell in a fenced div with class "code-animation":
+ *
+ *   :::{.code-animation}
+ *   ```{python}
+ *   your code here
+ *   ```
+ *   :::
+ *
+ * Quarto renders each source line as a <span id="cbN-M"> inside
+ * <code class="sourceCode">. Those spans carry syntax-highlighted child spans.
+ * This script hides all line spans, then types them out one character at a
+ * time — walking text nodes so the span/color structure is preserved.
+ * After the code is typed, it reveals the output block line by line.
+ * The animation is triggered by an IntersectionObserver so it plays when
+ * the block scrolls into view, and loops.
+ */
+(function () {
+  "use strict";
+
+  // ── tunables ──────────────────────────────────────────────────────────────
+  var CHAR_DELAY_MS   = 28;   // ms between characters while typing
+  var LINE_PAUSE_MS   = 60;   // extra pause after finishing each line
+  var OUTPUT_LINE_MS  = 200;  // ms between output lines appearing
+  var LOOP_PAUSE_MS   = 2500; // ms to wait before the animation loops
+  var INTERSECT_RATIO = 0.2;  // how much of the block must be on-screen
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Type out one <span id="cbN-M"> line span character by character.
+   * Preserves child <span> structure (syntax colours) by zeroing text nodes
+   * and drip-feeding characters back into them.
+   * Returns a Promise that resolves when the line is fully typed.
+   */
+  function typeLine(lineSpan) {
+    return new Promise(function (resolve) {
+      // Walk every text node, blank it, and record what it should contain.
+      var charQueue = [];
+      var walker = document.createTreeWalker(
+        lineSpan, NodeFilter.SHOW_TEXT, null
+      );
+      var node;
+      while ((node = walker.nextNode())) {
+        var original = node.nodeValue;
+        for (var i = 0; i < original.length; i++) {
+          charQueue.push({ node: node, char: original[i] });
+        }
+        node.nodeValue = "";
+      }
+
+      // Make the row visible now that its text is blank.
+      lineSpan.style.visibility = "visible";
+
+      if (charQueue.length === 0) {
+        setTimeout(resolve, LINE_PAUSE_MS);
+        return;
+      }
+
+      var ci = 0;
+      function typeChar() {
+        if (ci >= charQueue.length) {
+          setTimeout(resolve, LINE_PAUSE_MS);
+          return;
+        }
+        var item = charQueue[ci];
+        item.node.nodeValue += item.char;
+        ci++;
+        setTimeout(typeChar, CHAR_DELAY_MS);
+      }
+      typeChar();
+    });
+  }
+
+  /**
+   * Reveal output lines (from .cell-output pre code) one by one.
+   * Returns a Promise that resolves when the last line appears.
+   */
+  function animateOutput(outputEl) {
+    return new Promise(function (resolve) {
+      var pre = outputEl.querySelector("pre");
+      if (!pre) { resolve(); return; }
+
+      var codeOut = pre.querySelector("code") || pre;
+      var fullText = codeOut.dataset.originalText || codeOut.textContent;
+      var lines = fullText.split("\n");
+
+      // Pre-calculate and set fixed height to prevent page jumping
+      codeOut.textContent = fullText;
+      var fullHeight = pre.offsetHeight;
+      pre.style.minHeight = fullHeight + "px";
+      
+      codeOut.textContent = "";
+      outputEl.style.visibility = "visible";
+      outputEl.style.opacity = "1";
+
+      var li = 0;
+      function addLine() {
+        if (li >= lines.length) { resolve(); return; }
+        codeOut.textContent += (li === 0 ? "" : "\n") + lines[li];
+        li++;
+        setTimeout(addLine, OUTPUT_LINE_MS);
+      }
+      addLine();
+    });
+  }
+
+  /**
+   * Run one full animation pass for a .code-animation block.
+   * Returns a Promise that resolves when output has finished appearing.
+   */
+  function runAnimation(demo) {
+    var codeEl   = demo.querySelector("code.sourceCode");
+    var outputEl = demo.querySelector(".cell-output");
+
+    if (!codeEl) return Promise.resolve();
+
+    // Quarto line spans have ids like cb1-1, cb1-2, cb2-1, etc.
+    var lineSpans = Array.from(
+      codeEl.querySelectorAll("span[id]")
+    ).filter(function (s) { return /^cb\d+-\d+$/.test(s.id); });
+
+    if (lineSpans.length === 0) return Promise.resolve();
+
+    // Reset: restore original HTML into every line span and hide them.
+    lineSpans.forEach(function (span) {
+      span.innerHTML = span.dataset.originalHtml;
+      span.style.visibility = "hidden";
+    });
+
+    // Reset output.
+    if (outputEl) {
+      var pre = outputEl.querySelector("pre");
+      if (pre) {
+        var codeOut = pre.querySelector("code") || pre;
+        codeOut.textContent = codeOut.dataset.originalText;
+      }
+      outputEl.style.visibility = "hidden";
+      outputEl.style.opacity = "0";
+    }
+
+    // Show typing cursor.
+    demo.classList.add("typing");
+    demo.classList.remove("done");
+
+    // Chain: type each line, then animate output.
+    var chain = Promise.resolve();
+    lineSpans.forEach(function (span) {
+      chain = chain.then(function () { return typeLine(span); });
+    });
+    chain = chain.then(function () {
+      demo.classList.remove("typing");
+      if (outputEl) return animateOutput(outputEl);
+    });
+    chain = chain.then(function () {
+      demo.classList.add("done");
+    });
+
+    return chain;
+  }
+
+  /**
+   * First-time setup for a .code-animation block:
+   * stash originals, hide everything, wire up IntersectionObserver.
+   */
+  function setupBlock(demo) {
+    var codeEl   = demo.querySelector("code.sourceCode");
+    var outputEl = demo.querySelector(".cell-output");
+
+    if (!codeEl) return;
+
+    var lineSpans = Array.from(
+      codeEl.querySelectorAll("span[id]")
+    ).filter(function (s) { return /^cb\d+-\d+$/.test(s.id); });
+
+    if (lineSpans.length === 0) return;
+
+    // Stash original HTML and hide each line span.
+    lineSpans.forEach(function (span) {
+      span.dataset.originalHtml = span.innerHTML;
+      span.style.visibility = "hidden";
+    });
+
+    // Stash original output text and hide the output block.
+    if (outputEl) {
+      var pre = outputEl.querySelector("pre");
+      if (pre) {
+        var codeOut = pre.querySelector("code") || pre;
+        codeOut.dataset.originalText = codeOut.textContent;
+        // Pre-calculate height to prevent layout shift during animation
+        var fullHeight = pre.offsetHeight;
+        pre.style.minHeight = fullHeight + "px";
+      }
+      outputEl.style.visibility = "hidden";
+      outputEl.style.opacity = "0";
+    }
+
+    var hasPlayed = false;
+    var running   = false;
+
+    function playOnce() {
+      if (running || hasPlayed) return;
+      running = true;
+      runAnimation(demo).then(function () {
+        running = false;
+        hasPlayed = true;
+      });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !hasPlayed) {
+          playOnce();
+        }
+      });
+    }, { threshold: INTERSECT_RATIO });
+
+    observer.observe(demo);
+  }
+
+  // ── entry point ───────────────────────────────────────────────────────────
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".code-animation").forEach(setupBlock);
+  });
+
+}());
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -534,7 +765,6 @@ Shep Bryan IV</p>
   });
   </script>
 </div> <!-- /content -->
-<script src="../assets/code-animation/code-animation.js"></script>
 
 
 
