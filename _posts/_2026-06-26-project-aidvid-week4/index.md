@@ -8,6 +8,9 @@ image: assets/coverart.png
 category: update
 tags:
   - update
+author: jsbryaniv
+math: true
+comments: true
 ---
 
 
