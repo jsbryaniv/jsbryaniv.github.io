@@ -4,7 +4,7 @@ layout: post
 title: Spherical Cows
 subtitle: Turns out they are real!
 description: A lighthearted exploration of the concept of spherical cows and what they look like in the real world. 
-image: assets/coverart.png
+image: assets/spherical_cow.png
 category: fun
 tags:
   - fun
