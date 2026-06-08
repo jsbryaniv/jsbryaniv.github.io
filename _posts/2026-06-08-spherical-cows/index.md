@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-06-08 12:00:01
 layout: post
 title: Spherical Cows
 subtitle: Turns out they are real!
