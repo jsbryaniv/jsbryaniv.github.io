@@ -9,6 +9,7 @@ jupyter: python3
 format:
   html:
     theme: darkly
+    embed-resources: true
     toc: false
     code-copy: false
     css:
