@@ -3,12 +3,13 @@
 
 :root {
   --tutorial-bg: #1e1e1e;
-  --tutorial-fg: #d4d4d4;
-  --tutorial-muted: #a6a6a6;
+  --tutorial-fg: #6a9955;
+  --tutorial-muted: #8fbf7f;
   --tutorial-border: #3c3c3c;
   --tutorial-panel: #252526;
   --tutorial-terminal: #111111;
   --tutorial-link: #4ec9b0;
+  --tutorial-code-fg: #d4d4d4;
 }
 
 body {
@@ -65,7 +66,7 @@ hr {
 
 code:not(.sourceCode) {
   background: var(--tutorial-panel);
-  color: var(--tutorial-fg);
+  color: var(--tutorial-code-fg);
   border-radius: 3px;
   padding: 0.15em 0.35em;
 }
@@ -80,6 +81,6 @@ pre.sourceCode {
   background: var(--tutorial-terminal) !important;
   border: 1px solid var(--tutorial-border);
   border-radius: 6px;
-  color: var(--tutorial-fg);
+  color: var(--tutorial-code-fg);
   padding: 1rem;
 }
