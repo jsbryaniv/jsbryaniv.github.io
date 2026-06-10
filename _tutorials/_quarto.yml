@@ -13,9 +13,11 @@ format:
     toc: false
     code-copy: false
     css:
+      - .shared/code-highlighting/prism-vsc-dark-plus.min.css
       - .shared/tutorial-style/tutorial-style.css
       - .shared/code-animation/code-animation.css
     include-after-body:
+      - .shared/code-highlighting/prism.html
       - .shared/code-animation/code-animation.html
 
 execute:

@@ -223,8 +223,22 @@
   }
 
   // ── entry point ───────────────────────────────────────────────────────────
-  document.addEventListener("DOMContentLoaded", function () {
+  function setupAnimations() {
     document.querySelectorAll(".code-animation").forEach(setupBlock);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.Prism) {
+      if (window.tutorialCodeHighlighted) {
+        setupAnimations();
+        return;
+      }
+
+      document.addEventListener("tutorial:code-highlighted", setupAnimations, { once: true });
+      return;
+    }
+
+    setupAnimations();
   });
 
 }());

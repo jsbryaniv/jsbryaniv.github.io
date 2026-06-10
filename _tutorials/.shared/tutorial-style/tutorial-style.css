@@ -1,209 +1,85 @@
-/* VSCode Dark Mode Tutorial Style */
+/* Minimal tutorial presentation layer.
+   Code highlighting is left to Quarto's theme/highlighter. */
 
 :root {
-  --vscode-bg: #1e1e1e;
-  --vscode-text: #d4d4d4;
-  --vscode-header: #569cd6;
-  --vscode-string: #ce9178;
-  --vscode-function: #dcdcaa;
-  --vscode-keyword: #c586c0;
-  --vscode-comment: #6a9955;
-  --vscode-terminal-bg: #0d0d0d;
-  --vscode-output-bg: #252526;
-  --vscode-link: #4ec9b0;
-  --vscode-bullet: #c586c0;
+  --tutorial-bg: #1e1e1e;
+  --tutorial-fg: #d4d4d4;
+  --tutorial-muted: #a6a6a6;
+  --tutorial-border: #3c3c3c;
+  --tutorial-panel: #252526;
+  --tutorial-terminal: #111111;
+  --tutorial-link: #4ec9b0;
 }
 
 body {
-  background-color: var(--vscode-bg);
-  color: var(--vscode-text);
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  background: var(--tutorial-bg);
+  color: var(--tutorial-fg);
 }
 
-/* Headers with markdown syntax - ALL h1-h6 */
+#quarto-content {
+  padding: 2rem;
+}
+
+#quarto-document-content {
+  max-width: 920px;
+}
+
+.quarto-title-block {
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--tutorial-border);
+}
+
+.quarto-title-meta {
+  display: none;
+}
+
+.quarto-title .title {
+  color: var(--tutorial-fg);
+  margin-bottom: 0.4rem;
+}
+
+.quarto-title .subtitle,
+.description {
+  color: var(--tutorial-muted);
+}
+
 h1, h2, h3, h4, h5, h6 {
-  color: var(--vscode-header);
-  border-bottom: none !important;
-  border: none !important;
-  font-weight: 600;
-  margin-top: 2em;
-  margin-bottom: 1em;
+  color: var(--tutorial-fg);
+  border-bottom: 0 !important;
 }
 
-h1::before { content: "# "; }
-h2::before { content: "## "; }
-h3::before { content: "### "; }
-h4::before { content: "#### "; }
-h5::before { content: "##### "; }
-h6::before { content: "###### "; }
-
-/* Horizontal rules with more spacing */
-hr {
-  border: none;
-  border-top: 1px solid #3e3e42;
-  margin: 5em 0;
+h2 {
+  margin-top: 2.75rem;
 }
 
-/* Links styled like code */
 a {
-  color: var(--vscode-link);
-  text-decoration: none;
+  color: var(--tutorial-link);
 }
 
-a:hover {
-  text-decoration: underline;
+hr {
+  border: 0;
+  border-top: 1px solid var(--tutorial-border);
+  margin: 3rem 0;
 }
 
-/* List bullets colored */
-ul {
-  list-style: none;
-  padding-left: 1.5em;
-}
-
-ul li::before {
-  content: "•";
-  color: var(--vscode-bullet);
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-}
-
-ol {
-  padding-left: 1.5em;
-}
-
-ol li::marker {
-  color: var(--vscode-function);
-  font-weight: bold;
-}
-
-/* Code blocks - inline code */
 code:not(.sourceCode) {
-  background-color: var(--vscode-output-bg);
-  color: var(--vscode-string);
-  padding: 0.2em 0.4em;
+  background: var(--tutorial-panel);
+  color: var(--tutorial-fg);
   border-radius: 3px;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  padding: 0.15em 0.35em;
 }
 
-/* Code blocks - keep existing style for source code */
 pre.sourceCode {
-  background-color: #1e1e1e;
-  border: 1px solid #3e3e42;
-  border-radius: 4px;
-  padding: 1em;
-}
-
-/* Output blocks - terminal style */
-pre:not(.sourceCode) {
-  background-color: var(--vscode-terminal-bg) !important;
-  color: #00ff00;
-  border: 1px solid #3e3e42;
-  border-radius: 4px;
-  padding: 1em;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  margin: 1em 0;
+  border: 1px solid var(--tutorial-border);
+  border-radius: 6px;
+  padding: 1rem;
 }
 
 .cell-output pre {
-  background-color: var(--vscode-terminal-bg) !important;
-  color: #00ff00;
-}
-
-/* Strong/bold text */
-strong, b {
-  color: var(--vscode-function);
-  font-weight: 600;
-}
-
-/* Emphasis/italic text */
-em, i {
-  color: var(--vscode-keyword);
-  font-style: italic;
-}
-
-/* Blockquotes */
-blockquote {
-  border-left: 3px solid var(--vscode-comment);
-  padding-left: 1em;
-  color: var(--vscode-comment);
-  font-style: italic;
-}
-
-/* Tables */
-table {
-  border-collapse: collapse;
-  margin: 1em 0;
-}
-
-th {
-  background-color: var(--vscode-output-bg);
-  color: var(--vscode-header);
-  font-weight: 600;
-}
-
-td, th {
-  border: 1px solid #3e3e42;
-  padding: 0.5em 1em;
-}
-
-tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* Main content padding */
-#quarto-content {
-  padding: 2em;
-}
-
-/* Syntax highlighting - One Dark color scheme */
-.sourceCode .co {
-  color: #5c6370 !important;  /* comments - gray */
-  font-style: italic;
-}
-
-.sourceCode .kw,
-.sourceCode .cf {
-  color: #c678dd !important;  /* keywords, control flow - purple */
-  font-weight: normal;
-}
-
-.sourceCode .st,
-.sourceCode .ss,
-.sourceCode .vs {
-  color: #98c379 !important;  /* strings - green */
-}
-
-.sourceCode .sc {
-  color: #98c379 !important;  /* string interpolation - green */
-}
-
-.sourceCode .fu,
-.sourceCode .fn {
-  color: #61afef !important;  /* functions - blue */
-}
-
-.sourceCode .va,
-.sourceCode .at {
-  color: #e06c75 !important;  /* variables, attributes - red */
-}
-
-.sourceCode .dv,
-.sourceCode .fl,
-.sourceCode .bn {
-  color: #d19a66 !important;  /* numbers - orange */
-}
-
-.sourceCode .op {
-  color: #56b6c2 !important;  /* operators - cyan */
-}
-
-.sourceCode .im,
-.sourceCode .bu {
-  color: #e5c07b !important;  /* imports, built-ins - yellow */
-}
-
-.sourceCode .dt {
-  color: #e5c07b !important;  /* data types - yellow */
+  background: var(--tutorial-terminal) !important;
+  border: 1px solid var(--tutorial-border);
+  border-radius: 6px;
+  color: var(--tutorial-fg);
+  padding: 1rem;
 }
