@@ -14,7 +14,7 @@ tags:
 
 # Project of the Month: AIVID - AI Video Editing Tools
 
-As I mentioned in my last post, I'm going to start regularly working on more projects and sharing the process along the way.
+As I mentioned in my [last post](https://shep4.com/blog/2026/06/back-online/), I'm going to start regularly working on more projects and sharing the process along the way.
 
 Rather than focusing on a single large project, each month I'll highlight a different project and document the journey from idea to product. At the end of the month I'll assign a verdict. Some projects will earn further investment and iteration, while others will be abandoned so I can move on to the next experiment.
 
