@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-06-15 12:00:01
 layout: post
 title: Turing Complete AI
 subtitle: How AI Agents can be Turing Complete
