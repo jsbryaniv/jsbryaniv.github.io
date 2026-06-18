@@ -1,5 +1,5 @@
 ---
-date: 2026-06-19 12:00:01
+date: 2026-06-18 12:00:01
 layout: post
 title: "Project AIDVID: Week 3 - The Product"
 subtitle: Week 3 of the Project of the Month
