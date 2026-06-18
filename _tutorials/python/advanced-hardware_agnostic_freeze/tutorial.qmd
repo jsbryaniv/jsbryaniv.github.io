@@ -5,13 +5,22 @@ author: "Shep Bryan IV"
 description: "Generate hardware-agnostic requirements.txt files without NVIDIA CUDA dependencies."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: Hardware-Agnostic `pip freeze`
 
 Working with PyTorch? Avoid hardware-specific dependencies like NVIDIA CUDA from your `requirements.txt`.
 Here's a one-liner to make it hardware-agnostic.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## The Problem
 
@@ -20,32 +29,34 @@ We often use `pip freeze` to generate a `requirements.txt` file, but it includes
 This can cause compatibility issues for users without the same hardware setup.
 
 :::{.code-animation}
-```{python}
-#| eval: false
-
-# This includes hardware-specific packages
-!pip freeze > requirements.txt
+```bash
+pip freeze > requirements.txt
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## The Solution
 
 Use this command to generate a `requirements.txt` that includes PyTorch but excludes hardware-dependent packages:
 
 :::{.code-animation}
-```{python}
-#| eval: false
-
-# This excludes hardware-specific dependencies
-!pip list --not-required --format=freeze > requirements.txt
+```bash
+pip list --not-required --format=freeze > requirements.txt
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -53,3 +64,5 @@ Now you can share your requirements without worrying about hardware compatibilit
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

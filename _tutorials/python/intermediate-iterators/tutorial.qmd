@@ -5,13 +5,22 @@ author: "Shep Bryan IV"
 description: "Learn how to use iterators instead of lists to save memory when working with large datasets."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: Iterators
 
 Having memory issues storing large datasets in lists?
 Instead of storing everything in memory, use iterators.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## Lists vs Iterators
 
@@ -40,8 +49,12 @@ for i in myiter:
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Memory Efficiency
 
@@ -60,8 +73,12 @@ print(f"Iterator created")
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Using `next()` with Iterators
 
@@ -85,8 +102,12 @@ print(f"Third element of iterator: {x2}")
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Creating Custom Iterators
 
@@ -95,8 +116,7 @@ For complex iterators like image loading, make iterators using classes by defini
 Raise `StopIteration` to stop the iteration.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 from PIL import Image
 
@@ -121,8 +141,12 @@ for img in MyImages():
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -130,3 +154,5 @@ Now you can use iterators to load large datasets one element at a time, saving m
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

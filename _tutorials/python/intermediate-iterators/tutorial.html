@@ -2286,6 +2286,138 @@ content: none;
 50% { opacity: 0; }
 }
 </style>
+<style type="text/css">.tutorial-panel-shell {
+--panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+margin: 2rem auto 3rem;
+max-width: min(100%, 780px);
+}
+.tutorial-panel-stage {
+position: relative;
+width: 100%;
+aspect-ratio: 4 / 5;
+overflow: hidden;
+background: var(--tutorial-bg);
+border: 1px solid var(--tutorial-border);
+border-radius: 8px;
+}
+.tutorial-panel-viewport {
+position: relative;
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+.tutorial-panel {
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+overflow: hidden;
+padding: clamp(1.25rem, 3.5vw, 2.5rem);
+background: var(--tutorial-bg);
+opacity: 0;
+transform: translateY(100%);
+transition:
+transform 320ms var(--panel-ease),
+opacity 220ms ease;
+pointer-events: none;
+}
+.tutorial-panel.is-active {
+opacity: 1;
+transform: translateY(0);
+pointer-events: auto;
+}
+.tutorial-panel.is-before {
+transform: translateY(-100%);
+}
+.tutorial-panel.is-after {
+transform: translateY(100%);
+}
+.tutorial-panel > :first-child {
+margin-top: 0;
+}
+.tutorial-panel > :last-child {
+margin-bottom: 0;
+}
+.tutorial-panel h2,
+.tutorial-panel h3 {
+margin-top: 0;
+}
+.tutorial-panel p,
+.tutorial-panel li {
+max-width: 62ch;
+}
+.tutorial-panel pre.sourceCode,
+.tutorial-panel .cell-output pre {
+max-height: none;
+margin: 0;
+}
+.tutorial-panel-nav {
+display: flex;
+justify-content: center;
+gap: 0.5rem;
+margin-top: 0.6rem;
+}
+.tutorial-panel-button {
+display: grid;
+width: 2.25rem;
+height: 2.25rem;
+place-items: center;
+border: 1px solid var(--tutorial-border);
+border-radius: 999px;
+background: color-mix(in srgb, var(--tutorial-panel) 88%, transparent);
+color: var(--tutorial-fg);
+font: inherit;
+line-height: 1;
+cursor: pointer;
+}
+.tutorial-panel-button:hover,
+.tutorial-panel-button:focus-visible {
+border-color: var(--tutorial-link);
+color: var(--tutorial-link);
+outline: none;
+}
+.tutorial-panel-button:disabled {
+cursor: default;
+opacity: 0.35;
+}
+.tutorial-panel-status {
+margin-top: 0.75rem;
+color: var(--tutorial-muted);
+font-size: 0.9rem;
+text-align: center;
+}
+.tutorial-panel-dots {
+display: flex;
+justify-content: center;
+gap: 0.35rem;
+margin-top: 0.75rem;
+}
+.tutorial-panel-dot {
+width: 0.45rem;
+height: 0.45rem;
+border: 0;
+border-radius: 999px;
+background: var(--tutorial-border);
+padding: 0;
+}
+.tutorial-panel-dot.is-active {
+background: var(--tutorial-fg);
+}
+@media (max-width: 640px) {
+.tutorial-panel-shell {
+max-width: 100%;
+}
+.tutorial-panel-stage {
+border-radius: 0;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.tutorial-panel {
+transition: none;
+}
+}
+</style>
 </head>
 
 <body class="fullcontent quarto-light">
@@ -2325,15 +2457,17 @@ content: none;
 </header>
 
 
-<section id="python-tip-iterators" class="level1">
+<!-- PANEL 1 -->
+<section id="python-tip-iterators" class="level1 tutorial-panel">
 <h1>Python Tip: Iterators</h1>
 <p>Having memory issues storing large datasets in lists? Instead of storing everything in memory, use iterators.</p>
-<hr>
-<section id="lists-vs-iterators" class="level2">
+</section>
+<!-- PANEL 2 -->
+<section id="lists-vs-iterators" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="lists-vs-iterators">Lists vs Iterators</h2>
 <p>Iterators work just like lists. You can create them using comprehensions, with parentheses instead of brackets.</p>
 <div class="code-animation">
-<div id="5df1c2a5" class="cell" data-execution_count="1">
+<div id="fcdd1ec7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create lists and iterators using comprehensions</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]  <span class="co"># [] for list</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>myiter <span class="op">=</span> (x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>))  <span class="co"># () for iterator</span></span>
@@ -2342,12 +2476,12 @@ content: none;
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(myiter)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-&lt;generator object &lt;genexpr&gt; at 0x10ac68dc0&gt;</code></pre>
+&lt;generator object &lt;genexpr&gt; at 0x10a194dc0&gt;</code></pre>
 </div>
 </div>
 </div>
 <div class="code-animation">
-<div id="0d85bc60" class="cell" data-execution_count="2">
+<div id="4de0d15c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over them the same way</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> mylist:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i, end<span class="op">=</span><span class="st">&quot; &quot;</span>)</span>
@@ -2361,13 +2495,13 @@ content: none;
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="memory-efficiency" class="level2">
+<!-- PANEL 3 -->
+<section id="memory-efficiency" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="memory-efficiency">Memory Efficiency</h2>
 <p>Iterators are more memory-efficient than lists because they only store the current element in memory.</p>
 <div class="code-animation">
-<div id="2c03e2de" class="cell" data-execution_count="3">
+<div id="e7ce7afe" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This stores 1,000,000 integers in memory</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1_000_000</span>)]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2382,13 +2516,13 @@ Iterator created</code></pre>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="using-next-with-iterators" class="level2">
+<!-- PANEL 4 -->
+<section id="using-next-with-iterators" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="using-next-with-iterators">Using <code>next()</code> with Iterators</h2>
 <p>The catch is that iterators do not accept indexing. Use the <code>next()</code> function to get the next element.</p>
 <div class="code-animation">
-<div id="1b156d41" class="cell" data-execution_count="4">
+<div id="88e7a52f" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mylist <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>myiter <span class="op">=</span> (x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2408,44 +2542,42 @@ Third element of iterator: 2</code></pre>
 </div>
 </div>
 </div>
-<hr>
 </section>
-<section id="creating-custom-iterators" class="level2">
+<!-- PANEL 5 -->
+<section id="creating-custom-iterators" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="creating-custom-iterators">Creating Custom Iterators</h2>
 <p>For complex iterators like image loading, make iterators using classes by defining <code>__init__</code>, <code>__iter__</code>, and <code>__next__</code>.</p>
 <p>Raise <code>StopIteration</code> to stop the iteration.</p>
 <div class="code-animation">
-<div id="d46def39" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyImages:</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):  <span class="co"># Specify initial values</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.index <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">max</span> <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):  <span class="co"># Required for iteration</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__next__</span>(<span class="va">self</span>):  <span class="co"># Specify what to return</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.index <span class="op">&gt;=</span> <span class="va">self</span>.<span class="bu">max</span>:</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">StopIteration</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="ss">f&quot;image_</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>index<span class="sc">}</span><span class="ss">.png&quot;</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.index <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># This will load images one at a time</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> img <span class="kw">in</span> MyImages():</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    img.show()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyImages:</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):  <span class="co"># Specify initial values</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.index <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">max</span> <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__iter__</span>(<span class="va">self</span>):  <span class="co"># Required for iteration</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__next__</span>(<span class="va">self</span>):  <span class="co"># Specify what to return</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.index <span class="op">&gt;=</span> <span class="va">self</span>.<span class="bu">max</span>:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">StopIteration</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        img <span class="op">=</span> Image.<span class="bu">open</span>(<span class="ss">f&quot;image_</span><span class="sc">{</span><span class="va">self</span><span class="sc">.</span>index<span class="sc">}</span><span class="ss">.png&quot;</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.index <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> img</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># This will load images one at a time</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> img <span class="kw">in</span> MyImages():</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    img.show()</span></code></pre></div>
 </div>
-</div>
-<hr>
 </section>
-<section id="wrap-up" class="level2">
+<!-- PANEL 6 -->
+<section id="wrap-up" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
 <p>Now you can use iterators to load large datasets one element at a time, saving memory.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
-</section>
 </section>
 
 </main>
@@ -2552,6 +2684,7 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
   var OUTPUT_LINE_MS  = 200;  // ms between output lines appearing
   var LOOP_PAUSE_MS   = 2500; // ms to wait before the animation loops
   var INTERSECT_RATIO = 0.2;  // how much of the block must be on-screen
+  var blockState = new WeakMap();
   // ─────────────────────────────────────────────────────────────────────────
 
   /**
@@ -2686,11 +2819,29 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
     return chain;
   }
 
+  function playBlock(demo, options) {
+    var state = blockState.get(demo);
+    options = options || {};
+
+    if (!state || state.running || (state.hasPlayed && !options.replay)) {
+      return Promise.resolve();
+    }
+
+    state.running = true;
+
+    return runAnimation(demo).then(function () {
+      state.running = false;
+      state.hasPlayed = true;
+    });
+  }
+
   /**
    * First-time setup for a .code-animation block:
    * stash originals, hide everything, wire up IntersectionObserver.
    */
   function setupBlock(demo) {
+    if (blockState.has(demo)) return;
+
     var codeEl   = demo.querySelector("code.sourceCode");
     var outputEl = demo.querySelector(".cell-output");
 
@@ -2722,22 +2873,15 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
       outputEl.style.opacity = "0";
     }
 
-    var hasPlayed = false;
-    var running   = false;
-
-    function playOnce() {
-      if (running || hasPlayed) return;
-      running = true;
-      runAnimation(demo).then(function () {
-        running = false;
-        hasPlayed = true;
-      });
-    }
+    blockState.set(demo, {
+      hasPlayed: false,
+      running: false
+    });
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting && !hasPlayed) {
-          playOnce();
+        if (entry.isIntersecting) {
+          playBlock(demo);
         }
       });
     }, { threshold: INTERSECT_RATIO });
@@ -2749,6 +2893,20 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
   function setupAnimations() {
     document.querySelectorAll(".code-animation").forEach(setupBlock);
   }
+
+  window.tutorialCodeAnimation = {
+    setupWithin: function (root) {
+      (root || document).querySelectorAll(".code-animation").forEach(setupBlock);
+    },
+    playWithin: function (root, options) {
+      var animations = Array.from((root || document).querySelectorAll(".code-animation"));
+
+      animations.forEach(setupBlock);
+      return animations.reduce(function (chain, demo) {
+        return chain.then(function () { return playBlock(demo, options); });
+      }, Promise.resolve());
+    }
+  };
 
   document.addEventListener("DOMContentLoaded", function () {
     if (window.Prism) {
@@ -2764,6 +2922,136 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
     setupAnimations();
   });
 
+}());
+</script>
+<script>
+(function () {
+  "use strict";
+
+  function topLevelPanels() {
+    return Array.from(document.querySelectorAll(".tutorial-panel")).filter(function (panel) {
+      return !panel.parentElement.closest(".tutorial-panel");
+    });
+  }
+
+  function button(label, className) {
+    var el = document.createElement("button");
+    el.type = "button";
+    el.className = "tutorial-panel-button " + className;
+    el.setAttribute("aria-label", label);
+    el.textContent = className === "tutorial-panel-prev" ? "↑" : "↓";
+    return el;
+  }
+
+  function updatePanelClasses(panels, activeIndex) {
+    panels.forEach(function (panel, index) {
+      panel.classList.toggle("is-active", index === activeIndex);
+      panel.classList.toggle("is-before", index < activeIndex);
+      panel.classList.toggle("is-after", index > activeIndex);
+      panel.setAttribute("aria-hidden", index === activeIndex ? "false" : "true");
+    });
+  }
+
+  function setupPanels() {
+    var panels = topLevelPanels();
+
+    if (panels.length === 0) return;
+
+    var shell = document.createElement("div");
+    shell.className = "tutorial-panel-shell";
+
+    var stage = document.createElement("div");
+    stage.className = "tutorial-panel-stage";
+
+    var viewport = document.createElement("div");
+    viewport.className = "tutorial-panel-viewport";
+
+    var nav = document.createElement("div");
+    nav.className = "tutorial-panel-nav";
+
+    var prev = button("Previous panel", "tutorial-panel-prev");
+    var next = button("Next panel", "tutorial-panel-next");
+    var status = document.createElement("div");
+    status.className = "tutorial-panel-status";
+
+    var dots = document.createElement("div");
+    dots.className = "tutorial-panel-dots";
+
+    var dotButtons = panels.map(function (_panel, index) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "tutorial-panel-dot";
+      dot.setAttribute("aria-label", "Go to panel " + (index + 1));
+      dot.addEventListener("click", function () { goTo(index); });
+      dots.appendChild(dot);
+      return dot;
+    });
+
+    nav.appendChild(prev);
+    nav.appendChild(next);
+    stage.appendChild(viewport);
+    shell.appendChild(stage);
+    shell.appendChild(status);
+    shell.appendChild(nav);
+    shell.appendChild(dots);
+
+    panels[0].parentNode.insertBefore(shell, panels[0]);
+    panels.forEach(function (panel, index) {
+      panel.setAttribute("role", "group");
+      panel.setAttribute("aria-label", "Tutorial panel " + (index + 1) + " of " + panels.length);
+      viewport.appendChild(panel);
+    });
+
+    var activeIndex = 0;
+
+    function playActivePanel() {
+      if (!window.tutorialCodeAnimation) return;
+      window.tutorialCodeAnimation.playWithin(panels[activeIndex], { replay: true });
+    }
+
+    function render() {
+      updatePanelClasses(panels, activeIndex);
+      prev.disabled = activeIndex === 0;
+      next.disabled = activeIndex === panels.length - 1;
+      status.textContent = "Panel " + (activeIndex + 1) + " / " + panels.length;
+
+      dotButtons.forEach(function (dot, index) {
+        dot.classList.toggle("is-active", index === activeIndex);
+      });
+
+      playActivePanel();
+    }
+
+    function goTo(index) {
+      var nextIndex = Math.max(0, Math.min(index, panels.length - 1));
+
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      render();
+    }
+
+    prev.addEventListener("click", function () { goTo(activeIndex - 1); });
+    next.addEventListener("click", function () { goTo(activeIndex + 1); });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
+      if (["INPUT", "TEXTAREA", "SELECT"].indexOf(document.activeElement.tagName) !== -1) return;
+
+      if (event.key === "PageDown" || event.key === "ArrowDown") {
+        event.preventDefault();
+        goTo(activeIndex + 1);
+      }
+
+      if (event.key === "PageUp" || event.key === "ArrowUp") {
+        event.preventDefault();
+        goTo(activeIndex - 1);
+      }
+    });
+
+    render();
+  }
+
+  document.addEventListener("DOMContentLoaded", setupPanels);
 }());
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

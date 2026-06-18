@@ -2286,6 +2286,138 @@ content: none;
 50% { opacity: 0; }
 }
 </style>
+<style type="text/css">.tutorial-panel-shell {
+--panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+margin: 2rem auto 3rem;
+max-width: min(100%, 780px);
+}
+.tutorial-panel-stage {
+position: relative;
+width: 100%;
+aspect-ratio: 4 / 5;
+overflow: hidden;
+background: var(--tutorial-bg);
+border: 1px solid var(--tutorial-border);
+border-radius: 8px;
+}
+.tutorial-panel-viewport {
+position: relative;
+width: 100%;
+height: 100%;
+overflow: hidden;
+}
+.tutorial-panel {
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+gap: 1rem;
+overflow: hidden;
+padding: clamp(1.25rem, 3.5vw, 2.5rem);
+background: var(--tutorial-bg);
+opacity: 0;
+transform: translateY(100%);
+transition:
+transform 320ms var(--panel-ease),
+opacity 220ms ease;
+pointer-events: none;
+}
+.tutorial-panel.is-active {
+opacity: 1;
+transform: translateY(0);
+pointer-events: auto;
+}
+.tutorial-panel.is-before {
+transform: translateY(-100%);
+}
+.tutorial-panel.is-after {
+transform: translateY(100%);
+}
+.tutorial-panel > :first-child {
+margin-top: 0;
+}
+.tutorial-panel > :last-child {
+margin-bottom: 0;
+}
+.tutorial-panel h2,
+.tutorial-panel h3 {
+margin-top: 0;
+}
+.tutorial-panel p,
+.tutorial-panel li {
+max-width: 62ch;
+}
+.tutorial-panel pre.sourceCode,
+.tutorial-panel .cell-output pre {
+max-height: none;
+margin: 0;
+}
+.tutorial-panel-nav {
+display: flex;
+justify-content: center;
+gap: 0.5rem;
+margin-top: 0.6rem;
+}
+.tutorial-panel-button {
+display: grid;
+width: 2.25rem;
+height: 2.25rem;
+place-items: center;
+border: 1px solid var(--tutorial-border);
+border-radius: 999px;
+background: color-mix(in srgb, var(--tutorial-panel) 88%, transparent);
+color: var(--tutorial-fg);
+font: inherit;
+line-height: 1;
+cursor: pointer;
+}
+.tutorial-panel-button:hover,
+.tutorial-panel-button:focus-visible {
+border-color: var(--tutorial-link);
+color: var(--tutorial-link);
+outline: none;
+}
+.tutorial-panel-button:disabled {
+cursor: default;
+opacity: 0.35;
+}
+.tutorial-panel-status {
+margin-top: 0.75rem;
+color: var(--tutorial-muted);
+font-size: 0.9rem;
+text-align: center;
+}
+.tutorial-panel-dots {
+display: flex;
+justify-content: center;
+gap: 0.35rem;
+margin-top: 0.75rem;
+}
+.tutorial-panel-dot {
+width: 0.45rem;
+height: 0.45rem;
+border: 0;
+border-radius: 999px;
+background: var(--tutorial-border);
+padding: 0;
+}
+.tutorial-panel-dot.is-active {
+background: var(--tutorial-fg);
+}
+@media (max-width: 640px) {
+.tutorial-panel-shell {
+max-width: 100%;
+}
+.tutorial-panel-stage {
+border-radius: 0;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+.tutorial-panel {
+transition: none;
+}
+}
+</style>
 </head>
 
 <body class="fullcontent quarto-light">
@@ -2325,16 +2457,18 @@ content: none;
 </header>
 
 
-<section id="python-tip-understanding-with" class="level1">
+<!-- PANEL 1 -->
+<section id="python-tip-understanding-with" class="level1 tutorial-panel">
 <h1>Python Tip: Understanding <code>with</code></h1>
 <p><code>with</code> statements seem strange at first, but they are very simple!</p>
 <p><code>with</code> simplifies file handling while providing a robust safety net against human errors.</p>
-<hr>
-<section id="without-with" class="level2">
+</section>
+<!-- PANEL 2 -->
+<section id="without-with" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="without-with">Without <code>with</code></h2>
 <p>You can open files without <code>with</code>, but you must remember to close the file.</p>
 <div class="code-animation">
-<div id="a487d184" class="cell" data-execution_count="1">
+<div id="5cc152f5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span> <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>)  <span class="co"># &#39;w&#39; for write</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()  <span class="co"># Don&#39;t forget to close the file!</span></span>
@@ -2344,67 +2478,78 @@ content: none;
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">file</span>.close()  <span class="co"># Don&#39;t forget to close the file!</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content)  <span class="co"># Prints &quot;Hello, world!&quot;</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello, world!</code></pre>
 </div>
 </div>
-<hr>
+</div>
 </section>
-<section id="with-with" class="level2">
+<!-- PANEL 3 -->
+<section id="with-with" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="with-with">With <code>with</code></h2>
 <p><code>with</code> statements not only simplify file handling, but also make it robust to human error.</p>
 <div class="code-animation">
-<div id="dbfa8d64" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:  <span class="co"># &#39;w&#39; for write</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:  <span class="co"># &#39;r&#39; for read</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content)  <span class="co"># Prints &quot;Hello, world!&quot;</span></span></code></pre></div>
+<div id="46f2a0a5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:  <span class="co"># &#39;w&#39; for write</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:  <span class="co"># &#39;r&#39; for read</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content)  <span class="co"># Prints &quot;Hello, world!&quot;</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello, world!</code></pre>
 </div>
 </div>
-<hr>
+</div>
 </section>
-<section id="why-with-is-important" class="level2">
+<!-- PANEL 4 -->
+<section id="why-with-is-important" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="why-with-is-important">Why <code>with</code> is Important</h2>
 <p>Without <code>with</code>, small mistakes can cause unexpected behavior.</p>
 <div class="code-animation">
-<div id="f1a14a0a" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>file1 <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>file1.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Oops, I forgot to close the file...</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>file2 <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;r&#39;</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>content2 <span class="op">=</span> file2.read()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This may return an empty string</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content2)</span></code></pre></div>
+<div id="984679d0" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>file1 <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>file1.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Oops, I forgot to close the file...</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>file2 <span class="op">=</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;r&#39;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>content2 <span class="op">=</span> file2.read()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This may return an empty string</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content2)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
+</div>
 </div>
 </div>
 <p>Not closing files can also lead to resource issues or potential file access problems.</p>
-<hr>
 </section>
-<section id="with-with-code-is-much-safer" class="level2">
+<!-- PANEL 5 -->
+<section id="with-with-code-is-much-safer" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="with-with-code-is-much-safer">With <code>with</code>, Code is Much Safer</h2>
 <p>The <code>with</code> statement automatically closes the file when the block ends, even if an error occurs.</p>
 <div class="code-animation">
-<div id="11334984" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content)  <span class="co"># Prints &quot;Hello, world!&quot;</span></span></code></pre></div>
+<div id="2db43686" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">file</span>.write(<span class="st">&quot;Hello, world!&quot;</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&#39;example.txt&#39;</span>, <span class="st">&#39;r&#39;</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(content)  <span class="co"># Prints &quot;Hello, world!&quot;</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello, world!</code></pre>
 </div>
 </div>
-<hr>
+</div>
 </section>
-<section id="wrap-up" class="level2">
+<!-- PANEL 6 -->
+<section id="wrap-up" class="level2 tutorial-panel">
 <h2 class="anchored" data-anchor-id="wrap-up">Wrap-Up</h2>
 <p>Now you know how to make simple and robust file handling with <code>with</code>.</p>
 <p>Follow me for more tips.<br>
 Shep Bryan IV</p>
-</section>
 </section>
 
 </main>
@@ -2511,6 +2656,7 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
   var OUTPUT_LINE_MS  = 200;  // ms between output lines appearing
   var LOOP_PAUSE_MS   = 2500; // ms to wait before the animation loops
   var INTERSECT_RATIO = 0.2;  // how much of the block must be on-screen
+  var blockState = new WeakMap();
   // ─────────────────────────────────────────────────────────────────────────
 
   /**
@@ -2645,11 +2791,29 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
     return chain;
   }
 
+  function playBlock(demo, options) {
+    var state = blockState.get(demo);
+    options = options || {};
+
+    if (!state || state.running || (state.hasPlayed && !options.replay)) {
+      return Promise.resolve();
+    }
+
+    state.running = true;
+
+    return runAnimation(demo).then(function () {
+      state.running = false;
+      state.hasPlayed = true;
+    });
+  }
+
   /**
    * First-time setup for a .code-animation block:
    * stash originals, hide everything, wire up IntersectionObserver.
    */
   function setupBlock(demo) {
+    if (blockState.has(demo)) return;
+
     var codeEl   = demo.querySelector("code.sourceCode");
     var outputEl = demo.querySelector(".cell-output");
 
@@ -2681,22 +2845,15 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
       outputEl.style.opacity = "0";
     }
 
-    var hasPlayed = false;
-    var running   = false;
-
-    function playOnce() {
-      if (running || hasPlayed) return;
-      running = true;
-      runAnimation(demo).then(function () {
-        running = false;
-        hasPlayed = true;
-      });
-    }
+    blockState.set(demo, {
+      hasPlayed: false,
+      running: false
+    });
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting && !hasPlayed) {
-          playOnce();
+        if (entry.isIntersecting) {
+          playBlock(demo);
         }
       });
     }, { threshold: INTERSECT_RATIO });
@@ -2708,6 +2865,20 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
   function setupAnimations() {
     document.querySelectorAll(".code-animation").forEach(setupBlock);
   }
+
+  window.tutorialCodeAnimation = {
+    setupWithin: function (root) {
+      (root || document).querySelectorAll(".code-animation").forEach(setupBlock);
+    },
+    playWithin: function (root, options) {
+      var animations = Array.from((root || document).querySelectorAll(".code-animation"));
+
+      animations.forEach(setupBlock);
+      return animations.reduce(function (chain, demo) {
+        return chain.then(function () { return playBlock(demo, options); });
+      }, Promise.resolve());
+    }
+  };
 
   document.addEventListener("DOMContentLoaded", function () {
     if (window.Prism) {
@@ -2723,6 +2894,136 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
     setupAnimations();
   });
 
+}());
+</script>
+<script>
+(function () {
+  "use strict";
+
+  function topLevelPanels() {
+    return Array.from(document.querySelectorAll(".tutorial-panel")).filter(function (panel) {
+      return !panel.parentElement.closest(".tutorial-panel");
+    });
+  }
+
+  function button(label, className) {
+    var el = document.createElement("button");
+    el.type = "button";
+    el.className = "tutorial-panel-button " + className;
+    el.setAttribute("aria-label", label);
+    el.textContent = className === "tutorial-panel-prev" ? "↑" : "↓";
+    return el;
+  }
+
+  function updatePanelClasses(panels, activeIndex) {
+    panels.forEach(function (panel, index) {
+      panel.classList.toggle("is-active", index === activeIndex);
+      panel.classList.toggle("is-before", index < activeIndex);
+      panel.classList.toggle("is-after", index > activeIndex);
+      panel.setAttribute("aria-hidden", index === activeIndex ? "false" : "true");
+    });
+  }
+
+  function setupPanels() {
+    var panels = topLevelPanels();
+
+    if (panels.length === 0) return;
+
+    var shell = document.createElement("div");
+    shell.className = "tutorial-panel-shell";
+
+    var stage = document.createElement("div");
+    stage.className = "tutorial-panel-stage";
+
+    var viewport = document.createElement("div");
+    viewport.className = "tutorial-panel-viewport";
+
+    var nav = document.createElement("div");
+    nav.className = "tutorial-panel-nav";
+
+    var prev = button("Previous panel", "tutorial-panel-prev");
+    var next = button("Next panel", "tutorial-panel-next");
+    var status = document.createElement("div");
+    status.className = "tutorial-panel-status";
+
+    var dots = document.createElement("div");
+    dots.className = "tutorial-panel-dots";
+
+    var dotButtons = panels.map(function (_panel, index) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "tutorial-panel-dot";
+      dot.setAttribute("aria-label", "Go to panel " + (index + 1));
+      dot.addEventListener("click", function () { goTo(index); });
+      dots.appendChild(dot);
+      return dot;
+    });
+
+    nav.appendChild(prev);
+    nav.appendChild(next);
+    stage.appendChild(viewport);
+    shell.appendChild(stage);
+    shell.appendChild(status);
+    shell.appendChild(nav);
+    shell.appendChild(dots);
+
+    panels[0].parentNode.insertBefore(shell, panels[0]);
+    panels.forEach(function (panel, index) {
+      panel.setAttribute("role", "group");
+      panel.setAttribute("aria-label", "Tutorial panel " + (index + 1) + " of " + panels.length);
+      viewport.appendChild(panel);
+    });
+
+    var activeIndex = 0;
+
+    function playActivePanel() {
+      if (!window.tutorialCodeAnimation) return;
+      window.tutorialCodeAnimation.playWithin(panels[activeIndex], { replay: true });
+    }
+
+    function render() {
+      updatePanelClasses(panels, activeIndex);
+      prev.disabled = activeIndex === 0;
+      next.disabled = activeIndex === panels.length - 1;
+      status.textContent = "Panel " + (activeIndex + 1) + " / " + panels.length;
+
+      dotButtons.forEach(function (dot, index) {
+        dot.classList.toggle("is-active", index === activeIndex);
+      });
+
+      playActivePanel();
+    }
+
+    function goTo(index) {
+      var nextIndex = Math.max(0, Math.min(index, panels.length - 1));
+
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      render();
+    }
+
+    prev.addEventListener("click", function () { goTo(activeIndex - 1); });
+    next.addEventListener("click", function () { goTo(activeIndex + 1); });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
+      if (["INPUT", "TEXTAREA", "SELECT"].indexOf(document.activeElement.tagName) !== -1) return;
+
+      if (event.key === "PageDown" || event.key === "ArrowDown") {
+        event.preventDefault();
+        goTo(activeIndex + 1);
+      }
+
+      if (event.key === "PageUp" || event.key === "ArrowUp") {
+        event.preventDefault();
+        goTo(activeIndex - 1);
+      }
+    });
+
+    render();
+  }
+
+  document.addEventListener("DOMContentLoaded", setupPanels);
 }());
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

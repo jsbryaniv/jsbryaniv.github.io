@@ -5,12 +5,21 @@ author: "Shep Bryan IV"
 description: "Learn how to use lambda functions for quick, one-line anonymous functions in Python."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: Lambda Functions
 
 Need a quick function for a single evaluation? Use `lambda` functions to write compact, one-line functions without defining a whole block of code.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## What is a Lambda Function?
 
@@ -29,8 +38,12 @@ print(add(3, 4))  # 7
 
 Lambda functions are useful when you need to perform a quick evaluation without writing a full function definition.
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Why Use Lambda Functions?
 
@@ -50,8 +63,12 @@ print(data)  # [(3, 1), (1, 2), (5, 3)]
 
 This is especially useful when you only need a function temporarily and don't want to clutter your code.
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Using Lambda with `map()` and `filter()`
 
@@ -77,8 +94,12 @@ print(list(even_numbers))  # [2, 4]
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Lambda Functions in Other Languages
 
@@ -89,8 +110,12 @@ Many other languages support anonymous functions:
 - **Julia**: `add = (x, y) -> x + y`
 - **Ruby**: `add = ->(x, y) { x + y }`
 
+:::
 
----
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -98,3 +123,5 @@ Now you can use lambda functions for quick, one-line functions to keep your code
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

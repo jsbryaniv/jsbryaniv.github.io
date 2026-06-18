@@ -5,13 +5,22 @@ author: "Shep Bryan IV"
 description: "Learn how to create flexible functions that accept any number of arguments using *args and **kwargs."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: `*args` and `**kwargs`
 
 Python makes it easy to create functions that can take any number of arguments.
 Use `*args` and `**kwargs` for flexible and reusable code.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## Understanding `*` and `**`
 
@@ -44,8 +53,12 @@ print(dict3_with_unpacking)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Using `*args` for Variable Arguments
 
@@ -63,8 +76,12 @@ print(result)  # 3.0
 
 By packing arguments into a tuple, you can pass any number of arguments to the function.
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Using `**kwargs` for Keyword Arguments
 
@@ -82,8 +99,12 @@ greet(name="Alice", age=30)
 
 `**kwargs` allows you to pass named arguments without explicitly defining each one.
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Combining `*args` and `**kwargs`
 
@@ -99,8 +120,12 @@ show_info(1, 2, 3, name="Alice", job="Engineer")
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -108,3 +133,5 @@ Now you can create functions that handle any number of positional and keyword ar
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

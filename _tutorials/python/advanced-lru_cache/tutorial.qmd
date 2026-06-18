@@ -19,7 +19,7 @@ Use `functools.lru_cache` to store results of expensive function calls and reuse
 
 
 
-<!-- Panel 2 -->
+<!-- PANEL 2 -->
 :::{.tutorial-panel}
 
 ## Basic Example of a Slow Function
@@ -34,7 +34,7 @@ def slow_fibonacci(n):
         return n
     return slow_fibonacci(n - 1) + slow_fibonacci(n - 2)
 
-x = slow_fibonacci(4)
+x = slow_fibonacci(3)
 print(f"Final result = {x}")
 ```
 :::
@@ -61,7 +61,7 @@ def fast_fibonacci(n):
         return n
     return fast_fibonacci(n - 1) + fast_fibonacci(n - 2)
 
-x = fast_fibonacci(4)
+x = fast_fibonacci(3)
 print(f"Final result = {x}")
 ```
 :::
@@ -101,5 +101,4 @@ Follow me for more tips.
 Shep Bryan IV
 
 :::
-
 

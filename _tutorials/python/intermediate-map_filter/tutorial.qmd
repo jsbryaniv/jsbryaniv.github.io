@@ -5,13 +5,22 @@ author: "Shep Bryan IV"
 description: "Learn how to use map() and filter() for cleaner and more efficient sequence operations."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: `map()` and `filter()`
 
 Want to apply a function to every item in a sequence or filter elements? 
 Use `map()` and `filter()` for cleaner and more efficient code.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## Using `map()`
 
@@ -30,8 +39,12 @@ print(list(new_numbers))  # [2, 5, 10, 17, 26]
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Using `filter()`
 
@@ -50,8 +63,12 @@ print(list(even_numbers))  # [2, 4, 6, 8, 10]
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Why This is Better Than Loops
 
@@ -76,8 +93,12 @@ print(list(list2))
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -85,3 +106,5 @@ Now you can use `map()` and `filter()` to modify and filter sequences with ease.
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

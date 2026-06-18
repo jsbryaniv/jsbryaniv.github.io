@@ -5,14 +5,23 @@ author: "Shep Bryan IV"
 description: "Learn how to use the with statement for safer and simpler file handling in Python."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: Understanding `with`
 
 `with` statements seem strange at first, but they are very simple!
 
 `with` simplifies file handling while providing a robust safety net against human errors.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## Without `with`
 
@@ -20,7 +29,6 @@ You can open files without `with`, but you must remember to close the file.
 
 :::{.code-animation}
 ```{python}
-#| eval: false
 
 file = open('example.txt', 'w')  # 'w' for write
 file.write("Hello, world!")
@@ -34,8 +42,12 @@ print(content)  # Prints "Hello, world!"
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## With `with`
 
@@ -43,7 +55,6 @@ print(content)  # Prints "Hello, world!"
 
 :::{.code-animation}
 ```{python}
-#| eval: false
 
 with open('example.txt', 'w') as file:  # 'w' for write
     file.write("Hello, world!")
@@ -55,8 +66,12 @@ print(content)  # Prints "Hello, world!"
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Why `with` is Important
 
@@ -64,7 +79,6 @@ Without `with`, small mistakes can cause unexpected behavior.
 
 :::{.code-animation}
 ```{python}
-#| eval: false
 
 file1 = open('example.txt', 'w')
 file1.write("Hello, world!")
@@ -80,8 +94,12 @@ print(content2)
 
 Not closing files can also lead to resource issues or potential file access problems.
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## With `with`, Code is Much Safer
 
@@ -89,7 +107,6 @@ The `with` statement automatically closes the file when the block ends, even if 
 
 :::{.code-animation}
 ```{python}
-#| eval: false
 
 with open('example.txt', 'w') as file:
     file.write("Hello, world!")
@@ -101,8 +118,12 @@ print(content)  # Prints "Hello, world!"
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -110,3 +131,5 @@ Now you know how to make simple and robust file handling with `with`.
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::
