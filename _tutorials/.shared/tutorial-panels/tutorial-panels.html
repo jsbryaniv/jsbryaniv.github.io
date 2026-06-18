@@ -1,0 +1,130 @@
+<script>
+(function () {
+  "use strict";
+
+  function topLevelPanels() {
+    return Array.from(document.querySelectorAll(".tutorial-panel")).filter(function (panel) {
+      return !panel.parentElement.closest(".tutorial-panel");
+    });
+  }
+
+  function button(label, className) {
+    var el = document.createElement("button");
+    el.type = "button";
+    el.className = "tutorial-panel-button " + className;
+    el.setAttribute("aria-label", label);
+    el.textContent = className === "tutorial-panel-prev" ? "↑" : "↓";
+    return el;
+  }
+
+  function updatePanelClasses(panels, activeIndex) {
+    panels.forEach(function (panel, index) {
+      panel.classList.toggle("is-active", index === activeIndex);
+      panel.classList.toggle("is-before", index < activeIndex);
+      panel.classList.toggle("is-after", index > activeIndex);
+      panel.setAttribute("aria-hidden", index === activeIndex ? "false" : "true");
+    });
+  }
+
+  function setupPanels() {
+    var panels = topLevelPanels();
+
+    if (panels.length === 0) return;
+
+    var shell = document.createElement("div");
+    shell.className = "tutorial-panel-shell";
+
+    var stage = document.createElement("div");
+    stage.className = "tutorial-panel-stage";
+
+    var viewport = document.createElement("div");
+    viewport.className = "tutorial-panel-viewport";
+
+    var nav = document.createElement("div");
+    nav.className = "tutorial-panel-nav";
+
+    var prev = button("Previous panel", "tutorial-panel-prev");
+    var next = button("Next panel", "tutorial-panel-next");
+    var status = document.createElement("div");
+    status.className = "tutorial-panel-status";
+
+    var dots = document.createElement("div");
+    dots.className = "tutorial-panel-dots";
+
+    var dotButtons = panels.map(function (_panel, index) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "tutorial-panel-dot";
+      dot.setAttribute("aria-label", "Go to panel " + (index + 1));
+      dot.addEventListener("click", function () { goTo(index); });
+      dots.appendChild(dot);
+      return dot;
+    });
+
+    nav.appendChild(prev);
+    nav.appendChild(next);
+    stage.appendChild(viewport);
+    stage.appendChild(nav);
+    shell.appendChild(stage);
+    shell.appendChild(status);
+    shell.appendChild(dots);
+
+    panels[0].parentNode.insertBefore(shell, panels[0]);
+    panels.forEach(function (panel, index) {
+      panel.setAttribute("role", "group");
+      panel.setAttribute("aria-label", "Tutorial panel " + (index + 1) + " of " + panels.length);
+      viewport.appendChild(panel);
+    });
+
+    var activeIndex = 0;
+
+    function playActivePanel() {
+      if (!window.tutorialCodeAnimation) return;
+      window.tutorialCodeAnimation.playWithin(panels[activeIndex], { replay: true });
+    }
+
+    function render() {
+      updatePanelClasses(panels, activeIndex);
+      prev.disabled = activeIndex === 0;
+      next.disabled = activeIndex === panels.length - 1;
+      status.textContent = "Panel " + (activeIndex + 1) + " / " + panels.length;
+
+      dotButtons.forEach(function (dot, index) {
+        dot.classList.toggle("is-active", index === activeIndex);
+      });
+
+      playActivePanel();
+    }
+
+    function goTo(index) {
+      var nextIndex = Math.max(0, Math.min(index, panels.length - 1));
+
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      render();
+    }
+
+    prev.addEventListener("click", function () { goTo(activeIndex - 1); });
+    next.addEventListener("click", function () { goTo(activeIndex + 1); });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) return;
+      if (["INPUT", "TEXTAREA", "SELECT"].indexOf(document.activeElement.tagName) !== -1) return;
+
+      if (event.key === "PageDown" || event.key === "ArrowDown") {
+        event.preventDefault();
+        goTo(activeIndex + 1);
+      }
+
+      if (event.key === "PageUp" || event.key === "ArrowUp") {
+        event.preventDefault();
+        goTo(activeIndex - 1);
+      }
+    });
+
+    render();
+  }
+
+  document.addEventListener("DOMContentLoaded", setupPanels);
+}());
+</script>
