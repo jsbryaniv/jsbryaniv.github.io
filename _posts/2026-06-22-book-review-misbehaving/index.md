@@ -1,7 +1,7 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-06-22 12:00:01
 layout: post
-title: Book Review: Misbehaving
+title: "Book Review: Misbehaving"
 subtitle: The Making of Behavioral Economics
 description: A review of Richard Thaler's book "Misbehaving: The Making of Behavioral Economics", which chronicles the history and development of the field of behavioral economics.
 image: assets/coverart_misbehaving.png
