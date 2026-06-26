@@ -1,7 +1,7 @@
 ---
 date: 2026-06-12 12:00:01
 layout: post
-title: "Project AIDVID: Week 2 - The Build"
+title: "Project AIVID: Week 2 - The Build"
 subtitle: Week 2 of the Project of the Month
 description: Building a local AI video editing framework using open-source models.
 image: assets/coverart_aivid_w2.png
@@ -12,7 +12,7 @@ tags:
   - coding
 ---
 
-Last week I introduced [Project AIDVID](https://shep4.com/blog/2026/06/project-aidvid-week1/) and the goal of building a local AI video editing workflow. As a quick review, I was hired by a client to use AI to remove visual defects from a company video. But rather than relying on cloud-based commercial tools, I wanted to see how far I could get using open-source models and my own hardware.
+Last week I introduced [Project AIVID](https://shep4.com/blog/2026/06/project-aidvid-week1/) and the goal of building a local AI video editing workflow. As a quick review, I was hired by a client to use AI to remove visual defects from a company video. But rather than relying on cloud-based commercial tools, I wanted to see how far I could get using open-source models and my own hardware.
 
 This week I'll discuss how I built the software and some of the challenges that appeared along the way.
 

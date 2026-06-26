@@ -1,7 +1,7 @@
 ---
 date: 2026-06-18 12:00:01
 layout: post
-title: "Project AIDVID: Week 3 - The Product"
+title: "Project AIVID: Week 3 - The Product"
 subtitle: Week 3 of the Project of the Month
 description: Building a local AI video editing framework using open-source models, week 3.
 image: assets/coverart_aivid_w3.png
@@ -12,7 +12,7 @@ tags:
   - coding
 ---
 
-Last week I discussed the engineering challenges involved in building a local AI video editing framework. If you missed it, you can read the previous update here: [Project AIDVID: Week 2 - The Build](https://shep4.com/blog/2026/06/project-aidvid-week2/)
+Last week I discussed the engineering challenges involved in building a local AI video editing framework. If you missed it, you can read the previous update here: [Project AIVID: Week 2 - The Build](https://shep4.com/blog/2026/06/project-aidvid-week2/)
 
 This week I'll discuss the resulting software and whether it was capable of solving the original problem.
 
@@ -44,4 +44,4 @@ However, the question was no longer whether local AI video editing was possible.
 
 The question had become whether it was practical.
 
-Next week I'll share my final verdict on Project AIDVID and discuss whether this is a project worth continuing.
+Next week I'll share my final verdict on Project AIVID and discuss whether this is a project worth continuing.
