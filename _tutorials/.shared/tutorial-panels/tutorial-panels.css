@@ -1,0 +1,153 @@
+.tutorial-panel-shell {
+  --panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  margin: 2rem auto 3rem;
+  max-width: min(100%, 780px);
+}
+
+.tutorial-panel-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--tutorial-bg);
+  border: 1px solid var(--tutorial-border);
+  border-radius: 8px;
+}
+
+.tutorial-panel-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tutorial-panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3.5vw, 2.5rem);
+  background: var(--tutorial-bg);
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    transform 320ms var(--panel-ease),
+    opacity 220ms ease;
+  pointer-events: none;
+}
+
+.tutorial-panel.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.tutorial-panel.is-before {
+  transform: translateY(-100%);
+}
+
+.tutorial-panel.is-after {
+  transform: translateY(100%);
+}
+
+.tutorial-panel > :first-child {
+  margin-top: 0;
+}
+
+.tutorial-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.tutorial-panel h2,
+.tutorial-panel h3 {
+  margin-top: 0;
+}
+
+.tutorial-panel p,
+.tutorial-panel li {
+  max-width: 62ch;
+}
+
+.tutorial-panel pre.sourceCode,
+.tutorial-panel .cell-output pre {
+  max-height: none;
+  margin: 0;
+}
+
+.tutorial-panel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.tutorial-panel-button {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 1px solid var(--tutorial-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tutorial-panel) 88%, transparent);
+  color: var(--tutorial-fg);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tutorial-panel-button:hover,
+.tutorial-panel-button:focus-visible {
+  border-color: var(--tutorial-link);
+  color: var(--tutorial-link);
+  outline: none;
+}
+
+.tutorial-panel-button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.tutorial-panel-status {
+  margin-top: 0.75rem;
+  color: var(--tutorial-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.tutorial-panel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.tutorial-panel-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tutorial-border);
+  padding: 0;
+}
+
+.tutorial-panel-dot.is-active {
+  background: var(--tutorial-fg);
+}
+
+@media (max-width: 640px) {
+  .tutorial-panel-shell {
+    max-width: 100%;
+  }
+
+  .tutorial-panel-stage {
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tutorial-panel {
+    transition: none;
+  }
+}

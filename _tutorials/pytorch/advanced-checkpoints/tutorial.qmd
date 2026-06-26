@@ -5,22 +5,30 @@ author: "Shep Bryan IV"
 description: "Learn how to use PyTorch checkpoints to trade time for memory when training heavy models."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # PyTorch Tip: Checkpoints
 
 Are you running out of memory when training heavy PyTorch models? Do you not mind waiting for results?
 
 Use checkpoints to trade time for memory.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## The Problem: Memory Storage
 
 Whenever you do an operation on a tensor, PyTorch stores a copy of it in memory.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 import torch
 
@@ -35,8 +43,7 @@ x = x - 1   # x = 3
 :::
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 # ... but this is what PyTorch sees
 x0 = torch.tensor(0.0, requires_grad=True)
@@ -48,16 +55,19 @@ x4 = x3 - 1   # x4 = 3 and x3 = 4 and x2 = 2 and x1 = 1 and x0 = 0
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## The Problem: Heavy Functions
 
 This is a problem when you're working with functions that have many operations.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 import torch
 
@@ -84,8 +94,12 @@ y.backward()
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## The Solution: Use Checkpoints
 
@@ -94,8 +108,7 @@ Use checkpoints to trade time for memory!
 Functions inside a checkpoint wrapper will not store intermediate tensors. Instead, PyTorch will recompute the tensors when you call the `backward()` method.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 from torch.utils.checkpoint import checkpoint
 
@@ -104,16 +117,19 @@ x = checkpoint(heavy_function, x, self.a)
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Implementing Checkpoints
 
 Checkpoints are simple to use. Just wrap the function and its arguments inside a checkpoint.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 import torch
 from torch.utils.checkpoint import checkpoint
@@ -142,8 +158,12 @@ y.backward()
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -151,3 +171,5 @@ Now you can use checkpoints to trade time for memory when training models.
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

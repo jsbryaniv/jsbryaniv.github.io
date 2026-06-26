@@ -5,21 +5,29 @@ author: "Shep Bryan IV"
 description: "Replace nested for loops with itertools.product for cleaner and faster code."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: Product Iterators
 
 Did you know that nested for loops make code slower?
 Try using iterators for cleaner, faster, and more efficient code.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## The Problem with Nested Loops
 
 Every time you make a for loop, it adds overhead to your computation.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 import numpy as np
 
@@ -36,16 +44,19 @@ print(f"Processed {shape[0] * shape[1]} elements")
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Using `itertools.product`
 
 The `itertools.product()` function can replace nested loops. It generates all combinations of indices in a matrix.
 
 :::{.code-animation}
-```{python}
-#| eval: false
+```python
 
 from itertools import product
 import numpy as np
@@ -64,8 +75,12 @@ print(f"Processed {shape[0] * shape[1]} elements")
 
 We replaced our double loop with a single loop!
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Nested Loops of Unknown Depth
 
@@ -95,8 +110,12 @@ print(f"3D matrix: {count} elements")
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -104,3 +123,5 @@ Now you can replace nested loops with iterators for cleaner, more efficient code
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

@@ -5,13 +5,22 @@ author: "Shep Bryan IV"
 description: "Learn how to use f-strings for cleaner, faster, and more readable string formatting with precision control."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: f-strings
 
 Tired of complex string formatting?
 Use f-strings for cleaner, faster, and more readable code.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## Basic f-strings
 
@@ -33,8 +42,12 @@ print(mystring)
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Formatting with Precision
 
@@ -74,8 +87,12 @@ print(f"Today: {datetime.now():%Y-%m-%d}")
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -83,3 +100,5 @@ Now you can use f-strings to format strings with ease, precision, and readabilit
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::

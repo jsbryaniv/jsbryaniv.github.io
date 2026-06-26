@@ -29,6 +29,7 @@
   var OUTPUT_LINE_MS  = 200;  // ms between output lines appearing
   var LOOP_PAUSE_MS   = 2500; // ms to wait before the animation loops
   var INTERSECT_RATIO = 0.2;  // how much of the block must be on-screen
+  var blockState = new WeakMap();
   // ─────────────────────────────────────────────────────────────────────────
 
   /**
@@ -163,11 +164,29 @@
     return chain;
   }
 
+  function playBlock(demo, options) {
+    var state = blockState.get(demo);
+    options = options || {};
+
+    if (!state || state.running || (state.hasPlayed && !options.replay)) {
+      return Promise.resolve();
+    }
+
+    state.running = true;
+
+    return runAnimation(demo).then(function () {
+      state.running = false;
+      state.hasPlayed = true;
+    });
+  }
+
   /**
    * First-time setup for a .code-animation block:
    * stash originals, hide everything, wire up IntersectionObserver.
    */
   function setupBlock(demo) {
+    if (blockState.has(demo)) return;
+
     var codeEl   = demo.querySelector("code.sourceCode");
     var outputEl = demo.querySelector(".cell-output");
 
@@ -199,22 +218,15 @@
       outputEl.style.opacity = "0";
     }
 
-    var hasPlayed = false;
-    var running   = false;
-
-    function playOnce() {
-      if (running || hasPlayed) return;
-      running = true;
-      runAnimation(demo).then(function () {
-        running = false;
-        hasPlayed = true;
-      });
-    }
+    blockState.set(demo, {
+      hasPlayed: false,
+      running: false
+    });
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting && !hasPlayed) {
-          playOnce();
+        if (entry.isIntersecting) {
+          playBlock(demo);
         }
       });
     }, { threshold: INTERSECT_RATIO });
@@ -223,8 +235,36 @@
   }
 
   // ── entry point ───────────────────────────────────────────────────────────
-  document.addEventListener("DOMContentLoaded", function () {
+  function setupAnimations() {
     document.querySelectorAll(".code-animation").forEach(setupBlock);
+  }
+
+  window.tutorialCodeAnimation = {
+    setupWithin: function (root) {
+      (root || document).querySelectorAll(".code-animation").forEach(setupBlock);
+    },
+    playWithin: function (root, options) {
+      var animations = Array.from((root || document).querySelectorAll(".code-animation"));
+
+      animations.forEach(setupBlock);
+      return animations.reduce(function (chain, demo) {
+        return chain.then(function () { return playBlock(demo, options); });
+      }, Promise.resolve());
+    }
+  };
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.Prism) {
+      if (window.tutorialCodeHighlighted) {
+        setupAnimations();
+        return;
+      }
+
+      document.addEventListener("tutorial:code-highlighted", setupAnimations, { once: true });
+      return;
+    }
+
+    setupAnimations();
   });
 
 }());

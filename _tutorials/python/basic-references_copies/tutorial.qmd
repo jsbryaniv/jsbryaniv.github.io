@@ -5,14 +5,23 @@ author: "Shep Bryan IV"
 description: "Understand the difference between references and copies in Python to avoid unexpected bugs."
 ---
 
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
 # Python Tip: References vs Copies
 
 When coding with arrays in Python (like lists, NumPy arrays, or PyTorch tensors), it's important to know when you're working with references vs copies.
 
 Understanding this concept helps avoid unexpected behavior and bugs.
 
+:::
 
----
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
 
 ## What is a Reference?
 
@@ -31,8 +40,12 @@ print(y)  # [9, 2, 3] - y is also modified
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
 
 ## Creating a Copy
 
@@ -49,8 +62,12 @@ print(y)  # [9, 2, 3] - y is a new list
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
 
 ## Why It Matters
 
@@ -69,8 +86,12 @@ print(x)  # [1, 2, 3, 4] - x is modified too!
 ```
 :::
 
+:::
 
----
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
 
 ## Wrap-Up
 
@@ -78,3 +99,5 @@ Now you know how to manage references and copies in Python. Use `.copy()` or `.c
 
 Follow me for more tips.  
 Shep Bryan IV
+
+:::
