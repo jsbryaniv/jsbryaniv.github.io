@@ -12,7 +12,7 @@ tags:
   - innovation
 ---
 
-I recently finished listening to *Extreme Ownership* by Jocko Willink and Leif Babin. As I've started taking on more leadership responsibilities at work, I wanted to spend some time learning from people who have led under truly high-pressure situations. This ended up being one of my favorite self-improvement books I've ever read!
+I recently finished listening to [*Extreme Ownership*](https://a.co/d/0b8Ou8lL) by Jocko Willink and Leif Babin. As I've started taking on more leadership responsibilities at work, I wanted to spend some time learning from people who have led under truly high-pressure situations. This ended up being one of my favorite self-improvement books I've ever read!
 
 The book is written by two U.S. Navy SEAL officers who commanded troops during the Battle of Ramadi in Iraq. It is part war story, part leadership book, and I found the combination extremely engaging. I listened to the audiobook, which made the stories even more immersive since the narrators sound exactly like the battlefield commanders in the movies.
 
@@ -51,4 +51,4 @@ While the authors present several practical techniques for improving communicati
 
 ## Conclusion
 
-Overall, I highly recommend *Extreme Ownership*. It's entertaining, practical, and full of memorable stories. If you end up reading it, pay attention not only to the twelve leadership principles, but also to the broader patterns that emerge between them. I suspect you'll come away with a few lessons of your own!
+Overall, I highly recommend [*Extreme Ownership*](https://a.co/d/0b8Ou8lL). It's entertaining, practical, and full of memorable stories. If you end up reading it, pay attention not only to the twelve leadership principles, but also to the broader patterns that emerge between them. I suspect you'll come away with a few lessons of your own!
