@@ -5,12 +5,11 @@
 
 
 - Update profile picture
-
+- Fix tutorial rendering so that it doesnt change the html each time its rendered.
 
 
 ## Low Priority
 
-- Why is my website so slow?
 - Reaname header "quick links" to "top subscribe button"
 - Move style defs out of blog, shop, and newsletter pages and into a shared file
 - Clean up categories 

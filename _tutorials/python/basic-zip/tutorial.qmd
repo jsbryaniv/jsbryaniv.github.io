@@ -1,0 +1,143 @@
+---
+title: "Python Tip: zip"
+subtitle: "Loop over related lists together"
+author: "Shep Bryan IV"
+description: "Learn how to use zip to loop over related lists together without manual indexing."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+# Python Tip: `zip`
+
+Need to loop over two lists at the same time?
+
+Use `zip()` to pair related values together.
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Without `zip`
+
+You can use indexes to read from two lists, but it makes the loop harder to read.
+
+:::{.code-animation}
+```{python}
+names = ["Ada", "Grace", "Katherine"]
+scores = [98, 95, 99]
+
+for i in range(len(names)):
+    print(names[i], scores[i])
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## With `zip`
+
+`zip()` pairs the first item from each list, then the second, then the third.
+
+:::{.code-animation}
+```{python}
+names = ["Ada", "Grace", "Katherine"]
+scores = [98, 95, 99]
+
+for name, score in zip(names, scores):
+    print(name, score)
+```
+:::
+
+Cleaner loop. Same result.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## More Than Two Lists
+
+You can zip three or more lists when each item has multiple related values.
+
+:::{.code-animation}
+```{python}
+names = ["Ada", "Grace", "Katherine"]
+scores = [98, 95, 99]
+grades = ["A", "A", "A"]
+
+for name, score, grade in zip(names, scores, grades):
+    print(f"{name}: {score} ({grade})")
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Watch the Lengths
+
+`zip()` stops when the shortest list runs out of items.
+
+:::{.code-animation}
+```{python}
+names = ["Ada", "Grace", "Katherine"]
+scores = [98, 95]
+
+for name, score in zip(names, scores):
+    print(name, score)
+```
+:::
+
+`Katherine` is skipped because there is no matching score.
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## Combine with `enumerate`
+
+Use `enumerate()` with `zip()` when you also need a counter.
+
+:::{.code-animation}
+```{python}
+names = ["Ada", "Grace", "Katherine"]
+scores = [98, 95, 99]
+
+for rank, (name, score) in enumerate(zip(names, scores), start=1):
+    print(f"{rank}. {name}: {score}")
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+## Wrap-Up
+
+Now you can use `zip()` to loop over related lists together.
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
