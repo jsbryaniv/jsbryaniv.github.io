@@ -6,11 +6,11 @@
 
 Practical, searchable guides that teach readers how to accomplish a specific task.
 
-- How to set up SSH on a desktop
 - Set up a local LLM (vLLM + OpenWebUI)
 - How to structure a Python project
 - How to package a Python library
 - Python environment management (venv, pip, uv)
+- How to set up SSH on a desktop
 - Docker for researchers
 - Building your first AI agent
 - Git workflow for solo developers
@@ -52,15 +52,16 @@ Scientific ideas explained intuitively.
 
 Building products, companies, and ideas.
 
-- How to fail (fast, forward, and loud)
-- Lean Startup principles
-- Why real life trains on the test set
-- Technical knowledge and restraint
-- Tips for vibe coding
+- Code Philosophy: Keep code DRY
+- Code Philosophy: Function First Frameworks
+- Code Philosophy: One Function One Job
+- Code Philosophy: Clarity is the Top Priority
+- Do it first, then do it fast (Dont optimize too early)
+- Technical Knowledge & Restraint (I can build complex models but I dont unless I have to)
 - The Eisenhower Matrix
-- Why MVPs matter
-- Choosing the right project
-- Build vs. buy
+- How to Fail
+- Lean Startup Principles
+- Tips for Vibe Coding
 
 ### Reflections
 
