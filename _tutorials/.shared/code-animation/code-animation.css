@@ -12,10 +12,7 @@
   margin: 0;
 }
 
-/* Output hidden until JS sets visibility/opacity directly */
 .code-animation .cell-output {
-  visibility: hidden;
-  opacity: 0;
   transition: opacity 0.25s ease;
 }
 
