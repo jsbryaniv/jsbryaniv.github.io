@@ -125,6 +125,23 @@
     render();
   }
 
-  document.addEventListener("DOMContentLoaded", setupPanels);
+  function fitPanelContent(panel) {
+    var minFontSize = 8;
+    var fontSize = 16;
+    panel.style.fontSize = fontSize + "px";
+    while (panel.scrollHeight > panel.clientHeight && fontSize > minFontSize) {
+      fontSize -= 0.5;
+      panel.style.fontSize = fontSize + "px";
+    }
+  }
+
+  function fitAllPanels() {
+    topLevelPanels().forEach(fitPanelContent);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setupPanels();
+    fitAllPanels();
+  });
 }());
 </script>

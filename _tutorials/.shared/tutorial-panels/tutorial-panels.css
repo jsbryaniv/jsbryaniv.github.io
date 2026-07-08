@@ -64,9 +64,9 @@
   font-size: 1rem;
 }
 
-.tutorial-panel h1 { font-size: 1.75rem; }
-.tutorial-panel h2 { font-size: 1.5rem; margin-top: 0; }
-.tutorial-panel h3 { font-size: 1.25rem; margin-top: 0; }
+.tutorial-panel h1 { font-size: 1.75em; }
+.tutorial-panel h2 { font-size: 1.5em; margin-top: 0; }
+.tutorial-panel h3 { font-size: 1.25em; margin-top: 0; }
 
 .tutorial-panel p,
 .tutorial-panel li {
@@ -77,6 +77,12 @@
 .tutorial-panel .cell-output pre {
   max-height: none;
   margin: 0;
+  font-size: 0.875em;
+}
+
+.tutorial-panel pre.sourceCode code,
+.tutorial-panel .cell-output pre code {
+  font-size: inherit;
 }
 
 .tutorial-panel-nav {
