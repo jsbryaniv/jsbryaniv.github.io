@@ -61,13 +61,17 @@
       return dot;
     });
 
+    var center = document.createElement("div");
+    center.className = "tutorial-panel-nav-center";
+    center.appendChild(status);
+    center.appendChild(dots);
+
     nav.appendChild(prev);
+    nav.appendChild(center);
     nav.appendChild(next);
     stage.appendChild(viewport);
     shell.appendChild(stage);
-    shell.appendChild(status);
     shell.appendChild(nav);
-    shell.appendChild(dots);
 
     panels[0].parentNode.insertBefore(shell, panels[0]);
     panels.forEach(function (panel, index) {
