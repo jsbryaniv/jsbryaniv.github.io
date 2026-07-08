@@ -73,6 +73,10 @@
   max-width: 62ch;
 }
 
+.tutorial-panel div.sourceCode {
+  margin: 0;
+}
+
 .tutorial-panel pre.sourceCode,
 .tutorial-panel .cell-output pre {
   max-height: none;
