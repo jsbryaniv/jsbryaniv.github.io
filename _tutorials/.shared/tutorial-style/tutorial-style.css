@@ -84,3 +84,22 @@ pre.sourceCode {
   color: var(--tutorial-code-fg);
   padding: 1rem;
 }
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.python-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.python-logo svg {
+  width: 80px;
+  height: 80px;
+}

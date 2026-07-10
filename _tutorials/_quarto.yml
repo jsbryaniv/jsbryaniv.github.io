@@ -21,6 +21,7 @@ format:
       - .shared/code-highlighting/prism.html
       - .shared/code-animation/code-animation.html
       - .shared/tutorial-panels/tutorial-panels.html
+      - .shared/assets/python-logo.html
 
 execute:
   echo: true
