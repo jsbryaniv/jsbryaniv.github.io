@@ -1,9 +1,9 @@
 ---
-date: 2026-07-03 12:00:01
+date: 2026-07-10 12:00:01
 layout: post
 title: "Project Zero Inventory: Week 2 - The Build"
 subtitle: Week 2 of the Project of the Month
-description: Exploring whether 3D printing can be used to validate physical product ideas before investing in manufacturing.
+description: Designing the first products for Project Zero Inventory.
 image: assets/coverart_zeroinv_w2.png
 category: project
 tags:
@@ -16,26 +16,43 @@ tags:
 ## Week 2
 ### The Build
 
+- Brief recap of last week.
+- This week we begin building the first products.
 
-- I have a friend, Josh, with a sick garage that he converted into a makerspace. He has a 3D printer, a CNC, all the woodshop equipment you would ever need, and even a squat rack. Dream garage for sure.
-- Josh is letting me use his 3d printer to test out my zero inventory idea.
+### Workshop
 
-- I am new to 3d printing so I tried out a variety of software
-- I started with Fusion360, but found it to be overkill.
-- I switched to Shapr3d, which is much simpler.
-- I watched this series to learn it: https://youtube.com/playlist?list=PL9wNxqBnLSFt8AhqsqPGRvHevjG5aX0eP&si=spq01pSJyCRauMum
+- Introduce Josh.
+- Josh has an awesome garage that he converted into a makerspace.
+- 3D printer, CNC, woodworking equipment, electronics, etc.
+- He is letting me use his 3D printer while I test out this business model.
 
-- The first product I am building is an adjustable measuring spoon. - Its an extremely simple two part design that uses simple shapes and easy geometric measurements which makes it an ideal first attempt at 3D printing.
-- I made one a while back and this time I want to improve the design.
+### Learning CAD
 
-![Shapr3DAdjustable Measuring Spoon](assets/shapr3d_screenshot1.png)
+- Before I can print anything, I first need to design it.
+- I am completely new to CAD software, so this was my first time learning how to model parts.
+- I started with Fusion 360.
+- It is incredibly powerful, but I found it to be more complicated than I needed for simple product design.
+- I switched to Shapr3D and immediately liked the workflow much better.
+- I learned Shapr3D from this excellent YouTube series:
+  https://youtube.com/playlist?list=PL9wNxqBnLSFt8AhqsqPGRvHevjG5aX0eP&si=spq01pSJyCRauMum
 
-- I am excited to print this next week and see how it turns out!
+### The First Product
 
-- In the meantime, I met up with my friend Don yesterday.
-- He is a 3d modeling guru and also has a sweet website.
-- You should check it out: https://www.donbalanzat.com/
-- Don introdued me to an AI for 3d modeling that he says is actually pretty good: https://zoo.dev/ 
-- Next week I will try to use zoo.dev to see if I can make this same design faster.
+- The first product I decided to build is an adjustable measuring spoon.
+- It is a very simple two-part design that uses basic geometric shapes.
+- That makes it a perfect first project for learning CAD and 3D printing.
+- I actually built a version of this product a while back, and now I want to redesign it from scratch using everything I've learned.
 
-- Stay tuned for next week when I will introduce a new design and hopefully have some 3D printed prototypes to show off!
+![Shapr3D Adjustable Measuring Spoon](assets/shapr3d_screenshot1.png)
+
+- Overall I'm happy with the design and excited to see how it performs once it's printed.
+
+### Looking Ahead
+
+- Yesterday I also met up with my friend Don.
+- Don is an incredibly talented 3D modeler and has his own website:
+  https://www.donbalanzat.com/
+- He introduced me to an AI-powered CAD tool called Zoo:
+  https://zoo.dev/
+- Next week I want to compare my manually designed model against one generated with AI and see how well the two approaches stack up.
+- Hopefully I'll also have my first printed prototypes to show!
