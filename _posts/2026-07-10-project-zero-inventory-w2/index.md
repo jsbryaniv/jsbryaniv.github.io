@@ -36,6 +36,6 @@ I'm excited to print this next week and see how it turns out!
 
 ## Looking Ahead
 
-Yesterday I met up with my friend Don. Don is a 3D modeling guru, and he also has a sweet website that you should check out: [https://www.donbalanzat.com/](https://www.donbalanzat.com/). Don introduced me to an AI-powered CAD tool called Zoo (https://zoo.dev/) that can generate 3D models from text prompts. I'm excited to try it out next week and see whether it can help accelerate the product design process.
+Yesterday I met up with my friend Don. Don is a 3D modeling guru, and he also has a sweet website that you should check out: [DonBalanzat.com/](https://www.donbalanzat.com/). Don introduced me to an AI-powered CAD tool called [Zoo.dev](https://zoo.dev/) that can generate 3D models from text prompts. I'm excited to try it out next week and see whether it can help accelerate the product design process.
 
 Stay tuned for next week when I'll introduce another design and, hopefully, have some 3D printed prototypes to show off!
