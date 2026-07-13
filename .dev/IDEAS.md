@@ -78,6 +78,5 @@ Lighter, more personal posts that help readers connect.
 - Send me your cool projects!
 - Phoenix locals, let's collaborate!
 - My daily routine
-- How I write
 - My favorite books this year
 
