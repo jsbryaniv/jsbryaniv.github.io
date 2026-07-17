@@ -2,8 +2,8 @@
 date: YYYY-MM-DD 12:00:01
 layout: post
 title: "Programming Principles: Clarity Over All"
-subtitle: 
-description: 
+subtitle: Write code for humans to read
+description: A discussion of the programming principle of Clarity Over All, and how to write code that is easy to understand and maintain.
 image: assets/coverart_programming_principles.png
 category: programming-principles
 tags:
