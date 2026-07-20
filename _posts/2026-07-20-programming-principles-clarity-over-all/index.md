@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-07-20 12:00:01
 layout: post
 title: "Programming Principles: Clarity Over All"
 subtitle: Write code for humans to read
@@ -14,7 +14,7 @@ Here I discuss Programming Principles. Today I discuss the principle of Clarity 
 
 ## Introduction
 
-For every program that a person might want to write, there are an infinite number of ways to write it. So which way is the best? It depends on context: if you are prototyping something then you might prioritize speed of development, if you are writing a high performance library then you might prioritize performance, if you are writing a program in the early days of computing when memory was limited then you might prioritize shorter code. But in general, the best way to write a program is to write it in a way that makes it easy to understand.
+For every program that a person might want to write, there are an infinite number of ways to write it. So which way is the best? It depends on context: if you are prototyping something then you might prioritize speed of development, if you are writing a high performance library then you might prioritize performance, if you are writing a program in the early days of computing when memory was limited then you might prioritize shorter code. But in almost every other case, the best way to write a program is to write it in a way that makes it easy to understand.
 
 "Clarity Over All" is a principle that states that when writing code, clarity should be prioritized over all other considerations. This means that code should be written in a way that is easy to read and understand, even if it means sacrificing performance or brevity.
 
@@ -116,4 +116,4 @@ The goal is to make your project predictable. Someone should be able to guess wh
 
 By now, I hope I've convinced you that clarity is one of the most important qualities of good code. I've also shared some practical guidelines that I hope will help you write code that is easier to understand and maintain. If you follow these principles, I think you'll save yourself an enormous amount of time and frustration in the future. Your teammates will appreciate it, your users will benefit from it, and perhaps most importantly, your future self will thank you for it.
 
-I wish I could send this article back in time to myself ten years ago, because man, I'm still trying to figure out what some of my old programs do!
+I wish I could send this article back in time to myself ten years ago because, oh man, I'm still trying to figure out what some of my old programs do!
