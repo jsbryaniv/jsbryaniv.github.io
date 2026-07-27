@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-07-27 12:00:01
 layout: post
 title: "Programming Principles: Separation of Concerns"
 subtitle: "Don't Mix Your Responsibilities"
@@ -96,7 +96,7 @@ With the nonmodular code, we cannot reuse the analysis by itself. The analysis i
 One possible workaround would look something like this:
 
 ```python
-from project.nonmodular_pipeline import nonmodular_pipeline  # <-- The funciton we want to reuse
+from project.nonmodular_pipeline import nonmodular_pipeline  # <-- The function we want to reuse
 from project.otherstuff import load_new_format, preprocess_data, postprocess_result
 
 
@@ -129,7 +129,7 @@ Now consider the modular version:
 
 ```python
 from project.analysis import analyze_data  # <-- The function we want to reuse
-from project.otherstuff import load_new_format, preprocess_data, postprocess_result
+from project.otherstuff import load_new_format, preprocess_data, postprocess_result, save_final_result
 
 
 raw_data = load_new_format("new_data.json")
