@@ -3,3 +3,5 @@ ipykernel
 notebook
 numpy
 torch
+playwright
+Pillow

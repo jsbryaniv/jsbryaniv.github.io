@@ -1,0 +1,174 @@
+---
+title: "Python Tip: `is` vs. `==`"
+subtitle: "Know when to compare identity and when to compare values"
+author: "Shep Bryan IV"
+description: "Learn the difference between Python's is and equality operators and when to use each one."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `is` vs. `==`
+
+These operators may look similar, but they answer different questions.  
+`==` compares **values**.  
+`is` compares **identity**.  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Using `==`
+
+`==` checks whether two objects have the same value.
+
+:::{.code-animation}
+```{python}
+first = ["python", "sql"]
+second = ["python", "sql"]
+
+print("Lists are equal:", first == second)
+
+name = "Ada"
+print("Name equals 'Ada':", name == "Ada")
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Using `is`
+
+`is` checks whether two names point to the **same object**.
+
+:::{.code-animation}
+```{python}
+first = ["python", "sql"]
+second = first
+
+print("Names point to the same list:", first is second)
+
+# Changing one changes both because they are the same object!
+second.append("git")
+print("First list after update:", first)
+```
+:::
+
+Both names refer to one list, so a change through either name affects it.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Equal, but Not Identical
+
+Two separate objects can contain equal values.
+
+:::{.code-animation}
+```{python}
+original = ["python", "sql"]
+other = ["python", "sql"]
+
+print("Lists are equal:", original == other)
+print("Lists are same:", original is other)
+```
+:::
+
+Use `==` when you care about what the objects contain.
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Checking for `None`
+
+Objects can customize how `==` behaves. Identity cannot be overridden.
+
+:::{.code-animation}
+```{python}
+class TrickyObject:
+    def __eq__(self, other):
+        return True
+
+not_none = TrickyObject()
+yes_none = None
+
+print("Custom object == None:", not_none == None)
+print("Custom object is None:", not_none is None)
+print("None == None:", yes_none == None)
+print("None is None:", yes_none is None)
+```
+:::
+
+Use `is None` to reliably check for the one and only `None` object.
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## An Apparent Exception
+
+Sometimes Python treats small integers as the same object for optimization. Don't be fooled into thinking this applies to all integers!
+
+:::{.code-animation}
+```{python}
+x1 = 10
+x2 = 9 + 1  # x1 == x2
+y1 = 9999999
+y2 = 9999998 + 1  # y1 == y2
+
+print("Small ints are same object:", x1 is x2)
+print("Big ints are same object:", y1 is y2)
+```
+:::
+
+This may make `is` appear to work as equality for small integers—but do not rely on it! It is an implementation detail, not the rule. Always use `==` to compare numeric values.
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Use `==` to ask: **Do these have the same value?**
+
+Use `is` to ask: **Are these the exact same object?**
+
+Most comparisons need `==`. Use `is` when you need to check for identity, such as when checking for `None`.
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
+
+:::

@@ -1,0 +1,140 @@
+---
+title: "Python Tip: `any()` and `all()`"
+subtitle: "Check multiple conditions with two built-in functions"
+author: "Shep Bryan IV"
+description: "Learn how to use any and all to check multiple Boolean values and conditions in Python."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `any()` and `all()`
+
+Need to know if **at least one** condition is true?  
+Want to check if **every** condition is true?  
+Use `any()` and `all()` for clean, readable checks!  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Using `any()`
+
+`any()` returns `True` if **at least one** element is true.
+
+:::{.code-animation}
+```{python}
+checks = [False, True, False]
+
+# Don't do this
+found = False
+for check in checks:
+    if check:
+        found = True
+print(found)
+
+# Do this instead
+print(any(checks))
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Using `all()`
+
+`all()` returns `True` only if **every** item is true.
+
+:::{.code-animation}
+```{python}
+checks = [True, True, True]
+
+print(all(checks))
+
+checks = [True, False, True]
+
+print(all(checks))
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Checking Conditions
+
+Wrap them around a condition to see if **any** or **all** elements meet it.
+
+:::{.code-animation}
+```{python}
+scores = [82, 95, 67, 88]
+
+# Did anyone score 90 or higher?
+print(any(score >= 90 for score in scores))
+
+# Did everyone pass?
+print(all(score >= 60 for score in scores))
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Empty Collections
+
+With no items, `any()` is `False`, while `all()` is `True`.
+
+:::{.code-animation}
+```{python}
+items = []
+
+print(any(items))
+print(all(items))
+
+# There is no true item for any() to find.
+# There is no false item for all() to find.
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Use `any()` when **at least one** condition must be true and `all()` when **every** condition must be true!
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
+
+:::

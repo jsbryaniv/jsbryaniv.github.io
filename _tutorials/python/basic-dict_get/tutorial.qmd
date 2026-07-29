@@ -1,0 +1,164 @@
+---
+title: "Python Tip: `dict.get()`"
+subtitle: "A helpful method that can also hide bugs"
+author: "Shep Bryan IV"
+description: "Learn when dict.get is useful, when bracket access is safer, and how defaults can hide malformed data."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `dict.get()`
+
+Want to read a dictionary key without raising an error?  
+`dict.get()` is helpful—but it can also be dangerous.  
+Let's learn when to use it and when **not** to!  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Missing Keys
+
+Bracket access raises a `KeyError` when a key is missing.
+
+:::{.code-animation}
+```{python}
+user = {"name": "Ada", "role": "admin"}
+
+print(user["name"])
+
+# This raises a KeyError
+print(user["email"])
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Using `.get()`
+
+`.get()` returns `None` instead of raising a `KeyError`.
+
+:::{.code-animation}
+```{python}
+user = {"name": "Ada", "role": "admin"}
+
+print(user.get("name"))
+print(user.get("email"))
+```
+:::
+
+This is useful when a key is truly optional.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Providing a Default
+
+Pass a second argument to choose the fallback value.
+
+:::{.code-animation}
+```{python}
+settings = {"theme": "dark"}
+
+theme = settings.get("theme", "light")
+language = settings.get("language", "en")
+
+print(theme)
+print(language)
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Optional vs. Required
+
+Use `.get()` for **optional** data. Use brackets for **required** data.
+
+:::{.code-animation}
+```{python}
+user = {"name": "Ada"}
+
+# Optional: a fallback makes sense
+nickname = user.get("nickname", user["name"])
+
+# Required: fail loudly if malformed
+name = user["name"]
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## The Silent Bug
+
+A default can make malformed data look valid.
+
+:::{.code-animation}
+```{python}
+order = {"item": "book"}  # Missing required price!
+
+# Silently turns bad data into a free order
+price = order.get("price", 0)
+tax = price * 0.08
+total = price + tax
+
+print(total)
+```
+:::
+
+Sometimes a `KeyError` is exactly what you need.
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+AI coding agents often default to `dict.get()` over `dict["key"]`.
+
+That looks defensive, but it can introduce **silent bugs** when required data is malformed.
+
+Check whether each key is truly optional. If it is required, let your code fail loudly!
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
+
+:::

@@ -55,14 +55,16 @@ print(content)  # Prints "Hello, world!"
 
 :::{.code-animation}
 ```{python}
-
-with open('example.txt', 'w') as file:  # 'w' for write
+# 'w' for write
+with open('example.txt', 'w') as file:
     file.write("Hello, world!")
 
-with open('example.txt', 'r') as file:  # 'r' for read
+# 'r' for read
+with open('example.txt', 'r') as file:  
     content = file.read()
 
-print(content)  # Prints "Hello, world!"
+# Prints "Hello, world!"
+print(content)
 ```
 :::
 
@@ -87,7 +89,7 @@ file1.write("Hello, world!")
 file2 = open('example.txt', 'r')
 content2 = file2.read()
 
-# This may return an empty string
+# This returns an empty string
 print(content2)
 ```
 :::

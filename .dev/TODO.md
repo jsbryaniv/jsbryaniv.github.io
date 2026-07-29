@@ -6,6 +6,7 @@
 
 - Update profile picture
 - Fix tutorial rendering so that it doesnt change the html each time its rendered.
+- Newsletter archive has duplicated title.
 
 
 ## Low Priority

@@ -61,13 +61,17 @@
       return dot;
     });
 
+    var center = document.createElement("div");
+    center.className = "tutorial-panel-nav-center";
+    center.appendChild(status);
+    center.appendChild(dots);
+
     nav.appendChild(prev);
+    nav.appendChild(center);
     nav.appendChild(next);
     stage.appendChild(viewport);
     shell.appendChild(stage);
-    shell.appendChild(status);
     shell.appendChild(nav);
-    shell.appendChild(dots);
 
     panels[0].parentNode.insertBefore(shell, panels[0]);
     panels.forEach(function (panel, index) {
@@ -125,6 +129,23 @@
     render();
   }
 
-  document.addEventListener("DOMContentLoaded", setupPanels);
+  function fitPanelContent(panel) {
+    var minFontSize = 8;
+    var fontSize = 16;
+    panel.style.fontSize = fontSize + "px";
+    while (panel.scrollHeight > panel.clientHeight && fontSize > minFontSize) {
+      fontSize -= 0.5;
+      panel.style.fontSize = fontSize + "px";
+    }
+  }
+
+  function fitAllPanels() {
+    topLevelPanels().forEach(fitPanelContent);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setupPanels();
+    fitAllPanels();
+  });
 }());
 </script>

@@ -2266,12 +2266,9 @@ padding: 1rem;
 </style>
 <style type="text/css">
 .code-animation {
-margin: 1.5rem 0;
+margin: 0;
 }
-
 .code-animation .cell-output {
-visibility: hidden;
-opacity: 0;
 transition: opacity 0.25s ease;
 }
 
@@ -2289,12 +2286,12 @@ content: none;
 <style type="text/css">.tutorial-panel-shell {
 --panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
 margin: 2rem auto 3rem;
-max-width: min(100%, 780px);
+width: 500px;
 }
 .tutorial-panel-stage {
 position: relative;
-width: 100%;
-aspect-ratio: 4 / 5;
+width: 500px;
+height: 500px;
 overflow: hidden;
 background: var(--tutorial-bg);
 border: 1px solid var(--tutorial-border);
@@ -2313,13 +2310,13 @@ display: flex;
 flex-direction: column;
 gap: 1rem;
 overflow: hidden;
-padding: clamp(1.25rem, 3.5vw, 2.5rem);
+padding: 1.75rem;
 background: var(--tutorial-bg);
 opacity: 0;
 transform: translateY(100%);
 transition:
-transform 320ms var(--panel-ease),
-opacity 220ms ease;
+transform 480ms var(--panel-ease),
+opacity 330ms ease;
 pointer-events: none;
 }
 .tutorial-panel.is-active {
@@ -2339,24 +2336,41 @@ margin-top: 0;
 .tutorial-panel > :last-child {
 margin-bottom: 0;
 }
-.tutorial-panel h2,
-.tutorial-panel h3 {
-margin-top: 0;
+.tutorial-panel {
+font-size: 1rem;
 }
+.tutorial-panel h1 { font-size: 1.75em; }
+.tutorial-panel h2 { font-size: 1.5em; margin-top: 0; }
+.tutorial-panel h3 { font-size: 1.25em; margin-top: 0; }
 .tutorial-panel p,
 .tutorial-panel li {
 max-width: 62ch;
+}
+.tutorial-panel div.sourceCode {
+margin: 0;
 }
 .tutorial-panel pre.sourceCode,
 .tutorial-panel .cell-output pre {
 max-height: none;
 margin: 0;
+font-size: 0.875em;
+}
+.tutorial-panel pre.sourceCode code,
+.tutorial-panel .cell-output pre code {
+font-size: inherit;
 }
 .tutorial-panel-nav {
 display: flex;
+align-items: center;
 justify-content: center;
-gap: 0.5rem;
+gap: 0.75rem;
 margin-top: 0.6rem;
+}
+.tutorial-panel-nav-center {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 0.35rem;
 }
 .tutorial-panel-button {
 display: grid;
@@ -2382,7 +2396,6 @@ cursor: default;
 opacity: 0.35;
 }
 .tutorial-panel-status {
-margin-top: 0.75rem;
 color: var(--tutorial-muted);
 font-size: 0.9rem;
 text-align: center;
@@ -2391,7 +2404,6 @@ text-align: center;
 display: flex;
 justify-content: center;
 gap: 0.35rem;
-margin-top: 0.75rem;
 }
 .tutorial-panel-dot {
 width: 0.45rem;
@@ -2403,14 +2415,6 @@ padding: 0;
 }
 .tutorial-panel-dot.is-active {
 background: var(--tutorial-fg);
-}
-@media (max-width: 640px) {
-.tutorial-panel-shell {
-max-width: 100%;
-}
-.tutorial-panel-stage {
-border-radius: 0;
-}
 }
 @media (prefers-reduced-motion: reduce) {
 .tutorial-panel {
@@ -2468,7 +2472,7 @@ transition: none;
 <p>Before diving into <code>*args</code> and <code>**kwargs</code>, let’s understand the <code>*</code> and <code>**</code> operators.</p>
 <p>The single asterisk (<code>*</code>) unpacks iterables like lists. The double asterisk (<code>**</code>) unpacks dictionaries.</p>
 <div class="code-animation">
-<div id="a09100f2" class="cell" data-execution_count="1">
+<div id="7863c0e7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single asterisk (*) unpacks an iterable</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
@@ -2485,7 +2489,7 @@ transition: none;
 </div>
 </div>
 <div class="code-animation">
-<div id="3587c39e" class="cell" data-execution_count="2">
+<div id="1bf57c8e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Double asterisk (**) unpacks dictionaries</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dict1 <span class="op">=</span> {<span class="st">&quot;a&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;b&quot;</span>: <span class="dv">2</span>}</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dict2 <span class="op">=</span> {<span class="st">&quot;c&quot;</span>: <span class="dv">3</span>, <span class="st">&quot;d&quot;</span>: <span class="dv">4</span>}</span>
@@ -2503,7 +2507,7 @@ transition: none;
 <h2 class="anchored" data-anchor-id="using-args-for-variable-arguments">Using <code>*args</code> for Variable Arguments</h2>
 <p>When asterisks are used in function definitions, they pack arguments into tuples.</p>
 <div class="code-animation">
-<div id="eebc11d8" class="cell" data-execution_count="3">
+<div id="95e872b8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average(<span class="op">*</span>args):  <span class="co"># args=(arg1, arg2, arg3, ...)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>(args) <span class="op">/</span> <span class="bu">len</span>(args)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2521,7 +2525,7 @@ transition: none;
 <h2 class="anchored" data-anchor-id="using-kwargs-for-keyword-arguments">Using <code>**kwargs</code> for Keyword Arguments</h2>
 <p>When double asterisks are used in function definitions, they pack keyword arguments into dictionaries.</p>
 <div class="code-animation">
-<div id="eb838bbc" class="cell" data-execution_count="4">
+<div id="fbf5b8e9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(<span class="op">**</span>kwargs):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key, value <span class="kw">in</span> kwargs.items():</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">&quot;</span>)</span>
@@ -2540,7 +2544,7 @@ age: 30</code></pre>
 <h2 class="anchored" data-anchor-id="combining-args-and-kwargs">Combining <code>*args</code> and <code>**kwargs</code></h2>
 <p>You can use both <code>*args</code> and <code>**kwargs</code> in the same function. Important: <code>*args</code> must appear before <code>**kwargs</code>.</p>
 <div class="code-animation">
-<div id="cc74d083" class="cell" data-execution_count="5">
+<div id="6d8dd557" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show_info(<span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Positional arguments:&quot;</span>, args)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Keyword arguments:&quot;</span>, kwargs)</span>
@@ -2769,15 +2773,15 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
       span.style.visibility = "hidden";
     });
 
-    // Reset output.
+    // Reset output — clear text but keep block visible.
     if (outputEl) {
       var pre = outputEl.querySelector("pre");
       if (pre) {
         var codeOut = pre.querySelector("code") || pre;
-        codeOut.textContent = codeOut.dataset.originalText;
+        codeOut.textContent = "";
       }
-      outputEl.style.visibility = "hidden";
-      outputEl.style.opacity = "0";
+      outputEl.style.visibility = "visible";
+      outputEl.style.opacity = "1";
     }
 
     // Show typing cursor.
@@ -2840,18 +2844,18 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
       span.style.visibility = "hidden";
     });
 
-    // Stash original output text and hide the output block.
+    // Stash original output text, fix height, and show empty placeholder.
     if (outputEl) {
       var pre = outputEl.querySelector("pre");
       if (pre) {
         var codeOut = pre.querySelector("code") || pre;
         codeOut.dataset.originalText = codeOut.textContent;
-        // Pre-calculate height to prevent layout shift during animation
         var fullHeight = pre.offsetHeight;
         pre.style.minHeight = fullHeight + "px";
+        codeOut.textContent = "";
       }
-      outputEl.style.visibility = "hidden";
-      outputEl.style.opacity = "0";
+      outputEl.style.visibility = "visible";
+      outputEl.style.opacity = "1";
     }
 
     blockState.set(demo, {
@@ -2968,13 +2972,17 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
       return dot;
     });
 
+    var center = document.createElement("div");
+    center.className = "tutorial-panel-nav-center";
+    center.appendChild(status);
+    center.appendChild(dots);
+
     nav.appendChild(prev);
+    nav.appendChild(center);
     nav.appendChild(next);
     stage.appendChild(viewport);
     shell.appendChild(stage);
-    shell.appendChild(status);
     shell.appendChild(nav);
-    shell.appendChild(dots);
 
     panels[0].parentNode.insertBefore(shell, panels[0]);
     panels.forEach(function (panel, index) {
@@ -3032,7 +3040,24 @@ Prism.languages.python={comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0,greedy:!0}
     render();
   }
 
-  document.addEventListener("DOMContentLoaded", setupPanels);
+  function fitPanelContent(panel) {
+    var minFontSize = 8;
+    var fontSize = 16;
+    panel.style.fontSize = fontSize + "px";
+    while (panel.scrollHeight > panel.clientHeight && fontSize > minFontSize) {
+      fontSize -= 0.5;
+      panel.style.fontSize = fontSize + "px";
+    }
+  }
+
+  function fitAllPanels() {
+    topLevelPanels().forEach(fitPanelContent);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    setupPanels();
+    fitAllPanels();
+  });
 }());
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

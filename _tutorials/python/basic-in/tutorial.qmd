@@ -1,0 +1,138 @@
+---
+title: "Python Tip: the `in` Operator"
+subtitle: "Check if an object is in any collection with one keyword"
+author: "Shep Bryan IV"
+description: "Learn how to use the in operator to check membership in lists, strings, and dictionaries."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: the `in` Operator
+
+Need to check if something is contained in a list?  
+Want to see if a string contains a substring?  
+Use the `in` operator for a clean, readable one-liner!  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Checking Lists
+
+Use `in` to check if a value exists in a list.
+
+:::{.code-animation}
+```{python}
+fruits = ["apple", "banana", "cherry"]
+
+# Don't do this
+found = False
+for fruit in fruits:
+    if fruit == "banana":
+        found = True
+print(found)
+
+# Do this instead
+print("banana" in fruits)
+print("grape" in fruits)
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Checking Strings
+
+`in` also works on strings to check for substrings.
+
+:::{.code-animation}
+```{python}
+message = "Hello, world!"
+
+print("world" in message)
+print("python" in message)
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Checking Dictionaries
+
+With dictionaries, `in` checks the **keys** by default.
+
+:::{.code-animation}
+```{python}
+scores = {"alice": 95, "bob": 87, "carol": 92}
+# Check keys
+print("alice" in scores)
+# Check values
+print(95 in scores.values())
+# Check pairs
+print(("bob", 87) in scores.items())
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Using `not in`
+
+Flip the check with `not in` to test for absence.
+
+:::{.code-animation}
+```{python}
+banned = ["spam", "ads", "clickbait"]
+
+username = "spam"
+if username not in banned:
+    print(f"Welcome, {username}!")
+else:
+    print(f"{username} is banned.")
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Now you can use `in` and `not in` to check membership in lists strings, and dictionaries cleanly and concisely!
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
+
+:::
