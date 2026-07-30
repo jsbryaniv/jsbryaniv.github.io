@@ -1,0 +1,29 @@
+---
+date: YYYY-MM-DD 12:00:01
+layout: post
+title: ...
+subtitle: ...
+description: ...
+image: assets/coverart_programming_principles.png
+category: programming-principles
+tags:
+  - programming
+---
+
+Here I discuss Programming Principles. Today I discuss the principle of ...
+
+## Introduction
+
+...
+
+## Why is ... Important?
+
+...
+
+## How to Implement ...
+
+...
+
+## Conclusion
+
+...
