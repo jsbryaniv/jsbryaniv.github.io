@@ -33,6 +33,29 @@ High-effort articles that explain a deep technical concept from first principles
 
 ## Essays
 
+### Programming Principles
+
+
+Make Code Reusable (building blocks vs. one-off scripts)
+Explicit Is Better Than Implicit (Zen of Python, but language agnostic)
+Optimize Last (don't prematurely optimize)
+Fail Fast (catch bugs immediately instead of propagating them)
+Design for Change (assume requirements will change)
+Keep Interfaces Simple (simple APIs hide complexity)
+
+- Clarity over all
+- Separation of concerns
+- Keep code DRY
+- One source of truth
+- Make Code Reusable
+- Explicit is better than implicit
+- Optimize last
+- Fail Fast
+- Design for Change
+- The Zen of Python
+- Programming Principles: Work at the Right Level of Abstraction (python is glue, C is fast, assembly is low-level, etc.)
+
+
 ### Science
 
 Scientific ideas explained intuitively.
