@@ -1,5 +1,5 @@
 ---
-date: 2026-06-29 12:00:01
+date: 2026-08-03 12:00:01
 layout: post
 title: "Book Review: FitMind"
 subtitle: "Keeping your mind fit just like your body."
