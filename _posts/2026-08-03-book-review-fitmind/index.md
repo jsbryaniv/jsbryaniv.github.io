@@ -12,8 +12,6 @@ tags:
   - self-improvement
 ---
 
-[FitMind](https://fitmind.org/)
-
 I just finished listening to [FitMind by Liam McClintock](https://fitmind.org/book). I have been a fan of Liam and FitMind for some time now. I used the [FitMind App](https://fitmind.org/) a few years ago during my PhD program to help reduce stress and improve my concentration while defending and writing my dissertation. I'm so excited that he finally wrote this book!
 
 ![FitMind Screenshot](assets/screenshot_fitmind.png)
@@ -32,4 +30,4 @@ After explaining a lot of background and the science behind meditation, Liam lay
 
 **Remain:** We try to remain focused and present in the fit states, realizing that eventually we will get distracted, but when we do, we can simply repeat the 4 Rs again!
 
-This is just a high-level overview. If you want to learn more, I suggest you read [FitMind](https://fitmind.org/book). Overall, I highly recommend this book.
+This is just a high-level overview. If you want to learn more, I suggest you read [FitMind](https://fitmind.org/book). Overall, I highly recommend this book!
