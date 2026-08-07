@@ -1,0 +1,169 @@
+---
+title: "Python Tip: Sorting with `key=`"
+subtitle: "Sort values by the detail that matters"
+author: "Shep Bryan IV"
+description: "Learn how to customize Python sorting with the key and reverse arguments."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `sorted()`
+
+Need to sort a list?  
+Need to sort it a specific way?  
+Use `sorted()` with the `key` argument to choose the **how** to sort it.  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Basic Sorting
+
+`sorted()` returns a new list with the values in order.
+
+:::{.code-animation}
+```{python}
+scores = [88, 73, 95, 82]
+
+sorted_scores = sorted(scores)
+
+print("Original:", scores)
+print("Sorted:", sorted_scores)
+```
+:::
+
+The original list stays unchanged.
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Sort Words by Length
+
+By default, strings are sorted alphabetically. Use `key=` to choose a different thing to sort by, like the length of each string.
+
+:::{.code-animation}
+```{python}
+words = ["pear", "fig", "watermelon"]
+
+alphabetical = sorted(words)
+by_length = sorted(words, key=len)  # Sort by length
+
+print("Alphabetical:", alphabetical)
+print("By length:", by_length)
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Sort Without Case Sensitivity
+
+Capital letters normally sort before lowercase letters. Use `str.lower` to compare lowercase versions of each word!
+
+:::{.code-animation}
+```{python}
+names = ["grace", "Ada", "linus", "Guido"]
+
+default = sorted(names)
+ignore_case = sorted(names, key=str.lower)
+
+print("Default:", default)
+print("Ignore case:", ignore_case)
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Sort Dictionaries
+
+Use a `lambda` function to choose the thing to sort by, like a value from a dictionary.
+
+:::{.code-animation}
+```{python}
+people = [
+    {"name": "Ada", "age": 36},
+    {"name": "Guido", "age": 31},
+    {"name": "Grace", "age": 28},
+]
+
+by_age = sorted(people, key=lambda p: p["age"])
+
+for p in by_age:
+    print(p["name"], p["age"])
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## Reverse the Order
+
+Add `reverse=True` when you want the largest value first.
+
+:::{.code-animation}
+```{python}
+scores = [88, 73, 95, 82]
+
+highest_first = sorted(scores, reverse=True)
+
+print(highest_first)
+```
+:::
+
+You can combine `reverse=True` with `key=` too.
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Now you can customize how Python sorts lists!
+
+Use `sorted()` to create a new sorted list.
+
+Use `key=` to choose how Python sorts your list.
+
+Add `reverse=True` when you want descending order.
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
+
+:::
