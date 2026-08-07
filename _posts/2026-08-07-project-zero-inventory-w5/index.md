@@ -4,7 +4,7 @@ layout: post
 title: "Project Zero Inventory: Week 5 - Starting Over"
 subtitle: Month 2 of the Project of the Month
 description: Building and testing the first products for Project Zero Inventory.
-image: assets/coverart_zeroinv_w3.png
+image: assets/coverart_zeroinv_w5.png
 category: project
 tags:
   - project
