@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD 12:00:01
+date: 2026-08-10 12:00:01
 layout: post
 title: "Programming Principles: Keep Code DRY"
 subtitle: "Don't Repeat Yourself"
