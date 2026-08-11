@@ -98,8 +98,10 @@ G#: 657 nm
 ```
 
 Lastly, I used [405nm.com](https://405nm.com/wavelength-to-color/) to make a diagram of a piano with all the colors filled in for each note. Check it out below!
-![Piano with colors](https://jsbryaniv.github.io/assets/img/blog/blog_colors_of_music_piano
+
+![Piano with colors](assets/blog_colors_of_music_piano
 .png)
+
 Notice that F# is black. This is because the color spectrum doesnt span a full octave, so F# ends up outside the visible light range. Lined up next to each other I really think this looks nice!
 
 Overall, I really enjoyed working on this project and finding this cool connection between sound and sight. I'm already thinking of ways to use this mapping in future projects. I hope you enjoyed reading about it as much as I enjoyed working on it!
