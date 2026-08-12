@@ -5,8 +5,12 @@
 
 
 - Update profile picture
-- Fix tutorial rendering so that it doesnt change the html each time its rendered.
-- Newsletter archive has duplicated title.
+
+- Reorganize tutorials in anticipation of making real tutorials
+  - current tutorials should be moved to _tutorials/tips/ or something like that
+  - flatten tips/ and move torch tips to python/
+  - get rid of advanced/basic/intermediate prefixes. If anything put them in the tip itself
+  - move tutorials to _tutorials/tutorials/ or something so its not on the same level as the config stuff.
 
 
 ## Low Priority

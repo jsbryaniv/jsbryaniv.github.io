@@ -1,0 +1,107 @@
+---
+title: "Python Tip: `enumerate()`"
+subtitle: "Loop over values and their indices at the same time"
+author: "Shep Bryan IV"
+description: "Learn how to use enumerate for cleaner loops when you need both an index and a value."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `enumerate()`
+
+Need both an item's **index** and its **value**?  
+Use `enumerate()` to get both without managing a counter yourself!
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## The Manual Way
+
+You could create and update a counter yourself, but that adds extra bookkeeping.
+
+:::{.code-animation}
+```{python}
+languages = ["Python", "SQL", "JavaScript"]
+
+index = 0
+for language in languages:
+    print(index, language)
+    index += 1
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Using `enumerate()`
+
+`enumerate()` produces an index and value for each item.
+
+:::{.code-animation}
+```{python}
+languages = ["Python", "SQL", "JavaScript"]
+
+for index, language in enumerate(languages):
+    print(index, language)
+```
+:::
+
+The indices start at `0`, just like list indexes.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Choosing a Starting Number
+
+Pass `start=1` to choose the starting index.
+
+:::{.code-animation}
+```{python}
+tasks = ["Plan", "Build", "Test"]
+
+for number, task in enumerate(tasks, start=1):
+    print(f"{number}. {task}")
+```
+:::
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Now you know how to use `enumerate()` to loop over both the index and the value of a list in Python.
+
+Follow me for more tips.  
+- Shep4
+
+:::
+
+:::

@@ -1,11 +1,11 @@
 
 # Content Ideas
 
-
 ## Tutorials
 
 Practical, searchable guides that teach readers how to accomplish a specific task.
 
+- Set up a workout gen agent.
 - Set up a local LLM (vLLM + OpenWebUI)
 - How to structure a Python project
 - How to package a Python library
@@ -16,11 +16,11 @@ Practical, searchable guides that teach readers how to accomplish a specific tas
 - Git workflow for solo developers
 - How to make a free website with Jekyll and GitHub Pages
 
-
 ## Technical Posts
 
 High-effort articles that explain a deep technical concept from first principles.
 
+- How precisely are quantum and classical probability different?
 - Why does entropy use a logarithm?
 - Why do quantum states use complex numbers?
 - A Turing Machine Visualized
