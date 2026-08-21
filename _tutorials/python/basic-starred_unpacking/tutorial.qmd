@@ -1,0 +1,175 @@
+---
+title: "Python Tip: Starred Unpacking"
+subtitle: "Unpack data when its length can vary"
+author: "Shep Bryan IV"
+description: "Learn how starred unpacking captures and forwards the flexible part of a variable-length sequence."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: Starred Unpacking
+
+Need to unpack a list?  
+But don't know exactly how many values it contains?  
+Use `*` to capture the flexible part!  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Variable-Length Data
+
+Frequently in coding, we work with lists where the order of the elements has meaning, but the total length of the list can vary.
+
+:::{.code-animation}
+```{python}
+# A file path can have any number of folders
+path_parts = ["users", "ada", "docs", "report.txt"]
+
+# A command can have any number of arguments
+command_parts = ["copy", "report.txt", "backup/"]
+```
+:::
+
+In `path_parts`, the last value is the filename, while the preceding values are the folders.
+
+In `command_parts`, the first value is the command—the action to perform. The remaining values are the arguments it needs.
+
+How can we easily parse these lists?
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Don't Parse It by Hand
+
+Indexing and slicing work, but they focus on positions instead of meaning.
+
+:::{.code-animation}
+```{python}
+command_parts = ["copy", "report.txt", "backup/"]
+
+command = command_parts[0]
+arguments = command_parts[1:]
+
+print("Command:", command)
+print("Arguments:", arguments)
+```
+:::
+
+Python gives us a clearer way to say, "the first value and everything else."
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## The Starred Unpacking Rule
+
+Regular variables receive one value. A starred variable captures the remaining values in a list.
+
+:::{.code-animation}
+```{python}
+command_parts = ["copy", "report.txt", "backup/"]
+
+command, *arguments = command_parts
+
+print("Command:", command)
+print("Arguments:", arguments)
+```
+:::
+
+The assignment now describes the meaning of the data directly.
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## The Star Can Move
+
+For a file path, the filename is last while the number of folders can vary.
+
+:::{.code-animation}
+```{python}
+path_parts = "users/ada/docs/report.txt".split("/")
+
+*folders, filename = path_parts
+
+print("Folders:", folders)
+print("File:", filename)
+```
+:::
+
+The starred variable captures the flexible beginning instead.
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## Unpack Into Functions
+
+We can also use `*` to unpack a list into a function call.
+
+:::{.code-animation}
+```{python}
+def copy_file(source, destination):
+    print(source, "->", destination)
+
+command_parts = ["copy", "report.txt", "backup/"]
+command, *arguments = command_parts
+
+copy_file(*arguments)
+```
+:::
+
+On the left of `=`, `*` gathers values. In a function call, it spreads them.
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Use starred unpacking when positions have meaning, but part of a sequence can vary in length.
+
+`command, *arguments` captures everything after the first value.
+
+`*folders, filename` captures everything before the last value.
+
+`function(*arguments)` spreads those values into a function call.
+
+Follow me for more tips.  
+Shep Bryan IV
+
+:::
+
+:::

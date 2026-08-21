@@ -1,0 +1,165 @@
+---
+title: "Python Tip: Mutable Default Arguments"
+subtitle: "A convenient default that can silently share state"
+author: "Shep Bryan IV"
+description: "Learn why mutable default arguments retain changes between calls and how to avoid this Python wart."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: Mutable Defaults
+
+Does your function use `[]` or `{}` as a default?  
+That innocent-looking default can leak state between calls.  
+Let's learn why—and how to avoid it!  
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## It Looks Harmless
+
+This function appears to create an empty cart when one is not provided.
+
+:::{.code-animation}
+```{python}
+def add_to_cart(item, cart=[]):
+    cart.append(item)
+    return cart
+
+ada_cart = add_to_cart("book")
+print("Ada:", ada_cart)
+```
+:::
+
+The first call works exactly as expected.
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## The Silent Bug
+
+Now Grace creates a new cart—or at least, that is what we expect.
+
+:::{.code-animation}
+```{python}
+grace_cart = add_to_cart("pen")
+
+print("Grace:", grace_cart)
+print("Ada now:", ada_cart)
+```
+:::
+
+Both carts contain both items! State leaked between two separate calls.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Why It Happens
+
+Python creates default arguments once when the function is defined—not each time it is called.
+
+:::{.code-animation}
+```{python}
+# Both names point to the same default list
+print("Same cart:", ada_cart is grace_cart)
+```
+:::
+
+Every call that omits `cart` reuses and modifies that one list.
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Watch for Mutable Defaults
+
+Lists are not the only danger. Dictionaries, sets, and other mutable objects can also retain changes.
+
+:::{.code-animation}
+```{python}
+# Avoid mutable defaults like these
+def process(items=[]): ...
+
+def configure(settings={}): ...
+
+def collect(values=set()): ...
+```
+:::
+
+This is one of Python's best-known warts—and an easy bug to miss in code review.
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## Use `None` Instead
+
+Use `None` as the default, then create a fresh object inside the function.
+
+:::{.code-animation}
+```{python}
+def add_to_cart(item, cart=None):
+    if cart is None:
+        cart = []
+
+    cart.append(item)
+    return cart
+
+print("Ada:", add_to_cart("book"))
+print("Grace:", add_to_cart("pen"))
+```
+:::
+
+Now each call gets its own cart.
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Mutable defaults can introduce **silent shared state** between function calls.
+
+When reviewing code—especially generated code—look for `[]`, `{}`, `set()`, or other mutable defaults.
+
+Use `None`, then create a fresh object inside the function!
+
+Follow me for more tips.  
+- Shep4
+
+:::
+
+:::
