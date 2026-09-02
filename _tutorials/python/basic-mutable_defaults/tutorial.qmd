@@ -1,8 +1,8 @@
 ---
 title: "Python Tip: Mutable Default Arguments"
-subtitle: "A convenient default that can silently share state"
+subtitle: "Make sure your function defaults don't change over time."
 author: "Shep Bryan IV"
-description: "Learn why mutable default arguments retain changes between calls and how to avoid this Python wart."
+description: "Learn why mutable default arguments change over time and how to choose a safe default."
 ---
 
 
@@ -14,9 +14,9 @@ description: "Learn why mutable default arguments retain changes between calls a
 
 # Python Tip: Mutable Defaults
 
-Does your function use `[]` or `{}` as a default?  
-That innocent-looking default can leak state between calls.  
-Let's learn why—and how to avoid it!  
+Does your function use `[]` or `{}` as a default value for an argument?  
+**This is dangerous because that default can change over time!**  
+Let's learn why it's dangerous and how to fix it.
 
 :::{.python-logo}
 :::
@@ -30,9 +30,9 @@ Let's learn why—and how to avoid it!
 <!-- PANEL 2 -->
 :::{.tutorial-panel}
 
-## It Looks Harmless
+## A Convenient Default
 
-This function appears to create an empty cart when one is not provided.
+Imagine we want to make a function that adds an item to a cart. To make it easy to buy a first item, we use an empty list as the default cart.
 
 :::{.code-animation}
 ```{python}
@@ -41,11 +41,12 @@ def add_to_cart(item, cart=[]):
     return cart
 
 ada_cart = add_to_cart("book")
+ada_cart = add_to_cart("pencil", cart=ada_cart)
 print("Ada:", ada_cart)
 ```
 :::
 
-The first call works exactly as expected.
+Great! Ada can buy her first item without creating an empty cart first. Then she can add a second item to the same cart.
 
 :::
 
@@ -54,12 +55,17 @@ The first call works exactly as expected.
 <!-- PANEL 3 -->
 :::{.tutorial-panel}
 
-## The Silent Bug
+## Two Carts Get Mixed Up
 
-Now Grace creates a new cart—or at least, that is what we expect.
+But now watch what happens when we use the same function for Grace's shopping. We expect her to get a new cart too.
 
 :::{.code-animation}
 ```{python}
+def add_to_cart(item, cart=[]):
+    cart.append(item)
+    return cart
+
+ada_cart = add_to_cart("book")
 grace_cart = add_to_cart("pen")
 
 print("Grace:", grace_cart)
@@ -67,7 +73,7 @@ print("Ada now:", ada_cart)
 ```
 :::
 
-Both carts contain both items! State leaked between two separate calls.
+Grace gets Ada's book, and Ada gets Grace's pen. Both names point to the same cart!
 
 :::
 
@@ -76,18 +82,13 @@ Both carts contain both items! State leaked between two separate calls.
 <!-- PANEL 4 -->
 :::{.tutorial-panel}
 
-## Why It Happens
+## Why Does This Happen?
 
-Python creates default arguments once when the function is defined—not each time it is called.
+Python creates a default value once when it defines the function. It does not create a new default for each call.
 
-:::{.code-animation}
-```{python}
-# Both names point to the same default list
-print("Same cart:", ada_cart is grace_cart)
-```
-:::
+A list is **mutable**, which means it can be changed over time. Each call changes the same default list.
 
-Every call that omits `cart` reuses and modifies that one list.
+By contrast, strings, integers, and `None` are **immutable**. They cannot be changed in place, so they are safe defaults.
 
 :::
 
@@ -96,22 +97,25 @@ Every call that omits `cart` reuses and modifies that one list.
 <!-- PANEL 5 -->
 :::{.tutorial-panel}
 
-## Watch for Mutable Defaults
+## Watch Your Defaults
 
-Lists are not the only danger. Dictionaries, sets, and other mutable objects can also retain changes.
+Avoid mutable defaults. Use immutable defaults instead.
 
 :::{.code-animation}
 ```{python}
-# Avoid mutable defaults like these
-def process(items=[]): ...
-
+# Dangerous: mutable defaults
+def add(item, items=[]): ...
 def configure(settings={}): ...
-
 def collect(values=set()): ...
+
+# Safe: immutable defaults
+def greet(name="friend"): ...
+def retry(count=3): ...
+def add_safe(item, items=None): ...
 ```
 :::
 
-This is one of Python's best-known warts—and an easy bug to miss in code review.
+Lists, dictionaries, sets, and other mutable objects can all cause this bug.
 
 :::
 
@@ -120,9 +124,9 @@ This is one of Python's best-known warts—and an easy bug to miss in code revie
 <!-- PANEL 6 -->
 :::{.tutorial-panel}
 
-## Use `None` Instead
+## Build a Safe Cart
 
-Use `None` as the default, then create a fresh object inside the function.
+So how do we fix our cart function? Use `None` as the default, then create a new list when the function is called.
 
 :::{.code-animation}
 ```{python}
@@ -138,7 +142,7 @@ print("Grace:", add_to_cart("pen"))
 ```
 :::
 
-Now each call gets its own cart.
+It is a little annoying, but this is a well-known wart in Python. Each call now gets a new cart.
 
 :::
 
@@ -151,11 +155,11 @@ Now each call gets its own cart.
 
 ## Wrap-Up
 
-Mutable defaults can introduce **silent shared state** between function calls.
+Never use a mutable object like `[]`, `{}`, or `set()` as a default argument.
 
-When reviewing code—especially generated code—look for `[]`, `{}`, `set()`, or other mutable defaults.
+Python creates the default once, so later calls can reuse changed data.
 
-Use `None`, then create a fresh object inside the function!
+Use `None`, then create a new object inside the function.
 
 Follow me for more tips.  
 - Shep4
