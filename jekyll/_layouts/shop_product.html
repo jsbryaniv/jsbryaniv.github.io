@@ -61,6 +61,23 @@ layout: default
     text-align: center;
   }
 
+  .shop-post .post-content .shop-product-amazon-button {
+    display: inline-block;
+    padding: 16px 30px;
+    border-radius: 4px;
+    background: #ff0a16;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .shop-post .post-content .shop-product-amazon-button:hover {
+    color: #fff;
+    opacity: 0.85;
+  }
+
   .shop-post .see-also ul li a {
     display: block;
   }
@@ -111,6 +128,10 @@ layout: default
     <section class="shop-product-buy">
       {% if page.price_display and page.shopify_enabled != true %}
         <p class="shop-product-price">{{ page.price_display }}</p>
+      {% endif %}
+
+      {% if page.amazon_url %}
+        <a class="shop-product-amazon-button" href="{{ page.amazon_url }}" target="_blank" rel="noopener noreferrer">Buy on Amazon</a>
       {% endif %}
 
       {% if page.shopify_enabled and page.shopify_product_id %}
