@@ -102,4 +102,6 @@ Lighter, more personal posts that help readers connect.
 - Phoenix locals, let's collaborate!
 - My daily routine
 - My favorite books this year
+- Post about Handy.computer
+  - Follow up post on Karabiner for caps lock remapping
 
