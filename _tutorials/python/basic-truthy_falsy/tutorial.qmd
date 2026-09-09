@@ -1,0 +1,130 @@
+---
+title: "Python Tip: Truthy and Falsy Values"
+subtitle: "How Python evaluates non-Boolean values"
+author: "Shep Bryan IV"
+description: "Learn how Python treats lists, strings, numbers, and other values as true or false in conditions."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: Truthy and Falsy Values
+
+Have you ever seen an `if` statement evaluate a list or string?<br>
+Those values aren't Booleans—but Python still treats them as true or false.<br>
+Let's find out how!
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## A List in an `if` Statement?
+
+Here, `items` is a list. It is not a `True` or `False` Boolean value. So why doesn't this crash?
+
+:::{.code-animation}
+```{python}
+items = ["book", "pen"]
+
+if items:
+    print("Your cart has items")
+```
+:::
+
+Python knows how to treat non-Boolean values inside conditions.
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Truthy and Falsy
+
+Python treats common non-Boolean objects as **truthy** or **falsy**.
+
+:::{.code-animation}
+```{python}
+full_cart = ["book", "pen"]
+empty_cart = []
+
+print("Full:", bool(full_cart))
+print("Empty:", bool(empty_cart))
+```
+:::
+
+A list is truthy when it contains items and falsy when it is empty. This makes quick checks like `if items:` easy!
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Common Truthy Values
+
+Python usually treats these values as `True`:
+
+- Nonzero numbers: `1`, `-1`, `3.14`
+- Non-empty strings: `"hello"`, `"False"`
+- Non-empty lists: `[1]`, `[False]`
+- Non-empty dictionaries: `{"name": "Ada"}`
+
+Python checks whether a collection is empty—not whether the values inside it are true or false.
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Common Falsy Values
+
+Python usually treats these values as `False`:
+
+- The Boolean value `False`
+- The missing value `None`
+- Zero: `0`, `0.0`
+- An empty string: `""`
+- Empty collections: `[]`, `{}`, `set()`
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Python treats values as truthy or falsy when they are used in a condition.
+
+Zero, `None`, `False`, and empty values are usually falsy.
+
+Most other values are truthy.
+
+Use `bool(value)` to check a value's truthiness!
+
+Follow me for more tips.  
+- Shep4
+
+:::
+
+:::
