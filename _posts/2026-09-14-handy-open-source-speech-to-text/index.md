@@ -4,6 +4,7 @@ layout: post
 title: "Handy: Free, Open-Source Speech-to-Text"
 subtitle: "Speak into any text field without sending your voice to the cloud"
 description: "A look at Handy, a free and open-source speech-to-text application created by my friend CJ Pais."
+image: assets/coverart_handy.png
 category: essay
 tags:
   - AI
@@ -11,9 +12,14 @@ tags:
   - productivity
 ---
 
-- This week I'm going to highlight a project that my friend CJ built: Handy, a free, open source speech to text application. Its essentially a free version of Wispr flow that runs locally in your computer.
-- I'm biased, but I really love this tool! Its part of my daily dev tools.
-- I am a slow typer, but fast thinker. being able to dictate my thoughts makes my work so much faster.
-- As a mac user in the past I tried the dictation tool and Wispr Flow, but I found they each had distint disadvantates. The build it mac dicate tool is amazing for certain things because it does dication one word at a time, but i was never able to scale it to something I use everyday because i found that it would frequently ignore my voice for certain types of text boxes, an issue that Handy does not seem to have. Similarly, I loved wispr flow, but i felt it was too expensive.
-- Handy is an amzing alternative. To be clear, there are still some minor kinks to work out, like occasional bad transcriptions and an insane number of icons in the top mac bar. But given that its free, I dont mind.
-- I highly reccoment checking out Handy. And beyond that you should check out CJ who has a nubmer of really cool projects.
+This week I want to highlight a project that my friend [CJ Pais](https://cjpais.com/) built: [Handy](https://handy.computer/), a free, open-source speech-to-text application. It is essentially a free version of Wispr Flow that runs locally on your computer.
+
+![Handy Logo](assets/handy_logo.webp)
+
+I am obviously biased, but I really love this tool! It has become part of the collection of developer tools I use every day. I am a slow typer, but a fast thinker. Being able to dictate my thoughts instead of typing every word makes my work much faster.
+
+As a Mac user, I previously tried both the built-in dictation tool and Wispr Flow. I liked each of them, but I also found that they had distinct disadvantages. The built-in Mac dictation tool is amazing for certain things because it transcribes your speech one word at a time. However, I was never able to turn it into something I used every day because I frequently found that it would ignore my voice in certain types of text boxes. Handy does not seem to have that problem. Similarly, I loved using Wispr Flow, but I felt that it was too expensive.
+
+Handy is an amazing alternative! To be transparent, it still has a few minor kinks to work out. For example, I occasionally get a bad transcription, and it has somehow put an insane number of icons in the top bar of my Mac. But given that Handy is completely free, I really do not mind.
+
+I highly recommend checking out [Handy](https://handy.computer/). Beyond that, you should also check out [CJ](https://cjpais.com/), who has built a number of other really cool projects!
