@@ -1,0 +1,166 @@
+---
+title: "Python Tip: `pathlib`"
+subtitle: "Build and inspect file paths without joining strings"
+author: "Shep Bryan IV"
+description: "Learn how pathlib makes file paths easy to find, build, inspect, and change."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `pathlib`
+
+Need to work with file paths in Python?
+
+`pathlib` makes paths easy to find, build, inspect, and change without manually joining or slicing strings!
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## Create a `Path`
+
+Import `Path` from `pathlib`. You can get useful folders from Python or turn your own path string into a `Path` object.
+
+:::{.code-animation}
+```{python}
+#| output: false
+
+from pathlib import Path
+
+current_folder = Path.cwd()
+home_folder = Path.home()
+file_path = Path("reports/2026/sales.csv")
+```
+:::
+
+`Path.cwd()` gets the current working folder. `Path.home()` gets the current user's home folder. Neither command creates or opens anything.
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Build Paths with `/`
+
+`pathlib` makes it extremely easy to build paths. Use the `/` operator to join folders and file names.
+
+:::{.code-animation}
+```{python}
+from pathlib import Path
+
+reports = Path("reports")
+file_path = reports / "2026" / "sales.csv"
+
+print(file_path)
+```
+:::
+
+There is no need to add slashes to strings by hand. `pathlib` joins the pieces for us.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Inspect a Path
+
+A `Path` object makes it easy to get the most useful parts of a file path.
+
+:::{.code-animation}
+```{python}
+from pathlib import Path
+
+file_path = Path("reports/2026/sales.csv")
+
+print("Name:", file_path.name)
+print("Stem:", file_path.stem)
+print("Extension:", file_path.suffix)
+print("Folder:", file_path.parent)
+```
+:::
+
+The `stem` is the name without the extension. The `suffix` is the extension, including the dot.
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Change a Path
+
+You can create a path with a different file name or extension without editing the string yourself.
+
+:::{.code-animation}
+```{python}
+from pathlib import Path
+
+csv_path = Path("reports/sales.csv")
+
+json_path = csv_path.with_suffix(".json")
+old_path = csv_path.with_name("sales-old.csv")
+
+print("New type:", json_path)
+print("New name:", old_path)
+```
+:::
+
+These methods return new `Path` objects. They do not rename, move, or change any files.
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+## Paths Depend on the OS
+
+`Path` follows the rules of the operating system running your code. On macOS and Linux, it creates a `PosixPath`. On Windows, it creates a `WindowsPath`.
+
+- **POSIX:** `/reports/2026/sales.csv`
+- **Windows:** `C:\reports\2026\sales.csv`
+
+This automatic behavior is useful for paths your program creates and uses on the current computer. To inspect path text written for a specific system, use `PureWindowsPath` or `PurePosixPath`.
+
+:::
+
+
+
+<!-- PANEL 7 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Use `Path` to build and inspect file paths without manually changing strings.
+
+Use `/` to build paths and properties like `name`, `stem`, `suffix`, and `parent` to inspect them.
+
+Remember that `Path` follows the current operating system's rules. Use `PureWindowsPath` or `PurePosixPath` for path text from a specific system.
+
+Follow me for more tips.  
+- Shep4
+
+:::
+
+:::

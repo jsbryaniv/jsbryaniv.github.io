@@ -132,11 +132,41 @@
   function fitPanelContent(panel) {
     var minFontSize = 8;
     var fontSize = 16;
+
+    // The animation clears output text and reserves its original pixel height.
+    // Restore the full output while fitting so its height scales with the panel.
+    var outputs = Array.from(
+      panel.querySelectorAll(".code-animation .cell-output pre")
+    ).map(function (pre) {
+      var code = pre.querySelector("code") || pre;
+      var visibleText = code.textContent;
+      var fullText = code.dataset.originalText;
+
+      if (fullText === undefined) fullText = visibleText;
+
+      pre.style.minHeight = "";
+      code.textContent = fullText;
+
+      return {
+        pre: pre,
+        code: code,
+        visibleText: visibleText
+      };
+    });
+
     panel.style.fontSize = fontSize + "px";
     while (panel.scrollHeight > panel.clientHeight && fontSize > minFontSize) {
       fontSize -= 0.5;
       panel.style.fontSize = fontSize + "px";
     }
+
+    // Reserve the output's height at the final font size, then restore the
+    // animation's current text (normally empty until the output is revealed).
+    outputs.forEach(function (output) {
+      var fullHeight = output.pre.offsetHeight;
+      output.pre.style.minHeight = fullHeight + "px";
+      output.code.textContent = output.visibleText;
+    });
   }
 
   function fitAllPanels() {
