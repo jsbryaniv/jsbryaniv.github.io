@@ -4,15 +4,24 @@ These instructions apply to everything under `_tutorials/`.
 
 ## Purpose
 
-Create concise, practical programming tutorials for the website and for square social-media carousels. A tutorial should do more than document syntax: it should help readers decide when to use a feature, explain why it matters, and call out an important edge case or failure mode when one exists.
+Create focused, practical programming tutorials for the website and for square social-media carousels. A tutorial should do more than document syntax: it should help readers decide when to use a feature, explain why it matters, and call out an important edge case or failure mode when one exists.
 
-For current Python tone, pacing, and structure, use these as the primary references:
+Every tutorial has two templates:
 
-- `python/basic-is_vs_equals/tutorial.qmd`
-- `python/basic-any_all/tutorial.qmd`
-- `python/basic-dict_get/tutorial.qmd`
+- The QMD panel template controls how the tutorial looks.
+- The lesson script controls how the explanation unfolds.
 
-Prefer these recent examples over older tutorials when conventions differ.
+Correct formatting cannot make up for a disconnected lesson. Write tutorials as short, continuous stories in which each panel makes the next panel feel necessary.
+
+Use these references for different kinds of stories:
+
+- `python/basic-mutable_defaults/tutorial.qmd`: a dangerous pattern that first appears useful, then fails, then gets fixed.
+- `python/basic-for_else/tutorial.qmd`: a complete familiar solution followed by a motivated introduction to a less familiar feature.
+- `python/basic-starred_unpacking/tutorial.qmd`: a realistic data problem that develops through one continuing example.
+- `python/basic-truthy_falsy/tutorial.qmd`: surprising behavior followed by a simple mental model and common cases.
+- `python/basic-pathlib/tutorial.qmd` and `python/basic-sets/tutorial.qmd`: broader tools introduced in a useful order rather than as disconnected feature lists.
+
+Prefer these story-driven examples over older tutorials when conventions differ.
 
 ## Files and Generated Artifacts
 
@@ -58,17 +67,104 @@ tags:
 
 Change the difficulty tag to match the directory. Preserve intentional metadata differences for non-Python tutorials.
 
-## Editorial Style
+## Build the Lesson Script First
 
-- Write for programmers who know basic Python but may not know the featured tool or nuance.
-- Use friendly, direct language and short sentences.
-- Focus on one coherent lesson.
-- Explain the reader's decision: when to use the feature, when not to, or how to choose between alternatives.
-- Prefer concrete examples over abstract definitions.
-- Build progressively from the basic behavior to realistic use, then nuance, an edge case, or a common mistake.
-- Be opinionated when the guidance is well supported, while distinguishing language guarantees from implementation details.
-- Avoid padding, exhaustive API tours, and jargon that is not needed for the lesson.
-- Keep prose and code compact enough to fit comfortably inside a 500-by-500-pixel panel.
+### Write a script, not a feature list
+
+Before writing the QMD, make a prose-only storyboard with one sentence describing the purpose of each panel. Read those sentences in order. If they sound like unrelated facts about the same Python feature, the tutorial does not have a clear enough story yet.
+
+The complete tutorial should answer these questions in a natural order:
+
+1. What is the reader trying to do, understand, or avoid?
+2. Why is the current behavior or familiar approach confusing, repetitive, unsafe, or incomplete?
+3. What Python concept or feature helps?
+4. How does the concept behave in the important cases?
+5. When should the reader use it, avoid it, or choose an alternative?
+
+The tutorial should be comprehensive about this one lesson. It does not need to mention every method, variation, or fact about the feature.
+
+### A flexible narrative arc
+
+The stages below are a default script, not a required panel count. Combine, expand, reorder, or omit stages when the topic needs a different shape, but preserve the logical dependencies between ideas.
+
+1. **Hook:** Give the reader a practical need, surprising behavior, or clear danger. Promise what the tutorial will explain.
+2. **Setup:** Introduce a realistic example. Explain what the data represents and what the program is supposed to accomplish.
+3. **Need:** When it helps, show the familiar approach or the tempting pattern first. Explain exactly what the new feature will improve. Do not include a “don't do this” example unless it helps the reader understand the solution.
+4. **Core idea:** Introduce the simplest representative form of the new concept. Show what it looks like and explain its normal behavior before discussing variants or exceptions.
+5. **Build:** Add important cases one at a time. Continue the same scenario when possible and change one condition at a time.
+6. **Nuance:** After the basic idea is clear, add a realistic limitation, warning, readability concern, or edge case when it changes how the feature should be used.
+7. **Decision:** End with the practical rule the reader should remember. Do not introduce new information in the wrap-up.
+
+### Common story shapes
+
+Choose the shape that fits the lesson instead of forcing every topic into the same panel sequence:
+
+- **Problem and solution:** hook → concrete task → familiar solution → explicit reason for a new approach → new feature → important variants → tradeoff → wrap-up.
+- **Surprising behavior:** surprising question → minimal example → simple rule or mental model → common cases → carefully qualified exception → wrap-up.
+- **Dangerous Python wart:** explicit warning → tempting success → realistic failure → explanation → related patterns to recognize → safe replacement → wrap-up.
+- **New data type or general tool:** common tasks → basic definition or object → one common use → operations that build on one another → realistic application → important limitation → wrap-up.
+
+### Make every panel earn the next panel
+
+- Each panel should answer a question raised by the previous panel and create a reason for the next one.
+- Explain the meaning of the example before asking the reader to understand its code. Define what a command, flag, path component, or other unfamiliar object means before using it.
+- State intention before mechanics. First say what the program is trying to accomplish; then explain how the code accomplishes it.
+- Introduce the normal behavior before exceptions, implementation details, or advanced variations.
+- Reuse the same scenario, names, and data until there is a teaching reason to change them.
+- Use explicit bridges such as “This version works, but…,” “We can do the same thing more directly with…,” or “Now let's look at the case where…”.
+- Do not add a panel merely because another method or fact exists. A variant belongs only when it completes the reader's practical understanding of the chosen lesson.
+
+Use these tests on the storyboard:
+
+- **Question-and-answer test:** What question does the previous panel cause the reader to ask, and does the next panel answer it?
+- **But/so/now test:** Can the panels be connected naturally with “but,” “so,” or “now”? If not, the transition may be missing.
+- **Reordering test:** If the middle panels could be shuffled without hurting comprehension, they are probably a collection of facts rather than a progressive lesson.
+- **Removal test:** If removing a panel does not remove an important step in the explanation, that panel may be padding.
+
+## Plain, Explicit Language
+
+Write for programmers who know basic Python but may never have seen the featured behavior. Optimize for understanding on the first read, not for the fewest words.
+
+The standard is **semantic completeness**: a beginner should be able to identify the exact subject, action, condition, and consequence without translating shorthand or filling in a missing logical step.
+
+- Use complete, natural sentences in explanatory prose. Headings, labels, and short code comments may be fragments.
+- Say the thing directly and without ambiguity. Helpful repetition is better than an unclear pronoun or an implied connection.
+- Prefer specific nouns. Repeat `the loop`, `the list`, `found_odd`, or `the first print statement` when `it`, `this`, `that`, `they`, `the message`, or `the result` could be unclear.
+- Use ordinary programming words such as “collection,” “element,” and “returns” when they are the clearest words. Define a less familiar term in plain English the first time it appears.
+- It is fine to introduce a term such as **mutable**, **flag**, or **wart**, but the term must follow or include an ordinary-language explanation. The term cannot replace the explanation.
+- State the expected outcome before showing a surprising failure. The reader needs to know what should have happened before learning why it did not happen.
+- Spell out causal relationships with words such as “because,” “so,” “if,” and “when.” Do not assume that two nearby sentences make the connection obvious.
+- Use `we` to describe a goal or design decision: “We want to check whether the list contains an odd number.” Do not narrate every line as “we do this, then we do that.”
+- Prefer short paragraphs containing one to three complete sentences. If a panel feels crowded, use paragraph breaks, split the panel, or reduce its scope before compressing the explanation into vague wording.
+
+### Prefer literal subjects and verbs
+
+Prefer verbs that describe visible behavior: `creates`, `changes`, `contains`, `returns`, `raises`, `runs`, `skips`, `stops`, `prints`, `adds`, and `removes`.
+
+Words such as `handles`, `reports`, `records`, `finds`, `captures`, `expresses`, `leaks`, `result`, and `works` are not forbidden. Treat them as review warnings. They often hide the exact behavior that a beginner needs to understand. Keep one only when its subject and meaning are literal and unmistakable in context.
+
+Use the sentence test:
+
+> Can a beginner point to the exact object doing something, describe exactly what it does, and state when or why it happens?
+
+If not, rewrite the sentence.
+
+| Avoid | Prefer |
+|---|---|
+| “The flag records the result.” | “`found_odd` starts as `False`. The loop changes it to `True` when it finds an odd number.” |
+| “The first message reports a successful search.” | “The first `print()` runs when the loop finds an odd number.” |
+| “The `else` handles a completed search.” | “If the loop reaches the end without `break`, Python runs the code under `else`.” |
+| “State leaks between calls.” | “Python reuses the same default list. A later call can contain items added by an earlier call.” |
+| “The `&` operator finds shared values.” | “The intersection (`&`) contains values that appear in both sets.” |
+| “This makes it easier.” | State the exact benefit, such as: “The caller can add the first item without creating an empty list first.” |
+
+## Editorial Judgment
+
+- Focus on one coherent lesson and the reader's practical decision: when to use the feature, when not to, or how to choose between alternatives.
+- Prefer concrete examples over abstract definitions, but explain what the example represents before manipulating it.
+- Be opinionated when the guidance is well supported. Clearly distinguish language guarantees from common behavior or implementation details.
+- Avoid padding, disconnected API tours, and jargon that is not needed for the lesson.
+- Clarity outranks brevity. Fit the 500-by-500-pixel panels by controlling scope, using line breaks, or adding a necessary panel—not by removing definitions or causal steps.
 - Verify technical claims. Never rely on surprising behavior without checking it in the repository's Python environment.
 
 ## Panel Structure
@@ -81,7 +177,7 @@ Use one fenced div per panel and retain the numbered comments:
 
 ## Panel Heading
 
-Short explanation.
+Explanation that establishes the panel's purpose.
 
 :::{.code-animation}
 ```{python}
@@ -105,11 +201,12 @@ Use only as many panels as the lesson needs. Do not stretch a tutorial to reach 
 ### Teaching panels
 
 - Use descriptive `##` headings.
-- Put a short explanation before the example.
+- Give each panel one clear job in the larger story.
+- Before the code, explain the goal, context, or question that makes the code necessary.
 - Wrap executable examples in `:::{.code-animation}`.
-- Keep examples independently understandable and outputs easy to interpret.
-- Use comments only when they clarify intent, a contrast, or an expected failure.
-- Add a short takeaway below the code when the implication is not obvious.
+- Give each panel enough local context to be understood while continuing the scenario and logic established by earlier panels.
+- After the code, explain the exact outcome and why it matters when the implication is not obvious.
+- Use comments only when they clarify intent, a contrast, or a non-obvious consequence.
 - Include a useful edge case or pitfall when it improves the reader's judgment; do not manufacture one merely to fill a panel.
 
 ### Wrap-up panel
@@ -128,10 +225,46 @@ Follow me for more tips.
 
 - All Python cells must produce the behavior the prose claims. An intentional exception is acceptable when the error itself is part of the lesson, as in the `dict.get()` reference tutorial.
 - `_tutorials/_quarto.yml` sets `execute.error: true`, so expected exceptions can appear in the rendered output without stopping the render. Treat every traceback as intentional only after verifying that it supports the lesson.
-- Favor recognizable data and names such as users, scores, settings, and orders.
+- State what the example is trying to accomplish before showing its mechanics.
+- Use complete, logically realistic examples. Do not use code that is technically valid but has no sensible goal or produces output a real program would not want.
+- Favor recognizable data and names such as users, scores, settings, and orders. Explain any real-world structure the lesson relies on.
+- Reuse variable names and scenarios across panels. In a comparison, change one important condition at a time so the cause of the different outcome is clear.
 - Keep lines short and output limited so neither source nor output overflows a panel.
-- Demonstrate behavior with `print()` when visible output strengthens the explanation.
+- Demonstrate behavior with `print()` when visible output strengthens the explanation. Give each printed value a short label when the reader could otherwise confuse it with another output.
+- Keep comments short. Explain intent or danger rather than restating the syntax.
+- Make every explanation match the code in that panel. Do not mention a flag after the flag has been removed, or explain a print statement that the example does not contain.
 - Do not add dependencies for a tutorial when the standard library can teach the concept cleanly.
+
+## Draft Review Before Handoff
+
+Do not use the user's review as the first complete editorial pass. Before presenting a draft, check the tutorial in this order.
+
+### Story review
+
+1. Read only the headings and prose. Do they form one continuous explanation without relying on the code to supply missing context?
+2. Can the reader state the problem or question before the solution appears?
+3. Does every panel answer a question created by the previous panel?
+4. Is the core concept introduced before its variants, warnings, or exceptions?
+5. Does every middle panel add an important step that could not be removed or freely reordered?
+6. Does the wrap-up answer the hook and give a decision rule without adding new facts?
+
+### Language review
+
+1. Is every unfamiliar term defined in ordinary language when it first appears?
+2. Does every explanatory sentence name a clear subject, action, and condition or consequence?
+3. Could any `it`, `this`, `that`, `they`, `message`, or `result` refer to more than one thing?
+4. Do any shortcut verbs require programming knowledge to interpret in context?
+5. Is every causal connection stated directly?
+6. Would each sentence sound natural and complete if spoken aloud to someone learning Python?
+7. Has brevity removed a necessary definition, expectation, or logical step?
+
+### Code review
+
+1. Is the purpose of every code block stated before the block?
+2. Does every code block form a sensible example and produce the behavior the prose describes?
+3. Does the prose refer to the exact variables, statements, and outputs shown in that panel?
+4. Are print labels and comments understandable but short enough for the panel?
+5. Have surprising behaviors and outputs been run and verified?
 
 ## Render and Verification
 
