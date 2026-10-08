@@ -95,6 +95,8 @@ The stages below are a default script, not a required panel count. Combine, expa
 6. **Nuance:** After the basic idea is clear, add a realistic limitation, warning, readability concern, or edge case when it changes how the feature should be used.
 7. **Decision:** End with the practical rule the reader should remember. Do not introduce new information in the wrap-up.
 
+These are story stages, not panel assignments. A setup does not deserve its own panel when it can be combined clearly with the problem it sets up. Do not stretch one narrative beat across multiple panels unless each panel adds a new example, behavior, or necessary part of the explanation.
+
 ### Common story shapes
 
 Choose the shape that fits the lesson instead of forcing every topic into the same panel sequence:
@@ -110,9 +112,14 @@ Choose the shape that fits the lesson instead of forcing every topic into the sa
 - Explain the meaning of the example before asking the reader to understand its code. Define what a command, flag, path component, or other unfamiliar object means before using it.
 - State intention before mechanics. First say what the program is trying to accomplish; then explain how the code accomplishes it.
 - Introduce the normal behavior before exceptions, implementation details, or advanced variations.
+- Introduce the featured concept promptly. Unless the topic genuinely needs more context, use no more than one teaching panel to establish the problem before showing the concept.
+- When the final solution combines unfamiliar syntax with a loop, function, or larger algorithm, show the syntax in a small standalone example first. Then place it into the full solution.
 - Reuse the same scenario, names, and data until there is a teaching reason to change them.
 - Use explicit bridges such as “This version works, but…,” “We can do the same thing more directly with…,” or “Now let's look at the case where…”.
+- Use transitions that explain why the next idea is useful, not transitions that narrate the lesson plan. Prefer “If we want to protect this code, we can use a `try` block” over “Before putting this in the loop, let's look at it by itself.”
 - Do not add a panel merely because another method or fact exists. A variant belongs only when it completes the reader's practical understanding of the chosen lesson.
+- Prefer showing behavior in code over describing behavior in several paragraphs. A text-only teaching panel must add a necessary mental model that code cannot show as clearly; it must not merely paraphrase the previous code block.
+- A tutorial does not need a warning or failure-mode panel. Include one only when it changes the reader's decision about how to use the featured concept.
 
 Use these tests on the storyboard:
 
@@ -206,6 +213,7 @@ Use only as many panels as the lesson needs. Do not stretch a tutorial to reach 
 - Wrap executable examples in `:::{.code-animation}`.
 - Give each panel enough local context to be understood while continuing the scenario and logic established by earlier panels.
 - After the code, explain the exact outcome and why it matters when the implication is not obvious.
+- Whenever a small code example can demonstrate the panel's claim, show the behavior instead of replacing the example with prose.
 - Use comments only when they clarify intent, a contrast, or a non-obvious consequence.
 - Include a useful edge case or pitfall when it improves the reader's judgment; do not manufacture one merely to fill a panel.
 
@@ -245,8 +253,10 @@ Do not use the user's review as the first complete editorial pass. Before presen
 2. Can the reader state the problem or question before the solution appears?
 3. Does every panel answer a question created by the previous panel?
 4. Is the core concept introduced before its variants, warnings, or exceptions?
-5. Does every middle panel add an important step that could not be removed or freely reordered?
-6. Does the wrap-up answer the hook and give a decision rule without adding new facts?
+5. Does the featured concept appear as soon as the reader has enough context to understand it?
+6. Does every middle panel add an example, behavior, or important step that could not be removed or freely reordered?
+7. Does any text-only panel merely repeat behavior that should be shown in code?
+8. Does the wrap-up answer the hook and give a decision rule without adding new facts?
 
 ### Language review
 

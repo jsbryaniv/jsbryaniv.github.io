@@ -1,0 +1,159 @@
+---
+title: "Python Tip: `try...except`"
+subtitle: "Keep one unexpected bad value from stopping the script"
+author: "Shep Bryan IV"
+description: "Learn how to use try and except to skip an unexpected bad value without stopping the rest of a loop."
+---
+
+
+
+<!-- PANEL 1 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+# Python Tip: `try...except`
+
+Does one unexpected bad value cause your entire script to crash?
+
+Use `try...except` to skip the bad value and keep going!
+
+:::{.python-logo}
+:::
+
+:::
+
+:::
+
+
+
+<!-- PANEL 2 -->
+:::{.tutorial-panel}
+
+## One Bad Value Stops Everything
+
+Imagine we read a list of prices from a file. Each price is text, so the loop uses `float()` to convert it to a number. One unexpected entry is `"missing"`.
+
+:::{.code-animation}
+```{python}
+#| eval: false
+
+prices = ["12.50", "missing", "8.25"]
+
+for price_text in prices:
+    price = float(price_text)  # This will crash!
+    print("Price:", price)
+```
+:::
+
+The value `"missing"` is not a valid number, so `float()` crashes. The crash stops the loop before it reaches the last value.
+
+:::
+
+
+
+<!-- PANEL 3 -->
+:::{.tutorial-panel}
+
+## Use a `try` Block
+
+If we want to run code but protect the script when something goes wrong, we can use a `try` block. A `try` block looks like this:
+
+:::{.code-animation}
+```{python}
+price_text = "missing"
+
+try:
+    price = float(price_text)
+    print("Price:", price)
+except:
+    print("Could not convert:", price_text)
+```
+:::
+
+Python runs the code under `try` first. `float()` cannot convert `"missing"`, so the first `print()` does not run. Python then runs the `print()` under `except:` instead.
+
+:::
+
+
+
+<!-- PANEL 4 -->
+:::{.tutorial-panel}
+
+## Put It Inside the Loop
+
+We can put the `try` block inside the loop so that one bad value does not crash the script. If a price cannot be converted, `continue` moves the loop to the next value.
+
+:::{.code-animation}
+```{python}
+prices = ["12.50", "missing", "8.25"]
+
+for price_text in prices:
+    try:
+        price = float(price_text)
+    except:
+        print("Skipped:", price_text)
+        continue
+
+    print("Price:", price)
+```
+:::
+
+The loop skips `"missing"` and still prints the final price.
+
+:::
+
+
+
+<!-- PANEL 5 -->
+:::{.tutorial-panel}
+
+## Catch Only Certain Errors
+
+So far, `except:` has caught every error. Python gives each type of error a name. Bad number text causes `ValueError`, while division by zero causes `ZeroDivisionError`.
+
+We can put an error name after `except` to catch only that type. Other errors can still crash the script, which helps us **fail fast** when an unexpected bug happens.
+
+:::{.code-animation}
+```{python}
+#| eval: false
+
+try:
+    price = float("missing")
+except ValueError:
+    print("Bad price")  # This runs
+
+try:
+    result = 10 / 0  # Raises ZeroDivisionError
+except ValueError:
+    print("Bad price")  # This does not run
+
+# ZeroDivisionError still crashes the script!
+```
+:::
+
+`except ValueError:` catches the bad price text but not division by zero. The unrelated division error passes through instead of being hidden.
+
+:::
+
+
+
+<!-- PANEL 6 -->
+:::{.tutorial-panel}
+
+:::{.center}
+
+## Wrap-Up
+
+Use `try...except` when one unexpected bad value should not stop all the remaining work.
+
+Put the code that may crash under `try`. Name the error you want to catch after `except`.
+
+Only a matching error is caught. Other errors still crash.
+
+Follow me for more tips.  
+- Shep4
+
+:::
+
+:::
