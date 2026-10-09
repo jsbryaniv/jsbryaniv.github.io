@@ -12,6 +12,6 @@ permalink: /projects/colors_of_music/
 
 <img src="assets/colors_of_music.png" alt="Colors of Music" style="width: 50%; height: auto; display: block; margin: 0 auto;">
 
-Expected Release: Summer 2026.
+Expected Release: Fall 2026.
 
 </div>

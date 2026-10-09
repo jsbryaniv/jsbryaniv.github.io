@@ -12,6 +12,6 @@ permalink: /projects/physics_of_ai/
 
 <img src="assets/physics_of_ai.jpg" alt="Physics of AI" style="width: 50%; height: auto; display: block; margin: 0 auto;">
 
-Expected Release: Winter 2026.
+Expected Release: Fall 2027.
 
 </div>

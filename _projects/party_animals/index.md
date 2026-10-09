@@ -8,8 +8,10 @@ permalink: /projects/party_animals/
 
 <div style="text-align: center;">
 
+<h1>Party Animals</h1>
+
 <img src="assets/party_animals.png" alt="Party Animals" style="width: 50%; height: auto; display: block; margin: 0 auto;">
 
-Expected Release: Fall 2026.
+Expected Release: Summer 2027.
 
 </div>
