@@ -74,7 +74,7 @@ One gotcha if you try this: Whisper's default word timings are not accurate enou
 
 Next is the step that genuinely surprised me. I had Claude do the clipping. And it worked amazingly well!
 
-To clarify, I did not ask Claude to read my transcript and pick the good takes. I asked Claude to write me a python script that does it, and that distinction is the whole lesson. An AI reading a transcript is a one-off favor. A hundred lines of Python that I own, understand, and can run again on the next video is infrastructure.
+To clarify, I did not ask Claude to read my transcript and pick the good takes. I asked Claude to write me a Python script that does it, and that distinction is the whole lesson. An AI reading a transcript is a one-off favor. A hundred lines of Python that I own, understand, and can run again on the next video is infrastructure.
 
 The logic it landed on is simple. Split the transcript into spoken phrases. When a phrase repeats something that was already said, that is a retake, so throw away everything from the earlier version onward. Keep going to the end. What survives is the last clean run of every line.
 
@@ -114,7 +114,7 @@ That let me work the same way I did when filming: one continuous take, start to 
 
 ## For My Purposes, Video Editing Is Solved
 
-I am extremely excited about the workflow I discovered here. I mentioned in my initial Project One Video post that the goal wasnt just to make a single video, but to make a sustainable framework for making videos. I think that I can confidently say that this is a solved problem now.
+I am extremely excited about the workflow I discovered here. I mentioned in my initial Project One Video post that the goal wasn't just to make a single video, but to make a sustainable framework for making videos. I think that I can confidently say that this is a solved problem now.
 
 If you want to make your own videos, whether for YouTube, recorded lectures, or course material, I would recommend this setup without hesitation. Buy a ring light and put it off to one side. Write a script and read it off a teleprompter in one pass. Let software find your good takes, let segmentation handle your background, assemble the whole thing in code, and record your screen captures last.
 
