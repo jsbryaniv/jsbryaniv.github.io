@@ -101,4 +101,5 @@ Dates from PROJECT-STATUS.md — each of these was a cheap text change:
 - **Cover art** — `assets/coverart.png` is referenced in the frontmatter but I
   can't make it. The Thumbnail composition in `code/src/Thumbnail.tsx` might be
   reusable as a source.
-- **Temp video link** `https://youtu.be/cw7BeaIxu9c` is in the draft; swap tomorrow.
+- **Video link is final:** https://www.youtube.com/watch?v=cw7BeaIxu9c
+  Same id as the pre-publish link, so the embed in index.md needed no change.

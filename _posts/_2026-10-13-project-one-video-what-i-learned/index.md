@@ -1,10 +1,10 @@
 ---
 date: 2026-10-13 12:00:01
 layout: post
-title: "TODO — e.g. What I Learned Making My First YouTube Video"
-subtitle: TODO
-description: TODO
-image: assets/coverart.png
+title: "Project One Video: How I Made My First Video"
+subtitle: The conclusion of the Project of the Month for September
+description: How I filmed and edited my first YouTube video without ever opening a video editor.
+image: assets/coverart_onevideo_final.png
 category: project
 tags:
   - project
@@ -13,179 +13,109 @@ tags:
   - AI
 ---
 
-<!-- ============================================================
-     OUTLINE v2 — from Shep's dictated structure, reorganized.
-     Not prose. Raw material: scratchpad/post-raw-material.md
-     Video: https://youtu.be/cw7BeaIxu9c (temp link, swap after publish)
+Last month's [project of the month](/blog/2026/09/project-one-video-w1/) was to make and publish my first YouTube video, and I'm happy to say I finished it! Check it out below.
 
-     AUDIENCE: programmers. The video is for a no-code audience; this
-     post is for people who build things. That split is the site's
-     theme — products for regular people, writing for technical people.
-     Say it once in the intro so nobody is confused, then move on.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cw7BeaIxu9c" title="How to Build an AI Trainer That Writes Your Workouts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-     THROUGHLINE: the money went into hardware, not software. The
-     hard part was physical. The editing — the part everyone dreads —
-     turned out to be the easy part, because it's now just tools in
-     a chain.
-     ============================================================ -->
+In this blog post I'm going to discuss how I made it.
 
+The video teaches you how to build an AI agent that writes your workouts for you, and it is deliberately written for people who do not code. This post is the opposite. It's for the people who want to know how the video itself got made, because the method turned out to be far more interesting than I expected.
 
-<!-- ============ 1. INTRO ============
-     - This closes out Project One Video.
-     - The video is live. Embed it.
-     - One line on what it teaches (AI trainer that writes your
-       workouts, no code required).
-     - The turn: that video is for everyone. This post is for the
-       people who want to know how it was made.
-     - What you'll take away: the whole stack, and the two places
-       I wasted time so you don't have to.
-     Keep this short. Four or five sentences.
--->
+Here is the short version: the hard part was physical. The editing, which is the part I had dreaded for years, turned out to be nearly free.
 
-## TODO
+## Hardware Is the Hard Part
 
+Every cliché about filming yourself is true. The camera lies in exactly one direction, and it is not the flattering one. Any blemish you would walk past in a mirror becomes the main character on screen.
 
-<!-- ============ 2. HARDWARE IS THE HARD PART ============
-     Thesis: every cliché about filming yourself is true, and the
-     bottleneck was physical, not technical.
+My original plan was to record myself talking straight into my Mac. The quality was atrocious. Not "needs a little color correction" atrocious — unusable. Bad lighting, bad angle, bad everything.
 
-     - The camera lies in one direction only: any blemish you'd
-       ignore in real life is pronounced on video.
-     - First plan: just record on the Mac. Quality was atrocious.
-     - Wife has minimal filming equipment from her business. Final kit:
-         * ring light
-         * cheap Amazon green screen
-         * phone stand built into the ring light
-         * teleprompter app  <- lifesaver, call this out
-     - Recorded on the phone FRONT camera, specifically so the
-       teleprompter was readable while filming.
-     - ~$100 of equipment did more for final quality than anything
-       in software. That's the section's one-line takeaway.
+Luckily, my wife has accumulated some minimal filming equipment over the years for her business, so I raided her setup. What I ended up with:
 
-     THE PITFALL (keep the humor, it's the best bit in the post):
-     - Ring light with the phone holder mounted in its centre puts
-       perfect rings in your eyes. Demon eyes.
-     - Told the only fix is to have the light come from a different
-       angle than the camera.
-     - The joke that lands: so why is there a phone holder in the
-       middle of the ring light?
-     - This video's workaround: squint. Hard. The whole time. Looks
-       ridiculous; still better than demon eyes.
-     - Moving forward: separate stand for the phone, light offset.
+- A cheap Amazon green screen as a backdrop
+- A ring light
+- A phone stand built into the ring light
+- A teleprompter app ([PromptSmart Pro](https://my.promptsmart.com/))
 
-     ADD — this is the bridge to section 3, don't skip it:
-     - Filming method was one unbroken pass through the whole script,
-       off the teleprompter, redoing lines whenever they came out wrong.
-     - Key observation: you always end on a good take.
-     - That's only a sane way to record because take selection is
-       automated downstream. Recording loose and fixing it in software
-       is a deliberate trade, not laziness. -> leads into section 3.
--->
+That teleprompter app was the single biggest lifesaver of the whole project. I recorded on my phone's **front** camera specifically so I could read the script while filming, which meant I could get through long stretches of narration without memorizing anything or losing my place.
 
-## TODO
+Roughly $100 of equipment did more for the final quality of this video than every piece of software I used combined. If you are thinking about making videos and wondering where to start spending, start there.
 
+### The Mistake I Made
 
-<!-- ============ 3. EDITING WITH THE RIGHT TOOLS ============
-     Thesis: editing used to be the part I dreaded. In 2026 I made a
-     whole video without opening a conventional video editor.
+The ring light has a phone holder mounted dead center, which seems convenient and is in fact a trap. Shooting through the middle of a ring light puts two perfect glowing circles in your pupils. It made me look like a possessed demon.
 
-     Open with the old pain for contrast: scrubbing footage, finding
-     the right clip, stitching, transitions. Tedious. Dreaded it.
+I am told the only real fix is to have the light come from a different angle than the camera. Which raises an obvious question: why is there a phone holder in the middle of the ring light?
 
-     Then the chain, four links:
+Anyway, for this first video I found a workaround: I just squinted the whole video. It looks a little ridiculous, but I would rather look like I am concentrating than look like I have demon eyes. Next time I am going to buy a separate phone stand and put the light off to one side.
 
-     1. SPEECH-TO-TEXT WITH WORD TIMESTAMPS
-        - whisper.cpp, large-v3-turbo, running locally. No upload,
-          no API bill.
-        - Gotcha worth one line: default word timings are unusable,
-          needs -dtw with -nfa.
+### Record Loose and Fix It Later
 
-     2. AUTOMATIC TAKE SELECTION  <- be accurate here, see note
-        - Claude didn't read the transcript. Claude wrote a script
-          that does it deterministically, and I own it and can rerun
-          it on the next video. That's the real lesson.
-        - How it works: split the transcript into spoken phrases;
-          when a phrase repeats something already said, that's a
-          retake; drop everything from the earlier version onward.
-        - First design was to fuzzy-match the SCRIPT against the
-          transcript. Too brittle — I reword constantly while
-          recording, so half the spoken lines matched nothing.
-          Worth including: it's the one place the obvious approach
-          was wrong.
-        - It writes a review report before cutting anything. Human
-          approves, then ffmpeg cuts one clip per section.
-        - Never opened a clipping tool. This is the "mind-boggling
-          compared to past attempts" beat.
+One more thing about filming, and it matters for the next section. I did not record in careful little pieces. I read the entire script start to finish off the teleprompter in one pass, and whenever a line came out wrong I just said it again and again until it sounded right.
 
-     3. GETTING RID OF THE BACKGROUND
-        - Tried color keying first. It failed: ffmpeg chromakey ate
-          the navy shirt and the hair; hsvkey left shadow halos.
-          Because the green screen is cheap, wrinkled, unevenly lit.
-        - Switched to AI segmentation/matting (RobustVideoMatting).
-          Doesn't care about the screen's quality at all.
-        - THE TAKEAWAY, and it's a good one: don't spend money on a
-          nice green screen. Spend it on light. Segmentation makes
-          the screen's quality nearly irrelevant.
-        - Honest cost: slow. ~1.7-3 frames/sec on an M1, 95 minutes
-          for nine clips. And full resolution was overkill given the
-          footage ends up in a small circle.
+The useful observation is that **you always end on a good take.** Whatever the last version of a line is, that is the one you want.
 
-     4. ASSEMBLY IN CODE — REMOTION
-        - Remotion = build video from code, like coding an app.
-        - Node-based, which matters: it's a stack AI agents are
-          genuinely good at.
-        - Asked Claude to assemble it; speed was remarkable.
-        - Got real effects out of it: face in a bubble in the corner,
-          cross-fades between sections.
-        - First draft in a couple of hours.  <- consider specifying
-          which stage, since keying alone was 95 min
-        - Then iterate in small adjustments to the final video.
--->
+It made filming easier, but the whole time I did it, I was thinking, "This is going to be a nightmare to edit." Thank God I was wrong...
 
-## TODO
+## Editing Is Easy Now, With the Right Tools
 
+Every time I have worked on a video project in the past, editing is the part I dreaded. Scrub through footage, find the moment where you stopped fumbling, cut it, stitch it to the next piece, add a transition, discover the audio is now out of sync, start over. It is tedious work and I am bad at it.
 
-<!-- ============ 4. THE TRICK I'D TELL ANYONE ============
-     (New section — recommend including. Strongest reusable tip in
-     the project and it's currently missing from the outline.)
+But evidently the editing landscape has drastically improved!
 
-     Problem it solves: syncing screen recordings to narration is the
-     most tedious part of a tutorial video.
+I made this entire video without opening a conventional video editor once. Instead I chained together five steps.
 
-     The move: don't record your screen first. Record it LAST, against
-     the finished video.
-     - Render the video with placeholders where the screen captures go.
-     - Each placeholder displays the exact filename to save as, the
-       script's directions for that section, and a running clock to
-       record against.
-     - Then play the rendered video while screen-recording with the
-       computer's audio (OBS), so the recording contains the narration.
-     - sync_screen.py finds where each section's narration appears in
-       the take and cuts that stretch out automatically.
-     - Five of six recordings came out of a single take.
+### 1. Speech to text, with word-level timestamps
 
-     Why it works: you're performing to the real timing instead of
-     guessing at it, so there's nothing left to sync.
+First, I ran the raw footage through [whisper.cpp](https://github.com/ggerganov/whisper.cpp) running locally on my Mac, using the `large-v3-turbo` model. No uploads, no API bill, no rate limits. The output is a transcript where every word carries a timestamp.
 
-     Could be folded into section 3 as link 5, but it's strong enough
-     to stand alone and it's the most quotable idea in the post.
--->
+One gotcha if you try this: Whisper's default word timings are not accurate enough to cut video on. You need the `-dtw` flag with `-nfa` to get timings you can actually trust.
 
-## TODO
+### 2. Automatic take selection
 
+Next is the step that genuinely surprised me. I had Claude do the clipping. And it worked amazingly well!
 
-<!-- ============ 5. CONCLUSION ============
-     - For my purposes, video editing is a solved problem.
-       (Consider hedging to "solved for what I need" — a technical
-       audience will push back on the absolute version, given the
-       failed keying attempt and the brittle first matcher.)
-     - Confident I can make this a sustainable part of a monthly
-       routine. The pipeline is reusable; video two starts from here,
-       not from scratch.
-     - Recommendation to the reader: if you want to make your own
-       videos — YouTube, recorded lectures, course material — this
-       setup is worth copying. ~$100 of hardware and a chain of tools.
-     - Forward look: next project.
--->
+To clarify, I did not ask Claude to read my transcript and pick the good takes. I asked Claude to write me a python script that does it, and that distinction is the whole lesson. An AI reading a transcript is a one-off favor. A hundred lines of Python that I own, understand, and can run again on the next video is infrastructure.
 
-## TODO
+The logic it landed on is simple. Split the transcript into spoken phrases. When a phrase repeats something that was already said, that is a retake, so throw away everything from the earlier version onward. Keep going to the end. What survives is the last clean run of every line.
+
+Worth noting what did *not* work, because it was my first instinct and it was wrong. The obvious approach is to fuzzy-match the written script against the transcript to find each section. This turned out to be far too brittle, because I reword things constantly while filming. Half of what I actually said matched nothing in the script I had written. Comparing the transcript against *itself* to find repeats sidesteps that completely.
+
+The script writes a review report before it cuts anything, so I read what it plans to keep and drop, approve it, and then ffmpeg slices out one clip per section. I never opened a clipping tool. Compared to every previous attempt I have made at this, it is honestly mind-bogglingly simple.
+
+### 3. Removing the background
+
+After that I removed the green screen background.
+
+My first attempt here was ordinary color keying, and it failed badly. ffmpeg's `chromakey` filter ate my navy shirt and chunks of my hair along with the background, and `hsvkey` left halos everywhere there was a shadow. The reason is that my green screen is cheap, wrinkled, and unevenly lit, which is exactly what color-based keying cannot handle.
+
+So I switched to AI segmentation instead, using [RobustVideoMatting](https://github.com/PeterL1n/RobustVideoMatting). It identifies the person rather than the color, so it does not care about wrinkles, shadows, or uneven lighting at all. It worked on the first try.
+
+It was computationally expensive, though. Matting ran at roughly two to three frames per second on my M1, which worked out to about 95 minutes to process all nine clips. I also processed at full resolution, which was a waste, because my face ends up inside a small circle in the corner of the frame.
+
+**The takeaway: do not spend money on a nice green screen. Spend it on light.** Segmentation has made backdrop quality almost irrelevant. This is also becoming a common consensus on Reddit. The top advice I see for YouTube creators is to put your budget into lighting first.
+
+### 4. Assembling the video in code
+
+To actually put the video together I used [Remotion](https://www.remotion.dev/), a code-first video editor. You build videos the same way you build a web app, by writing components. A scene is a file. A transition is a function. The whole video is a project you can read, diff, and version control.
+
+This matters more than it sounds, because Remotion is built on Node, and Node is a stack AI agents are extremely good at. I described what I wanted and Claude built it, and the speed was remarkable. It handled things I would not have attempted by hand, like masking my face into a floating bubble in the corner and cross-fading between every section.
+
+From the point where my clips were cut and keyed to a watchable first draft was a couple of hours. From there I iterated in small adjustments: move the bubble, lengthen the pauses, tweak the on-screen text, crop the menu bar out of the screen recordings. Each change was a few characters in a file rather than an afternoon of dragging things around a timeline.
+
+### 5. Recording the screen captures last
+
+The final step was the screen recordings of my phone and my computer. I saved these for the very end, after the rest of the video was already assembled and rendered with a placeholder sitting in every spot a recording belonged.
+
+Doing it in that order meant I could record against my own narration. I played the rendered video back and used [OBS](https://obsproject.com/) to capture my screen and my computer's audio at the same time, so the take contained my voiceover right alongside the footage.
+
+That let me work the same way I did when filming: one continuous take, start to finish, redoing anything I fumbled. And because the narration was baked into the recording, I could run it straight back through the same transcript cutting script from step two. It found where each section's narration appeared and sliced out that stretch automatically. Five of my six screen recordings came out of a single pass.
+
+**The takeaway: record your screen captures last, not first.** Syncing a screen recording to narration is the most tedious part of making a tutorial video, and recording in this order makes the problem disappear entirely. You are performing to the real timing instead of guessing at it, so by the time the recording exists it is already in sync.
+
+## For My Purposes, Video Editing Is Solved
+
+I am extremely excited about the workflow I discovered here. I mentioned in my initial Project One Video post that the goal wasnt just to make a single video, but to make a sustainable framework for making videos. I think that I can confidently say that this is a solved problem now.
+
+If you want to make your own videos, whether for YouTube, recorded lectures, or course material, I would recommend this setup without hesitation. Buy a ring light and put it off to one side. Write a script and read it off a teleprompter in one pass. Let software find your good takes, let segmentation handle your background, assemble the whole thing in code, and record your screen captures last.
+
+For more tools and ideas like this, you can also [subscribe to my newsletter](/newsletter/).
