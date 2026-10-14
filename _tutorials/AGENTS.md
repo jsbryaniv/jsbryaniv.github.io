@@ -142,6 +142,7 @@ The standard is **semantic completeness**: a beginner should be able to identify
 - State the expected outcome before showing a surprising failure. The reader needs to know what should have happened before learning why it did not happen.
 - Spell out causal relationships with words such as “because,” “so,” “if,” and “when.” Do not assume that two nearby sentences make the connection obvious.
 - Use `we` to describe a goal or design decision: “We want to check whether the list contains an odd number.” Do not narrate every line as “we do this, then we do that.”
+- Do not give an abstract noun a concrete action. An approach, a version, a pattern, or a tutorial cannot create, loop, or append; only code and people can. Write “The usual approach is to create an empty list, loop over the prices, and append each new value,” not “The usual approach creates an empty list, loops over the prices, and appends each new value.” Compressing the sentence this way saves a few words and makes the literal meaning nonsense.
 - Prefer short paragraphs containing one to three complete sentences. If a panel feels crowded, use paragraph breaks, split the panel, or reduce its scope before compressing the explanation into vague wording.
 
 ### Prefer literal subjects and verbs
@@ -163,6 +164,7 @@ If not, rewrite the sentence.
 | “The `else` handles a completed search.” | “If the loop reaches the end without `break`, Python runs the code under `else`.” |
 | “State leaks between calls.” | “Python reuses the same default list. A later call can contain items added by an earlier call.” |
 | “The `&` operator finds shared values.” | “The intersection (`&`) contains values that appear in both sets.” |
+| “The usual approach creates an empty list and appends to it.” | “The usual approach is to create an empty list and append to it.” |
 | “This makes it easier.” | State the exact benefit, such as: “The caller can add the first item without creating an empty list first.” |
 
 ## Editorial Judgment
