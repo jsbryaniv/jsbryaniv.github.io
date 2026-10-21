@@ -1,0 +1,108 @@
+---
+layout: default
+---
+
+<style>
+  .post.explainer-page {
+    top: 0 !important;
+  }
+  
+  .explainer-nav {
+    padding: 80px 0 5px 23px;
+  }
+  
+  .back-to-explainers {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-explainers::before {
+    content: "←";
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .back-to-explainers:hover {
+    color: #ff0a16;
+  }
+  
+  .back-to-explainers:hover::before {
+    transform: translateX(-4px);
+  }
+  
+  .post.explainer-page .post-content.fullwidth {
+    padding-top: 10px;
+  }
+
+  .explainer-embed {
+    margin: 20px 0;
+  }
+
+  .explainer-embed iframe {
+    width: 100%;
+    border: none;
+    min-height: 600px;
+  }
+
+  .youtube-embed {
+    margin: 30px 0;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+  }
+
+  .youtube-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  @media (min-width: 37.5rem) {
+    .explainer-nav {
+      padding-top: 90px;
+    }
+    
+    .back-to-explainers {
+      font-size: 20px;
+    }
+    
+    .back-to-explainers::before {
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="post explainer-page">
+  <nav class="explainer-nav">
+    <a href="/explainers/" class="back-to-explainers">Back to Explainers</a>
+  </nav>
+  
+  <article class="post-content fullwidth">
+    {% if page.youtube_url %}
+      <div class="youtube-embed">
+        {% assign youtube_id = page.youtube_url | split: "v=" | last | split: "&" | first %}
+        <iframe 
+          src="https://www.youtube.com/embed/{{ youtube_id }}" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    {% endif %}
+
+    <div class="explainer-embed">
+      <iframe src="explainer.html"></iframe>
+    </div>
+  </article>
+</div>

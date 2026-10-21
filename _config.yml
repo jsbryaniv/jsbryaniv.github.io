@@ -74,7 +74,7 @@ collections:
     output: true
   shop:
     output: true
-  tutorials:
+  explainers:
     output: true
 
 # Content paginator
@@ -122,8 +122,8 @@ menu:
     url: /shop
   - title: Terms
     url: /terms
-  - title: Tutorials
-    url: /tutorials
+  - title: Explainers
+    url: /explainers
 
 # Posts Settings
 show_time_bar: true
@@ -163,10 +163,9 @@ defaults:
       comments: false
   - scope:
       path: ""
-      type: "tutorials"
+      type: "explainers"
     values:
-      layout: tutorial
-      permalink: /tutorials/:path/
+      layout: explainer
   - scope:
       path: ""
       type: "shop"
@@ -178,6 +177,7 @@ defaults:
 plugins:
   - jekyll-paginate
   - jekyll-paginate-content
+  - jekyll-redirect-from
 
 # Includes
 layouts_dir: jekyll/_layouts
@@ -203,11 +203,3 @@ exclude:
   - node_modules
   # Post assets are copied via plugin, ignore originals
   - _posts/**/assets/**
-  # Ignore tutorial material, aside from what gets displayed
-  - _tutorials/**/*.qmd          # Quarto source files
-  - _tutorials/_quarto.yml       # Quarto config
-  - _tutorials/.quarto/          # Quarto cache
-  - _tutorials/.quartoignore     # Quarto ignore file
-  - _tutorials/.venv/            # Python virtual environment
-  - _tutorials/requirements.txt  # Python dependencies
-  - _tutorials/**/social/        # Social media extras

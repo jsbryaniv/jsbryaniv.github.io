@@ -6,6 +6,7 @@ gem "rouge"
 gem "jekyll"
 gem "jekyll-paginate"
 gem "jekyll-paginate-content"
+gem "jekyll-redirect-from"
 gem "json"
 
 gem "webrick", "~> 1.8"

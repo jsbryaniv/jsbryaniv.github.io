@@ -5,7 +5,7 @@ This is the codebase for my personal website and blog:
 
 👉 https://jsbryaniv.github.io/
 
-The site is built using Jekyll and hosted on GitHub Pages. It’s where I publish projects, tutorials, and experiments.
+The site is built using Jekyll and hosted on GitHub Pages. It’s where I publish projects, explainers, and experiments.
 
 The repository includes both published content and drafts of upcoming work. Feel free to explore!
 
@@ -14,18 +14,11 @@ The repository includes both published content and drafts of upcoming work. Feel
 - Jekyll
 - GitHub Pages
 - Markdown
-- Quarto (for tutorials)
 
 
-## Python
+## Explainers
 
-The python interpreter used for building the quarto tutorials is located at a non-standard location to distinguish it from the website files. It is located at `.dev/python/venv`. To set up the python environment, run:
-
-```bash
-python -m venv .dev/python/venv
-source .dev/python/venv/bin/activate
-pip install -r .dev/python/requirements.txt
-```
+`_explainers/` is generated. The source explainers, the Quarto setup, and the publish script live in the [Shep4ContentFactory](https://github.com/jsbryaniv/Shep4ContentFactory) repo under `explainers/`. Do not edit `_explainers/` here.
 
 ## Template
 
